@@ -1,0 +1,10 @@
+body {
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
+
+/* Настройки для темной темы */
+.dark body {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}

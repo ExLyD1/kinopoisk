@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="modal absolute w-[420px] z-50 p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded bg-[#456]"
+		class="modal fixed w-[420px] z-50 p-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded bg-[#456]"
 	>
 		<div class="flex justify-between items-center w-full mb-4">
 			<div class="text-[#bcccdb] font-medium">Join Letterboxd</div>

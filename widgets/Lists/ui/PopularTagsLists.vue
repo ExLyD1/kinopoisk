@@ -1,7 +1,9 @@
 <template>
 	<div class="holder w-[280px]">
 		<widget-title>
-			<template #text_1>Popular tags</template>
+			<template #text_1>
+				<div class="text-[#9ab] cursor-text">Popular tags</div>
+			</template>
 		</widget-title>
 
 		<div class="flex flex-row flex-wrap gap-2">

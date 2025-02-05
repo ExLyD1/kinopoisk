@@ -1,8 +1,12 @@
 <template>
 	<div class="w-[250px] holder">
 		<widget-title>
-			<template #text_1>Popular lists</template>
-			<template #text_2>More</template>
+			<template #text_1>
+				<NuxtLink to="/lists/total">Popular lists</NuxtLink>
+			</template>
+			<template #text_2>
+				<NuxtLink to="/lists/total">MORE</NuxtLink>
+			</template>
 		</widget-title>
 
 		<div class="flex flex-col gap-10">
@@ -16,9 +20,6 @@
 </template>
 
 <script setup lang="ts">
-// * ===============================================
-// * REFACTORED = TRUE
-// * ===============================================
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface.ts'
 
 const filmsListsData = useState<IFilmsList[]>('filmsListsData')
@@ -32,7 +33,7 @@ const visibleLists = computed(() => {
 			const listItem: any = {
 				author_name: list.author_name,
 				author_avatar: list.author_avatar,
-				comments_quontity: list.comments_quontity,
+				comments_quantity: list.comments_quantity,
 				likes: list.likes,
 				list_name: list.list_name,
 				films_images: [],

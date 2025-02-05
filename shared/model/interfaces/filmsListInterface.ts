@@ -7,8 +7,9 @@ export interface IFilmsList {
 	list_name: string
 	list_description: string
 	likes: number
-	comments_quontity: number
+	comments_quantity: number
 	// tags?: Array<string>
 	films: Array<IFilmItem>
+	films_quantity: number
 	// comments?: Array<IComment>
 }

@@ -1,24 +1,33 @@
 <template>
 	<div class="holder_content flex flex-col gap-1">
-		<div class="holder_image w-[310px] h-[170px]">
+		<NuxtLink to="/soon" class="holder_image w-[310px] h-[170px]">
 			<img
 				class="w-full h-full object-cover rounded"
-				:src="data.image"
+				:src="data.film.film_image"
 				alt=""
 			/>
-		</div>
+		</NuxtLink>
 
 		<div class="holder_text w-[200px]">
-			<div class="font-medium text-white text-lg">{{ data.list_name }}</div>
+			<NuxtLink to="/soon" class="font-medium text-white text-lg">
+				{{ data.list.list_name }}
+			</NuxtLink>
 
-			<div class="line-clamp-2">{{ data.description }}</div>
+			<div class="line-clamp-2">{{ data.list.list_description }}</div>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import type { IRecentShowDownsItem } from '~/widgets/Lists/model/recentShowdownsLists.ts'
-const props = defineProps<{ data: IRecentShowDownsItem }>()
+import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+
+const props = defineProps<{
+	data: {
+		list: IFilmsList
+		film: IFilmItem
+	}
+}>()
 const data = props.data
 </script>
 

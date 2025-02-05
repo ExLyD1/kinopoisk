@@ -2,7 +2,9 @@
 	<div class="text-white text-4xl text-center pt-24 pb-[600px]" v-if="film">
 		{{ film.film_name }}
 	</div>
-	<div v-else>Loading...</div>
+	<div class="text-white text-4xl text-center pt-24 pb-[600px]" v-else>
+		No film with such directory
+	</div>
 </template>
 
 <script setup lang="ts">

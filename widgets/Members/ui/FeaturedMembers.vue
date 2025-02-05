@@ -2,7 +2,7 @@
 	<div>
 		<widget-title>
 			<template #text_1>
-				<NuxtLink to="/soon">Featured Members</NuxtLink>
+				<NuxtLink to="/members/total">Featured Members</NuxtLink>
 			</template>
 		</widget-title>
 

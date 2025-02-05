@@ -1,8 +1,12 @@
 <template>
 	<div>
 		<widget-title>
-			<template #text_1>Popular Reviewers</template>
-			<template #text_2>MORE</template>
+			<template #text_1>
+				<NuxtLink to="members/total">Popular Reviewers</NuxtLink>
+			</template>
+			<template #text_2>
+				<NuxtLink to="members/total">MORE</NuxtLink>
+			</template>
 		</widget-title>
 
 		<div class="flex flex-col gap-2 mt-3">

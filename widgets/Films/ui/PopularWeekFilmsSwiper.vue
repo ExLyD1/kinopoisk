@@ -1,8 +1,12 @@
 <template>
 	<div>
 		<widget-title>
-			<template #text_1>Popular films this week</template>
-			<template #text_2>More</template>
+			<template #text_1>
+				<NuxtLink to="films/all">Popular films this week</NuxtLink>
+			</template>
+			<template #text_2>
+				<NuxtLink to="films/all">MORE</NuxtLink>
+			</template>
 		</widget-title>
 
 		<div class="swiper_elem_widget flex gap-4 h-[380px]">
@@ -24,12 +28,7 @@
 					:key="idx"
 					class="h-auto"
 				>
-					<NuxtLink
-						:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
-						class="h-full"
-					>
-						<popular-week-swiper-item :data="film"></popular-week-swiper-item>
-					</NuxtLink>
+					<popular-week-swiper-item :data="film"></popular-week-swiper-item>
 				</swiper-slide>
 			</swiper-container>
 			<button @click="swiper.next()">

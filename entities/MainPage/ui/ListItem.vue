@@ -78,7 +78,7 @@
 			>
 				<div class="flex flex-row items-center gap-1">
 					<img class="h-3 w-3" src="@/shared/ui/icons/comment.png" alt="" />
-					<div class="pr-2">{{ getKNumber(data.comments_quontity) }}</div>
+					<div class="pr-2">{{ getKNumber(data.comments_quantity) }}</div>
 				</div>
 			</NuxtLink>
 		</div>
@@ -93,7 +93,7 @@ const props = defineProps<{
 	data: {
 		author_avatar: string
 		author_name: string
-		comments_quontity: number
+		comments_quantity: number
 		likes: number
 		films_images: Array<string>
 		list_name: string

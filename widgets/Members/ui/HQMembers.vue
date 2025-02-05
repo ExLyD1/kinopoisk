@@ -1,8 +1,13 @@
 <template>
 	<div class="full w-[580px]">
 		<widget-title>
-			<template #text_1><NuxtLink to="/soon">HQ Members</NuxtLink></template>
-			<template #text_2><NuxtLink to="/soon">ALL</NuxtLink></template>
+			<template #text_1>
+				<NuxtLink to="/members/total">HQ Members</NuxtLink>
+			</template>
+
+			<template #text_2>
+				<NuxtLink to="/members/total">ALL</NuxtLink>
+			</template>
 		</widget-title>
 
 		<div class="holder flex flex-wrap pt-1 pb-10 gap-2">

@@ -1,10 +1,13 @@
 <template>
 	<div>
 		<widget-title>
-			<template #text_1
-				><NuxtLink to="/soon">Popular this week</NuxtLink></template
-			>
-			<template #text_2><NuxtLink to="/soon">MORE</NuxtLink></template>
+			<template #text_1>
+				<NuxtLink to="/members/total">Popular this week</NuxtLink>
+			</template>
+
+			<template #text_2>
+				<NuxtLink to="/members/total">MORE</NuxtLink>
+			</template>
 		</widget-title>
 
 		<div class="popularWeek_holder flex gap-5 justify-between mt-5">

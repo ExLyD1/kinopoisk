@@ -1,35 +1,62 @@
 <template>
 	<div class="item_holder flex flex-col w-[448px]">
-		<div
+		<NuxtLink
+			:to="`/members/
+				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				/lists/
+				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
 			class="images_holder flex items-center -space-x-10 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded w-full h-[128px]"
 		>
 			<div
-				v-for="(image, index) in visibleImages"
+				v-for="(film, index) in visibleFilms"
 				:key="index"
 				class="image flex-shrink-0 w-[80px] h-[120px]"
 			>
-				<img class="h-full w-full object-contain" :src="image" alt="" />
+				<img
+					class="h-full w-full object-contain"
+					:src="film.film_image"
+					alt=""
+				/>
 			</div>
-		</div>
+		</NuxtLink>
 
-		<div class="text-white font-medium w-full">{{ data.list_name }}</div>
+		<NuxtLink
+			:to="`/members/
+				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				/lists/
+				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
+			class="text-white font-medium w-full"
+		>
+			{{ data.list.list_name }}
+		</NuxtLink>
 
 		<div
 			class="flex items-center gap-1 text-gray-500 text-sm font-light w-full"
 		>
-			<img
-				class="inline-block size-6 rounded-full"
-				:src="data.avatar"
-				alt="Avatar"
-			/>
+			<NuxtLink
+				:to="`/members/
+					${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}`"
+			>
+				<img
+					class="inline-block size-6 rounded-full"
+					:src="data.list.author_avatar"
+					alt="Avatar"
+				/>
+			</NuxtLink>
 
 			<div>
 				Created By
-				<span class="font-medium text-gray-400">{{ data.author_name }}</span>
+				<span class="font-medium text-gray-400">
+					<NuxtLink
+						:to="`/members/
+							${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}`"
+						>{{ data.list.author_name }}</NuxtLink
+					>
+				</span>
 			</div>
 
 			<div>
-				{{ getTimeAgo(data.timeAgoFromPublished) }}
+				{{ getTimeAgo(data.list.publishedDate) }}
 			</div>
 		</div>
 	</div>
@@ -37,15 +64,22 @@
 
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
-import type { IAllTimeItem } from '~/widgets/Lists/model/allTimeLists'
 import { getTimeAgo } from '~/shared/model/funtions/getTimeAgo'
 
-const props = defineProps<{ data: IAllTimeItem }>()
+import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+
+const props = defineProps<{
+	data: {
+		list: IFilmsList
+		films_list: Array<IFilmItem>
+	}
+}>()
 const data = props.data
 
 const isSmallScreen = useMediaQuery('(max-width: 570px)')
-const visibleImages = computed(() => {
-	return isSmallScreen.value ? data.images.slice(0, 5) : data.images
+const visibleFilms = computed(() => {
+	return isSmallScreen.value ? data.films_list.slice(0, 5) : data.films_list
 })
 </script>
 

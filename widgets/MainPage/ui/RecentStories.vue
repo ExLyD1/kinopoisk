@@ -1,8 +1,12 @@
 <template>
 	<div class="w-full">
 		<widget-title>
-			<template #text_1>Recent Stories</template>
-			<template #text_2>All HQs</template>
+			<template #text_1>
+				<NuxtLink to="/soon">Recent Stories</NuxtLink>
+			</template>
+			<template #text_2>
+				<NuxtLink to="/soon">All HQs</NuxtLink>
+			</template>
 		</widget-title>
 
 		<div class="stories_holder flex flex-row flex-wrap w-full mt-5 gap-5">
@@ -14,9 +18,6 @@
 </template>
 
 <script setup lang="ts">
-// * ===============================================
-// * REFACTORED = TRUE
-// * ===============================================
 import type { IHqUser } from '~/shared/model/interfaces/hqUserInterface'
 
 const hqUsersData = useState<IHqUser[]>('hqUsersList')

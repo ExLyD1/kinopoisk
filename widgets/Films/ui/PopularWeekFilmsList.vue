@@ -1,8 +1,12 @@
 <template>
 	<div>
 		<widget-title>
-			<template #text_1>Popular films this week</template>
-			<template #text_2>More</template>
+			<template #text_1>
+				<NuxtLink to="films/all">Popular films this week</NuxtLink>
+			</template>
+			<template #text_2>
+				<NuxtLink to="films/all">MORE</NuxtLink>
+			</template>
 		</widget-title>
 	</div>
 

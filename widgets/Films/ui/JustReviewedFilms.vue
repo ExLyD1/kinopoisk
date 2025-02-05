@@ -1,7 +1,11 @@
 <template>
 	<widget-title class="w-auto">
-		<template #text_1>Just Reviewed…</template>
-		<template #text_2>2,330,532,028 films watched</template>
+		<template #text_1>
+			<div class="text-[#9ab] cursor-text">Just Reviewed…</div>
+		</template>
+		<template #text_2>
+			<div class="text-[#9ab] cursor-text">2,330,532,028 films watched</div>
+		</template>
 	</widget-title>
 
 	<div class="cover_holder flex flex-row justify-between m-auto">
@@ -22,9 +26,6 @@
 </template>
 
 <script setup lang="ts">
-// * =====================================
-// * REFACTORED = TRUE
-// * =====================================
 import { computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { ComputedRef } from 'vue'

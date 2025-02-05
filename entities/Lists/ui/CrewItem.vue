@@ -1,26 +1,47 @@
 <template>
 	<div class="item_holder flex flex-col w-[280px]">
-		<div
+		<NuxtLink
+			:to="`/members/
+				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				/lists/
+				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
 			class="images_holder flex items-center -space-x-8 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded w-full h-[128px]"
 		>
 			<div
-				v-for="(image, index) in data.images"
+				v-for="(film, index) in data.films_list"
 				:key="index"
 				class="image flex-shrink-0 w-[80px] h-[120px]"
 			>
-				<img class="h-full w-full object-contain" :src="image" alt="" />
+				<img
+					class="h-full w-full object-contain"
+					:src="film.film_image"
+					alt=""
+				/>
 			</div>
-		</div>
+		</NuxtLink>
 
-		<div class="text-white font-medium p-1">
-			{{ data.list_name }}
-		</div>
+		<NuxtLink
+			:to="`/members/
+				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				/lists/
+				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
+			class="text-white font-medium p-1"
+		>
+			{{ data.list.list_name }}
+		</NuxtLink>
 	</div>
 </template>
 
 <script setup lang="ts">
-import type { ICrewItem } from '~/widgets/Lists/model/crewLists'
-const props = defineProps<{ data: ICrewItem }>()
+import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+
+const props = defineProps<{
+	data: {
+		list: IFilmsList
+		films_list: Array<IFilmItem>
+	}
+}>()
 const data = props.data
 </script>
 

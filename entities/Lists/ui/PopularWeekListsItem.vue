@@ -57,7 +57,7 @@
 					class="flex flex-row items-center gap-1"
 				>
 					<img class="h-4 w-4" src="@/shared/ui/icons/comment.png" alt="" />
-					<div class="pr-2">{{ getKNumber(data.list.comments_quontity) }}</div>
+					<div class="pr-2">{{ getKNumber(data.list.comments_quantity) }}</div>
 				</NuxtLink>
 			</div>
 		</div>

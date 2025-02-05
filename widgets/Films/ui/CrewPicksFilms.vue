@@ -1,7 +1,9 @@
 <template>
 	<div class="flex flex-col">
 		<WidgetTitle>
-			<template #text_1>Crew picks</template>
+			<template #text_1>
+				<div class="text-[#9ab] cursor-text">Crew picks</div>
+			</template>
 		</WidgetTitle>
 
 		<div class="item_holder grid grid-rows-2 grid-cols-3 gap-3">

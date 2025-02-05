@@ -1,8 +1,12 @@
 <template>
 	<div class="w-7/12 holder">
 		<widget-title>
-			<template #text_1>Popular reviews this week</template>
-			<template #text_2>More</template>
+			<template #text_1>
+				<NuxtLink to="/soon">Popular reviews this week</NuxtLink>
+			</template>
+			<template #text_2>
+				<NuxtLink to="/soon">MORE</NuxtLink>
+			</template>
 		</widget-title>
 
 		<div

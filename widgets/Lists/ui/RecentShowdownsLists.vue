@@ -1,13 +1,17 @@
 <template>
 	<div>
 		<widget-title>
-			<template #text_1>Recent Showdowns</template>
-			<template #text_2>MORE</template>
+			<template #text_1>
+				<NuxtLink to="/soon">Recent Showdowns</NuxtLink>
+			</template>
+			<template #text_2>
+				<NuxtLink to="/soon">MORE</NuxtLink>
+			</template>
 		</widget-title>
 
 		<div class="holder flex gap-3 mt-4">
 			<recent-showdowns-item
-				v-for="(item, index) in recentShowdownsItemsList"
+				v-for="(item, index) in listsData"
 				:key="index"
 				:data="item"
 			></recent-showdowns-item>
@@ -16,7 +20,17 @@
 </template>
 
 <script setup lang="ts">
-import { recentShowdownsItemsList } from '../model/recentShowdownsLists'
+import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+
+const filmsListsData = useState<Array<IFilmsList>>('filmsListsData')
+
+const listsData = filmsListsData.value.slice(0, 3).map((list, index) => {
+	const film = list.films[index + 3]
+	return {
+		list,
+		film,
+	}
+})
 </script>
 
 <style scoped>

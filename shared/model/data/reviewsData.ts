@@ -1,11 +1,12 @@
 import type { IReview } from '../interfaces/reviewInterface'
 
-export const reviewsList: Ref<Array<IReview>> = ref([
+export const reviewsList: IReview[] = [
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar11.jpg',
-			import.meta.url
-		).href,
+		id: 1,
+		type: 'film',
+		item_id: 1,
+		user_id: 1,
+		author_avatar: '/avatars/avatar11.jpg',
 		author_name: 'Rachel',
 		review_comments: 6,
 		review_likes: 83,
@@ -13,10 +14,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar12.jpg',
-			import.meta.url
-		).href,
+		id: 2,
+		type: 'film',
+		item_id: 2,
+		user_id: 2,
+		author_avatar: '/avatars/avatar12.jpg',
 		author_name: 'Leo',
 		review_comments: 19,
 		review_likes: 27,
@@ -24,10 +26,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 1,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar15.jpg',
-			import.meta.url
-		).href,
+		id: 3,
+		type: 'film',
+		item_id: 3,
+		user_id: 3,
+		author_avatar: '/avatars/avatar15.jpg',
 		author_name: 'Victor',
 		review_comments: 11,
 		review_likes: 198,
@@ -35,10 +38,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 0,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar14.jpg',
-			import.meta.url
-		).href,
+		id: 4,
+		type: 'film',
+		item_id: 4,
+		user_id: 4,
+		author_avatar: '/avatars/avatar14.jpg',
 		author_name: 'Hannah',
 		review_comments: 1,
 		review_likes: 50,
@@ -46,10 +50,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar6.jpg',
-			import.meta.url
-		).href,
+		id: 5,
+		type: 'film',
+		item_id: 5,
+		user_id: 5,
+		author_avatar: '/avatars/avatar6.jpg',
 		author_name: 'Eve',
 		review_comments: 3,
 		review_likes: 121,
@@ -57,10 +62,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar10.jpg',
-			import.meta.url
-		).href,
+		id: 6,
+		type: 'film',
+		item_id: 6,
+		user_id: 6,
+		author_avatar: '/avatars/avatar10.jpg',
 		author_name: 'Eve',
 		review_comments: 28,
 		review_likes: 185,
@@ -68,10 +74,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 1.2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar15.jpg',
-			import.meta.url
-		).href,
+		id: 7,
+		type: 'film',
+		item_id: 7,
+		user_id: 7,
+		author_avatar: '/avatars/avatar15.jpg',
 		author_name: 'Charlie',
 		review_comments: 0,
 		review_likes: 45,
@@ -79,10 +86,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.9,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar11.jpg',
-			import.meta.url
-		).href,
+		id: 8,
+		type: 'film',
+		item_id: 8,
+		user_id: 8,
+		author_avatar: '/avatars/avatar11.jpg',
 		author_name: 'Charlie',
 		review_comments: 2,
 		review_likes: 79,
@@ -90,10 +98,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.6,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar8.jpg',
-			import.meta.url
-		).href,
+		id: 9,
+		type: 'film',
+		item_id: 9,
+		user_id: 9,
+		author_avatar: '/avatars/avatar8.jpg',
 		author_name: 'Tina',
 		review_comments: 28,
 		review_likes: 29,
@@ -101,10 +110,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.3,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar1.jpg',
-			import.meta.url
-		).href,
+		id: 10,
+		type: 'film',
+		item_id: 10,
+		user_id: 10,
+		author_avatar: '/avatars/avatar1.jpg',
 		author_name: 'David',
 		review_comments: 14,
 		review_likes: 9,
@@ -112,10 +122,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 5.0,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar6.jpg',
-			import.meta.url
-		).href,
+		id: 11,
+		type: 'film',
+		item_id: 11,
+		user_id: 11,
+		author_avatar: '/avatars/avatar6.jpg',
 		author_name: 'Victor',
 		review_comments: 35,
 		review_likes: 149,
@@ -123,10 +134,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 2.1,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar13.jpg',
-			import.meta.url
-		).href,
+		id: 12,
+		type: 'film',
+		item_id: 12,
+		user_id: 12,
+		author_avatar: '/avatars/avatar13.jpg',
 		author_name: 'Paul',
 		review_comments: 27,
 		review_likes: 183,
@@ -134,10 +146,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar5.jpg',
-			import.meta.url
-		).href,
+		id: 13,
+		type: 'film',
+		item_id: 13,
+		user_id: 13,
+		author_avatar: '/avatars/avatar5.jpg',
 		author_name: 'Quinn',
 		review_comments: 4,
 		review_likes: 115,
@@ -145,10 +158,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 5.0,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar3.jpg',
-			import.meta.url
-		).href,
+		id: 14,
+		type: 'film',
+		item_id: 14,
+		user_id: 14,
+		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'Tina',
 		review_comments: 7,
 		review_likes: 176,
@@ -156,10 +170,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 2.4,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar3.jpg',
-			import.meta.url
-		).href,
+		id: 15,
+		type: 'film',
+		item_id: 15,
+		user_id: 15,
+		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'Sam',
 		review_comments: 11,
 		review_likes: 50,
@@ -167,10 +182,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 1.5,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar3.jpg',
-			import.meta.url
-		).href,
+		id: 16,
+		type: 'film',
+		item_id: 16,
+		user_id: 16,
+		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'David',
 		review_comments: 17,
 		review_likes: 170,
@@ -178,10 +194,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 1.8,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar3.jpg',
-			import.meta.url
-		).href,
+		id: 17,
+		type: 'film',
+		item_id: 17,
+		user_id: 17,
+		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'Yara',
 		review_comments: 33,
 		review_likes: 156,
@@ -189,10 +206,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 17,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar11.jpg',
-			import.meta.url
-		).href,
+		id: 18,
+		type: 'film',
+		item_id: 18,
+		user_id: 18,
+		author_avatar: '/avatars/avatar11.jpg',
 		author_name: 'Karen',
 		review_comments: 24,
 		review_likes: 51,
@@ -200,10 +218,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 2.2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar6.jpg',
-			import.meta.url
-		).href,
+		id: 19,
+		type: 'film',
+		item_id: 19,
+		user_id: 19,
+		author_avatar: '/avatars/avatar6.jpg',
 		author_name: 'Ursula',
 		review_comments: 35,
 		review_likes: 118,
@@ -211,10 +230,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.1,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar7.jpg',
-			import.meta.url
-		).href,
+		id: 20,
+		type: 'film',
+		item_id: 20,
+		user_id: 20,
+		author_avatar: '/avatars/avatar7.jpg',
 		author_name: 'David',
 		review_comments: 19,
 		review_likes: 133,
@@ -222,10 +242,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.3,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar12.jpg',
-			import.meta.url
-		).href,
+		id: 21,
+		type: 'film',
+		item_id: 21,
+		user_id: 21,
+		author_avatar: '/avatars/avatar12.jpg',
 		author_name: 'Grace',
 		review_comments: 4,
 		review_likes: 111,
@@ -233,10 +254,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.8,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar11.jpg',
-			import.meta.url
-		).href,
+		id: 22,
+		type: 'film',
+		item_id: 22,
+		user_id: 22,
+		author_avatar: '/avatars/avatar11.jpg',
 		author_name: 'Nathan',
 		review_comments: 0,
 		review_likes: 92,
@@ -244,10 +266,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 1.9,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar3.jpg',
-			import.meta.url
-		).href,
+		id: 23,
+		type: 'film',
+		item_id: 23,
+		user_id: 23,
+		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'Xander',
 		review_comments: 33,
 		review_likes: 77,
@@ -255,10 +278,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.1,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar15.jpg',
-			import.meta.url
-		).href,
+		id: 24,
+		type: 'film',
+		item_id: 24,
+		user_id: 24,
+		author_avatar: '/avatars/avatar15.jpg',
 		author_name: 'Xander',
 		review_comments: 45,
 		review_likes: 97,
@@ -266,10 +290,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.9,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar10.jpg',
-			import.meta.url
-		).href,
+		id: 25,
+		type: 'film',
+		item_id: 25,
+		user_id: 25,
+		author_avatar: '/avatars/avatar10.jpg',
 		author_name: 'Paul',
 		review_comments: 37,
 		review_likes: 130,
@@ -277,10 +302,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.9,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar15.jpg',
-			import.meta.url
-		).href,
+		id: 26,
+		type: 'film',
+		item_id: 26,
+		user_id: 26,
+		author_avatar: '/avatars/avatar15.jpg',
 		author_name: 'Alice',
 		review_comments: 8,
 		review_likes: 186,
@@ -288,10 +314,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar11.jpg',
-			import.meta.url
-		).href,
+		id: 27,
+		type: 'film',
+		item_id: 27,
+		user_id: 27,
+		author_avatar: '/avatars/avatar11.jpg',
 		author_name: 'David',
 		review_comments: 4,
 		review_likes: 108,
@@ -299,10 +326,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.5,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar2.jpg',
-			import.meta.url
-		).href,
+		id: 28,
+		type: 'film',
+		item_id: 28,
+		user_id: 28,
+		author_avatar: '/avatars/avatar2.jpg',
 		author_name: 'Ursula',
 		review_comments: 28,
 		review_likes: 5,
@@ -310,10 +338,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar4.jpg',
-			import.meta.url
-		).href,
+		id: 29,
+		type: 'film',
+		item_id: 29,
+		user_id: 29,
+		author_avatar: '/avatars/avatar4.jpg',
 		author_name: 'Leo',
 		review_comments: 39,
 		review_likes: 152,
@@ -321,10 +350,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 2.6,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar9.jpg',
-			import.meta.url
-		).href,
+		id: 30,
+		type: 'film',
+		item_id: 30,
+		user_id: 30,
+		author_avatar: '/avatars/avatar9.jpg',
 		author_name: 'Wendy',
 		review_comments: 28,
 		review_likes: 26,
@@ -332,10 +362,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.9,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar15.jpg',
-			import.meta.url
-		).href,
+		id: 31,
+		type: 'film',
+		item_id: 31,
+		user_id: 31,
+		author_avatar: '/avatars/avatar15.jpg',
 		author_name: 'Isaac',
 		review_comments: 49,
 		review_likes: 68,
@@ -343,10 +374,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.4,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar9.jpg',
-			import.meta.url
-		).href,
+		id: 32,
+		type: 'film',
+		item_id: 32,
+		user_id: 32,
+		author_avatar: '/avatars/avatar9.jpg',
 		author_name: 'Victor',
 		review_comments: 10,
 		review_likes: 184,
@@ -354,10 +386,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.4,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar3.jpg',
-			import.meta.url
-		).href,
+		id: 33,
+		type: 'film',
+		item_id: 33,
+		user_id: 33,
+		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'Tina',
 		review_comments: 12,
 		review_likes: 43,
@@ -365,10 +398,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.9,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar12.jpg',
-			import.meta.url
-		).href,
+		id: 34,
+		type: 'film',
+		item_id: 34,
+		user_id: 34,
+		author_avatar: '/avatars/avatar12.jpg',
 		author_name: 'Leo',
 		review_comments: 45,
 		review_likes: 173,
@@ -376,10 +410,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 1.2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar13.jpg',
-			import.meta.url
-		).href,
+		id: 35,
+		type: 'film',
+		item_id: 35,
+		user_id: 35,
+		author_avatar: '/avatars/avatar13.jpg',
 		author_name: 'Olivia',
 		review_comments: 33,
 		review_likes: 51,
@@ -387,10 +422,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 0.5,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar5.jpg',
-			import.meta.url
-		).href,
+		id: 36,
+		type: 'film',
+		item_id: 36,
+		user_id: 36,
+		author_avatar: '/avatars/avatar5.jpg',
 		author_name: 'Jack',
 		review_comments: 22,
 		review_likes: 91,
@@ -398,10 +434,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 0.0,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar10.jpg',
-			import.meta.url
-		).href,
+		id: 37,
+		type: 'film',
+		item_id: 37,
+		user_id: 37,
+		author_avatar: '/avatars/avatar10.jpg',
 		author_name: 'Sam',
 		review_comments: 17,
 		review_likes: 25,
@@ -409,10 +446,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 2.2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar9.jpg',
-			import.meta.url
-		).href,
+		id: 38,
+		type: 'film',
+		item_id: 38,
+		user_id: 38,
+		author_avatar: '/avatars/avatar9.jpg',
 		author_name: 'Tina',
 		review_comments: 50,
 		review_likes: 179,
@@ -420,10 +458,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.2,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar9.jpg',
-			import.meta.url
-		).href,
+		id: 39,
+		type: 'film',
+		item_id: 39,
+		user_id: 39,
+		author_avatar: '/avatars/avatar9.jpg',
 		author_name: 'Charlie',
 		review_comments: 18,
 		review_likes: 58,
@@ -431,10 +470,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 4.4,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar4.jpg',
-			import.meta.url
-		).href,
+		id: 40,
+		type: 'film',
+		item_id: 40,
+		user_id: 40,
+		author_avatar: '/avatars/avatar4.jpg',
 		author_name: 'Zane',
 		review_comments: 17,
 		review_likes: 190,
@@ -442,10 +482,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.7,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar11.jpg',
-			import.meta.url
-		).href,
+		id: 41,
+		type: 'film',
+		item_id: 41,
+		user_id: 41,
+		author_avatar: '/avatars/avatar11.jpg',
 		author_name: 'Grace',
 		review_comments: 29,
 		review_likes: 9,
@@ -453,10 +494,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.7,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar3.jpg',
-			import.meta.url
-		).href,
+		id: 42,
+		type: 'film',
+		item_id: 42,
+		user_id: 42,
+		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'Tina',
 		review_comments: 46,
 		review_likes: 137,
@@ -464,10 +506,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 2.1,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar3.jpg',
-			import.meta.url
-		).href,
+		id: 43,
+		type: 'film',
+		item_id: 43,
+		user_id: 43,
+		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'Charlie',
 		review_comments: 8,
 		review_likes: 81,
@@ -475,10 +518,11 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 1.9,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar14.jpg',
-			import.meta.url
-		).href,
+		id: 44,
+		type: 'film',
+		item_id: 44,
+		user_id: 44,
+		author_avatar: '/avatars/avatar14.jpg',
 		author_name: 'Alice',
 		review_comments: 1,
 		review_likes: 154,
@@ -486,14 +530,255 @@ export const reviewsList: Ref<Array<IReview>> = ref([
 		review_rate: 3.9,
 	},
 	{
-		author_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar14.jpg',
-			import.meta.url
-		).href,
+		id: 46,
+		type: 'film',
+		item_id: 1,
+		user_id: 1,
+		author_avatar: '/avatars/avatar14.jpg',
 		author_name: 'Hannah',
 		review_comments: 18,
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
 	},
-])
+	{
+		id: 47,
+		type: 'film',
+		item_id: 1,
+		user_id: 1,
+		author_avatar: '/avatars/avatar5.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 48,
+		type: 'film',
+		item_id: 1,
+		user_id: 1,
+		author_avatar: '/avatars/avatar4.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 49,
+		type: 'film',
+		item_id: 1,
+		user_id: 1,
+		author_avatar: '/avatars/avatar11.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 50,
+		type: 'film',
+		item_id: 1,
+		user_id: 1,
+		author_avatar: '/avatars/avatar2.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 51,
+		type: 'film',
+		item_id: 1,
+		user_id: 1,
+		author_avatar: '/avatars/avatar13.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 52,
+		type: 'film',
+		item_id: 1,
+		user_id: 1,
+		author_avatar: '/avatars/avatar13.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 53,
+		type: 'film',
+		item_id: 2,
+		user_id: 2,
+		author_avatar: '/avatars/avatar12.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 54,
+		type: 'list',
+		item_id: 1,
+		user_id: 40,
+		author_avatar: '/avatars/avatar4.jpg',
+		author_name: 'Zane',
+		review_comments: 17,
+		review_likes: 190,
+		review_text: 'Random review text 66',
+		review_rate: 3.7,
+	},
+	{
+		id: 55,
+		type: 'list',
+		item_id: 2,
+		user_id: 1,
+		author_avatar: '/avatars/avatar11.jpg',
+		author_name: 'Grace',
+		review_comments: 29,
+		review_likes: 9,
+		review_text: 'Random review text 94',
+		review_rate: 3.7,
+	},
+	{
+		id: 56,
+		type: 'list',
+		item_id: 3,
+		user_id: 1,
+		author_avatar: '/avatars/avatar3.jpg',
+		author_name: 'Tina',
+		review_comments: 46,
+		review_likes: 137,
+		review_text: 'Random review text 48',
+		review_rate: 2.1,
+	},
+	{
+		id: 57,
+		type: 'list',
+		item_id: 4,
+		user_id: 1,
+		author_avatar: '/avatars/avatar3.jpg',
+		author_name: 'Charlie',
+		review_comments: 8,
+		review_likes: 81,
+		review_text: 'Random review text 76',
+		review_rate: 1.9,
+	},
+	{
+		id: 58,
+		type: 'list',
+		item_id: 5,
+		user_id: 1,
+		author_avatar: '/avatars/avatar14.jpg',
+		author_name: 'Alice',
+		review_comments: 1,
+		review_likes: 154,
+		review_text: 'Random review text 17',
+		review_rate: 3.9,
+	},
+	{
+		id: 59,
+		type: 'list',
+		item_id: 6,
+		user_id: 1,
+		author_avatar: '/avatars/avatar14.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 60,
+		type: 'list',
+		item_id: 7,
+		user_id: 1,
+		author_avatar: '/avatars/avatar5.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 61,
+		type: 'list',
+		item_id: 8,
+		user_id: 1,
+		author_avatar: '/avatars/avatar4.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 62,
+		type: 'list',
+		item_id: 9,
+		user_id: 1,
+		author_avatar: '/avatars/avatar11.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 63,
+		type: 'list',
+		item_id: 9,
+		user_id: 1,
+		author_avatar: '/avatars/avatar2.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 64,
+		type: 'list',
+		item_id: 1,
+		user_id: 2,
+		author_avatar: '/avatars/avatar13.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 65,
+		type: 'list',
+		item_id: 1,
+		user_id: 4,
+		author_avatar: '/avatars/avatar13.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+	{
+		id: 66,
+		type: 'list',
+		item_id: 1,
+		user_id: 1,
+		author_avatar: '/avatars/avatar12.jpg',
+		author_name: 'Hannah',
+		review_comments: 18,
+		review_likes: 29,
+		review_text: 'Random review text 50',
+		review_rate: 2.9,
+	},
+]

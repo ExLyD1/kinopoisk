@@ -1,6 +1,6 @@
 import type { IStory } from '../interfaces/storyInterface'
 
-export const storiesList: Ref<Array<IStory>> = ref([
+export const storiesList: Array<IStory> = [
 	{
 		story_name: 'The Rise of Cinematic Universes',
 		story_image: new URL(
@@ -71,4 +71,4 @@ export const storiesList: Ref<Array<IStory>> = ref([
 		story_text:
 			"Paul Dano, a highly talented and versatile actor, has established himself as a prominent figure in the world of cinema through his captivating performances. With a diverse filmography, Dano has showcased his acting prowess across various genres. He gained critical acclaim for his roles in films like 'Little Miss Sunshine' (2006), a charming indie comedy, and 'There Will Be Blood' (2007), a powerful drama that earned him widespread recognition. Dano's ability to immerse himself in complex characters has been evident…",
 	},
-])
+]

@@ -10,11 +10,11 @@
 		</widget-title>
 
 		<div
-			v-for="(review, index) in data"
+			v-for="(item, index) in data"
 			:key="index"
 			class="flex flex-col gap-2 w-full"
 		>
-			<review-item :data="review" class="mt-2 mb-2"></review-item>
+			<review-item :data="item" class="mt-2 mb-2"></review-item>
 
 			<div
 				v-if="index !== data.length - 1"
@@ -27,39 +27,65 @@
 <style scoped></style>
 
 <script setup lang="ts">
-// * =====================================
-// * REFACTORED = TRUE
-// * =====================================
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 
-const filmsList = useState<IFilmItem[]>('filmsList')
+const data: Ref<{ review: IReview; film: IFilmItem }[]> = ref([])
 
-const data = computed(() =>
-	filmsList.value
-		.map((film, index) => {
-			if (film.reviews && film.reviews[index]) {
-				return {
-					film_image: film.film_image,
-					film_name: film.film_name,
-					realise_year: film.realise_year,
-					review: film.reviews[index],
-				}
+onMounted(async () => {
+	const reviewsList = await $fetch<IReview[]>(
+		'/api/review/list?type=film&quantity=5'
+	)
+
+	const fetchData = await Promise.all(
+		reviewsList.map(async review => {
+			const film = await $fetch<IFilmItem>(`/api/movie/${review.item_id}`)
+
+			return {
+				review: review,
+				film: film,
 			}
-			return null
 		})
-		.filter(
-			(
-				item
-			): item is {
-				film_image: string
-				film_name: string
-				realise_year: number
-				review: IReview
-			} => item !== null
-		)
-		.slice(0, 6)
-)
+	)
+
+	data.value = fetchData
+})
+
+// watchEffect(async () => {
+// 	if (!filmsData.value) return []
+
+// 	const films = filmsData.value
+
+// 	const resolvedFilms = await Promise.all(
+// 		films.map(async (film, index) => {
+// 			if (film.reviews && film.reviews[index]) {
+// 				const review = await $fetch<IReview>(
+// 					`/api/getReviewsList?id=${film.reviews[index]}`
+// 				)
+// 				return {
+// 					film_image: film.film_image,
+// 					film_name: film.film_name,
+// 					realise_year: film.realise_year,
+// 					review,
+// 				}
+// 			}
+// 			return null
+// 		})
+// 	).then(resolvedFilms =>
+// 		resolvedFilms.filter(
+// 			(
+// 				item
+// 			): item is {
+// 				film_image: string
+// 				film_name: string
+// 				realise_year: number
+// 				review: IReview
+// 			} => item !== null
+// 		)
+// 	)
+
+// 	data.value = resolvedFilms
+// })
 </script>
 
 <style scoped>

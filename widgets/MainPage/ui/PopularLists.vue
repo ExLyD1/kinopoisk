@@ -11,7 +11,7 @@
 
 		<div class="flex flex-col gap-10">
 			<list-item
-				v-for="(item, index) in visibleLists"
+				v-for="(item, index) in listsData"
 				:key="index"
 				:data="item"
 			></list-item>
@@ -22,31 +22,34 @@
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface.ts'
 
-const filmsListsData = useState<IFilmsList[]>('filmsListsData')
+const { data: filmsListsData } = await useAsyncData<IFilmsList[]>(
+	'filmsListsData-5',
+	() => $fetch<IFilmsList[]>('/api/getFilmsListsData?quantity=5')
+)
 
-const visibleLists = computed(() => {
-	return filmsListsData.value
-		.map((list, index) => {
-			if (!list.films[index].film_image) {
-				return
+const listsData = ref<{ list: IFilmsList; films_list: any[] }[]>([])
+
+watchEffect(async () => {
+	if (!filmsListsData.value) return
+
+	const resolvedFilmsLists = await Promise.all(
+		filmsListsData.value.map(async (list, index) => {
+			// Запрос для каждого фильма
+
+			const films_list = await Promise.all(
+				list.films
+					.slice(index * 5, index * 5 + 5)
+					.map(film_id => $fetch(`/api/getFilmsList?id=${film_id}`))
+			)
+
+			return {
+				list,
+				films_list,
 			}
-			const listItem: any = {
-				author_name: list.author_name,
-				author_avatar: list.author_avatar,
-				comments_quantity: list.comments_quantity,
-				likes: list.likes,
-				list_name: list.list_name,
-				films_images: [],
-			}
-			for (let i = 0; i < 5; i++) {
-				if (!list.films[index * 5 + i]) {
-					return
-				}
-				listItem.films_images.push(list.films[index * 5 + i].film_image)
-			}
-			return listItem
 		})
-		.slice(0, 4)
+	)
+
+	listsData.value = resolvedFilmsLists.filter(list => list !== null)
 })
 </script>
 

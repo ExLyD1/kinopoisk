@@ -9,7 +9,7 @@
 				<img
 					class="w-full h-full object-cover rounded-lg"
 					:src="film.film_image"
-					alt=""
+					alt="qwe"
 				/>
 			</div>
 		</NuxtLink>

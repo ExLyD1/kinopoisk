@@ -27,16 +27,13 @@
 </template>
 
 <script setup lang="ts">
-// * =====================================
-// * REFACTORED = TRUE
-// * =====================================
 import { useMediaQuery } from '@vueuse/core'
 import { cardImagesList } from '~/widgets/MainPage/model/cardsList'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const filmsList = useState<IFilmItem[]>('filmsList')
+const filmsList: Ref<IFilmItem[]> = ref([])
 
-const visibleFilms = computed(() => filmsList.value.slice(0, 5))
+const visibleFilms = computed(() => filmsList.value)
 
 const isSmallScreen = useMediaQuery('(max-width: 530px)')
 const isMediumScreen = useMediaQuery(
@@ -51,6 +48,12 @@ const visibleImagesList: ComputedRef<Array<string>> = computed(() => {
 	} else {
 		return cardImagesList.value
 	}
+})
+
+onMounted(async () => {
+	filmsList.value = await $fetch<IFilmItem[]>(
+		'/api/movie/list?type=top_100_films&quantity=5'
+	)
 })
 </script>
 

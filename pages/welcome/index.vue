@@ -39,11 +39,48 @@
 		<div class="mt-16 w-full m-auto text-gray-500 bg-gray-800">
 			<will-find-main-sections></will-find-main-sections>
 		</div>
+
+		<div class="mt-16 w-full m-auto text-gray-500">
+			<more-tips-and-tricks></more-tips-and-tricks>
+		</div>
+
+		<div
+			class="how_letterboxd text-gray-400 text-3xl pt-20 pr-5 text-center font-light px-5"
+		>
+			<span
+				@click="useHeaderStore().isModalSignInOpened = true"
+				class="text-gray-300 cursor-pointer border-b-2 border-gray-400 hover:text-blue-400 pb-1 hover:border-white transition-all"
+				>Sign in</span
+			>
+			or
+			<span
+				@click="useHeaderStore().isModalSignUpOpened = true"
+				class="text-gray-300 cursor-pointer border-b-2 border-gray-400 hover:text-blue-400 pb-1 hover:border-white transition-all"
+				>create an account</span
+			>
+			to get started!
+		</div>
+
+		<div class="how_letterboxd text-gray-400 pt-2 pr-5 text-center px-5">
+			Then grab our apps and see our questions page for more answers.
+		</div>
+
+		<div class="mt-24 w-full m-auto text-gray-500">
+			<final-guide></final-guide>
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { useHeaderStore } from '~/features/Header/headerStore'
+
+const { data: filmsListsData } = await useAsyncData('filmsListsData', () => {
+	return import('~/shared/model/data/filmsListsData').then(
+		module => module.filmsListsData
+	)
+})
+
+useState('filmsListsData', () => filmsListsData)
 </script>
 
 <style scoped>

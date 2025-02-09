@@ -8,6 +8,7 @@ export default defineNuxtConfig({
 		'shadcn-nuxt',
 		'@nuxtjs/i18n',
 		'nuxt-swiper',
+		'@nuxt/image',
 	],
 
 	plugins: ['~/plugins/preline.client.ts'],

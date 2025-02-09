@@ -18,7 +18,7 @@ const films = filmsList.value
 const route = useRoute()
 const { film: film_name } = route.params as { film: string }
 
-const film = films?.value.find(film => {
+const film = films?.find(film => {
 	if (
 		film.film_name.toLowerCase() ===
 		film_name.toLowerCase().replaceAll('-', ' ')

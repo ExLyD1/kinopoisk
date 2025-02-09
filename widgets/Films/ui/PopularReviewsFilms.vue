@@ -30,33 +30,67 @@
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 
-const filmsList = useState<IFilmItem[]>('filmsList')
-
-const data = computed(() =>
-	filmsList.value
-		.map((film, index) => {
-			if (film.reviews && film.reviews[index]) {
-				return {
-					film_image: film.film_image,
-					film_name: film.film_name,
-					realise_year: film.realise_year,
-					review: film.reviews[index],
-				}
-			}
-			return null
-		})
-		.filter(
-			(
-				item
-			): item is {
-				film_image: string
-				film_name: string
-				realise_year: number
-				review: IReview
-			} => item !== null
-		)
-		.slice(12, 18)
+const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
+	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=18')
 )
+
+const data: Ref<any> = ref([])
+
+watchEffect(async () => {
+	if (!filmsList.value) return
+
+	const resolvedFilms = await Promise.all(
+		filmsList.value.map(async film => {
+			if (!film.reviews || film.reviews.length === 0) return null
+
+			const reviews_list = await Promise.all(
+				film.reviews.map(review_id =>
+					$fetch(`/api/getReviewsList?id=${review_id}`)
+				)
+			)
+
+			return {
+				film_image: film.film_image,
+				film_name: film.film_name,
+				realise_year: film.realise_year,
+				review: reviews_list,
+			}
+		})
+	)
+
+	data.value = resolvedFilms.filter(item => item !== null).slice(12, 18)
+})
+
+// const data = computed(() =>
+// 	filmsList.value
+// 		?.map(async (film, index) => {
+// 			if (film.reviews && film.reviews[index]) {
+// 				const reviews_list = await Promise.all(
+// 					film.reviews.map((review_id, index) => {
+// 						return $fetch(`/api/getReviewsList?id=${review_id}`)
+// 					})
+// 				)
+// 				return {
+// 					film_image: film.film_image,
+// 					film_name: film.film_name,
+// 					realise_year: film.realise_year,
+// 					review: reviews_list,
+// 				}
+// 			}
+// 			return null
+// 		})
+// 		.filter(
+// 			(
+// 				item
+// 			): item is {
+// 				film_image: string
+// 				film_name: string
+// 				realise_year: number
+// 				review: IReview
+// 			} => item !== null
+// 		)
+// 		.slice(12, 18)
+// )
 </script>
 
 <style scoped>

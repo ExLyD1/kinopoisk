@@ -1,14 +1,14 @@
 import type { IFilmItem } from '../interfaces/filmInterface'
 import { reviewsList } from './reviewsData'
 
-export const filmsList: Ref<Array<IFilmItem>> = ref([
+import image1 from '../../ui/icons/filmCovers/filmCover1.jpg'
+
+export const filmsList: Array<IFilmItem> = [
 	{
+		id: 1,
 		film_name: 'The Last Adventure',
 		realise_year: 2018,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover1.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover1.jpg',
 		author_name: 'Laura Martinez',
 		rate: 4.3,
 		describtion:
@@ -18,16 +18,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 1951561,
 		list_contains: 992315,
 		likes: 103456,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 666,
+		reviews: [1, 2, 3, 4, 5],
 	},
 	{
+		id: 2,
 		film_name: 'Eternal Night',
 		realise_year: 2011,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover2.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover2.jpg',
 		author_name: 'Jane Smith',
 		rate: 2.7,
 		describtion: 'Where time itself becomes the enemy.',
@@ -36,16 +35,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 283523,
 		list_contains: 1111,
 		likes: 484993,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4285,
+		reviews: [2, 22, 23, 4, 5],
 	},
 	{
+		id: 3,
 		film_name: 'The Last Adventure',
 		realise_year: 2016,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover3.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover3.jpg',
 		author_name: 'James Taylor',
 		rate: 3.5,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -54,16 +52,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 518162,
 		list_contains: 5543,
 		likes: 462586,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3296,
+		reviews: [31, 32, 42, 1, 15],
 	},
 	{
+		id: 4,
 		film_name: "The Phantom's Lair",
 		realise_year: 2002,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover4.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover4.jpg',
 		author_name: 'James Taylor',
 		rate: 1.3,
 		describtion: 'A gripping saga of survival and hope.',
@@ -72,16 +69,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 95991,
 		list_contains: 12567,
 		likes: 340962,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4634,
+		reviews: [31, 32, 42, 1, 15],
 	},
 	{
+		id: 5,
 		film_name: 'Silent Shadows',
 		realise_year: 2010,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover5.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover5.jpg',
 		author_name: 'James Taylor',
 		rate: 4.2,
 		describtion: 'The battle between good and evil unfolds.',
@@ -90,16 +86,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 611433,
 		list_contains: 96756,
 		likes: 112744,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4792,
+		reviews: [31, 32, 42, 1, 15],
 	},
 	{
+		id: 6,
 		film_name: 'Edge of Tomorrow',
 		realise_year: 2000,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover6.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover6.jpg',
 		author_name: 'Emily White',
 		rate: 5,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -108,16 +103,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 636470,
 		list_contains: 56,
 		likes: 402706,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2906,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 7,
 		film_name: 'The Dark Legacy',
 		realise_year: 2009,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover7.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover7.jpg',
 		author_name: 'Michael Brown',
 		rate: 0,
 		describtion: 'An unforgettable journey into the unknown.',
@@ -126,16 +120,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 568195,
 		list_contains: 75,
 		likes: 482098,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4866,
+		reviews: [11, 12, 13, 14, 6],
 	},
 	{
+		id: 8,
 		film_name: 'The Last Adventure',
 		realise_year: 2011,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover8.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover8.jpg',
 		author_name: 'Laura Martinez',
 		rate: 2,
 		describtion: 'Where time itself becomes the enemy.',
@@ -144,16 +137,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 479342,
 		list_contains: 0,
 		likes: 23535,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3412,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 9,
 		film_name: 'Heroes Among Us',
 		realise_year: 2016,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover9.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover9.jpg',
 		author_name: 'Sophia Wilson',
 		rate: 1.2,
 		describtion: 'An unforgettable journey into the unknown.',
@@ -162,16 +154,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 972103,
 		list_contains: 0,
 		likes: 33300,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1169,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 10,
 		film_name: 'Silent Shadows',
 		realise_year: 2015,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover10.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover10.jpg',
 		author_name: 'David Lee',
 		rate: 4.8,
 		describtion: 'A gripping saga of survival and hope.',
@@ -180,16 +171,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 620045,
 		list_contains: 0,
 		likes: 414588,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 111,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 11,
 		film_name: 'The Last Adventure',
 		realise_year: 2006,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover11.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover11.jpg',
 		author_name: 'John Doe',
 		rate: 4.1,
 		describtion: 'Where time itself becomes the enemy.',
@@ -198,16 +188,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 830689,
 		list_contains: 0,
 		likes: 311629,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4545,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 12,
 		film_name: 'Shattered Dreams',
 		realise_year: 2010,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover12.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover12.jpg',
 		author_name: 'Michael Brown',
 		rate: 3.3,
 		describtion:
@@ -217,16 +206,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 803753,
 		list_contains: 1,
 		likes: 251639,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3775,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 13,
 		film_name: 'Heroes Among Us',
 		realise_year: 2003,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover13.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover13.jpg',
 		author_name: 'David Lee',
 		rate: 3.3,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -235,16 +223,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 990879,
 		list_contains: 1,
 		likes: 175978,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3406,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 14,
 		film_name: 'Heroes Among Us',
 		realise_year: 2021,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover14.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover14.jpg',
 		author_name: 'Sophia Wilson',
 		rate: 2.7,
 		describtion:
@@ -254,16 +241,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 297057,
 		list_contains: 1,
 		likes: 37125,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 463,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 15,
 		film_name: 'Beyond the Stars',
 		realise_year: 2001,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover15.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover15.jpg',
 		author_name: 'Sophia Wilson',
 		rate: 1.3,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -272,16 +258,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 998649,
 		list_contains: 0,
 		likes: 234424,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2144,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 16,
 		film_name: 'The Last Adventure',
 		realise_year: 2016,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover16.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover16.jpg',
 		author_name: 'Emily White',
 		rate: 3.5,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -290,16 +275,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 870082,
 		list_contains: 0,
 		likes: 357092,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1964,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 17,
 		film_name: 'Edge of Tomorrow',
 		realise_year: 2008,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover17.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover17.jpg',
 		author_name: 'Ethan Clark',
 		rate: 3,
 		describtion: 'A hero’s journey filled with challenges.',
@@ -308,16 +292,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 984323,
 		list_contains: 1,
 		likes: 122222,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4038,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 18,
 		film_name: 'Lost in Time',
 		realise_year: 2005,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover18.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover18.jpg',
 		author_name: 'James Taylor',
 		rate: 2,
 		describtion:
@@ -327,16 +310,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 329600,
 		list_contains: 1,
 		likes: 410144,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2016,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 19,
 		film_name: 'Shattered Dreams',
 		realise_year: 2009,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover19.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover19.jpg',
 		author_name: 'Jane Smith',
 		rate: 1,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -345,16 +327,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 390989,
 		list_contains: 1,
 		likes: 138585,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3784,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 20,
 		film_name: 'Shattered Dreams',
 		realise_year: 2006,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover20.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover20.jpg',
 		author_name: 'Jane Smith',
 		rate: 3.9,
 		describtion: 'A tale of love, betrayal, and revenge.',
@@ -363,16 +344,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 794243,
 		list_contains: 1,
 		likes: 12790,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3840,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 21,
 		film_name: 'Shattered Dreams',
 		realise_year: 2008,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover21.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover21.jpg',
 		author_name: 'Sophia Wilson',
 		rate: 2.5,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -381,16 +361,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 751331,
 		list_contains: 1,
 		likes: 428042,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3744,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 22,
 		film_name: 'Edge of Tomorrow',
 		realise_year: 2011,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover22.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover22.jpg',
 		author_name: 'Emily White',
 		rate: 4.8,
 		describtion:
@@ -400,16 +379,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 456510,
 		list_contains: 0,
 		likes: 33601,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1282,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 23,
 		film_name: 'Lost in Time',
 		realise_year: 2008,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover23.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover23.jpg',
 		author_name: 'John Doe',
 		rate: 4.6,
 		describtion:
@@ -419,16 +397,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 19289,
 		list_contains: 1,
 		likes: 242421,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1462,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 24,
 		film_name: 'Shattered Dreams',
 		realise_year: 2007,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover24.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover24.jpg',
 		author_name: 'Jane Smith',
 		rate: 3.0,
 		describtion: 'An unforgettable journey into the unknown.',
@@ -437,16 +414,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 193010,
 		list_contains: 0,
 		likes: 304342,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 749,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 25,
 		film_name: 'Heroes Among Us',
 		realise_year: 2001,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover25.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover25.jpg',
 		author_name: 'Sophia Wilson',
 		rate: 2.3,
 		describtion: 'An unforgettable journey into the unknown.',
@@ -455,16 +431,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 653096,
 		list_contains: 1,
 		likes: 9123,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3860,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 26,
 		film_name: 'The Dark Legacy',
 		realise_year: 2011,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover26.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover26.jpg',
 		author_name: 'Emily White',
 		rate: 1.6,
 		describtion: 'A gripping saga of survival and hope.',
@@ -473,16 +448,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 623536,
 		list_contains: 1,
 		likes: 65247,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4134,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 27,
 		film_name: 'Silent Shadows',
 		realise_year: 2006,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover27.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover27.jpg',
 		author_name: 'Emily White',
 		rate: 4.9,
 		describtion:
@@ -492,16 +466,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 601469,
 		list_contains: 0,
 		likes: 390143,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1013,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 28,
 		film_name: 'Shattered Dreams',
 		realise_year: 2016,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover28.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover28.jpg',
 		author_name: 'James Taylor',
 		rate: 2.6,
 		describtion: 'A hero’s journey filled with challenges.',
@@ -510,16 +483,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 419460,
 		list_contains: 0,
 		likes: 253681,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1094,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 29,
 		film_name: 'Heroes Among Us',
 		realise_year: 2016,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover29.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover29.jpg',
 		author_name: 'James Taylor',
 		rate: 2.8,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -528,16 +500,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 743656,
 		list_contains: 1,
 		likes: 491196,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3959,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 30,
 		film_name: 'Lost in Time',
 		realise_year: 2007,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover30.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover30.jpg',
 		author_name: 'Jane Smith',
 		rate: 2.2,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -546,16 +517,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 175398,
 		list_contains: 0,
 		likes: 29497,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 700,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 31,
 		film_name: 'The Dark Legacy',
 		realise_year: 2019,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover31.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover31.jpg',
 		author_name: 'Ethan Clark',
 		rate: 3,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -564,16 +534,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 533500,
 		list_contains: 1,
 		likes: 398697,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1602,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 32,
 		film_name: "The Phantom's Lair",
 		realise_year: 2018,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover32.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover32.jpg',
 		author_name: 'Sophia Wilson',
 		rate: 2.7,
 		describtion: 'Mystery and adventure in a world on the brink of collapse.',
@@ -582,16 +551,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 111133,
 		list_contains: 0,
 		likes: 79803,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2370,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 33,
 		film_name: 'Silent Shadows',
 		realise_year: 2016,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover33.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover33.jpg',
 		author_name: 'James Taylor',
 		rate: 4.3,
 		describtion: 'A hero’s journey filled with challenges.',
@@ -600,16 +568,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 983431,
 		list_contains: 1,
 		likes: 307758,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3633,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 34,
 		film_name: 'Silent Shadows',
 		realise_year: 2023,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover34.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover34.jpg',
 		author_name: 'Sarah Johnson',
 		rate: 4.9,
 		describtion: 'A gripping saga of survival and hope.',
@@ -618,16 +585,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 715413,
 		list_contains: 0,
 		likes: 268197,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2701,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 35,
 		film_name: 'Shattered Dreams',
 		realise_year: 2012,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover35.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover35.jpg',
 		author_name: 'David Lee',
 		rate: 1.5,
 		describtion: 'A tale of love, betrayal, and revenge.',
@@ -636,16 +602,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 963055,
 		list_contains: 1,
 		likes: 481510,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2041,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 36,
 		film_name: 'Shattered Dreams',
 		realise_year: 2006,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover36.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover36.jpg',
 		author_name: 'Sarah Johnson',
 		rate: 4.4,
 		describtion: 'Fate intertwined with destiny in a world full of secrets.',
@@ -654,16 +619,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 160408,
 		list_contains: 1,
 		likes: 386304,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3497,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 37,
 		film_name: 'Silent Shadows',
 		realise_year: 2011,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover37.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover37.jpg',
 		author_name: 'Sarah Johnson',
 		rate: 1.1,
 		describtion: 'A gripping saga of survival and hope.',
@@ -672,16 +636,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 118597,
 		list_contains: 0,
 		likes: 421656,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3658,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 38,
 		film_name: 'Lost in Time',
 		realise_year: 2012,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover38.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover38.jpg',
 		author_name: 'Sophia Wilson',
 		rate: 1.3,
 		describtion:
@@ -691,16 +654,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 732856,
 		list_contains: 1,
 		likes: 178665,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2138,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 39,
 		film_name: 'Edge of Tomorrow',
 		realise_year: 2012,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover39.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover39.jpg',
 		author_name: 'Emily White',
 		rate: 2.2,
 		describtion: 'A gripping saga of survival and hope.',
@@ -709,16 +671,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 821123,
 		list_contains: 0,
 		likes: 401465,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1724,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 40,
 		film_name: 'Edge of Tomorrow',
 		realise_year: 2002,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover40.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover40.jpg',
 		author_name: 'James Taylor',
 		rate: 2.1,
 		describtion: 'A tale of love, betrayal, and revenge.',
@@ -727,16 +688,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 77518,
 		list_contains: 0,
 		likes: 150984,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4546,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 41,
 		film_name: 'Silent Shadows',
 		realise_year: 2007,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover41.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover41.jpg',
 		author_name: 'Ethan Clark',
 		rate: 4.5,
 		describtion: 'Where time itself becomes the enemy.',
@@ -745,16 +705,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 781130,
 		list_contains: 0,
 		likes: 377294,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3912,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 42,
 		film_name: 'Shattered Dreams',
 		realise_year: 2005,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover42.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover42.jpg',
 		author_name: 'Ethan Clark',
 		rate: 2.3,
 		describtion: 'The battle between good and evil unfolds.',
@@ -763,16 +722,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 514282,
 		list_contains: 1,
 		likes: 76442,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2916,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 43,
 		film_name: 'Silent Shadows',
 		realise_year: 2005,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover43.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover43.jpg',
 		author_name: 'Jane Smith',
 		rate: 0,
 		describtion: 'A gripping saga of survival and hope.',
@@ -781,16 +739,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 862779,
 		list_contains: 1,
 		likes: 403652,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4634,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 44,
 		film_name: 'Edge of Tomorrow',
 		realise_year: 2009,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover44.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover44.jpg',
 		author_name: 'Sophia Wilson',
 		rate: 2,
 		describtion: 'A hero’s journey filled with challenges.',
@@ -799,16 +756,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 431601,
 		list_contains: 1,
 		likes: 431450,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4861,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 45,
 		film_name: 'Heroes Among Us',
 		realise_year: 2023,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover45.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover45.jpg',
 		author_name: 'Emily White',
 		rate: 2.9,
 		describtion: 'An unforgettable journey into the unknown.',
@@ -817,16 +773,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 250401,
 		list_contains: 0,
 		likes: 387539,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2271,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 46,
 		film_name: 'Shadow of the Past',
 		realise_year: 2021,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover12.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover12.jpg',
 		author_name: 'James Monroe',
 		rate: 4.5,
 		describtion: 'A thrilling mystery that keeps you on edge.',
@@ -835,16 +790,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 345678,
 		list_contains: 1,
 		likes: 502345,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1894,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 47,
 		film_name: 'Rise of the Titans',
 		realise_year: 2022,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover27.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover27.jpg',
 		author_name: 'Sophia Carter',
 		rate: 3.8,
 		describtion: 'Epic battles and legendary heroes in a grand saga.',
@@ -853,16 +807,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 452390,
 		list_contains: 0,
 		likes: 612834,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3120,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 48,
 		film_name: 'Echoes of Time',
 		realise_year: 2020,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover39.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover39.jpg',
 		author_name: 'Daniel Evans',
 		rate: 4.7,
 		describtion: 'A time-travel adventure full of surprises.',
@@ -871,16 +824,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 578203,
 		list_contains: 1,
 		likes: 723456,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2745,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 49,
 		film_name: 'Neon City',
 		realise_year: 2023,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover52.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover52.jpg',
 		author_name: 'Olivia Bennett',
 		rate: 3.2,
 		describtion: 'A cyberpunk adventure in a futuristic metropolis.',
@@ -889,16 +841,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 399230,
 		list_contains: 0,
 		likes: 523490,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2483,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 50,
 		film_name: 'Frozen Echo',
 		realise_year: 2019,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover11.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover11.jpg',
 		author_name: 'Michael Frost',
 		rate: 4.1,
 		describtion: 'A chilling tale of survival in the arctic wilderness.',
@@ -907,16 +858,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 267890,
 		list_contains: 1,
 		likes: 435678,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1876,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 51,
 		film_name: 'The Last Horizon',
 		realise_year: 2024,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover65.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover65.jpg',
 		author_name: 'Lily Anderson',
 		rate: 3.9,
 		describtion: 'A gripping sci-fi thriller beyond the stars.',
@@ -925,16 +875,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 520345,
 		list_contains: 0,
 		likes: 643210,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2893,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 52,
 		film_name: 'Crimson Skies',
 		realise_year: 2022,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover33.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover33.jpg',
 		author_name: 'Henry Wallace',
 		rate: 4.6,
 		describtion: 'High-flying adventure and breathtaking aerial battles.',
@@ -943,16 +892,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 410298,
 		list_contains: 1,
 		likes: 589731,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2671,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 53,
 		film_name: 'Secrets of the Deep',
 		realise_year: 2021,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover77.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover77.jpg',
 		author_name: 'Alice Porter',
 		rate: 4.3,
 		describtion: 'An oceanic expedition full of wonders and dangers.',
@@ -961,16 +909,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 372890,
 		list_contains: 0,
 		likes: 531890,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2110,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 54,
 		film_name: 'The Silent Forest',
 		realise_year: 2020,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover89.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover89.jpg',
 		author_name: 'Nathan Reynolds',
 		rate: 3.7,
 		describtion: 'A mysterious horror set in an abandoned forest.',
@@ -979,16 +926,15 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 298670,
 		list_contains: 1,
 		likes: 478910,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1958,
+		reviews: [31, 32, 33, 44, 1],
 	},
 	{
+		id: 55,
 		film_name: 'Golden Hour',
 		realise_year: 2018,
-		film_image: new URL(
-			'~/shared/ui/icons/filmCovers/filmCover98.jpg',
-			import.meta.url
-		).href,
+		film_image: '/filmCovers/filmCover98.jpg',
 		author_name: 'Emma Lawrence',
 		rate: 4.8,
 		describtion: 'A heartwarming story of love and self-discovery.',
@@ -997,7 +943,8 @@ export const filmsList: Ref<Array<IFilmItem>> = ref([
 		views: 601234,
 		list_contains: 0,
 		likes: 759321,
-		reviews: reviewsList,
+		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3124,
+		reviews: [31, 32, 33, 44, 1],
 	},
-])
+]

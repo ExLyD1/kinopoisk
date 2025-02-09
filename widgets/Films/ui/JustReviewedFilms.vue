@@ -34,8 +34,10 @@ import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 // ======================================================
 // Берем 12 обложек фильмов из массива данных
 // ======================================================
-const filmsList = useState<IFilmItem[]>('filmsList')
-const list = computed(() => filmsList.value.slice(29, 42))
+const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
+	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=20')
+)
+const list = computed(() => filmsList.value?.slice(29, 42))
 
 // ======================================================
 // Обозначения границ для адаптивности
@@ -49,13 +51,13 @@ const isSmallScreen = useMediaQuery('(max-width: 430px)')
 // ======================================================
 // Вычесляем массив исходя из размеров экрана
 // ======================================================
-const visibleFilms: ComputedRef<Array<IFilmItem>> = computed(() => {
+const visibleFilms: ComputedRef<Array<IFilmItem> | undefined> = computed(() => {
 	if (isLargeScreen.value) {
-		return list.value.slice(0, 7)
+		return list.value?.slice(0, 7)
 	} else if (isMediumScreen.value) {
-		return list.value.slice(0, 5)
+		return list.value?.slice(0, 5)
 	} else if (isSmallScreen.value) {
-		return list.value.slice(0, 4)
+		return list.value?.slice(0, 4)
 	}
 	return list.value
 })

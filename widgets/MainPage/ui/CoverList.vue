@@ -26,19 +26,8 @@
 </template>
 
 <script setup lang="ts">
-// * =====================================
-// * REFACTORED = TRUE
-// * =====================================
-import { computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
-import type { ComputedRef } from 'vue'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-
-// ======================================================
-// Берем 12 обложек фильмов из массива данных
-// ======================================================
-const filmsList = useState<IFilmItem[]>('filmsList')
-const visibleFilms = computed(() => filmsList.value.slice(5, 17))
 
 // ======================================================
 // Обозначения границ для адаптивности
@@ -50,17 +39,33 @@ const isMediumScreen = useMediaQuery(
 const isSmallScreen = useMediaQuery('(max-width: 430px)')
 
 // ======================================================
+// Оставляем 12 для нашего компонента
+// ======================================================
+const filmsList: Ref<IFilmItem[]> = ref([])
+
+const visibleFilms = computed(() => filmsList.value?.slice(5, 17))
+
+// ======================================================
 // Вычесляем массив исходя из размеров экрана
 // ======================================================
-const visibleImages: ComputedRef<Array<IFilmItem>> = computed(() => {
-	if (isLargeScreen.value) {
-		return visibleFilms.value.slice(0, 7)
-	} else if (isMediumScreen.value) {
-		return visibleFilms.value.slice(0, 5)
-	} else if (isSmallScreen.value) {
-		return visibleFilms.value.slice(0, 4)
+const visibleImages: ComputedRef<Array<IFilmItem> | undefined> = computed(
+	() => {
+		if (isLargeScreen.value) {
+			return visibleFilms.value?.slice(0, 7)
+		} else if (isMediumScreen.value) {
+			return visibleFilms.value?.slice(0, 5)
+		} else if (isSmallScreen.value) {
+			return visibleFilms.value?.slice(0, 4)
+		}
+		return visibleFilms.value
 	}
-	return visibleFilms.value
+)
+
+// ======================================================
+// Берем 17 фильмов из бека
+// ======================================================
+onMounted(async () => {
+	filmsList.value = await $fetch<IFilmItem[]>('/api/movie/list?quantity=17')
 })
 </script>
 

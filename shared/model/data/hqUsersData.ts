@@ -1,12 +1,10 @@
 import type { IHqUser } from '../interfaces/hqUserInterface'
 import { storiesList } from './storiesData'
 
-export const hqUsersList: Ref<Array<IHqUser>> = ref([
+export const hqUsersList: Array<IHqUser> = [
 	{
-		user_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar1.jpg',
-			import.meta.url
-		).href,
+		id: 1,
+		user_avatar: '/avatars/avatar1.jpg',
 		user_name: 'John Doe',
 		user_followers: 2500,
 		user_likes: 350,
@@ -14,10 +12,8 @@ export const hqUsersList: Ref<Array<IHqUser>> = ref([
 		user_stories: storiesList,
 	},
 	{
-		user_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar2.jpg',
-			import.meta.url
-		).href,
+		id: 2,
+		user_avatar: '/avatars/avatar2.jpg',
 		user_name: 'Jane Smith',
 		user_followers: 1800,
 		user_likes: 290,
@@ -25,10 +21,8 @@ export const hqUsersList: Ref<Array<IHqUser>> = ref([
 		user_stories: storiesList,
 	},
 	{
-		user_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar3.jpg',
-			import.meta.url
-		).href,
+		id: 3,
+		user_avatar: '/avatars/avatar3.jpg',
 		user_name: 'Alice Johnson',
 		user_followers: 3200,
 		user_likes: 420,
@@ -36,10 +30,8 @@ export const hqUsersList: Ref<Array<IHqUser>> = ref([
 		user_stories: storiesList,
 	},
 	{
-		user_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar4.jpg',
-			import.meta.url
-		).href,
+		id: 4,
+		user_avatar: '/avatars/avatar4.jpg',
 		user_name: 'David Brown',
 		user_followers: 1300,
 		user_likes: 210,
@@ -47,10 +39,8 @@ export const hqUsersList: Ref<Array<IHqUser>> = ref([
 		user_stories: storiesList,
 	},
 	{
-		user_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar5.jpg',
-			import.meta.url
-		).href,
+		id: 5,
+		user_avatar: '/avatars/avatar5.jpg',
 		user_name: 'Mary White',
 		user_followers: 2700,
 		user_likes: 350,
@@ -58,10 +48,8 @@ export const hqUsersList: Ref<Array<IHqUser>> = ref([
 		user_stories: storiesList,
 	},
 	{
-		user_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar6.jpg',
-			import.meta.url
-		).href,
+		id: 6,
+		user_avatar: '/avatars/avatar6.jpg',
 		user_name: 'Robert Clark',
 		user_followers: 1100,
 		user_likes: 150,
@@ -69,14 +57,12 @@ export const hqUsersList: Ref<Array<IHqUser>> = ref([
 		user_stories: storiesList,
 	},
 	{
-		user_avatar: new URL(
-			'~/shared/ui/icons/avatars/avatar7.jpg',
-			import.meta.url
-		).href,
+		id: 7,
+		user_avatar: '/avatars/avatar7.jpg',
 		user_name: 'Sophia Lee',
 		user_followers: 2100,
 		user_likes: 310,
 		user_lists: 10,
 		user_stories: storiesList,
 	},
-])
+]

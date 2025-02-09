@@ -43,12 +43,17 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 
-const { data: filmsList } = await useAsyncData('filmsData', () =>
-	import('~/shared/model/data/filmsData').then(module => module.filmsList)
-)
-const { data: usersList } = await useAsyncData('usersData', () =>
-	import('~/shared/model/data/usersData').then(module => module.usersList)
-)
+const { data: filmsList } = await useAsyncData('filmsData', async () => {
+	const response = await $fetch('/api/getFilmsList')
+
+	return response
+})
+
+const { data: usersList } = await useAsyncData('usersData', async () => {
+	const response = await $fetch('/api/getUsersList')
+
+	return response
+})
 
 useState('filmsList', () => filmsList)
 useState('usersList', () => usersList)

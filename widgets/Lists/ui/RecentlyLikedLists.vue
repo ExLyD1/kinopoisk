@@ -24,18 +24,35 @@
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 
-const filmsListsData = useState<Array<IFilmsList>>('filmsListsData')
+const { data: filmsListsData } = await useAsyncData<IFilmsList[]>(
+	'filmsListsData',
+	() => $fetch<IFilmsList[]>('/api/getFilmsListsData?quantity=18')
+)
 
-const listsData = filmsListsData.value
-	.slice(3, 13)
-	.map((list, index) => {
-		const films_list = list.films.slice(index * 5, index * 5 + 5)
-		return {
-			list,
-			films_list,
-		}
-	})
-	.reverse()
+const listsData = ref<{ list: IFilmsList; films_list: any[] }[]>([])
+
+watchEffect(async () => {
+	if (!filmsListsData.value) return
+
+	const resolvedFilmsLists = await Promise.all(
+		filmsListsData.value.map(async list => {
+			if (!list.films || list.films.length === 0) return null
+
+			const films_list = await Promise.all(
+				list.films.map(film_id => $fetch(`/api/getFilmsList?id=${film_id}`))
+			)
+
+			return {
+				list,
+				films_list,
+			}
+		})
+	)
+
+	listsData.value = resolvedFilmsLists
+		.filter(list => list !== null)
+		.slice(12, 18)
+})
 </script>
 
 <style scoped>

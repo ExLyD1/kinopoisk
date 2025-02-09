@@ -22,9 +22,11 @@
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 
-const usersdata = useState<Array<IUser>>('usersList')
+const { data: usersData } = await useAsyncData<IUser[]>('usersData', async () =>
+	$fetch<IUser[]>('/api/getUsersList?quantity=5')
+)
 
-const usersList = usersdata.value.slice(0, 5)
+const usersList = computed(() => usersData.value || [])
 </script>
 
 <style scoped></style>

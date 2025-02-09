@@ -36,11 +36,12 @@
 			</div>
 			<div>
 				Below are some popular reviews and lists from this week.
-				<router-link
+				<NuxtLink
 					to="/"
 					class="text-white cursor pointer hover:text-blue-400 transition-all"
-					>Sign up</router-link
 				>
+					Sign up
+				</NuxtLink>
 				to create your own.
 			</div>
 		</div>

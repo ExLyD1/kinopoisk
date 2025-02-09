@@ -29,18 +29,20 @@
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import { useMediaQuery } from '@vueuse/core'
 
-const filmsData = useState<Array<IFilmItem>>('filmsList')
-
 const isMediumScreen = useMediaQuery('(min-width:410px) and (max-width:485px)')
 const isSmallScreen = useMediaQuery('(max-width:410px)')
 
-const filmsList: ComputedRef<Array<IFilmItem>> = computed(() => {
+const { data: filmsData } = await useAsyncData<IFilmItem[]>('filmsData', () =>
+	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=6')
+)
+
+const filmsList: ComputedRef<Array<IFilmItem> | undefined> = computed(() => {
 	if (isMediumScreen.value) {
-		return filmsData.value.slice(0, 5)
+		return filmsData.value?.slice(0, 5)
 	} else if (isSmallScreen.value) {
-		return filmsData.value.slice(0, 4)
+		return filmsData.value?.slice(0, 4)
 	} else {
-		return filmsData.value.slice(0, 6)
+		return filmsData.value?.slice(0, 6)
 	}
 })
 </script>

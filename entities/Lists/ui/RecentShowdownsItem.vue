@@ -2,6 +2,7 @@
 	<div class="holder_content flex flex-col gap-1">
 		<NuxtLink to="/soon" class="holder_image w-[310px] h-[170px]">
 			<img
+				v-if="data.film?.film_image"
 				class="w-full h-full object-cover rounded"
 				:src="data.film.film_image"
 				alt=""
@@ -25,9 +26,10 @@ import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 const props = defineProps<{
 	data: {
 		list: IFilmsList
-		film: IFilmItem
+		film: IFilmItem | null
 	}
 }>()
+
 const data = props.data
 </script>
 

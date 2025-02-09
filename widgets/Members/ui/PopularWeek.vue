@@ -20,18 +20,31 @@
 
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const usersList = useState<Array<IUser>>('usersList')
+const { data: usersList } = await useAsyncData<IUser[]>('usersList', () =>
+	$fetch<IUser[]>('/api/getUsersList?quantity=8')
+)
+const membersList: any = ref([])
 
-const membersList = usersList.value.slice(4, 8).map((user, index) => {
-	const user_favorite_films = user?.user_favorite_films?.slice(
-		16 + index * 4,
-		16 + index * 4 + 4
+watchEffect(async () => {
+	if (!usersList.value) return
+
+	const resolvedMembers = await Promise.all(
+		usersList.value.map(async (user, index) => {
+			if (!user.user_favorite_films || user.user_favorite_films.length === 0)
+				return null
+
+			const user_favorite_films = await Promise.all(
+				user.user_favorite_films
+					.slice(4 * index, 4 * (1 + index))
+					.map(film_id => $fetch<IFilmItem>(`/api/getFilmsList?id=${film_id}`))
+			)
+			return user_favorite_films
+		})
 	)
-	return {
-		user,
-		user_favorite_films,
-	}
+
+	membersList.value = resolvedMembers
 })
 </script>
 

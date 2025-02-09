@@ -1,19 +1,24 @@
 import type { IReview } from './reviewInterface'
 
 export interface IFilmItem {
+	id: number
 	film_name: string
 	realise_year: number
 	film_image: string
 	author_name: string
 	rate: number
 	describtion: string
-	cast: Array<string>
 	duration: number
 	views: number
 	list_contains: number
-	likes: number
+
 	reviews_quontity: number
-	reviews?: Array<IReview>
+	reviews?: Array<number>
+
+	likes: number
+	liked_by_users: number[]
+
+	cast: Array<string>
 	crew?: {
 		director: Array<string>
 		producers: Array<string>

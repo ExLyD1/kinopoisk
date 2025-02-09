@@ -26,12 +26,15 @@
 </template>
 
 <script setup lang="ts">
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+
 const containerRef = ref(null)
 
-import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-const filmsList = useState<Array<IFilmItem>>('filmsList')
+const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
+	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=20')
+)
 
-const visibleFilmsList = filmsList.value.slice(0, 20)
+const visibleFilmsList = computed(() => filmsList.value?.slice(0, 20) || [])
 </script>
 
 <style scoped>

@@ -44,25 +44,22 @@
 
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+
 const containerRef = ref(null)
 const slides = ref(Array.from({ length: 10 }))
 
 const swiper = useSwiper(containerRef)
 
-import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-const filmsList = useState<Array<IFilmItem>>('filmsList')
+const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
+	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=20')
+)
 
-const visibleFilmsList = filmsList.value.slice(0, 20)
+const visibleFilmsList = computed(() => filmsList.value?.slice(0, 20) || [])
 
 const isMediumScreen = useMediaQuery('(min-width:650px) and (max-width:950px)')
 
-const slidesPerView: ComputedRef<number> = computed(() => {
-	if (!isMediumScreen.value) {
-		return 3
-	} else {
-		return 2
-	}
-})
+const slidesPerView = computed(() => (isMediumScreen.value ? 2 : 3))
 </script>
 
 <style scoped>

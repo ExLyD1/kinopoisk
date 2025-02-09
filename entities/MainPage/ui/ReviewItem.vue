@@ -103,25 +103,23 @@
 </template>
 
 <script setup lang="ts">
-import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 import { getKNumber } from '~/shared/model/funtions/getKNumber'
 import { getRatingIcons } from '~/shared/model/funtions/getRatingIcon'
-import { reviewsList } from '~/shared/model/data/reviewsData'
 
-const props = defineProps<{
-	data: {
-		film_image: string
-		film_name: string
-		realise_year: number
-		review: IReview
-	}
-}>()
-const film_image = props.data.film_image
-const film_name = props.data.film_name
-const realise_year = props.data.realise_year
-const review = props.data.review
+import type { IReview } from '~/shared/model/interfaces/reviewInterface'
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const ratingIcons = getRatingIcons(review.review_rate)
+const props = defineProps<{ review: IReview; film: IFilmItem }>()
+console.log(props.film)
+
+// !
+// ^ ЗАВТРА ФИКС ПРОПСОВ И ЗАПИСЫВАНИЕ ДАННЫХ В ПОЛЯ И ДАЛЬШЕ ДЕЛАТЬ СТРАНИЧКУ НА ЗАПРОСЫ СЕРВЕРА
+// !
+
+// const review = props.review
+// const film = props.film
+
+// const ratingIcons = getRatingIcons(review.review_rate)
 </script>
 
 <style scoped>

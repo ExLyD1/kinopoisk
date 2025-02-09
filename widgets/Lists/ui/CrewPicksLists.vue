@@ -23,15 +23,42 @@
 
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const filmsListsData = useState<Array<IFilmsList>>('filmsListsData')
+const { data: filmsListsData } = await useAsyncData<IFilmsList[]>(
+	'filmsListsData',
+	() => $fetch<IFilmsList[]>('/api/getFilmsListsData?quantity=18') // Убираем строгую типизацию для обхода ошибки
+)
 
-const listsData = filmsListsData.value.slice(13, 18).map((list, index) => {
-	const films_list = list.films.slice(index * 5 + 20, index * 5 + 5 + 20)
-	return {
-		list,
-		films_list,
-	}
+const listsData = ref<{ list: IFilmsList; films_list: any[] }[]>([])
+
+watchEffect(async () => {
+	if (!filmsListsData.value) return
+
+	const resolvedFilmsLists = await Promise.all(
+		filmsListsData.value
+			.slice(13, 18) // Берем с 13 по 18 элемент
+			.map(async (list, index) => {
+				if (!list.films || list.films.length === 0) return null
+
+				// Запрос для каждого фильма в срезе списка
+				const films_list = await Promise.all(
+					list.films
+						.slice(index * 5 + 20, index * 5 + 5 + 20) // Берем фильмы с 20-го элемента
+						.map(film_id =>
+							$fetch<IFilmItem>(`/api/getFilmsList?id=${film_id}`)
+						) // Убираем строгую типизацию
+				)
+
+				return {
+					list,
+					films_list,
+				}
+			})
+	)
+
+	// Отфильтровываем null значения
+	listsData.value = resolvedFilmsLists.filter(list => list !== null)
 })
 </script>
 

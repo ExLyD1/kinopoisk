@@ -96,13 +96,14 @@ import { getKNumber } from '~/shared/model/funtions/getKNumber'
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const props = defineProps<{
-	data: {
-		list: IFilmsList
-		films_list: IFilmItem[]
-	}
-}>()
-const data = props.data
+const props = defineProps<{ data: IFilmsList }>()
+const list = props.data
+
+// ^ СДЕЛАТЬ ЛОГИКУ ОТОБРАЖЕНИЯ КАРТИНОК ФИЛЬМОВ ИЗ СПИСКА И ДАЛЬШЕ РЕФАКТОРИТЬ КОД ДЛЯ БЕКА
+
+watch(list, async () => {
+	console.log(123)
+})
 </script>
 
 <style scoped>

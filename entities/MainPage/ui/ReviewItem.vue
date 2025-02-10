@@ -3,10 +3,10 @@
 		<cover-item>
 			<template #card_image>
 				<NuxtLink
-					:to="`/films/${film_name.toLowerCase().replace(/\s+/g, '-')}`"
+					:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
 				>
 					<img
-						:src="film_image"
+						:src="film.film_image"
 						alt="review_image"
 						class="w-full h-full object-cover rounded"
 					/>
@@ -17,18 +17,18 @@
 		<div class="flex flex-col gap-3">
 			<div class="flex flex-row items-center gap-2">
 				<NuxtLink
-					:to="`/films/${film_name.toLowerCase().replace(/\s+/g, '-')}`"
+					:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
 					class="text-white text-xl hover:text-blue-300 transition-all cursor-pointer"
 				>
-					{{ film_name }}
+					{{ film.film_name }}
 				</NuxtLink>
 				<NuxtLink
-					:to="`/films/year/${String(realise_year)
+					:to="`/films/year/${String(film.realise_year)
 						.toLowerCase()
 						.replace(/\s+/g, '-')}`"
 					class="text-gray-600 hover:text-blue-300 transition-all cursor-pointer"
 				>
-					{{ realise_year }}
+					{{ film.realise_year }}
 				</NuxtLink>
 			</div>
 
@@ -80,7 +80,7 @@
 				<NuxtLink
 					:to="`/members/${review.author_name
 						.toLowerCase()
-						.replace(/\s+/g, '-')}/reviews/${film_name
+						.replace(/\s+/g, '-')}/reviews/${film.film_name
 						.toLowerCase()
 						.replace(/\s+/g, '-')}/likes`"
 					class="text-gray-500 flex items-center flex-row gap-1"
@@ -91,7 +91,7 @@
 				</NuxtLink>
 
 				<NuxtLink
-					:to="`/films/${film_name.toLowerCase().replace(/\s+/g, '-')}`"
+					:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
 					class="flex flex-row items-center gap-1"
 				>
 					<img class="h-4 w-4" src="@/shared/ui/icons/comment.png" alt="" />
@@ -109,17 +109,16 @@ import { getRatingIcons } from '~/shared/model/funtions/getRatingIcon'
 import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const props = defineProps<{ review: IReview; film: IFilmItem }>()
-console.log(props.film)
+const props = defineProps<{
+	data: {
+		review: IReview
+		film: IFilmItem
+	}
+}>()
+const film = props.data.film
+const review = props.data.review
 
-// !
-// ^ ЗАВТРА ФИКС ПРОПСОВ И ЗАПИСЫВАНИЕ ДАННЫХ В ПОЛЯ И ДАЛЬШЕ ДЕЛАТЬ СТРАНИЧКУ НА ЗАПРОСЫ СЕРВЕРА
-// !
-
-// const review = props.review
-// const film = props.film
-
-// const ratingIcons = getRatingIcons(review.review_rate)
+const ratingIcons = getRatingIcons(review.review_rate)
 </script>
 
 <style scoped>

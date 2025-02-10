@@ -22,35 +22,41 @@
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface.ts'
 
-const { data: filmsListsData } = await useAsyncData<IFilmsList[]>(
-	'filmsListsData-5',
-	() => $fetch<IFilmsList[]>('/api/getFilmsListsData?quantity=5')
-)
+// const { data: filmsListsData } = await useAsyncData<IFilmsList[]>(
+// 	'filmsListsData-5',
+// 	() => $fetch<IFilmsList[]>('/api/getFilmsListsData?quantity=5')
+// )
 
-const listsData = ref<{ list: IFilmsList; films_list: any[] }[]>([])
+const listsData = ref<IFilmsList[]>([])
 
-watchEffect(async () => {
-	if (!filmsListsData.value) return
-
-	const resolvedFilmsLists = await Promise.all(
-		filmsListsData.value.map(async (list, index) => {
-			// Запрос для каждого фильма
-
-			const films_list = await Promise.all(
-				list.films
-					.slice(index * 5, index * 5 + 5)
-					.map(film_id => $fetch(`/api/getFilmsList?id=${film_id}`))
-			)
-
-			return {
-				list,
-				films_list,
-			}
-		})
+onMounted(async () => {
+	listsData.value = await $fetch<IFilmsList[]>(
+		'/api/list/lists?type=popular&quantity=5'
 	)
-
-	listsData.value = resolvedFilmsLists.filter(list => list !== null)
 })
+
+// watchEffect(async () => {
+// 	if (!filmsListsData.value) return
+
+// 	const resolvedFilmsLists = await Promise.all(
+// 		filmsListsData.value.map(async (list, index) => {
+// 			// Запрос для каждого фильма
+
+// 			const films_list = await Promise.all(
+// 				list.films
+// 					.slice(index * 5, index * 5 + 5)
+// 					.map(film_id => $fetch(`/api/getFilmsList?id=${film_id}`))
+// 			)
+
+// 			return {
+// 				list,
+// 				films_list,
+// 			}
+// 		})
+// 	)
+
+// 	listsData.value = resolvedFilmsLists.filter(list => list !== null)
+// })
 </script>
 
 <style scoped>

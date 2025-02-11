@@ -23,13 +23,13 @@
 				class="min-w-0 h-auto"
 				ref="containerRef"
 			>
-				<swiper-slide
+				<!-- <swiper-slide
 					v-for="(film, idx) in visibleFilmsList"
 					:key="idx"
 					class="h-auto"
 				>
 					<popular-week-swiper-item :data="film"></popular-week-swiper-item>
-				</swiper-slide>
+				</swiper-slide> -->
 			</swiper-container>
 			<button @click="swiper.next()">
 				<img
@@ -51,11 +51,11 @@ const slides = ref(Array.from({ length: 10 }))
 
 const swiper = useSwiper(containerRef)
 
-const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
-	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=20')
-)
+// const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
+// 	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=20')
+// )
 
-const visibleFilmsList = computed(() => filmsList.value?.slice(0, 20) || [])
+// const visibleFilmsList = computed(() => filmsList.value?.slice(0, 20) || [])
 
 const isMediumScreen = useMediaQuery('(min-width:650px) and (max-width:950px)')
 

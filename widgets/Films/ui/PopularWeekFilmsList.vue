@@ -11,7 +11,7 @@
 	</div>
 
 	<div class="flex justify-center gap-3 mt-4 flex-wrap">
-		<NuxtLink
+		<!-- <NuxtLink
 			class="image max-w-[130px]"
 			v-for="(film, index) in visibleFilmsList"
 			:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
@@ -21,7 +21,7 @@
 				:src="film.film_image"
 				alt=""
 			/>
-		</NuxtLink>
+		</NuxtLink> -->
 	</div>
 </template>
 
@@ -30,11 +30,11 @@ import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
 const containerRef = ref(null)
 
-const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
-	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=20')
-)
+// const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
+// 	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=20')
+// )
 
-const visibleFilmsList = computed(() => filmsList.value?.slice(0, 20) || [])
+// const visibleFilmsList = computed(() => filmsList.value?.slice(0, 20) || [])
 </script>
 
 <style scoped>

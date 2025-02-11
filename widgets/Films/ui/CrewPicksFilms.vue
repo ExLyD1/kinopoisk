@@ -7,7 +7,7 @@
 		</WidgetTitle>
 
 		<div class="item_holder grid grid-rows-2 grid-cols-3 gap-3">
-			<cover-item v-for="(film, index) in filmsList">
+			<!-- <cover-item v-for="(film, index) in filmsList">
 				<template #card_image>
 					<NuxtLink
 						class=""
@@ -20,7 +20,7 @@
 						/>
 					</NuxtLink>
 				</template>
-			</cover-item>
+			</cover-item> -->
 		</div>
 	</div>
 </template>
@@ -32,19 +32,19 @@ import { useMediaQuery } from '@vueuse/core'
 const isMediumScreen = useMediaQuery('(min-width:410px) and (max-width:485px)')
 const isSmallScreen = useMediaQuery('(max-width:410px)')
 
-const { data: filmsData } = await useAsyncData<IFilmItem[]>('filmsData', () =>
-	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=6')
-)
+// const { data: filmsData } = await useAsyncData<IFilmItem[]>('filmsData', () =>
+// 	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=6')
+// )
 
-const filmsList: ComputedRef<Array<IFilmItem> | undefined> = computed(() => {
-	if (isMediumScreen.value) {
-		return filmsData.value?.slice(0, 5)
-	} else if (isSmallScreen.value) {
-		return filmsData.value?.slice(0, 4)
-	} else {
-		return filmsData.value?.slice(0, 6)
-	}
-})
+// const filmsList: ComputedRef<Array<IFilmItem> | undefined> = computed(() => {
+// 	if (isMediumScreen.value) {
+// 		return filmsData.value?.slice(0, 5)
+// 	} else if (isSmallScreen.value) {
+// 		return filmsData.value?.slice(0, 4)
+// 	} else {
+// 		return filmsData.value?.slice(0, 6)
+// 	}
+// })
 </script>
 
 <style scoped>

@@ -39,13 +39,14 @@
 						type="text"
 					/>
 
-					<div
-						class="animate-spin inline-block size-6 border-[3px] border-current border-t-transparent text-green-600 rounded-full pr-14"
-						role="status"
-						aria-label="loading"
-						v-if="isLoading"
-					>
-						<span class="sr-only">Loading...</span>
+					<div v-if="isLoading" class="spinner absolute ml-[160px] mt-1">
+						<div
+							class="animate-spin inline-block size-7 border-[3px] border-current border-t-transparent text-green-600 rounded-full"
+							role="status"
+							aria-label="loading"
+						>
+							<span class="sr-only">Loading...</span>
+						</div>
 					</div>
 				</div>
 
@@ -55,7 +56,7 @@
 					class="border-gray-600 bg-gray-500 text-white flex flex-col absolute left-0 top-[40px] w-full rounded p-2 z-10"
 				>
 					<NuxtLink
-						class="pb-2"
+						class="pb-2 last:pb-0"
 						v-for="(item, index) in searchResultsList"
 						:key="index"
 						:to="`/films/${item.film_name.toLowerCase().replace(/\s+/g, '-')}`"
@@ -82,25 +83,28 @@ const filmsList = useState<Array<IFilmItem>>('filmsList')
 const searchQuery: Ref<string> = ref('')
 
 const isLoading: Ref<boolean> = ref(false)
-
 const searchResultsList: Ref<Array<IFilmItem>> = ref([])
 
-watch(searchQuery, async (newVal, oldVal) => {
-	if (newVal == '') {
+watch(searchQuery, async newVal => {
+	if (newVal === '') {
 		searchResultsList.value = []
 		return
 	}
 	searchResultsList.value = []
-
-	await filmsList.value.forEach(film => {
-		if (
-			film.film_name.slice(0, newVal.length).toLowerCase() ==
-			newVal.toLowerCase()
-		) {
-			searchResultsList.value.push(film)
+	isLoading.value = true
+	try {
+		const response = await $fetch(`/api/movie/search?name=${newVal}`)
+		if (Array.isArray(response)) {
+			searchResultsList.value = response
 		}
-	})
+	} catch (err) {
+		console.error('Ошибка запроса:', err)
+		searchResultsList.value = []
+	} finally {
+		isLoading.value = false
+	}
 })
+
 const outerContainer = ref<HTMLDivElement | null>(null)
 const contentArea = ref<HTMLDivElement | null>(null)
 
@@ -138,6 +142,9 @@ onUnmounted(() => {
 	.input_field {
 		width: 500px;
 	}
+	.spinner {
+		margin-left: 460px;
+	}
 }
 @media screen and (max-width: 530px) {
 	.browse_holder {
@@ -158,6 +165,9 @@ onUnmounted(() => {
 	}
 	.input_field {
 		width: 290px;
+	}
+	.spinner {
+		margin-left: 250px;
 	}
 }
 

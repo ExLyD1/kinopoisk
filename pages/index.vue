@@ -63,24 +63,11 @@
 <script setup lang="ts">
 import { useHeaderStore } from '~/features/Header/headerStore'
 
-const { data: filmsList } = await useAsyncData('filmsData', () =>
-	import('~/shared/model/data/filmsData').then(module => module.filmsList)
-)
-
 const { data: hqUsersList } = await useAsyncData('hqUsersData', () =>
 	import('~/shared/model/data/hqUsersData').then(module => module.hqUsersList)
 )
 
-const { data: filmsListsData } = await useAsyncData('filmsListsData', () =>
-	import('~/shared/model/data/filmsListsData').then(
-		module => module.filmsListsData
-	)
-)
-
-// Сохраняем в state
-useState('filmsList', () => filmsList)
 useState('hqUsersList', () => hqUsersList)
-useState('filmsListsData', () => filmsListsData)
 </script>
 
 <style scoped>

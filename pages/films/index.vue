@@ -43,21 +43,6 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 
-const { data: filmsList } = await useAsyncData('filmsData', async () => {
-	const response = await $fetch('/api/getFilmsList')
-
-	return response
-})
-
-const { data: usersList } = await useAsyncData('usersData', async () => {
-	const response = await $fetch('/api/getUsersList')
-
-	return response
-})
-
-useState('filmsList', () => filmsList)
-useState('usersList', () => usersList)
-
 const isSmallScreen = useMediaQuery('(max-width:650px)')
 </script>
 

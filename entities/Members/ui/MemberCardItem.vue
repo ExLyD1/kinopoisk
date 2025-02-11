@@ -1,8 +1,6 @@
 <template>
 	<div class="card flex items-center flex-col gap-1 w-[175px]">
-		<NuxtLink
-			:to="`members/${user.user_name.toLowerCase().replace(/\s+/g, '-')}`"
-		>
+		<NuxtLink :to="`members/${generateSlug(user.user_name)}`">
 			<Avatar class="w-[130px] h-[130px]">
 				<AvatarImage :src="user.user_avatar" :alt="user.user_name" />
 				<AvatarFallback>CN</AvatarFallback>
@@ -10,25 +8,17 @@
 		</NuxtLink>
 
 		<NuxtLink
-			:to="`members/${user.user_name.toLowerCase().replace(/\s+/g, '-')}`"
+			:to="`members/${generateSlug(user.user_name)}`"
 			class="text-white pt-2 font-bold"
 		>
 			{{ user.user_name }}
 		</NuxtLink>
 
 		<div class="text-sm text-gray-400">
-			<NuxtLink
-				:to="`members/${user.user_name
-					.toLowerCase()
-					.replace(/\s+/g, '-')}/films`"
-			>
+			<NuxtLink :to="`members/${generateSlug(user.user_name)}/films`">
 				{{ getKNumber(user.user_films_quantity) }} films
 			</NuxtLink>
-			<NuxtLink
-				:to="`members/${user.user_name
-					.toLowerCase()
-					.replace(/\s+/g, '-')}/reviews`"
-			>
+			<NuxtLink :to="`members/${generateSlug(user.user_name)}/reviews`">
 				{{ getKNumber(user.user_reviews_quantity) }} reviews
 			</NuxtLink>
 		</div>
@@ -38,7 +28,7 @@
 				class="w-[45px] h-[66px] rounded-lg cursor-pointer transition-all duration-300 ease-in-out overflow-hidden relative border-4 border-transparent hover:border-green-600 box-border"
 				v-for="(film, index) in favFilms"
 				:key="index"
-				:to="`films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
+				:to="`films/${generateSlug(film.film_name)}`"
 			>
 				<img
 					class="img w-full h-full object-cover rounded"

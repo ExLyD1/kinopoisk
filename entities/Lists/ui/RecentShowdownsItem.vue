@@ -2,19 +2,19 @@
 	<div class="holder_content flex flex-col gap-1">
 		<NuxtLink to="/soon" class="holder_image w-[310px] h-[170px]">
 			<img
-				v-if="data.film?.film_image"
+				v-if="film?.film_image"
 				class="w-full h-full object-cover rounded"
-				:src="data.film.film_image"
+				:src="film.film_image"
 				alt=""
 			/>
 		</NuxtLink>
 
 		<div class="holder_text w-[200px]">
 			<NuxtLink to="/soon" class="font-medium text-white text-lg">
-				{{ data.list.list_name }}
+				{{ list.list_name }}
 			</NuxtLink>
 
-			<div class="line-clamp-2">{{ data.list.list_description }}</div>
+			<div class="line-clamp-2">{{ list.list_description }}</div>
 		</div>
 	</div>
 </template>
@@ -23,14 +23,14 @@
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const props = defineProps<{
-	data: {
-		list: IFilmsList
-		film: IFilmItem | null
-	}
-}>()
+const props = defineProps<{ data: IFilmsList }>()
 
-const data = props.data
+const list = ref(props.data)
+const film: Ref<IFilmItem | null> = ref(null)
+
+onMounted(async () => {
+	film.value = await $fetch<IFilmItem>(`/api/movie/by-id/${list.value.id}`)
+})
 </script>
 
 <style scoped>

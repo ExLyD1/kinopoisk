@@ -55,7 +55,7 @@
 					v-for="(film, index) in list[0].films"
 					:key="index"
 					class="w-auto"
-					:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
+					:to="`/films/${generateSlug(film.film_name)}`"
 				>
 					<cover-item>
 						<template #card_image>

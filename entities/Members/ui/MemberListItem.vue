@@ -1,9 +1,7 @@
 <template>
 	<div class="card flex justify-between items-center">
 		<div class="flex gap-3">
-			<NuxtLink
-				:to="`members/${member.user_name.toLowerCase().replace(/\s+/g, '-')}`"
-			>
+			<NuxtLink :to="`members/${generateSlug(member.user_name)}`">
 				<Avatar>
 					<AvatarImage :src="member.user_avatar" alt="@radix-vue" />
 					<AvatarFallback>CN</AvatarFallback>
@@ -11,16 +9,14 @@
 			</NuxtLink>
 			<div class="flex flex-col">
 				<NuxtLink
-					:to="`members/${member.user_name.toLowerCase().replace(/\s+/g, '-')}`"
+					:to="`members/${generateSlug(member.user_name)}`"
 					class="text-white text-bold"
 				>
 					{{ member.user_name }}
 				</NuxtLink>
 
 				<NuxtLink
-					:to="`members/${member.user_name
-						.toLowerCase()
-						.replace(/\s+/g, '-')}/reviews`"
+					:to="`members/${generateSlug(member.user_name)}/reviews`"
 					class="text-gray-500 text-sm"
 				>
 					{{ member.user_reviews_quantity }} reviews
@@ -30,9 +26,7 @@
 
 		<div class="data flex items-center gap-5">
 			<NuxtLink
-				:to="`members/${member.user_name
-					.toLowerCase()
-					.replace(/\s+/g, '-')}/films`"
+				:to="`members/${generateSlug(member.user_name)}/films`"
 				class="flex items-center gap-1 w-[90px]"
 			>
 				<img class="w-7 h-7" src="@/shared/ui/icons/eye.png" alt="" />
@@ -40,9 +34,7 @@
 			</NuxtLink>
 
 			<NuxtLink
-				:to="`members/${member.user_name
-					.toLowerCase()
-					.replace(/\s+/g, '-')}/lists`"
+				:to="`members/${generateSlug(member.user_name)}/lists`"
 				class="flex items-center w-[60px]"
 			>
 				<img class="w-7 h-7" src="@/shared/ui/icons/list.png" alt="" />
@@ -50,9 +42,7 @@
 			</NuxtLink>
 
 			<NuxtLink
-				:to="`members/${member.user_name
-					.toLowerCase()
-					.replace(/\s+/g, '-')}/favorite-films`"
+				:to="`members/${generateSlug(member.user_name)}/favorite-films`"
 				class="flex items-center gap-1 w-[80px]"
 			>
 				<img

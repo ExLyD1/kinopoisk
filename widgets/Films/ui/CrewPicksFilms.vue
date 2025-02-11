@@ -12,10 +12,7 @@
 		>
 			<cover-item v-for="(film, index) in filmsList">
 				<template #card_image>
-					<NuxtLink
-						class=""
-						:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
-					>
+					<NuxtLink class="" :to="`/films/${generateSlug(film.film_name)}`">
 						<img
 							class="h-full w-full object-cover"
 							:src="film.film_image"

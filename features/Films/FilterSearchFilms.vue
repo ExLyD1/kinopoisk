@@ -59,7 +59,7 @@
 						class="pb-2 last:pb-0"
 						v-for="(item, index) in searchResultsList"
 						:key="index"
-						:to="`/films/${item.film_name.toLowerCase().replace(/\s+/g, '-')}`"
+						:to="`/films/${generateSlug(item.film_name)}`"
 					>
 						{{ item.film_name }}
 					</NuxtLink>

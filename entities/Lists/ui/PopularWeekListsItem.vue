@@ -1,13 +1,14 @@
 <template>
 	<div class="item_holder flex flex-col gap-1">
 		<NuxtLink
+			v-if="filmsList.length > 0"
 			:to="`/members/
-				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				${generateSlug(list.author_name)}
 				/lists/
-				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
+				${generateSlug(list.list_name)}`"
 			class="images_holder flex items-center -space-x-20 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded"
 		>
-			<div v-for="(film, index) in data.films_list" :key="index">
+			<div v-for="(film, index) in filmsList" :key="index">
 				<img class="image h-[200px]" :src="film.film_image" alt="" />
 			</div>
 		</NuxtLink>
@@ -15,49 +16,49 @@
 		<div>
 			<NuxtLink
 				:to="`/members/
-				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				${generateSlug(list.author_name)}
 				/lists/
-				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
+				${generateSlug(list.list_name)}`"
 				class="text-white text-lg font-medium"
 			>
-				{{ data.list.list_name }}
+				{{ list.list_name }}
 			</NuxtLink>
 
 			<div class="flex items-center flex-row gap-2">
 				<NuxtLink
 					:to="`/members/
-					${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}`"
+					${generateSlug(list.author_name)}`"
 					class="flex items-center gap-1"
 				>
 					<Avatar class="w-7 h-7">
-						<AvatarImage :src="data.list.author_avatar" />
+						<AvatarImage :src="list.author_avatar" />
 						<AvatarFallback>Author_Image</AvatarFallback>
 					</Avatar>
 
-					<div class="text-gray-500 text-sm">{{ data.list.author_name }}</div>
+					<div class="text-gray-500 text-sm">{{ list.author_name }}</div>
 				</NuxtLink>
 
 				<NuxtLink
 					:to="`/members/
-					${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+					${generateSlug(list.author_name)}
 					/lists/
-					${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}
+					${generateSlug(list.list_name)}
 					/likes`"
 					class="flex flex-row items-center gap-1"
 				>
 					<img class="h-4 w-4" src="@/shared/ui/icons/favorite.png" alt="" />
-					<div class="pr-2">{{ getKNumber(data.list.likes) }}</div>
+					<div class="pr-2">{{ getKNumber(list.likes) }}</div>
 				</NuxtLink>
 
 				<NuxtLink
 					:to="`/members/
-					${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+					${generateSlug(list.author_name)}
 					/lists/
-					${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
+					${generateSlug(list.list_name)}`"
 					class="flex flex-row items-center gap-1"
 				>
 					<img class="h-4 w-4" src="@/shared/ui/icons/comment.png" alt="" />
-					<div class="pr-2">{{ getKNumber(data.list.comments_quantity) }}</div>
+					<div class="pr-2">{{ getKNumber(list.comments_quantity) }}</div>
 				</NuxtLink>
 			</div>
 		</div>
@@ -71,13 +72,18 @@ import { getKNumber } from '~/shared/model/funtions/getKNumber'
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const props = defineProps<{
-	data: {
-		list: IFilmsList
-		films_list: Array<IFilmItem>
-	}
-}>()
-const data = props.data
+const props = defineProps<{ data: IFilmsList }>()
+
+const list = ref(props.data)
+const filmsList: Ref<IFilmItem[]> = ref([])
+
+onMounted(async () => {
+	const requests = list.value.films
+		.slice(0, 5)
+		.map(id => $fetch<IFilmItem>(`/api/movie/by-id/${id}`))
+
+	filmsList.value = await Promise.all(requests)
+})
 </script>
 
 <style scoped>

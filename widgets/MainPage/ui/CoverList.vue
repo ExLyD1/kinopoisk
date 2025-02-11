@@ -14,9 +14,7 @@
 	>
 		<cover-item v-for="(film, index) in visibleImages" :key="index">
 			<template #card_image>
-				<NuxtLink
-					:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
-				>
+				<NuxtLink :to="`/films/${generateSlug(film.film_name)}`">
 					<img
 						class="img w-full h-full object-cover rounded"
 						:src="film.film_image"

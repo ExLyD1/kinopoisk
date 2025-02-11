@@ -9,52 +9,30 @@
 			</template>
 		</widget-title>
 
-		<div class="holder justify-between flex gap-3 mt-2">
+		<div
+			v-if="listsData.length > 0"
+			class="holder justify-between flex gap-3 mt-2"
+		>
 			<crew-item
-				v-for="(item, index) in listsData"
+				v-for="(list, index) in listsData"
 				:key="index"
-				:data="item"
+				:data="list"
 			></crew-item>
 		</div>
+		<LoadingSpinner v-else class="my-5" />
 	</div>
 </template>
 
 <script setup lang="ts">
-import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
-import type { Ref } from 'vue'
+import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface.ts'
 
-// Явное указание типа данных, которые вернутся из $fetch
-const { data: filmsListsData } = await useAsyncData<IFilmsList[]>(
-	'filmsListsData',
-	() => $fetch<IFilmsList[]>('/api/getFilmsListsData?quantity=3')
-)
+const listsData = ref<IFilmsList[]>([])
 
-// Объявление переменной для списков с типом Ref
-const listsData = ref<{ list: IFilmsList; films_list: any[] }[]>([])
-
-watchEffect(async () => {
-	if (!filmsListsData.value) return
-
-	const resolvedFilmsLists = await Promise.all(
-		filmsListsData.value.slice(0, 3).map(async (list, index) => {
-			if (!list.films || list.films.length === 0) return null
-
-			// Запрос для каждого фильма с типизацией
-			const films_list = await Promise.all(
-				list.films
-					.slice(index * 5, index * 5 + 5)
-					.map(film_id => $fetch(`/api/getFilmsList?id=${film_id}`))
-			)
-
-			return {
-				list,
-				films_list,
-			}
-		})
+onMounted(async () => {
+	const data = await $fetch<IFilmsList[]>(
+		'/api/list/lists?type=popular&quantity=19'
 	)
-
-	// Отфильтровываем null и переворачиваем
-	listsData.value = resolvedFilmsLists.filter(list => list !== null).reverse()
+	listsData.value = data.slice(3, 6)
 })
 </script>
 

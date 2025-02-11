@@ -1,8 +1,6 @@
 <template>
 	<div class="h-full">
-		<NuxtLink
-			:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
-		>
+		<NuxtLink :to="`/films/${generateSlug(film.film_name)}`">
 			<div
 				class="w-[240px] h-[350px] shadow-xl rounded-lg border-4 border-transparent hover:border-green-600 cursor-pointer transition-all"
 			>
@@ -17,7 +15,7 @@
 		<div class="flex gap-3 items-center pt-2 text-sm justify-center">
 			<NuxtLink
 				:to="`/films/
-					${film.film_name.toLowerCase().replace(/\s+/g, '-')}/viewers`"
+					${generateSlug(film.film_name)}/viewers`"
 				class="flex gap-1 items-center"
 			>
 				<img class="w-4 h-4" src="@/shared/ui/icons/eye.png" alt="" />
@@ -26,7 +24,7 @@
 
 			<NuxtLink
 				:to="`/films/
-					${film.film_name.toLowerCase().replace(/\s+/g, '-')}/lists`"
+					${generateSlug(film.film_name)}/lists`"
 				class="flex gap-1 items-center"
 			>
 				<img class="w-4 h-4" src="@/shared/ui/icons/list.png" alt="" />
@@ -35,7 +33,7 @@
 
 			<NuxtLink
 				:to="`/films/
-					${film.film_name.toLowerCase().replace(/\s+/g, '-')}/liked`"
+					${generateSlug(film.film_name)}/liked`"
 				class="flex gap-1 items-center"
 			>
 				<img

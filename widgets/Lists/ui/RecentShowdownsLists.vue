@@ -9,52 +9,27 @@
 			</template>
 		</widget-title>
 
-		<div class="holder flex gap-3 mt-4">
+		<div v-if="listsData.length > 0" class="holder flex gap-3 mt-4">
 			<recent-showdowns-item
-				v-for="(item, index) in listsData"
+				v-for="(list, index) in listsData"
 				:key="index"
-				:data="item"
+				:data="list"
 			></recent-showdowns-item>
 		</div>
+		<LoadingSpinner v-else class="my-5" />
 	</div>
 </template>
 <script setup lang="ts">
-import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
-import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface.ts'
 
-const { data: filmsListsData } = await useAsyncData<IFilmsList[]>(
-	'filmsListsData',
-	() => $fetch<IFilmsList[]>('/api/getFilmsListsData?quantity=3')
-)
+const listsData = ref<IFilmsList[]>([])
 
-const listsData = ref<{ list: IFilmsList; film: IFilmItem | null }[]>([])
-
-watch(
-	filmsListsData,
-	async newLists => {
-		if (!newLists) return
-
-		console.log('Films lists:', newLists)
-
-		const resolvedLists = await Promise.all(
-			newLists.map(async list => {
-				// Получаем фильм с сервера, ожидаем, что film будет либо объектом, либо null
-				const film = await $fetch<IFilmItem | null>(
-					`/api/getFilmsList?id=${list.films[0]}`
-				)
-
-				// Проверяем, что фильм существует и соответствует типу IFilmItem
-				if (film && film !== undefined) {
-					return { list, film }
-				}
-				return { list, film: null }
-			})
-		)
-
-		listsData.value = resolvedLists
-	},
-	{ immediate: true }
-)
+onMounted(async () => {
+	const data = await $fetch<IFilmsList[]>(
+		'/api/list/lists?type=popular&quantity=16'
+	)
+	listsData.value = data.slice(13, 16)
+})
 </script>
 
 <style scoped>

@@ -9,9 +9,7 @@
 			v-if="visibleImagesList.length"
 			class="relative group"
 		>
-			<NuxtLink
-				:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
-			>
+			<NuxtLink :to="`/films/${generateSlug(film.film_name)}`">
 				<card-item :data="film" class="card">
 					<template #card_image> </template>
 				</card-item>

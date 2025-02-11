@@ -2,9 +2,9 @@
 	<div class="item_holder flex flex-col w-[448px]">
 		<NuxtLink
 			:to="`/members/
-				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				${generateSlug(list.author_name)}
 				/lists/
-				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
+				${generateSlug(list.list_name)}`"
 			class="images_holder flex items-center -space-x-10 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded w-full h-[128px]"
 		>
 			<div
@@ -22,12 +22,12 @@
 
 		<NuxtLink
 			:to="`/members/
-				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				${generateSlug(list.author_name)}
 				/lists/
-				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
+				${generateSlug(list.list_name)}`"
 			class="text-white font-medium w-full"
 		>
-			{{ data.list.list_name }}
+			{{ list.list_name }}
 		</NuxtLink>
 
 		<div
@@ -35,11 +35,11 @@
 		>
 			<NuxtLink
 				:to="`/members/
-					${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}`"
+					${generateSlug(list.author_name)}`"
 			>
 				<img
 					class="inline-block size-6 rounded-full"
-					:src="data.list.author_avatar"
+					:src="list.author_avatar"
 					alt="Avatar"
 				/>
 			</NuxtLink>
@@ -49,14 +49,14 @@
 				<span class="font-medium text-gray-400">
 					<NuxtLink
 						:to="`/members/
-							${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}`"
-						>{{ data.list.author_name }}</NuxtLink
+							${generateSlug(list.author_name)}`"
+						>{{ list.author_name }}</NuxtLink
 					>
 				</span>
 			</div>
 
 			<div>
-				{{ getTimeAgo(data.list.publishedDate) }}
+				{{ getTimeAgo(list.publishedDate) }}
 			</div>
 		</div>
 	</div>
@@ -65,21 +65,25 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 import { getTimeAgo } from '~/shared/model/funtions/getTimeAgo'
-
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const props = defineProps<{
-	data: {
-		list: IFilmsList
-		films_list: Array<IFilmItem>
-	}
-}>()
-const data = props.data
-
 const isSmallScreen = useMediaQuery('(max-width: 570px)')
+
+const props = defineProps<{ data: IFilmsList }>()
+
+const list = ref(props.data)
+const filmsList: Ref<IFilmItem[]> = ref([])
 const visibleFilms = computed(() => {
-	return isSmallScreen.value ? data.films_list.slice(0, 5) : data.films_list
+	return isSmallScreen.value ? filmsList.value.slice(0, 5) : filmsList.value
+})
+
+onMounted(async () => {
+	const requests = list.value.films
+		.slice(0, 10)
+		.map(id => $fetch<IFilmItem>(`/api/movie/by-id/${id}`))
+
+	filmsList.value = await Promise.all(requests)
 })
 </script>
 

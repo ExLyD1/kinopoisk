@@ -1,11 +1,9 @@
 <template>
 	<div class="item_holder flex flex-col gap-1 w-[250px]">
 		<NuxtLink
-			:to="`/members/${list.author_name
-				.toLowerCase()
-				.replace(/\s+/g, '-')}/lists/${list.list_name
-				.toLowerCase()
-				.replace(/\s+/g, '-')}`"
+			:to="`/members/${generateSlug(list.author_name)}/lists/${generateSlug(
+				list.list_name
+			)}`"
 		>
 			<div
 				class="images_holder flex items-center -space-x-10 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded h-[128px]"
@@ -25,11 +23,9 @@
 		</NuxtLink>
 
 		<NuxtLink
-			:to="`/members/${list.author_name
-				.toLowerCase()
-				.replace(/\s+/g, '-')}/lists/${list.list_name
-				.toLowerCase()
-				.replace(/\s+/g, '-')}`"
+			:to="`/members/${generateSlug(list.author_name)}/lists/${generateSlug(
+				list.list_name
+			)}`"
 		>
 			<div class="text-white">
 				{{ list.list_name }}
@@ -38,22 +34,14 @@
 
 		<div class="flex items-center flex-row gap-4">
 			<div class="flex items-center gap-2">
-				<NuxtLink
-					:to="`/members/${list.author_name
-						.toLowerCase()
-						.replace(/\s+/g, '-')}`"
-				>
+				<NuxtLink :to="`/members/${generateSlug(list.author_name)}`">
 					<Avatar class="w-8 h-8">
 						<AvatarImage :src="list.author_avatar" />
 						<AvatarFallback>Author_Image</AvatarFallback>
 					</Avatar>
 				</NuxtLink>
 
-				<NuxtLink
-					:to="`/members/${list.author_name
-						.toLowerCase()
-						.replace(/\s+/g, '-')}`"
-				>
+				<NuxtLink :to="`/members/${generateSlug(list.author_name)}`">
 					<div class="text-gray-500 whitespace-nowrap">
 						{{ list.author_name }}
 					</div>
@@ -61,11 +49,9 @@
 			</div>
 
 			<NuxtLink
-				:to="`/members/${list.author_name
-					.toLowerCase()
-					.replace(/\s+/g, '-')}/lists/${list.list_name
-					.toLowerCase()
-					.replace(/\s+/g, '-')}/likes`"
+				:to="`/members/${generateSlug(list.author_name)}/lists/${generateSlug(
+					list.list_name
+				)}/likes`"
 			>
 				<div class="flex flex-row items-center gap-1">
 					<img class="h-3 w-3" src="@/shared/ui/icons/favorite.png" alt="" />
@@ -74,11 +60,9 @@
 			</NuxtLink>
 
 			<NuxtLink
-				:to="`/members/${list.author_name
-					.toLowerCase()
-					.replace(/\s+/g, '-')}/lists/${list.list_name
-					.toLowerCase()
-					.replace(/\s+/g, '-')}`"
+				:to="`/members/${generateSlug(list.author_name)}/lists/${generateSlug(
+					list.list_name
+				)}`"
 			>
 				<div class="flex flex-row items-center gap-1">
 					<img class="h-3 w-3" src="@/shared/ui/icons/comment.png" alt="" />
@@ -103,7 +87,7 @@ const filmsList: Ref<IFilmItem[]> = ref([])
 
 onMounted(async () => {
 	for (let i = 0; i < 5; i++) {
-		const film = await $fetch<IFilmItem>(`/api/movie/${list.films[i]}`)
+		const film = await $fetch<IFilmItem>(`/api/movie/by-id/${list.films[i]}`)
 
 		filmsList.value.push(film)
 	}

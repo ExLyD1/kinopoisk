@@ -6,52 +6,37 @@
 			</template>
 		</widget-title>
 
-		<div
-			v-for="(item, index) in listsData"
-			:key="index"
-			class="flex flex-col gap-2 w-full"
-		>
-			<recently-liked-item :data="item" class="mt-2 mb-2"></recently-liked-item>
-
+		<div v-if="listsData.length > 0">
 			<div
-				v-if="index !== listsData.length - 1"
-				class="border-b border-gray-700"
-			></div>
+				v-for="(list, index) in listsData"
+				:key="index"
+				class="flex flex-col gap-2 w-full"
+			>
+				<recently-liked-item
+					:data="list"
+					class="mt-2 mb-2"
+				></recently-liked-item>
+
+				<div
+					v-if="index !== listsData.length - 1"
+					class="border-b border-gray-700"
+				></div>
+			</div>
 		</div>
+		<LoadingSpinner v-else />
 	</div>
 </template>
 
 <script setup lang="ts">
-import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface.ts'
 
-const { data: filmsListsData } = await useAsyncData<IFilmsList[]>(
-	'filmsListsData',
-	() => $fetch<IFilmsList[]>('/api/getFilmsListsData?quantity=18')
-)
+const listsData = ref<IFilmsList[]>([])
 
-const listsData = ref<{ list: IFilmsList; films_list: any[] }[]>([])
-
-watchEffect(async () => {
-	if (!filmsListsData.value) return
-
-	const resolvedFilmsLists = await Promise.all(
-		filmsListsData.value.map(async list => {
-			if (!list.films || list.films.length === 0) return null
-
-			const films_list = await Promise.all(
-				list.films.map(film_id => $fetch(`/api/getFilmsList?id=${film_id}`))
-			)
-
-			return {
-				list,
-				films_list,
-			}
-		})
+onMounted(async () => {
+	const data = await $fetch<IFilmsList[]>(
+		'/api/list/lists?type=popular&quantity=9'
 	)
-
-	listsData.value = resolvedFilmsLists
-		.filter(list => list !== null)
-		.slice(12, 18)
+	listsData.value = data.slice(3, 9)
 })
 </script>
 

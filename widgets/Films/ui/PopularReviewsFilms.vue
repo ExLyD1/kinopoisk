@@ -39,7 +39,7 @@ onMounted(async () => {
 
 	const fetchData = await Promise.all(
 		reviewsList.map(async review => {
-			const film = await $fetch<IFilmItem>(`/api/movie/${review.item_id}`)
+			const film = await $fetch<IFilmItem>(`/api/movie/by-id/${review.item_id}`)
 
 			return {
 				review: review,

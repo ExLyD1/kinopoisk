@@ -2,13 +2,13 @@
 	<div class="item_holder flex flex-col w-[280px]">
 		<NuxtLink
 			:to="`/members/
-				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				${generateSlug(list.author_name)}
 				/lists/
-				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
+				${generateSlug(list.list_name)}`"
 			class="images_holder flex items-center -space-x-8 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded w-full h-[128px]"
 		>
 			<div
-				v-for="(film, index) in data.films_list"
+				v-for="(film, index) in filmsList"
 				:key="index"
 				class="image flex-shrink-0 w-[80px] h-[120px]"
 			>
@@ -22,12 +22,12 @@
 
 		<NuxtLink
 			:to="`/members/
-				${data.list.author_name.toLowerCase().replace(/\s+/g, '-')}
+				${generateSlug(list.author_name)}
 				/lists/
-				${data.list.list_name.toLowerCase().replace(/\s+/g, '-')}`"
+				${generateSlug(list.list_name)}`"
 			class="text-white font-medium p-1"
 		>
-			{{ data.list.list_name }}
+			{{ list.list_name }}
 		</NuxtLink>
 	</div>
 </template>
@@ -36,13 +36,18 @@
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const props = defineProps<{
-	data: {
-		list: IFilmsList
-		films_list: Array<IFilmItem>
-	}
-}>()
-const data = props.data
+const props = defineProps<{ data: IFilmsList }>()
+
+const list = ref(props.data)
+const filmsList: Ref<IFilmItem[]> = ref([])
+
+onMounted(async () => {
+	const requests = list.value.films
+		.slice(0, 5)
+		.map(id => $fetch<IFilmItem>(`/api/movie/by-id/${id}`))
+
+	filmsList.value = await Promise.all(requests)
+})
 </script>
 
 <style scoped>

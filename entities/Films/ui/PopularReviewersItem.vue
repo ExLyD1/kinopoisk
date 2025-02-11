@@ -1,8 +1,6 @@
 <template>
 	<div class="flex flex-row gap-2 items-center">
-		<NuxtLink
-			:to="`/members/${user.user_name.toLowerCase().replace(/\s+/g, '-')}`"
-		>
+		<NuxtLink :to="`/members/${generateSlug(user.user_name)}`">
 			<Avatar class="w-8 h-8">
 				<AvatarImage :src="user.user_avatar" alt="@radix-vue" />
 			</Avatar>
@@ -10,28 +8,20 @@
 
 		<div>
 			<NuxtLink
-				:to="`/members/${user.user_name.toLowerCase().replace(/\s+/g, '-')}`"
+				:to="`/members/${generateSlug(user.user_name)}`"
 				class="font-medium text-white hover:text-blue-200"
 			>
 				{{ user.user_name }}
 			</NuxtLink>
 
 			<div class="flex gap-2">
-				<NuxtLink
-					:to="`/members/${user.user_name
-						.toLowerCase()
-						.replace(/\s+/g, '-')}/films`"
-				>
+				<NuxtLink :to="`/members/${generateSlug(user.user_name)}/films`">
 					<div class="text-sm text-gray-600 hover:text-gray-500">
 						{{ getKNumber(user.user_films_quantity) }} films,
 					</div>
 				</NuxtLink>
 
-				<NuxtLink
-					:to="`/members/${user.user_name
-						.toLowerCase()
-						.replace(/\s+/g, '-')}/reviews`"
-				>
+				<NuxtLink :to="`/members/${generateSlug(user.user_name)}/reviews`">
 					<div class="text-sm text-gray-600 hover:text-gray-500">
 						{{ getKNumber(user.user_reviews_quantity) }} reviews
 					</div>

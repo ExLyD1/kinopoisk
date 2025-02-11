@@ -2,9 +2,7 @@
 	<div class="flex flex-row gap-3">
 		<cover-item>
 			<template #card_image>
-				<NuxtLink
-					:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
-				>
+				<NuxtLink :to="`/films/${generateSlug(film.film_name)}`">
 					<img
 						:src="film.film_image"
 						alt="review_image"
@@ -17,15 +15,13 @@
 		<div class="flex flex-col gap-3">
 			<div class="flex flex-row items-center gap-2">
 				<NuxtLink
-					:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
+					:to="`/films/${generateSlug(film.film_name)}`"
 					class="text-white text-xl hover:text-blue-300 transition-all cursor-pointer"
 				>
 					{{ film.film_name }}
 				</NuxtLink>
 				<NuxtLink
-					:to="`/films/year/${String(film.realise_year)
-						.toLowerCase()
-						.replace(/\s+/g, '-')}`"
+					:to="`/films/year/${generateSlug(String(film.realise_year))}`"
 					class="text-gray-600 hover:text-blue-300 transition-all cursor-pointer"
 				>
 					{{ film.realise_year }}
@@ -35,14 +31,14 @@
 			<div class="author_holder flex gap-2">
 				<div class="flex items-center gap-2">
 					<NuxtLink
-						:to="`/members/${review.author_name}`"
+						:to="`/members/${generateSlug(review.author_name)}`"
 						class="rounded-full border-gray-400 w-7 h-7"
 					>
 						<img class="rounded-full" :src="review.author_avatar" alt="" />
 					</NuxtLink>
 
 					<NuxtLink
-						:to="`/members/${review.author_name}`"
+						:to="`/members/${generateSlug(review.author_name)}`"
 						class="text-gray-500"
 					>
 						{{ review.author_name }}
@@ -78,11 +74,9 @@
 
 			<div class="flex gap-4">
 				<NuxtLink
-					:to="`/members/${review.author_name
-						.toLowerCase()
-						.replace(/\s+/g, '-')}/reviews/${film.film_name
-						.toLowerCase()
-						.replace(/\s+/g, '-')}/likes`"
+					:to="`/members/${generateSlug(
+						review.author_name
+					)}/reviews/${generateSlug(film.film_name)}/likes`"
 					class="text-gray-500 flex items-center flex-row gap-1"
 				>
 					<img class="w-5 h-5" src="@/shared/ui/icons/favorite.png" alt="" />
@@ -91,7 +85,7 @@
 				</NuxtLink>
 
 				<NuxtLink
-					:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
+					:to="`/films/${generateSlug(film.film_name)}`"
 					class="flex flex-row items-center gap-1"
 				>
 					<img class="h-4 w-4" src="@/shared/ui/icons/comment.png" alt="" />

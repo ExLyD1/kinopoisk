@@ -17,7 +17,7 @@
 		<NuxtLink
 			class="image max-w-[130px]"
 			v-for="(film, index) in filmsList"
-			:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
+			:to="`/films/${generateSlug(film.film_name)}`"
 		>
 			<img
 				class="h-full w-full object-cover rounded border border-gray-800 shadow-lg"

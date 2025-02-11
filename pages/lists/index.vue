@@ -42,14 +42,6 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
 import { useHeaderStore } from '~/features/Header/headerStore'
-
-const { data: filmsListsData } = await useAsyncData('filmsListsData', () => {
-	return import('~/shared/model/data/filmsListsData').then(
-		module => module.filmsListsData
-	)
-})
-
-useState('filmsListsData', () => filmsListsData)
 </script>
 
 <style scoped>

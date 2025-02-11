@@ -21,13 +21,7 @@
 	</div>
 </template>
 
-<script setup lang="ts">
-const { data: usersList } = await useAsyncData('usersList', () =>
-	import('~/shared/model/data/usersData').then(module => module.usersList)
-)
-
-useState('usersList', () => usersList)
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 @media screen and (max-width: 990px) {

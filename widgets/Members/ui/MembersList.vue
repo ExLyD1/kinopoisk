@@ -1,12 +1,12 @@
 <template>
-	<div>
+	<div v-if="usersList.length > 0">
 		<div class="border-b border-gray-700 mb-2"></div>
 		<div
-			v-for="(member, index) in membersList"
+			v-for="(user, index) in usersList"
 			:key="index"
 			class="flex flex-col gap-2 w-full"
 		>
-			<member-list-item :data="member" class="mt-2 mb-2"></member-list-item>
+			<member-list-item :data="user" class="mt-2 mb-2"></member-list-item>
 
 			<div class="border-b border-gray-700"></div>
 		</div>
@@ -19,15 +19,18 @@
 			</NuxtLink>
 		</div>
 	</div>
+	<LoadingSpinner v-else class="my-12" />
 </template>
 
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 
-const usersList = useState<Array<IUser>>('usersList')
+const usersList: Ref<IUser[]> = ref([])
 
-const membersList = usersList.value.slice(0, 17)
+onMounted(async () => {
+	usersList.value = await $fetch<IUser[]>('/api/user/list?quantity=17')
+})
 </script>
 
 <style scoped></style>

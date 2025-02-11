@@ -6,11 +6,15 @@
 			</template>
 		</widget-title>
 
-		<div class="members_holder flex gap-5 justify-between mt-5">
-			<div v-for="(member, index) in membersList" :key="index">
-				<member-card-item :data="member"></member-card-item>
+		<div
+			v-if="usersList.length > 0"
+			class="members_holder flex gap-5 justify-between mt-5"
+		>
+			<div v-for="(user, index) in usersList" :key="index">
+				<member-card-item :data="user"></member-card-item>
 			</div>
 		</div>
+		<LoadingSpinner v-else class="my-10" />
 	</div>
 </template>
 
@@ -18,30 +22,25 @@
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const { data: usersList } = await useAsyncData<IUser[]>('usersList', () =>
-	$fetch<IUser[]>('/api/getUsersList?quantity=4')
-)
+const usersList: Ref<{ user: IUser; favFilms: IFilmItem[] }[]> = ref([])
 
-const membersList: any = ref([])
+onMounted(async () => {
+	const usersDataList = await $fetch<IUser[]>('/api/user/list?quantity=5')
 
-watchEffect(async () => {
-	if (!usersList.value) return
-
-	const resolvedMembers = await Promise.all(
-		usersList.value.map(async (user, index) => {
-			if (!user.user_favorite_films || user.user_favorite_films.length === 0)
-				return null
-
-			const user_favorite_films = await Promise.all(
-				user.user_favorite_films
-					.slice(4 * index, 4 * (1 + index))
-					.map(film_id => $fetch<IFilmItem>(`/api/getFilmsList?id=${film_id}`))
+	const usersWithFavoritesData = await Promise.all(
+		usersDataList.map(async user => {
+			const userFavoriteFilms = await $fetch<IFilmItem[]>(
+				`/api/favFilms/list?id=${user.id}&quantity=4`
 			)
-			return user_favorite_films
+
+			return {
+				user: user,
+				favFilms: userFavoriteFilms,
+			}
 		})
 	)
 
-	membersList.value = resolvedMembers
+	usersList.value = usersWithFavoritesData
 })
 </script>
 

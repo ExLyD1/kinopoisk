@@ -60,7 +60,9 @@ const slidesPerView = computed(() => (isMediumScreen.value ? 2 : 3))
 const filmsList: Ref<IFilmItem[]> = ref([])
 
 onMounted(async () => {
-	filmsList.value = await $fetch('/api/movie/list?type=popular&quantity=20')
+	filmsList.value = await $fetch<IFilmItem[]>(
+		'/api/movie/list?type=popular&quantity=20'
+	)
 })
 </script>
 

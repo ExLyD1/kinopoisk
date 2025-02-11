@@ -1,5 +1,8 @@
 <template>
-	<div v-if="!isLoading">
+	<div
+		v-if="!isLoading"
+		class="min-h-[100vh] flex flex-col justify-between bg-dark"
+	>
 		<div class="bg-[#1e2631]">
 			<HeaderFeature />
 		</div>

@@ -18,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+// !! Не переделано, я ебал
 import type { IHqUser } from '~/shared/model/interfaces/hqUserInterface'
 
 const hqUsersData = useState<IHqUser[]>('hqUsersList')

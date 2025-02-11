@@ -10,6 +10,7 @@
 		</widget-title>
 
 		<div
+			v-if="data.length > 0"
 			v-for="(item, index) in data"
 			:key="index"
 			class="flex flex-col gap-2 w-full"
@@ -21,6 +22,7 @@
 				class="border-b border-gray-700"
 			></div>
 		</div>
+		<LoadingSpinner v-else />
 	</div>
 </template>
 

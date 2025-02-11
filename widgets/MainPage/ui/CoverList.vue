@@ -8,7 +8,10 @@
 		</template>
 	</widget-title>
 
-	<div class="cover_holder flex flex-row justify-between m-auto">
+	<div
+		v-if="filmsList.length > 0"
+		class="cover_holder flex flex-row justify-between m-auto"
+	>
 		<cover-item v-for="(film, index) in visibleImages" :key="index">
 			<template #card_image>
 				<NuxtLink
@@ -23,6 +26,7 @@
 			</template>
 		</cover-item>
 	</div>
+	<LoadingSpinner v-else />
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,8 @@
 <template>
-	<div class="holder flex flex-row w-full justify-between items-center">
+	<div
+		v-if="filmsList.length > 0"
+		class="holder flex flex-row w-full justify-between items-center"
+	>
 		<div
 			v-for="(film, index) in visibleFilms"
 			:key="index"
@@ -24,6 +27,7 @@
 			</div>
 		</div>
 	</div>
+	<LoadingSpinner v-else />
 </template>
 
 <script setup lang="ts">

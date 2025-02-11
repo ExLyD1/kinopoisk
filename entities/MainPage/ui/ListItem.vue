@@ -1,9 +1,9 @@
 <template>
 	<div class="item_holder flex flex-col gap-1 w-[250px]">
 		<NuxtLink
-			:to="`/members/${data.list.author_name
+			:to="`/members/${list.author_name
 				.toLowerCase()
-				.replace(/\s+/g, '-')}/lists/${data.list.list_name
+				.replace(/\s+/g, '-')}/lists/${list.list_name
 				.toLowerCase()
 				.replace(/\s+/g, '-')}`"
 		>
@@ -11,7 +11,7 @@
 				class="images_holder flex items-center -space-x-10 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded h-[128px]"
 			>
 				<div
-					v-for="(film, index) in data.films_list"
+					v-for="(film, index) in filmsList"
 					:key="index"
 					class="image flex-shrink-0 w-[80px] h-[120px]"
 				>
@@ -25,64 +25,64 @@
 		</NuxtLink>
 
 		<NuxtLink
-			:to="`/members/${data.list.author_name
+			:to="`/members/${list.author_name
 				.toLowerCase()
-				.replace(/\s+/g, '-')}/lists/${data.list.list_name
+				.replace(/\s+/g, '-')}/lists/${list.list_name
 				.toLowerCase()
 				.replace(/\s+/g, '-')}`"
 		>
 			<div class="text-white">
-				{{ data.list.list_name }}
+				{{ list.list_name }}
 			</div>
 		</NuxtLink>
 
 		<div class="flex items-center flex-row gap-4">
 			<div class="flex items-center gap-2">
 				<NuxtLink
-					:to="`/members/${data.list.author_name
+					:to="`/members/${list.author_name
 						.toLowerCase()
 						.replace(/\s+/g, '-')}`"
 				>
 					<Avatar class="w-8 h-8">
-						<AvatarImage :src="data.list.author_avatar" />
+						<AvatarImage :src="list.author_avatar" />
 						<AvatarFallback>Author_Image</AvatarFallback>
 					</Avatar>
 				</NuxtLink>
 
 				<NuxtLink
-					:to="`/members/${data.list.author_name
+					:to="`/members/${list.author_name
 						.toLowerCase()
 						.replace(/\s+/g, '-')}`"
 				>
 					<div class="text-gray-500 whitespace-nowrap">
-						{{ data.list.author_name }}
+						{{ list.author_name }}
 					</div>
 				</NuxtLink>
 			</div>
 
 			<NuxtLink
-				:to="`/members/${data.list.author_name
+				:to="`/members/${list.author_name
 					.toLowerCase()
-					.replace(/\s+/g, '-')}/lists/${data.list.list_name
+					.replace(/\s+/g, '-')}/lists/${list.list_name
 					.toLowerCase()
 					.replace(/\s+/g, '-')}/likes`"
 			>
 				<div class="flex flex-row items-center gap-1">
 					<img class="h-3 w-3" src="@/shared/ui/icons/favorite.png" alt="" />
-					<div class="pr-2">{{ getKNumber(data.list.likes) }}</div>
+					<div class="pr-2">{{ getKNumber(list.likes) }}</div>
 				</div>
 			</NuxtLink>
 
 			<NuxtLink
-				:to="`/members/${data.list.author_name
+				:to="`/members/${list.author_name
 					.toLowerCase()
-					.replace(/\s+/g, '-')}/lists/${data.list.list_name
+					.replace(/\s+/g, '-')}/lists/${list.list_name
 					.toLowerCase()
 					.replace(/\s+/g, '-')}`"
 			>
 				<div class="flex flex-row items-center gap-1">
 					<img class="h-3 w-3" src="@/shared/ui/icons/comment.png" alt="" />
-					<div class="pr-2">{{ getKNumber(data.list.comments_quantity) }}</div>
+					<div class="pr-2">{{ getKNumber(list.comments_quantity) }}</div>
 				</div>
 			</NuxtLink>
 		</div>
@@ -99,10 +99,14 @@ import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 const props = defineProps<{ data: IFilmsList }>()
 const list = props.data
 
-// ^ СДЕЛАТЬ ЛОГИКУ ОТОБРАЖЕНИЯ КАРТИНОК ФИЛЬМОВ ИЗ СПИСКА И ДАЛЬШЕ РЕФАКТОРИТЬ КОД ДЛЯ БЕКА
+const filmsList: Ref<IFilmItem[]> = ref([])
 
-watch(list, async () => {
-	console.log(123)
+onMounted(async () => {
+	for (let i = 0; i < 5; i++) {
+		const film = await $fetch<IFilmItem>(`/api/movie/${list.films[i]}`)
+
+		filmsList.value.push(film)
+	}
 })
 </script>
 

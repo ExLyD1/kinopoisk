@@ -9,7 +9,7 @@
 			</template>
 		</widget-title>
 
-		<!-- <div
+		<div
 			v-for="(review, index) in data"
 			:key="index"
 			class="flex flex-col gap-2 w-full"
@@ -20,7 +20,7 @@
 				v-if="index !== data.length - 1"
 				class="border-b border-gray-700"
 			></div>
-		</div> -->
+		</div>
 	</div>
 </template>
 
@@ -30,67 +30,26 @@
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 
-// const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
-// 	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=18')
-// )
+const data: Ref<{ review: IReview; film: IFilmItem }[]> = ref([])
 
-// const data: Ref<any> = ref([])
+onMounted(async () => {
+	const reviewsList = await $fetch<IReview[]>(
+		'/api/review/list?type=film&quantity=6'
+	)
 
-// watchEffect(async () => {
-// 	if (!filmsList.value) return
+	const fetchData = await Promise.all(
+		reviewsList.map(async review => {
+			const film = await $fetch<IFilmItem>(`/api/movie/${review.item_id}`)
 
-// 	const resolvedFilms = await Promise.all(
-// 		filmsList.value.map(async film => {
-// 			if (!film.reviews || film.reviews.length === 0) return null
+			return {
+				review: review,
+				film: film,
+			}
+		})
+	)
 
-// 			const reviews_list = await Promise.all(
-// 				film.reviews.map(review_id =>
-// 					$fetch(`/api/getReviewsList?id=${review_id}`)
-// 				)
-// 			)
-
-// 			return {
-// 				film_image: film.film_image,
-// 				film_name: film.film_name,
-// 				realise_year: film.realise_year,
-// 				review: reviews_list,
-// 			}
-// 		})
-// 	)
-
-// 	data.value = resolvedFilms.filter(item => item !== null).slice(12, 18)
-// })
-
-// const data = computed(() =>
-// 	filmsList.value
-// 		?.map(async (film, index) => {
-// 			if (film.reviews && film.reviews[index]) {
-// 				const reviews_list = await Promise.all(
-// 					film.reviews.map((review_id, index) => {
-// 						return $fetch(`/api/getReviewsList?id=${review_id}`)
-// 					})
-// 				)
-// 				return {
-// 					film_image: film.film_image,
-// 					film_name: film.film_name,
-// 					realise_year: film.realise_year,
-// 					review: reviews_list,
-// 				}
-// 			}
-// 			return null
-// 		})
-// 		.filter(
-// 			(
-// 				item
-// 			): item is {
-// 				film_image: string
-// 				film_name: string
-// 				realise_year: number
-// 				review: IReview
-// 			} => item !== null
-// 		)
-// 		.slice(12, 18)
-// )
+	data.value = fetchData.reverse()
+})
 </script>
 
 <style scoped>

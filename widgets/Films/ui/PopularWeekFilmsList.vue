@@ -10,10 +10,13 @@
 		</widget-title>
 	</div>
 
-	<div class="flex justify-center gap-3 mt-4 flex-wrap">
-		<!-- <NuxtLink
+	<div
+		v-if="filmsList.length > 0"
+		class="flex justify-center gap-3 mt-4 flex-wrap"
+	>
+		<NuxtLink
 			class="image max-w-[130px]"
-			v-for="(film, index) in visibleFilmsList"
+			v-for="(film, index) in filmsList"
 			:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
 		>
 			<img
@@ -21,20 +24,22 @@
 				:src="film.film_image"
 				alt=""
 			/>
-		</NuxtLink> -->
+		</NuxtLink>
 	</div>
+
+	<LoadingSpinner v-else class="my-10" />
 </template>
 
 <script setup lang="ts">
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const containerRef = ref(null)
+const filmsList: Ref<IFilmItem[]> = ref([])
 
-// const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
-// 	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=20')
-// )
-
-// const visibleFilmsList = computed(() => filmsList.value?.slice(0, 20) || [])
+onMounted(async () => {
+	filmsList.value = await $fetch<IFilmItem[]>(
+		'/api/movie/list?type=popular&quantity=20'
+	)
+})
 </script>
 
 <style scoped>

@@ -9,24 +9,25 @@
 			</template>
 		</widget-title>
 
-		<div class="flex flex-col gap-2 mt-3">
-			<!-- <div v-for="(user, index) in usersList" :key="index">
+		<div v-if="usersList.length > 0" class="flex flex-col gap-2 mt-3">
+			<div v-for="(user, index) in usersList" :key="index">
 				<popular-reviewers-item :data="user"> </popular-reviewers-item>
 
 				<div class="border-b border-gray-700 pt-3"></div>
-			</div> -->
+			</div>
 		</div>
+		<LoadingSpinner v-else class="my-5" />
 	</div>
 </template>
 
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 
-// const { data: usersData } = await useAsyncData<IUser[]>('usersData', async () =>
-// 	$fetch<IUser[]>('/api/getUsersList?quantity=5')
-// )
+const usersList: Ref<IUser[]> = ref([])
 
-// const usersList = computed(() => usersData.value || [])
+onMounted(async () => {
+	usersList.value = await $fetch<IUser[]>('/api/user/list?quantity=5')
+})
 </script>
 
 <style scoped></style>

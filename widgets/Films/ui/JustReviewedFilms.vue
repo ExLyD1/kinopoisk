@@ -8,8 +8,11 @@
 		</template>
 	</widget-title>
 
-	<div class="cover_holder flex flex-row justify-between m-auto">
-		<!-- <cover-item v-for="(film, index) in visibleFilms" :key="index">
+	<div
+		v-if="data.length > 0"
+		class="cover_holder flex flex-row justify-between m-auto"
+	>
+		<cover-item v-for="(film, index) in visibleFilms" :key="index">
 			<template #card_image>
 				<NuxtLink
 					:to="`/films/${film.film_name.toLowerCase().replace(/\s+/g, '-')}`"
@@ -21,24 +24,27 @@
 					/>
 				</NuxtLink>
 			</template>
-		</cover-item> -->
+		</cover-item>
 	</div>
+	<LoadingSpinner v-else class="my-5" />
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
-import type { ComputedRef } from 'vue'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
 // ======================================================
 // Берем 12 обложек фильмов из массива данных
 // ======================================================
-// const { data: filmsList } = await useAsyncData<IFilmItem[]>('filmsData', () =>
-// 	$fetch<IFilmItem[]>('/api/getFilmsList?quantity=20')
-// )
-// const list = computed(() => filmsList.value?.slice(29, 42))
+const data: Ref<IFilmItem[]> = ref([])
 
+const list = computed(() => data.value?.slice(29, 42))
+
+onMounted(async () => {
+	data.value = await $fetch<IFilmItem[]>(
+		'/api/movie/list?type=just&quantity=42'
+	)
+})
 // ======================================================
 // Обозначения границ для адаптивности
 // ======================================================
@@ -51,16 +57,16 @@ const isSmallScreen = useMediaQuery('(max-width: 430px)')
 // ======================================================
 // Вычесляем массив исходя из размеров экрана
 // ======================================================
-// const visibleFilms: ComputedRef<Array<IFilmItem> | undefined> = computed(() => {
-// 	if (isLargeScreen.value) {
-// 		return list.value?.slice(0, 7)
-// 	} else if (isMediumScreen.value) {
-// 		return list.value?.slice(0, 5)
-// 	} else if (isSmallScreen.value) {
-// 		return list.value?.slice(0, 4)
-// 	}
-// 	return list.value
-// })
+const visibleFilms: ComputedRef<Array<IFilmItem> | undefined> = computed(() => {
+	if (isLargeScreen.value) {
+		return list.value?.slice(0, 7)
+	} else if (isMediumScreen.value) {
+		return list.value?.slice(0, 5)
+	} else if (isSmallScreen.value) {
+		return list.value?.slice(0, 4)
+	}
+	return list.value
+})
 </script>
 
 <style scoped>

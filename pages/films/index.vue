@@ -5,12 +5,13 @@
 		</div>
 
 		<div class="popular_week_holder pt-24 text-gray-500 m-auto w-[950px]">
+			<!-- Для версий компьютера -->
 			<popular-week-films-swiper
 				v-if="!isSmallScreen"
 			></popular-week-films-swiper>
-			<!-- Для версий компьютера -->
-			<popular-week-films-list v-else></popular-week-films-list>
+
 			<!-- Для мобилок -->
+			<popular-week-films-list v-else></popular-week-films-list>
 		</div>
 
 		<div class="just_reviewed_holder pt-12 text-gray-500 m-auto w-[950px]">

@@ -19,7 +19,7 @@ export interface IFilmItem {
 	liked_by_users: number[]
 
 	cast: Array<string>
-	crew?: {
+	crew: {
 		director: Array<string>
 		producers: Array<string>
 		writer: Array<string>

@@ -8,8 +8,11 @@ module.exports = {
 		'./components/**/*.{ts,tsx,vue}',
 		'./app/**/*.{ts,tsx,vue}',
 		'./src/**/*.{ts,tsx,vue}',
+		'./widgets/**/*.{ts,tsx,vue}',
+		'./features/**/*.{ts,tsx,vue}',
 		'./node_modules/preline/preline.js',
 	],
+
 	prefix: '',
 	theme: {
 		container: {

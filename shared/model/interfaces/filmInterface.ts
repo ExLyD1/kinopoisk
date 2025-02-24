@@ -6,7 +6,6 @@ export interface IFilmItem {
 	realise_year: number
 	film_image: string
 	author_name: string
-	rate: number
 	describtion: string
 	duration: number
 	views: number
@@ -18,7 +17,14 @@ export interface IFilmItem {
 	likes: number
 	liked_by_users: number[]
 
+	rating1: number[] | []
+	rating2: number[] | []
+	rating3: number[] | []
+	rating4: number[] | []
+	rating5: number[] | []
+
 	cast: Array<string>
+
 	crew: {
 		director: Array<string>
 		producers: Array<string>

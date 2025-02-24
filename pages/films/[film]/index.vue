@@ -31,9 +31,8 @@ const handleScroll = () => {
 	if (!aside.value) return
 
 	const offset = window.scrollY
-	console.log(offset)
 
-	isAsideFixed.value = offset > 132 // Задай своё значение, когда нужно зафиксировать
+	isAsideFixed.value = offset > 132
 }
 
 onMounted(async () => {

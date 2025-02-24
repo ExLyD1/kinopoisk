@@ -1,5 +1,8 @@
+// preline.client.ts
+
 import 'preline/preline'
 import { type IStaticMethods } from 'preline/preline'
+
 declare global {
 	interface Window {
 		HSStaticMethods: IStaticMethods
@@ -8,6 +11,8 @@ declare global {
 
 export default defineNuxtPlugin(nuxtApp => {
 	nuxtApp.hook('page:finish', () => {
-		window.HSStaticMethods.autoInit()
+		if (window.HSStaticMethods) {
+			window.HSStaticMethods.autoInit()
+		}
 	})
 })

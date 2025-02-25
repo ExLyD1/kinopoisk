@@ -9,9 +9,18 @@
 </template>
 
 <script setup lang="ts">
+import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+
 const route = useRoute()
-const { list, member } = route.params as { list: string; member: string }
-const list_name = list.replaceAll('-', ' ')
+const { list: list_name } = route.params as {
+	list: string
+}
+
+const list: Ref<IFilmsList | null> = ref(null)
+
+onMounted(async () => {
+	list.value = await $fetch<IFilmsList>(`/api/list/by/name/${list_name}`)
+})
 </script>
 
 <style scoped></style>

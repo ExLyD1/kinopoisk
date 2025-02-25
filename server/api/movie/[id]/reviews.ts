@@ -8,12 +8,21 @@ export default defineEventHandler(async event => {
 	}
 
 	const module = await import('~/shared/model/data/reviewsData')
+	const filmModule = await import('~/shared/model/data/filmsData')
+
+	const film = filmModule.filmsList.find(item => item.id === Number(id))
 
 	const films_reviews = module.reviewsList.filter(
 		review => review.type === 'film'
 	)
 
-	const reviews = films_reviews.filter(review => review.item_id === Number(id))
+	let reviews: any = []
+
+	if (film?.reviews) {
+		reviews = film.reviews.map(reviewId => {
+			return films_reviews.find(review => review.id === reviewId)
+		})
+	}
 
 	return reviews.length ? reviews : { reviews: [], message: 'No reviews found' }
 })

@@ -712,7 +712,7 @@ export const reviewsList: IReview[] = [
 	{
 		id: 61,
 		type: 'list',
-		item_id: 8,
+		item_id: 2,
 		user_id: 1,
 		author_avatar: '/avatars/avatar4.jpg',
 		author_name: 'Hannah',
@@ -724,7 +724,7 @@ export const reviewsList: IReview[] = [
 	{
 		id: 62,
 		type: 'list',
-		item_id: 9,
+		item_id: 2,
 		user_id: 1,
 		author_avatar: '/avatars/avatar11.jpg',
 		author_name: 'Hannah',
@@ -748,7 +748,7 @@ export const reviewsList: IReview[] = [
 	{
 		id: 64,
 		type: 'list',
-		item_id: 1,
+		item_id: 2,
 		user_id: 2,
 		author_avatar: '/avatars/avatar13.jpg',
 		author_name: 'Hannah',
@@ -760,7 +760,7 @@ export const reviewsList: IReview[] = [
 	{
 		id: 65,
 		type: 'list',
-		item_id: 1,
+		item_id: 2,
 		user_id: 4,
 		author_avatar: '/avatars/avatar13.jpg',
 		author_name: 'Hannah',
@@ -772,7 +772,7 @@ export const reviewsList: IReview[] = [
 	{
 		id: 66,
 		type: 'list',
-		item_id: 1,
+		item_id: 2,
 		user_id: 1,
 		author_avatar: '/avatars/avatar12.jpg',
 		author_name: 'Hannah',

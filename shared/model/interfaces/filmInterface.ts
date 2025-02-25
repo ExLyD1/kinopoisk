@@ -9,7 +9,9 @@ export interface IFilmItem {
 	describtion: string
 	duration: number
 	views: number
+
 	list_contains: number
+	lists: number[] | []
 
 	reviews_quontity: number
 	reviews?: Array<number>

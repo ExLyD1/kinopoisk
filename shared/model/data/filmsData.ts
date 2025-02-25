@@ -13,7 +13,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 83', 'Actor 22'],
 		duration: 98,
 		views: 1951561,
+
 		list_contains: 992315,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 103456,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 666,
@@ -89,11 +92,14 @@ export const filmsList: Array<IFilmItem> = [
 
 		duration: 100,
 		views: 283523,
+
 		list_contains: 1111,
+		lists: [11, 3, 13, 14, 15],
+
 		likes: 484993,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4285,
-		reviews: [2, 22, 23, 4, 5],
+		reviews: [2, 22, 23, 4, 5, 8, 11],
 
 		rating1: [1, 2, 3],
 		rating2: [4, 5, 6, 7, 8, 9],
@@ -159,7 +165,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 100', 'Actor 59'],
 		duration: 155,
 		views: 518162,
+
 		list_contains: 5543,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 462586,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3296,
@@ -207,7 +216,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 25', 'Actor 80'],
 		duration: 151,
 		views: 95991,
+
 		list_contains: 12567,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 340962,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4634,
@@ -255,7 +267,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 20', 'Actor 32'],
 		duration: 131,
 		views: 611433,
+
 		list_contains: 96756,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 112744,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4792,
@@ -302,7 +317,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 1', 'Actor 2'],
 		duration: 126,
 		views: 636470,
+
 		list_contains: 56,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 402706,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2906,
@@ -349,7 +367,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 8', 'Actor 35'],
 		duration: 91,
 		views: 568195,
+
 		list_contains: 75,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 482098,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4866,
@@ -396,7 +417,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 64', 'Actor 1'],
 		duration: 122,
 		views: 479342,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 23535,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3412,
@@ -444,7 +468,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 4', 'Actor 16'],
 		duration: 177,
 		views: 972103,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 33300,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1169,
@@ -492,7 +519,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 21', 'Actor 82'],
 		duration: 153,
 		views: 620045,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 414588,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 111,
@@ -540,7 +570,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 9', 'Actor 93'],
 		duration: 130,
 		views: 830689,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 311629,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4545,
@@ -589,7 +622,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 75', 'Actor 58'],
 		duration: 154,
 		views: 803753,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 251639,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3775,
@@ -637,7 +673,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 85', 'Actor 40'],
 		duration: 179,
 		views: 990879,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 175978,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3406,
@@ -686,7 +725,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 19', 'Actor 2'],
 		duration: 130,
 		views: 297057,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 37125,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 463,
@@ -734,7 +776,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 39', 'Actor 75'],
 		duration: 117,
 		views: 998649,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 234424,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2144,
@@ -782,7 +827,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 28', 'Actor 53'],
 		duration: 165,
 		views: 870082,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 357092,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1964,
@@ -829,7 +877,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 69', 'Actor 100'],
 		duration: 149,
 		views: 984323,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 122222,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4038,
@@ -877,7 +928,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 79', 'Actor 41'],
 		duration: 110,
 		views: 329600,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 410144,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2016,
@@ -924,7 +978,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 18', 'Actor 65'],
 		duration: 94,
 		views: 390989,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 138585,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3784,
@@ -972,7 +1029,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 29', 'Actor 31'],
 		duration: 108,
 		views: 794243,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 12790,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3840,
@@ -1020,7 +1080,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 10', 'Actor 32'],
 		duration: 153,
 		views: 751331,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 428042,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3744,
@@ -1069,7 +1132,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 20', 'Actor 19'],
 		duration: 151,
 		views: 456510,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 33601,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1282,
@@ -1118,7 +1184,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 40', 'Actor 99'],
 		duration: 170,
 		views: 19289,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 242421,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1462,
@@ -1166,7 +1235,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 39', 'Actor 61'],
 		duration: 130,
 		views: 193010,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 304342,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 749,
@@ -1214,7 +1286,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 26', 'Actor 68'],
 		duration: 149,
 		views: 653096,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 9123,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3860,
@@ -1262,7 +1337,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 79', 'Actor 57'],
 		duration: 174,
 		views: 623536,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 65247,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4134,
@@ -1311,7 +1389,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 30', 'Actor 2'],
 		duration: 131,
 		views: 601469,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 390143,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1013,
@@ -1359,7 +1440,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 4', 'Actor 92'],
 		duration: 170,
 		views: 419460,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 253681,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1094,
@@ -1407,7 +1491,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 58', 'Actor 39'],
 		duration: 142,
 		views: 743656,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 491196,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3959,
@@ -1455,7 +1542,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 40', 'Actor 83'],
 		duration: 164,
 		views: 175398,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 29497,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 700,
@@ -1502,7 +1592,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 46', 'Actor 1'],
 		duration: 140,
 		views: 533500,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 398697,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1602,
@@ -1550,7 +1643,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 98', 'Actor 51'],
 		duration: 180,
 		views: 111133,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 79803,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2370,
@@ -1598,7 +1694,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 87', 'Actor 85'],
 		duration: 157,
 		views: 983431,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 307758,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3633,
@@ -1646,7 +1745,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 24', 'Actor 35'],
 		duration: 125,
 		views: 715413,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 268197,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2701,
@@ -1694,7 +1796,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 74', 'Actor 20'],
 		duration: 162,
 		views: 963055,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 481510,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2041,
@@ -1742,7 +1847,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 29', 'Actor 7'],
 		duration: 160,
 		views: 160408,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 386304,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3497,
@@ -1790,7 +1898,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 74', 'Actor 67'],
 		duration: 176,
 		views: 118597,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 421656,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3658,
@@ -1839,7 +1950,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 12', 'Actor 100'],
 		duration: 106,
 		views: 732856,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 178665,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2138,
@@ -1887,7 +2001,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 54', 'Actor 11'],
 		duration: 155,
 		views: 821123,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 401465,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1724,
@@ -1935,7 +2052,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 81', 'Actor 4'],
 		duration: 158,
 		views: 77518,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 150984,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4546,
@@ -1983,7 +2103,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 91', 'Actor 49'],
 		duration: 152,
 		views: 781130,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 377294,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3912,
@@ -2031,7 +2154,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 45', 'Actor 83'],
 		duration: 108,
 		views: 514282,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 76442,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2916,
@@ -2078,7 +2204,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 12', 'Actor 99'],
 		duration: 143,
 		views: 862779,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 403652,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4634,
@@ -2125,7 +2254,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 29', 'Actor 81'],
 		duration: 114,
 		views: 431601,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 431450,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 4861,
@@ -2173,7 +2305,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 83', 'Actor 49'],
 		duration: 92,
 		views: 250401,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 387539,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2271,
@@ -2221,7 +2356,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 12', 'Actor 87'],
 		duration: 105,
 		views: 345678,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 502345,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1894,
@@ -2269,7 +2407,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 34', 'Actor 98'],
 		duration: 130,
 		views: 452390,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 612834,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3120,
@@ -2317,7 +2458,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 21', 'Actor 56'],
 		duration: 118,
 		views: 578203,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 723456,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2745,
@@ -2365,7 +2509,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 67', 'Actor 42'],
 		duration: 110,
 		views: 399230,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 523490,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2483,
@@ -2413,7 +2560,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 9', 'Actor 78'],
 		duration: 98,
 		views: 267890,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 435678,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1876,
@@ -2461,7 +2611,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 31', 'Actor 89'],
 		duration: 115,
 		views: 520345,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 643210,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2893,
@@ -2509,7 +2662,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 14', 'Actor 65'],
 		duration: 125,
 		views: 410298,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 589731,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2671,
@@ -2557,7 +2713,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 55', 'Actor 77'],
 		duration: 102,
 		views: 372890,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 531890,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 2110,
@@ -2605,7 +2764,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 44', 'Actor 71'],
 		duration: 112,
 		views: 298670,
+
 		list_contains: 1,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 478910,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 1958,
@@ -2653,7 +2815,10 @@ export const filmsList: Array<IFilmItem> = [
 		cast: ['Actor 32', 'Actor 69'],
 		duration: 120,
 		views: 601234,
+
 		list_contains: 0,
+		lists: [1, 2, 3, 4, 5],
+
 		likes: 759321,
 		liked_by_users: [1, 2, 3, 4, 5],
 		reviews_quontity: 3124,

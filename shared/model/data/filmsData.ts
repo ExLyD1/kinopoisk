@@ -58,8 +58,35 @@ export const filmsList: Array<IFilmItem> = [
 		author_name: 'Jane Smith',
 
 		describtion:
-			'Where time itself becomes the enemy. Where time itself becomes the enemy. Where time itself becomes the enemy. Where time itself becomes the enemy. Where time itself becomes the enemy.Where time itself becomes the enemy. Where time itself becomes the enemy.Where time itself becomes the enemy.Where time itself becomes the enemy.Where time itself becomes the enemy.',
-		cast: ['Actor 54', 'Actor 83'],
+			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim assumenda tenetur non libero. Laboriosam maiores deserunt ullam. Aliquid voluptates ratione perspiciatis voluptate culpa? Amet repudiandae error unde adipisci dolores quo!',
+
+		cast: [
+			'Timothée Chalamet',
+			'Edward Norton',
+			'Elle Fanning',
+			'Monica Barbaro',
+			'Joe Tippett',
+			'Eriko Hatsune',
+			'Peter Gray',
+			'Lewis Peter',
+			'Gerety Lenny',
+			'Grossman David',
+			'Wenzel Scoot',
+			'McNairy',
+			'Actor 54',
+			'Actor 83',
+			'Actor 54',
+			'Actor 83',
+			'Actor 54',
+			'Actor 83',
+			'Actor 54',
+			'Actor 83',
+			'Actor 54',
+			'Actor 83',
+			'Actor 54',
+			'Actor 83',
+		],
+
 		duration: 100,
 		views: 283523,
 		list_contains: 1111,
@@ -73,6 +100,16 @@ export const filmsList: Array<IFilmItem> = [
 		rating3: [11, 12, 13, 14, 15, 16],
 		rating4: [17, 18, 19, 20, 21, 22],
 		rating5: [23, 24, 25, 26, 29, 56, 30, 31, 32, 33, 34, 35, 35],
+
+		genres: ['Drama', 'Music'],
+
+		themes: [
+			'Humanity and the world around us',
+			'Song and dance',
+			'Emotional life of renowned artists',
+			'Legendary musicians and stardom',
+			'Dazzling vocal performances and mu',
+		],
 
 		crew: {
 			director: ['Christopher Nolan'],
@@ -97,6 +134,18 @@ export const filmsList: Array<IFilmItem> = [
 			costume_design: ['Lindy Hemming'],
 			makeup: ["Conor O'Sullivan"],
 			hairstyling: ['Jan Archibald'],
+		},
+
+		details: {
+			studios: ['Warner Bros.', 'Universal Pictures', 'Marvel Studios'],
+			country: ['USA', 'UK', 'Japan'],
+			primary_language: ['English'],
+			spoken_languages: ['English', 'Spanish', 'French', 'Japanese'],
+			alternative_titles: [
+				'The Avengers',
+				'Avengers: The End',
+				'Avengers: Final Battle',
+			],
 		},
 	},
 	{

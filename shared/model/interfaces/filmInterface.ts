@@ -49,15 +49,15 @@ export interface IFilmItem {
 		makeup: Array<string>
 		hairstyling: Array<string>
 	}
+
 	details?: {
 		studios: Array<string>
 		country: Array<string>
-		primary_language: string
+		primary_language: string[]
 		spoken_languages: Array<string>
 		alternative_titles: Array<string>
 	}
-	genres?: {
-		genres: Array<string>
-		themes: Array<string>
-	}
+
+	genres?: Array<string>
+	themes?: Array<string>
 }

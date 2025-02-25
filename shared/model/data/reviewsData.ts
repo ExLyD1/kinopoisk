@@ -12,6 +12,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 83,
 		review_text: 'Random review text 1',
 		review_rate: 2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 2,
@@ -24,6 +26,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 27,
 		review_text: 'Random review text 85',
 		review_rate: 1,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 3,
@@ -36,6 +40,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 198,
 		review_text: 'Random review text 71',
 		review_rate: 0,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 4,
@@ -48,6 +54,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 50,
 		review_text: 'Random review text 23',
 		review_rate: 4,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 5,
@@ -60,6 +68,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 121,
 		review_text: 'Random review text 70',
 		review_rate: 4.2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 6,
@@ -72,6 +82,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 185,
 		review_text: 'Random review text 56',
 		review_rate: 1.2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 7,
@@ -84,6 +96,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 45,
 		review_text: 'Random review text 12',
 		review_rate: 4.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 8,
@@ -96,6 +110,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 79,
 		review_text: 'Random review text 41',
 		review_rate: 4.6,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 9,
@@ -108,6 +124,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 61',
 		review_rate: 3.3,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 10,
@@ -120,6 +138,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 9,
 		review_text: 'Random review text 89',
 		review_rate: 5.0,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 11,
@@ -132,6 +152,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 149,
 		review_text: 'Random review text 25',
 		review_rate: 2.1,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 12,
@@ -144,6 +166,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 183,
 		review_text: 'Random review text 68',
 		review_rate: 3.2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 13,
@@ -156,6 +180,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 115,
 		review_text: 'Random review text 34',
 		review_rate: 5.0,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 14,
@@ -168,6 +194,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 176,
 		review_text: 'Random review text 75',
 		review_rate: 2.4,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 15,
@@ -180,6 +208,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 50,
 		review_text: 'Random review text 1',
 		review_rate: 1.5,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 16,
@@ -192,6 +222,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 170,
 		review_text: 'Random review text 29',
 		review_rate: 1.8,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 17,
@@ -204,6 +236,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 156,
 		review_text: 'Random review text 21',
 		review_rate: 17,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 18,
@@ -216,6 +250,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 51,
 		review_text: 'Random review text 85',
 		review_rate: 2.2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 19,
@@ -228,6 +264,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 118,
 		review_text: 'Random review text 80',
 		review_rate: 3.1,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 20,
@@ -240,6 +278,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 133,
 		review_text: 'Random review text 46',
 		review_rate: 3.3,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 21,
@@ -252,6 +292,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 111,
 		review_text: 'Random review text 13',
 		review_rate: 4.8,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 22,
@@ -264,6 +306,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 92,
 		review_text: 'Random review text 2',
 		review_rate: 1.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 23,
@@ -276,6 +320,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 77,
 		review_text: 'Random review text 83',
 		review_rate: 4.1,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 24,
@@ -288,6 +334,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 97,
 		review_text: 'Random review text 58',
 		review_rate: 3.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 25,
@@ -300,6 +348,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 130,
 		review_text: 'Random review text 83',
 		review_rate: 4.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 26,
@@ -312,6 +362,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 186,
 		review_text: 'Random review text 98',
 		review_rate: 4.2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 27,
@@ -324,6 +376,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 108,
 		review_text: 'Random review text 83',
 		review_rate: 3.5,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 28,
@@ -336,6 +390,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 5,
 		review_text: 'Random review text 36',
 		review_rate: 3.2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 29,
@@ -348,6 +404,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 152,
 		review_text: 'Random review text 83',
 		review_rate: 2.6,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 30,
@@ -360,6 +418,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 26,
 		review_text: 'Random review text 32',
 		review_rate: 3.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 31,
@@ -372,6 +432,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 68,
 		review_text: 'Random review text 13',
 		review_rate: 3.4,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 32,
@@ -384,6 +446,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 184,
 		review_text: 'Random review text 84',
 		review_rate: 4.4,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 33,
@@ -396,6 +460,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 43,
 		review_text: 'Random review text 70',
 		review_rate: 4.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 34,
@@ -408,6 +474,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 173,
 		review_text: 'Random review text 96',
 		review_rate: 1.2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 35,
@@ -420,6 +488,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 51,
 		review_text: 'Random review text 73',
 		review_rate: 0.5,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 36,
@@ -432,6 +502,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 91,
 		review_text: 'Random review text 29',
 		review_rate: 0.0,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 37,
@@ -444,6 +516,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 25,
 		review_text: 'Random review text 51',
 		review_rate: 2.2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 38,
@@ -456,6 +530,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 179,
 		review_text: 'Random review text 19',
 		review_rate: 3.2,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 39,
@@ -468,6 +544,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 58,
 		review_text: 'Random review text 61',
 		review_rate: 4.4,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 40,
@@ -480,6 +558,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 190,
 		review_text: 'Random review text 66',
 		review_rate: 3.7,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 41,
@@ -492,6 +572,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 9,
 		review_text: 'Random review text 94',
 		review_rate: 3.7,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 42,
@@ -504,6 +586,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 137,
 		review_text: 'Random review text 48',
 		review_rate: 2.1,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 43,
@@ -516,6 +600,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 81,
 		review_text: 'Random review text 76',
 		review_rate: 1.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 44,
@@ -528,6 +614,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 154,
 		review_text: 'Random review text 17',
 		review_rate: 3.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 46,
@@ -540,6 +628,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 47,
@@ -552,6 +642,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 48,
@@ -564,6 +656,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 49,
@@ -576,6 +670,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 50,
@@ -588,6 +684,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 51,
@@ -600,6 +698,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 52,
@@ -612,6 +712,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 53,
@@ -624,6 +726,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 54,
@@ -636,6 +740,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 190,
 		review_text: 'Random review text 66',
 		review_rate: 3.7,
+		isEdited: false,
+		published_date: 1677110400000,
 	},
 	{
 		id: 55,
@@ -646,56 +752,71 @@ export const reviewsList: IReview[] = [
 		author_name: 'Grace',
 		review_comments: 29,
 		review_likes: 9,
-		review_text: 'Random review text 94',
+		review_text:
+			'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam molestias praesentium, est a dolores labore fuga perferendis corrupti quasi molestiae impedit eum eveniet, natus quas, ullam temporibus ducimus ipsum quisquam.',
 		review_rate: 3.7,
+		isEdited: true,
+		published_date: 1698777600000,
 	},
 	{
 		id: 56,
 		type: 'list',
-		item_id: 3,
+		item_id: 2,
 		user_id: 1,
 		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'Tina',
 		review_comments: 46,
 		review_likes: 137,
-		review_text: 'Random review text 48',
+		review_text:
+			'The movie is absolutely stunning! Every scene is filled with atmosphere and depth, and the acting is top-notch. The plot unfolds at a steady but intense pace, keeping you hooked until the very last minute. The ending was especially impressive—unexpected yet completely logical, leaving a lasting emotional impact. The soundtrack perfectly complements the film, and the cinematography deserves special praise. This is the kind of movie that stays with you long after the credits roll.',
 		review_rate: 2.1,
+		isEdited: false,
+		published_date: 1708705200000,
 	},
 	{
 		id: 57,
 		type: 'list',
-		item_id: 4,
+		item_id: 2,
 		user_id: 1,
 		author_avatar: '/avatars/avatar3.jpg',
 		author_name: 'Charlie',
 		review_comments: 8,
 		review_likes: 81,
-		review_text: 'Random review text 76',
+		review_text:
+			'An absolute masterpiece! From the very first scene, I was drawn into the world the filmmakers created. The story was deeply engaging, full of unexpected twists and emotional moments that made me laugh, cry, and think.',
 		review_rate: 1.9,
+		isEdited: false,
+		published_date: 1698777600000,
 	},
 	{
 		id: 58,
 		type: 'list',
-		item_id: 5,
+		item_id: 2,
 		user_id: 1,
 		author_avatar: '/avatars/avatar14.jpg',
 		author_name: 'Alice',
 		review_comments: 1,
 		review_likes: 154,
-		review_text: 'Random review text 17',
+		review_text:
+			'I went into this film with high expectations, and it managed to exceed all of them. The pacing was perfect—not too slow,',
 		review_rate: 3.9,
+		isEdited: false,
+		published_date: 1698777600000,
 	},
 	{
 		id: 59,
 		type: 'list',
-		item_id: 6,
+		item_id: 2,
 		user_id: 1,
 		author_avatar: '/avatars/avatar14.jpg',
 		author_name: 'Hannah',
 		review_comments: 18,
 		review_likes: 29,
-		review_text: 'Random review text 50',
+		review_text:
+			' The character development was phenomenal—you could see the growth and transformation in every single one of them. The cinematography was visually stunning,',
 		review_rate: 2.9,
+		isEdited: true,
+		published_date: 1707936000000,
 	},
 	{
 		id: 60,
@@ -708,6 +829,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1698777600000,
 	},
 	{
 		id: 61,
@@ -720,6 +843,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 62,
@@ -732,6 +857,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 63,
@@ -744,6 +871,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 64,
@@ -756,6 +885,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 65,
@@ -768,6 +899,8 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 	{
 		id: 66,
@@ -780,5 +913,7 @@ export const reviewsList: IReview[] = [
 		review_likes: 29,
 		review_text: 'Random review text 50',
 		review_rate: 2.9,
+		isEdited: false,
+		published_date: 1707936000000,
 	},
 ]

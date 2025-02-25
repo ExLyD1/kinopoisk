@@ -14,6 +14,7 @@ export interface IFilmsList {
 
 	films: number[]
 	films_quantity: number
-	// tags?: Array<string>
+
+	tags: Array<string>
 	// comments?: Array<IComment>
 }

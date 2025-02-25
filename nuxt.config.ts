@@ -35,6 +35,7 @@ export default defineNuxtConfig({
 	components: {
 		dirs: [
 			'~/components',
+
 			'~/entities/MainPage/ui',
 			'~/entities/General',
 			'~/entities/Authorization/ui',
@@ -43,17 +44,22 @@ export default defineNuxtConfig({
 			'~/entities/Films/ui',
 			'~/entities/Welcome/ui',
 			'~/entities/Film/ui',
+			'~/entities/List/ui',
+
 			'~/widgets/MainPage/ui',
 			'~/widgets/Members/ui',
 			'~/widgets/Lists/ui',
 			'~/widgets/Films/ui',
 			'~/widgets/Welcome/ui',
 			'~/widgets/Film/ui',
+			'~/widgets/List/ui',
+
 			'~/features/Footer',
 			'~/features/Header',
 			'~/features/Films',
 			'~/features/Loading',
 			'~/features/Film',
+			'~/features/List',
 		],
 	},
 

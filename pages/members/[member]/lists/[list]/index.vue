@@ -1,11 +1,20 @@
 <template>
 	<div
-		class="text-white text-4xl text-center pt-24 pb-[600px]"
-		v-if="list_name"
+		v-if="list"
+		class="p-4 page_container relative main_holder pt-6 m-auto pb-24 text-gray-400"
 	>
-		{{ member }}`s LIST {{ list_name }}
+		<div class="holder_all flex justify-between gap-5 w-[1050px] mx-auto p-5">
+			<div class="content w-[670px]">
+				<list-description :data="list"></list-description>
+				<films-in-list class="mt-6" :data="list"></films-in-list>
+			</div>
+
+			<div class="aside w-[230px]">
+				<list-aside-data :data="list"></list-aside-data>
+			</div>
+		</div>
+		<list-comments class="mt-16" :data="list"></list-comments>
 	</div>
-	<div v-else>Loading...</div>
 </template>
 
 <script setup lang="ts">
@@ -23,4 +32,19 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+@media screen and (max-width: 1055px) {
+	.holder_all {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 850px) {
+	.holder_all {
+		flex-direction: column;
+	}
+	.content,
+	.aside {
+		width: 100%;
+	}
+}
+</style>

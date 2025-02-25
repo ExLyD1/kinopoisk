@@ -12,7 +12,7 @@ const tagText = props.data
 <style scoped>
 .tag {
 	display: inline-block;
-	background-color: #3a3f44;
+	background-color: #345;
 	color: #c7ccd1;
 	font-size: 10.77px;
 	font-weight: bold;
@@ -31,12 +31,12 @@ const tagText = props.data
 	transform: translateY(-51%);
 	border-style: solid;
 	border-width: 11.54px 0 11.54px 11.54px;
-	border-color: transparent transparent transparent #3a3f44;
+	border-color: transparent transparent transparent #345;
 }
 .tag:hover {
-	background-color: #585d63;
+	background-color: #456;
 }
 .tag:hover::after {
-	border-color: transparent transparent transparent #585d63;
+	border-color: transparent transparent transparent #456;
 }
 </style>

@@ -9,4 +9,6 @@ export interface IReview {
 	review_likes: number
 	review_text: string
 	review_rate: number
+	isEdited: boolean
+	published_date: number
 }

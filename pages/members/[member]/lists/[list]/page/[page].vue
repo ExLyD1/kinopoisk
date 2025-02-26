@@ -6,7 +6,7 @@
 		<div class="holder_all flex justify-between gap-5 w-[1050px] mx-auto p-5">
 			<div class="content w-[670px]">
 				<list-description :data="list"></list-description>
-				<films-in-list class="mt-6" :data="list"></films-in-list>
+				<list-page-films class="mt-6" :data="list"></list-page-films>
 			</div>
 
 			<div class="aside w-[230px]">
@@ -24,8 +24,9 @@ import { useListPagesStore } from '~/features/List/listPagesStore'
 const listPageStore = useListPagesStore()
 
 const route = useRoute()
-const { list: list_name } = route.params as {
+const { list: list_name, page } = route.params as {
 	list: string
+	page: string
 }
 
 const list: Ref<IFilmsList | null> = ref(null)
@@ -34,6 +35,7 @@ onMounted(async () => {
 	list.value = await $fetch<IFilmsList>(`/api/list/by/name/${list_name}`)
 
 	listPageStore.totalPages = Math.ceil(list.value.films.length / 100)
+	listPageStore.curentPage = Number(page)
 })
 </script>
 

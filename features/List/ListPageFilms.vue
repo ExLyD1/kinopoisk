@@ -54,7 +54,7 @@
 				</div>
 
 				<!-- pagination buttons for more than 6 pages -->
-				<div
+				<!-- <div
 					v-if="Math.ceil(list.films.length / 100) > 5"
 					class="flex gap-2 pb-2 items-center justify-center"
 				>
@@ -91,10 +91,10 @@
 						)}`"
 						>{{ Math.ceil(list.films.length / 100) }}</NuxtLink
 					>
-				</div>
+				</div> -->
 
 				<!-- buttons from 1 to 5 -->
-				<div v-else class="flex gap-2 pb-2 items-center justify-center">
+				<!-- <div v-else class="flex gap-2 pb-2 items-center justify-center">
 					<NuxtLink
 						v-for="page in Math.ceil(list.films.length / 100)"
 						:to="`/members/${generateSlug(
@@ -102,6 +102,47 @@
 						)}/lists/${generateSlug(list.list_name)}/page/${page}`"
 					>
 						{{ page }}
+					</NuxtLink>
+				</div> -->
+
+				<div class="flex gap-2 pb-2 items-center justify-center">
+					<!-- Первая страница -->
+					<NuxtLink
+						:to="`/members/${generateSlug(
+							list.author_name
+						)}/lists/${generateSlug(list.list_name)}/page/1`"
+						>1</NuxtLink
+					>
+
+					<!-- "..." перед текущим блоком -->
+					<span v-if="listPageStore.curentPage > 4">...</span>
+
+					<!-- Диапазон страниц вокруг текущей -->
+					<NuxtLink
+						v-for="page in visiblePages"
+						:key="page"
+						:to="`/members/${generateSlug(
+							list.author_name
+						)}/lists/${generateSlug(list.list_name)}/page/${page}`"
+						:class="{ 'text-gray-600': page === listPageStore.curentPage }"
+					>
+						{{ page }}
+					</NuxtLink>
+
+					<!-- "..." после текущего блока -->
+					<span v-if="listPageStore.curentPage < listPageStore.totalPages - 3"
+						>...</span
+					>
+
+					<!-- Последняя страница -->
+					<NuxtLink
+						:to="`/members/${generateSlug(
+							list.author_name
+						)}/lists/${generateSlug(list.list_name)}/page/${
+							listPageStore.totalPages
+						}`"
+					>
+						{{ listPageStore.totalPages }}
 					</NuxtLink>
 				</div>
 
@@ -127,15 +168,29 @@
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+
 import { useListPagesStore } from './listPagesStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
+const listPageStore = useListPagesStore()
 const props = defineProps<{ data: IFilmsList }>()
 const list = props.data
 
-const listPageStore = useListPagesStore()
-
 const filmsList: Ref<IFilmItem[] | []> = ref([])
+
+const visiblePages = computed(() => {
+	const pages: number[] = []
+	const start = Math.max(2, listPageStore.curentPage - 2) // Начинаем с 2, чтобы 1 всегда был отдельно
+	const end = Math.min(
+		listPageStore.totalPages - 1,
+		listPageStore.curentPage + 2
+	) // Конец не включает последнюю страницу
+
+	for (let i = start; i <= end; i++) {
+		pages.push(i)
+	}
+	return pages
+})
 
 onMounted(async () => {
 	const films = await $fetch<IFilmItem[]>(

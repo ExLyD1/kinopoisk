@@ -65,22 +65,23 @@
 			Then grab our apps and see our questions page for more answers.
 		</div>
 
-		<div class="mt-24 w-full m-auto text-gray-500">
-			<final-guide></final-guide>
+		<div v-if="films.length > 0" class="mt-24 w-full m-auto text-gray-500">
+			<final-guide :data="films"></final-guide>
 		</div>
+
+		<LoadingSpinner v-else class="mt-5" />
 	</div>
 </template>
 
 <script setup lang="ts">
 import { useHeaderStore } from '~/features/Header/headerStore'
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
-const { data: filmsListsData } = await useAsyncData('filmsListsData', () => {
-	return import('~/shared/model/data/filmsListsData').then(
-		module => module.filmsListsData
-	)
+const films: Ref<IFilmItem[]> = ref([])
+
+onMounted(async () => {
+	films.value = await $fetch<IFilmItem[]>('/api/movie/list?quantity=20')
 })
-
-useState('filmsListsData', () => filmsListsData)
 </script>
 
 <style scoped>

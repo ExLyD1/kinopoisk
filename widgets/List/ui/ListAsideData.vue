@@ -3,7 +3,7 @@
 		<!-- sign up block -->
 		<div class="singUp text-gray-300 bg-gray-700 rounded p-4">
 			<NuxtLink
-				:to="`members/${generateSlug(list.author_name)}`"
+				:to="`/members/${generateSlug(list.author_name)}`"
 				class="text-blue-200 cursor-pointer transition-all hover:text-blue-400"
 				>{{ list.author_name }}</NuxtLink
 			>
@@ -21,7 +21,7 @@
 			<!-- sing in -->
 			<div
 				@click="useHeaderStore().isModalSignInOpened = true"
-				class="bg-gray-700 py-2 px-4 rounded-t h-[42px] text-sm whitespace-nowrap flex items-center justify-center"
+				class="bg-gray-700 py-2 px-4 rounded-t h-[42px] text-sm whitespace-nowrap flex items-center justify-center cursor-pointer"
 			>
 				Sign in to create or like lists
 			</div>
@@ -40,7 +40,7 @@
 
 			<!-- share -->
 			<NuxtLink
-				to="soon"
+				to="/soon"
 				class="bg-gray-700 py-2 px-4 rounded-b h-[42px] text-sm whitespace-nowrap flex items-center justify-center"
 			>
 				Share

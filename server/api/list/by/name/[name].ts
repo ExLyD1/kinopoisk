@@ -15,7 +15,7 @@ export default defineEventHandler(async event => {
 	)
 
 	if (!list) {
-		return { error: 'List not found' }
+		return { error: 'List not found', isListExists: false }
 	}
 
 	return list

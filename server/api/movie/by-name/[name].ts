@@ -15,7 +15,7 @@ export default defineEventHandler(async event => {
 	)
 
 	if (!movie) {
-		return { error: 'Movie not found' }
+		return { error: 'Movie not found', isFilmExists: false }
 	}
 
 	return movie

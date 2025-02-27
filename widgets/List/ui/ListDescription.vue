@@ -4,7 +4,7 @@
 		<div
 			class="flex items-center gap-2 text-sm border-b w-full border-gray-700 pb-2"
 		>
-			<NuxtLink :to="`members/${generateSlug(list.author_name)}`">
+			<NuxtLink :to="`/members/${generateSlug(list.author_name)}`">
 				<Avatar class="w-7 h-7">
 					<AvatarImage :src="list.author_avatar" alt="@unovue" />
 					<AvatarFallback>CN</AvatarFallback>

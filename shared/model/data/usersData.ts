@@ -8,7 +8,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 1,
 		user_avatar: '/avatars/avatar10.jpg',
-		user_name: 'Madison Lee',
+		user_name: 'James Cameron',
 
 		user_lists_quantity: 7,
 		user_following_quantity: 33,
@@ -35,7 +35,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 2,
 		user_avatar: '/avatars/avatar12.jpg',
-		user_name: 'Ethan Martin',
+		user_name: 'Emma Stone',
 
 		user_lists_quantity: 1,
 		user_following_quantity: 15,
@@ -62,7 +62,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 3,
 		user_avatar: '/avatars/avatar1.jpg',
-		user_name: 'Grace Harris',
+		user_name: 'Sophia Loren',
 
 		user_lists_quantity: 3,
 		user_following_quantity: 77,
@@ -89,7 +89,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 4,
 		user_avatar: '/avatars/avatar4.jpg',
-		user_name: 'Grace Harris',
+		user_name: 'Olivia Wilde',
 
 		user_lists_quantity: 10,
 		user_following_quantity: 23,
@@ -116,7 +116,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 5,
 		user_avatar: '/avatars/avatar8.jpg',
-		user_name: 'Lucas Adams',
+		user_name: 'Emma Stone',
 
 		user_lists_quantity: 3,
 		user_following_quantity: 25,
@@ -143,7 +143,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 6,
 		user_avatar: '/avatars/avatar1.jpg',
-		user_name: 'Charlie Davis',
+		user_name: 'James Cameron',
 
 		user_lists_quantity: 2,
 		user_following_quantity: 76,
@@ -170,7 +170,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 7,
 		user_avatar: '/avatars/avatar3.jpg',
-		user_name: 'Madison Lee',
+		user_name: 'Michael Bay',
 
 		user_lists_quantity: 2,
 		user_following_quantity: 24,
@@ -197,7 +197,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 8,
 		user_avatar: '/avatars/avatar2.jpg',
-		user_name: 'Bob Brown',
+		user_name: 'Christopher Nolan',
 
 		user_lists_quantity: 9,
 		user_following_quantity: 32,
@@ -251,7 +251,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 10,
 		user_avatar: '/avatars/avatar2.jpg',
-		user_name: 'James Hall',
+		user_name: 'Chloe Grace Moretz',
 
 		user_lists_quantity: 9,
 		user_following_quantity: 32,
@@ -278,7 +278,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 11,
 		user_avatar: '/avatars/avatar1.jpg',
-		user_name: 'Sophia Clark',
+		user_name: 'Isabella Thomas',
 
 		user_lists_quantity: 7,
 		user_following_quantity: 13,
@@ -305,7 +305,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 12,
 		user_avatar: '/avatars/avatar11.jpg',
-		user_name: 'Bob Brown',
+		user_name: 'Olivia Wilde',
 
 		user_lists_quantity: 2,
 		user_following_quantity: 24,
@@ -332,7 +332,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 13,
 		user_avatar: '/avatars/avatar2.jpg',
-		user_name: 'Jane Smith',
+		user_name: 'Daniel Craig',
 
 		user_lists_quantity: 5,
 		user_following_quantity: 50,
@@ -359,7 +359,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 14,
 		user_avatar: '/avatars/avatar12.jpg',
-		user_name: 'Emily Taylor',
+		user_name: 'John Doe',
 
 		user_lists_quantity: 1,
 		user_following_quantity: 86,
@@ -521,7 +521,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 20,
 		user_avatar: '/avatars/avatar15.jpg',
-		user_name: 'John Doe',
+		user_name: 'Chloe Grace Moretz',
 
 		user_lists_quantity: 6,
 		user_following_quantity: 76,
@@ -629,7 +629,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 24,
 		user_avatar: '/avatars/avatar3.jpg',
-		user_name: 'Emily Taylor',
+		user_name: 'Michael Bay',
 
 		user_lists_quantity: 2,
 		user_following_quantity: 17,
@@ -899,7 +899,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 34,
 		user_avatar: '/avatars/avatar7.jpg',
-		user_name: 'Ethan Martin',
+		user_name: 'Sophia Loren',
 
 		user_lists_quantity: 9,
 		user_following_quantity: 63,
@@ -1007,7 +1007,7 @@ export const usersList: Array<IUser> = [
 	{
 		id: 38,
 		user_avatar: '/avatars/avatar12.jpg',
-		user_name: 'Lily Walker',
+		user_name: 'Daniel Craig',
 
 		user_lists_quantity: 5,
 		user_following_quantity: 33,

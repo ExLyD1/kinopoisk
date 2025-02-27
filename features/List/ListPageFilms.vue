@@ -7,7 +7,7 @@
 			>
 				<!-- films items -->
 				<div
-					v-for="(film, index) in filmsList"
+					v-for="(film, index) in filmsList.slice(0, 5)"
 					:key="index"
 					:to="`films/${generateSlug(film.film_name)}`"
 				>
@@ -25,7 +25,7 @@
 
 					<!-- index -->
 					<div class="flex items-center justify-center text-center mt-1 mb-2">
-						{{ index + 1 }}
+						{{ index + 1 + 100 * (listPageStore.curentPage - 1) }}
 					</div>
 				</div>
 			</div>
@@ -33,6 +33,7 @@
 			<LoadingSpinner v-else class="mt-5" />
 		</div>
 
+		<!-- pagination -->
 		<div
 			v-if="listPageStore.totalPages > 1"
 			class="mt-5 border-t border-gray-600 flex items-center justify-end"
@@ -53,64 +54,14 @@
 					</NuxtLink>
 				</div>
 
-				<!-- pagination buttons for more than 6 pages -->
-				<!-- <div
-					v-if="Math.ceil(list.films.length / 100) > 5"
-					class="flex gap-2 pb-2 items-center justify-center"
-				>
-					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/1`"
-					>
-						1
-					</NuxtLink>
-
-					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/2`"
-					>
-						2
-					</NuxtLink>
-
-					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/3`"
-					>
-						3
-					</NuxtLink>
-
-					<div>...</div>
-					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/${Math.ceil(
-							list.films.length / 100
-						)}`"
-						>{{ Math.ceil(list.films.length / 100) }}</NuxtLink
-					>
-				</div> -->
-
-				<!-- buttons from 1 to 5 -->
-				<!-- <div v-else class="flex gap-2 pb-2 items-center justify-center">
-					<NuxtLink
-						v-for="page in Math.ceil(list.films.length / 100)"
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/${page}`"
-					>
-						{{ page }}
-					</NuxtLink>
-				</div> -->
-
+				<!-- pagination numeration by numbers -->
 				<div class="flex gap-2 pb-2 items-center justify-center">
 					<!-- Первая страница -->
 					<NuxtLink
 						:to="`/members/${generateSlug(
 							list.author_name
 						)}/lists/${generateSlug(list.list_name)}/page/1`"
+						:class="{ 'text-gray-600': listPageStore.curentPage === 1 }"
 						>1</NuxtLink
 					>
 
@@ -141,6 +92,10 @@
 						)}/lists/${generateSlug(list.list_name)}/page/${
 							listPageStore.totalPages
 						}`"
+						:class="{
+							'text-gray-600':
+								listPageStore.curentPage === listPageStore.totalPages,
+						}"
 					>
 						{{ listPageStore.totalPages }}
 					</NuxtLink>
@@ -180,11 +135,11 @@ const filmsList: Ref<IFilmItem[] | []> = ref([])
 
 const visiblePages = computed(() => {
 	const pages: number[] = []
-	const start = Math.max(2, listPageStore.curentPage - 2) // Начинаем с 2, чтобы 1 всегда был отдельно
+	const start = Math.max(2, listPageStore.curentPage - 2)
 	const end = Math.min(
 		listPageStore.totalPages - 1,
 		listPageStore.curentPage + 2
-	) // Конец не включает последнюю страницу
+	)
 
 	for (let i = start; i <= end; i++) {
 		pages.push(i)

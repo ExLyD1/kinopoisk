@@ -32,6 +32,23 @@ const { list: list_name, page } = route.params as {
 const list: Ref<IFilmsList | null> = ref(null)
 
 onMounted(async () => {
+	const {
+		list: list_name,
+		page,
+		member,
+	} = route.params as {
+		list: string
+		page: string
+		member: string
+	}
+
+	if (isNaN(Number(page))) {
+		throw createError({
+			statusCode: 404,
+			statusMessage: 'Number of page is more than number of maximum pages',
+		})
+	}
+
 	list.value = await $fetch<IFilmsList>(`/api/list/by/name/${list_name}`)
 
 	listPageStore.totalPages = Math.ceil(list.value.films.length / 100)

@@ -4,7 +4,7 @@
 		class="page_container relative main_holder pt-16 m-auto pb-24"
 	>
 		<div class="holder_all flex w-[950px] m-auto p-5">
-			<div class="w-[270px] aside_space">
+			<div class="sidebar-container aside_space">
 				<aside
 					ref="aside"
 					class="w-[230px]"
@@ -63,6 +63,12 @@ onUnmounted(() => {
 	position: fixed;
 	top: 20px;
 }
+.sidebar-container {
+	flex: 0 0 240px; /* Фиксированная ширина боковой панели */
+	max-width: 240px;
+	position: relative;
+}
+
 @media screen and (max-width: 985px) {
 	.description_info {
 		width: 100%;
@@ -70,16 +76,10 @@ onUnmounted(() => {
 	.holder_all {
 		width: 100%;
 	}
-	.aside_space {
-		width: 340px;
-	}
 }
 @media screen and (max-width: 785px) {
-	.aside_space {
-		width: 340px;
-	}
 	.description_info {
-		padding-left: 20px;
+		padding-left: 0px;
 	}
 }
 @media screen and (max-width: 680px) {

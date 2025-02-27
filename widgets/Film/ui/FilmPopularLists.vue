@@ -49,4 +49,10 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+@media screen and (max-width: 1000px) {
+	.holder {
+		width: 100%;
+	}
+}
+</style>

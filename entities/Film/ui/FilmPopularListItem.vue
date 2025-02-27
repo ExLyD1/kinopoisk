@@ -103,7 +103,7 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 905px) {
 	.holder {
 		flex-direction: column;
 		gap: 6px;

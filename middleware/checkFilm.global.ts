@@ -5,8 +5,6 @@ export default defineNuxtRouteMiddleware(async to => {
 
 	if (!filmName) return
 
-	console.log(filmName)
-
 	try {
 		const exists = await $fetch<any>(
 			`/api/movie/by-name/${generateSlug(filmName)}`

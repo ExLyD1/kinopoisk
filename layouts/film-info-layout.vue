@@ -36,14 +36,17 @@
 									<NuxtLink
 										v-for="(item, index) in filmInfoCategoriesList"
 										:key="index"
-										:to="`/soon`"
+										:to="`/films/${generateSlug(
+											film.film_name
+										)}/${item.toLowerCase()}`"
 										class="text-green-600 pb-1 box-border relative"
-										:class="{
-											'border-b border-white text-white': section === item,
-										}"
 									>
 										<span
 											class="relative after:absolute after:left-0 after:bottom-[-11px] after:w-full after:h-[1px] after:bg-green-600 after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100"
+											:class="{
+												'text-white after:bg-white after:scale-x-100 hover:none':
+													filmFiltersStore.section === item.toLowerCase(),
+											}"
 										>
 											{{ item }}
 										</span>
@@ -53,17 +56,25 @@
 								<!-- filters -->
 								<div class="flex gap-2 text-sm">
 									<info-filter-by
-										v-for="(optionBlocks, index) in optionsViewersList"
+										v-for="(optionBlocks, index) in optionsList"
 										:data="optionBlocks"
+										:film="film"
 									>
-										<template v-if="index === 1" #sortByText
+										<template
+											v-if="index === 1 || optionsList?.length === 1"
+											#sortByText
 											><div class="text-xs mr-[-10px]">Sort by</div></template
 										>
 									</info-filter-by>
 								</div>
 							</div>
+
+							<div class="mt-5">
+								<slot />
+							</div>
 						</div>
 
+						<!-- aside poster -->
 						<div class="w-[230px]">
 							<film-poster :data="film"></film-poster>
 						</div>
@@ -93,17 +104,33 @@
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import {
 	filmInfoCategoriesList,
-	optionsViewersList,
+	optionsMembersList,
 	optionsLikesList,
 	optionsReviewsList,
 	optionsListsList,
 } from '~/widgets/Film/model/filmInfo'
+
+import { useFilmFiltersStore } from '~/features/Film/model/filmFiltersStore'
+
+const filmFiltersStore = useFilmFiltersStore()
 
 const route = useRoute()
 const { film: film_name, section } = route.params as {
 	film: string
 	section: string
 }
+
+const optionsList = computed(() => {
+	if (filmFiltersStore.section === 'members') {
+		return optionsMembersList
+	} else if (filmFiltersStore.section === 'likes') {
+		return optionsLikesList
+	} else if (filmFiltersStore.section === 'reviews') {
+		return optionsReviewsList
+	} else if (filmFiltersStore.section === 'lists') {
+		return optionsListsList
+	}
+})
 
 const film: Ref<IFilmItem | null> = ref(null)
 

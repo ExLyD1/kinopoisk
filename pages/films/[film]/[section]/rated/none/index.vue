@@ -1,6 +1,6 @@
 <template>
 	<div class="text-white text-4xl text-center pt-24 pb-[600px]" v-if="film">
-		reviews of the film "{{ film }}"
+		section {{ section }} of film {{ film }} rated by None
 	</div>
 	<div v-else class="text-white text-4xl text-center pt-24 pb-[600px]">
 		Loading...
@@ -9,7 +9,11 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const { film } = route.params as { film: string }
+const { film, section } = route.params as { film: string; section: string }
+
+definePageMeta({
+	layout: 'film-info-layout',
+})
 </script>
 
 <style scoped></style>

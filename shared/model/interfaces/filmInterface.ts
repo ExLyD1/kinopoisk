@@ -8,7 +8,9 @@ export interface IFilmItem {
 	author_name: string
 	describtion: string
 	duration: number
+
 	views: number
+	users_viewed: number[]
 
 	list_contains: number
 	lists: number[] | []

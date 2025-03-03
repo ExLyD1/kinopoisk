@@ -70,21 +70,21 @@ export const optionsReviewsList: IFilmOptionsList[] = [
 		isSort: false,
 	},
 	{
-		label: 'When Liked',
+		label: 'When Reviewed',
 		width: 'w-[130px]',
 		deep_options: [
 			{
-				label: 'When reviewed',
+				label: 'When Reviewed',
 				options: [
 					{ option: 'Newest First', route_query: '' },
 					{ option: 'Earlies First', route_query: 'earliest' },
 				],
 			},
 			{
-				label: 'Review rating',
+				label: 'Review Rating',
 				options: [
-					{ option: 'Hihgest first', route_query: 'rating-highest' },
-					{ option: 'Lowest first', route_query: 'rating-lowest' },
+					{ option: 'Hihgest First', route_query: 'rating-highest' },
+					{ option: 'Lowest First', route_query: 'rating-lowest' },
 				],
 			},
 		],
@@ -94,12 +94,12 @@ export const optionsReviewsList: IFilmOptionsList[] = [
 
 export const optionsListsList: IFilmOptionsList[] = [
 	{
-		label: 'When Updated',
+		label: 'When Published',
 		width: 'w-[130px]',
 		options: [{ option: 'List Name', route_query: 'name' }],
 		deep_options: [
 			{
-				label: 'When published',
+				label: 'When Published',
 				options: [
 					{ option: 'Newest First', route_query: '' },
 					{ option: 'Oldest First', route_query: 'oldest' },

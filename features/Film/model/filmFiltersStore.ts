@@ -5,6 +5,9 @@ export const useFilmFiltersStore = defineStore('filmFiltersStore', () => {
 	const sort = ref(route.params.sort)
 	const no_rated = ref(route.fullPath.includes('rated'))
 
+	const currentPage = ref<number>(1)
+	const totalPages = ref<number>(0)
+
 	const isAnyRating = ref<boolean>(true)
 	const isNoRating = ref<boolean>(false)
 
@@ -22,6 +25,7 @@ export const useFilmFiltersStore = defineStore('filmFiltersStore', () => {
 		section.value = route.params.section
 		sort.value = route.params.sort
 		no_rated.value = route.fullPath.includes('rated')
+		currentPage.value = Number(route.params.page) || 1
 
 		isAnyRating.value = no_rated.value === false
 		isNoRating.value = no_rated.value === true
@@ -34,7 +38,7 @@ export const useFilmFiltersStore = defineStore('filmFiltersStore', () => {
 		isSortByRatingLowest.value = sort.value === 'rating-lowest'
 		isSortByOldest.value = sort.value === 'oldest'
 
-		console.log(sort.value, '< === sort')
+		// console.log(sort.value, '< === sort')
 		// console.log(section.value, '< === section')
 
 		// console.log(no_rated.value)
@@ -56,6 +60,8 @@ export const useFilmFiltersStore = defineStore('filmFiltersStore', () => {
 		section,
 		sort,
 		no_rated,
+		currentPage,
+		totalPages,
 		isAnyRating,
 		isNoRating,
 		isSortByMemberName,

@@ -29,9 +29,14 @@ import { useFilmFiltersStore } from '~/features/Film/model/filmFiltersStore'
 const filmFiltersStore = useFilmFiltersStore()
 
 const route = useRoute()
-const { film: film_name, section } = route.params as {
+const {
+	film: film_name,
+	section,
+	page,
+} = route.params as {
 	film: string
 	section: string
+	page: string
 }
 
 const film = ref<IFilmItem>()
@@ -40,9 +45,14 @@ onMounted(async () => {
 		page: string
 	}
 
-	film.value = await $fetch<IFilmItem>(`/api/movie/by-name/${film_name}`)
+	if (isNaN(Number(page))) {
+		throw createError({
+			statusCode: 404,
+			statusMessage: 'Number of page is more than number of maximum pages',
+		})
+	}
 
-	filmFiltersStore.totalPages = Math.ceil(film.value.users_viewed.length / 25)
+	film.value = await $fetch<IFilmItem>(`/api/movie/by-name/${film_name}`)
 })
 
 definePageMeta({

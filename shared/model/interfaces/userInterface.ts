@@ -8,7 +8,9 @@ export interface IUser {
 
 	user_following_quantity: number
 	user_followers_quantity: number
+
 	user_reviews_quantity: number
+	user_reviews: number[] // array of reviews Id
 
 	user_films_quantity: number
 	user_films: number[] | []

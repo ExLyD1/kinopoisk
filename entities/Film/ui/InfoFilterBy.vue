@@ -35,10 +35,18 @@
 							? `/films/${generateSlug(film.film_name)}${
 									filmFiltersStore.section ? '/' + filmFiltersStore.section : ''
 							  }${
+									filmFiltersStore.currentPage
+										? '/page/' + filmFiltersStore.currentPage
+										: ''
+							  }${
 									filmFiltersStore.no_rated === false ? '' : '/rated/none'
 							  }/by/${option.route_query}`
 							: `/films/${generateSlug(film.film_name)}/${
 									filmFiltersStore.section
+							  }${
+									filmFiltersStore.currentPage
+										? '/page/' + filmFiltersStore.currentPage
+										: ''
 							  }${option.route_query ? '/' + option.route_query : ''}${
 									filmFiltersStore.sort ? '/by/' + filmFiltersStore.sort : ''
 							  }`
@@ -53,19 +61,23 @@
 					v-if="props.data.deep_options"
 					v-for="(deep_option, index) in props.data.deep_options"
 					:key="index"
-					class="py-2 whitespace-nowrap flex flex-col"
+					class="py-2 whitespace-nowrap flex flex-col w-full"
 				>
-					<div class="ml-3">{{ deep_option.label }}</div>
-					<div class="flex flex-col pt-2">
+					<div class="ml-3 w-full">{{ deep_option.label }}</div>
+					<div class="flex flex-col pt-2 w-full">
 						<NuxtLink
 							v-for="(option, index) in deep_option.options"
 							:key="index"
 							:to="`/films/${generateSlug(film.film_name)}${
 								filmFiltersStore.section ? '/' + filmFiltersStore.section : ''
+							}${
+								filmFiltersStore.currentPage
+									? '/page/' + filmFiltersStore.currentPage
+									: ''
 							}/${filmFiltersStore.no_rated === false ? '' : 'rated/none/'}${
 								option.route_query === '' ? '' : 'by/' + option.route_query
 							}`"
-							class="pl-7 py-2 hover:bg-gray-600 cursor-pointer hover:text-white whitespace-nowrap text-xs flex items-center gap-1"
+							class="pl-7 py-2 hover:bg-gray-600 w-full cursor-pointer hover:text-white whitespace-nowrap text-xs flex items-center gap-1"
 							:class="{
 								'text-white ml-[-15px]': selectedOption === option.option,
 							}"
@@ -98,9 +110,9 @@ const filmFiltersStore = useFilmFiltersStore()
 
 // Получаение данных из родителя
 const props = defineProps<{ data: IFilmOptionsList; film: IFilmItem }>()
-const label = props.data.label
-const widthList = props.data.width
-const film = props.film
+const label = computed(() => props.data.label)
+const widthList = computed(() => props.data.width)
+const film = computed(() => props.film)
 
 const isDropdownVisible = ref(false)
 const selectedOption: Ref<string | number> = ref(label)

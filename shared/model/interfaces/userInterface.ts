@@ -26,8 +26,8 @@ export interface IUser {
 
 	user_bio: string
 	user_tags?: string[] | []
-	// user_following?: Array<>
-	// user_followers?: Array<>
-	// user_reviews?: Array<>
-	// user_pinned_lists: Array<>
+
+	user_following: number[] // id
+	user_followers: number[] // id
+	user_pinned_lists: number[] // id
 }

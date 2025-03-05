@@ -47,42 +47,151 @@ export default defineEventHandler(async event => {
 		})
 	}
 
+	const sort = query.sort as string | undefined
+	const avaliableTypesOfSort: string[] = ['name', 'newest', 'earliest']
+	if (sort && !avaliableTypesOfSort.includes(sort)) {
+		throw createError({
+			statusCode: 400,
+			message: 'No such type of sort',
+		})
+	}
+
 	const userMap = new Map<number, IUser>(
 		usersModule.usersList.map(user => [user.id, user])
 	)
 
 	let usersOnPage: IUser[] = []
-	let totalItems: number
+	let totalItems: number = 0
 
 	if (rating === 'any') {
 		totalItems = film.users_viewed.length
-		const userIdsOnPage = paginate(film.users_viewed, page, perPage)
-		usersOnPage = userIdsOnPage
-			.map(userId => userMap.get(userId))
-			.filter((user): user is IUser => !!user)
-	} else if (rating === 'none') {
-		const allViewedUsers = film.users_viewed
-			.map(userId => userMap.get(userId))
-			.filter((user): user is IUser => !!user)
 
-		const isRatedPromises = allViewedUsers.map(user =>
-			$fetch<boolean>(`/api/user/${user.id}/${film.id}/isRated`).catch(
-				() => true
+		// Any Rating + Sort by name
+		if (sort === 'name') {
+			const totalUsersFiltered = [...usersModule.usersList].sort((a, b) =>
+				a.user_name.localeCompare(b.user_name)
 			)
-		)
-		const isRatedResults = await Promise.all(isRatedPromises)
 
-		const unratedUsers = allViewedUsers.filter((_, idx) => !isRatedResults[idx])
-		totalItems = unratedUsers.length
+			const usersFilteredMap = new Map<number, IUser>(
+				totalUsersFiltered.map(user => [user.id, user])
+			)
 
-		if (totalItems === 0) {
-			throw createError({
-				statusCode: 404,
-				message: 'No users found who haven’t rated this film',
-			})
+			const userIdsOnPage = paginate(
+				Array.from(usersFilteredMap.keys()),
+				page,
+				perPage
+			)
+
+			usersOnPage = userIdsOnPage
+				.map(userId => usersFilteredMap.get(userId))
+				.filter((user): user is IUser => !!user)
+		}
+		// Any Rating + Sort by earliest
+		else if (sort === 'earliest') {
+			const userIdsOnPage = paginate(film.users_viewed, page, perPage)
+			usersOnPage = userIdsOnPage
+				.map(userId => userMap.get(userId))
+				.filter((user): user is IUser => !!user)
 		}
 
-		usersOnPage = paginate(unratedUsers, page, perPage)
+		// Any Rating + Sort by newest
+		else {
+			const userIdsOnPage = paginate(film.users_viewed.reverse(), page, perPage)
+			usersOnPage = userIdsOnPage
+				.map(userId => userMap.get(userId))
+				.filter((user): user is IUser => !!user)
+		}
+	} else if (rating === 'none') {
+		// None Rating + Sort by name
+		if (sort === 'name') {
+			const totalUsersFiltered = [...usersModule.usersList].sort((a, b) =>
+				a.user_name.localeCompare(b.user_name)
+			)
+
+			const isRatedPromises = totalUsersFiltered.map(user =>
+				$fetch<boolean>(`/api/user/${user.id}/${film.id}/isRated`).catch(
+					() => true
+				)
+			)
+
+			const isRatedResults = await Promise.all(isRatedPromises)
+			const filteredUnratedUsers = totalUsersFiltered.filter(
+				(_, index) => !isRatedResults[index]
+			)
+
+			const usersMap = new Map<number, IUser>(
+				filteredUnratedUsers.map(user => [user.id, user])
+			)
+
+			const userIdsOnPage = paginate(Array.from(usersMap.keys()), page, perPage)
+
+			totalItems = filteredUnratedUsers.length
+			if (totalItems === 0) {
+				throw createError({
+					statusCode: 404,
+					message: 'No users found who haven’t rated this film',
+				})
+			}
+
+			usersOnPage = userIdsOnPage
+				.map(userId => usersMap.get(userId))
+				.filter((user): user is IUser => !!user)
+		}
+		// None Rating + Sort by earliest
+		else if (sort === 'earliest') {
+			const allViewedUsers = film.users_viewed
+				.map(userId => userMap.get(userId))
+				.filter((user): user is IUser => !!user)
+
+			const isRatedPromises = allViewedUsers.map(user =>
+				$fetch<boolean>(`/api/user/${user.id}/${film.id}/isRated`).catch(
+					() => true
+				)
+			)
+			const isRatedResults = await Promise.all(isRatedPromises)
+
+			const unratedUsers = allViewedUsers.filter(
+				(_, idx) => !isRatedResults[idx]
+			)
+
+			totalItems = unratedUsers.length
+			if (totalItems === 0) {
+				throw createError({
+					statusCode: 404,
+					message: 'No users found who haven’t rated this film',
+				})
+			}
+
+			usersOnPage = paginate(unratedUsers, page, perPage)
+		}
+
+		// None Rating + Sort by newest
+		else {
+			const allViewedUsers = film.users_viewed
+				.map(userId => userMap.get(userId))
+				.filter((user): user is IUser => !!user)
+
+			const isRatedPromises = allViewedUsers.map(user =>
+				$fetch<boolean>(`/api/user/${user.id}/${film.id}/isRated`).catch(
+					() => true
+				)
+			)
+			const isRatedResults = await Promise.all(isRatedPromises)
+
+			const unratedUsers = allViewedUsers
+				.filter((_, idx) => !isRatedResults[idx])
+				.reverse()
+
+			totalItems = unratedUsers.length
+			if (totalItems === 0) {
+				throw createError({
+					statusCode: 404,
+					message: 'No users found who haven’t rated this film',
+				})
+			}
+
+			usersOnPage = paginate(unratedUsers, page, perPage)
+		}
 	} else {
 		throw createError({ statusCode: 400, message: 'Invalid rating value' })
 	}

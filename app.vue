@@ -2,7 +2,7 @@
 	<NuxtLoadingIndicator />
 	<NuxtLayout>
 		<Suspense>
-			<NuxtPage />
+			<NuxtPage :key="$route.fullPath" keep-alive />
 
 			<template #fallback>
 				<LoadingPage />

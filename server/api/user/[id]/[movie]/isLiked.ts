@@ -1,28 +1,47 @@
 import { defineEventHandler, getRouterParam } from 'h3'
 
 export default defineEventHandler(async event => {
-	const userId = getRouterParam(event, 'id')
-	if (!userId) {
-		return { error: 'User Id is required' }
+	// Извлечение и валидация userId
+	const userIdStr = getRouterParam(event, 'id')
+	const userId = Number(userIdStr)
+	if (!userIdStr || isNaN(userId) || userId < 1) {
+		throw createError({
+			statusCode: 400,
+			message: 'Invalid or missing user ID',
+		})
 	}
 
-	const filmId = Number(getRouterParam(event, 'movie'))
-	if (!filmId) {
-		return { error: 'Film Id is required' }
+	// Извлечение и валидация filmId
+	const filmIdStr = getRouterParam(event, 'movie')
+	const filmId = Number(filmIdStr)
+	if (!filmIdStr || isNaN(filmId) || filmId < 1) {
+		throw createError({
+			statusCode: 400,
+			message: 'Invalid or missing film ID',
+		})
 	}
 
-	const usersModule = await import('~/shared/model/data/usersData')
-	const filmsModule = await import('~/shared/model/data/filmsData')
+	let usersList
+	try {
+		const module = await import('~/shared/model/data/usersData')
+		usersList = module.usersList
+	} catch (error) {
+		throw createError({
+			statusCode: 500,
+			statusMessage: 'Internal Server Error',
+			message: 'Failed to load users data',
+		})
+	}
 
-	const user = usersModule.usersList.find(user => user.id === Number(userId))
-
+	const user = usersList.find(user => user.id === userId)
 	if (!user) {
-		return { error: 'Not found the user' }
+		throw createError({
+			statusCode: 404,
+			message: 'User not found',
+		})
 	}
 
-	const isLikedByUser = user.user_favorite_films.find(
-		film_id => film_id === Number(filmId)
-	)
+	const isLikedByUser = user.user_favorite_films.some(f_id => f_id === filmId)
 
-	return isLikedByUser ? true : false
+	return isLikedByUser
 })

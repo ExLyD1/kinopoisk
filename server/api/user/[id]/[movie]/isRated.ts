@@ -1,52 +1,52 @@
-import { defineEventHandler, getRouterParam } from 'h3'
+import { defineEventHandler, getRouterParam, createError } from 'h3'
+
+// Определяем интерфейс для фильма
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
 export default defineEventHandler(async event => {
+	// Получаем и валидируем userId
 	const userIdStr = getRouterParam(event, 'id')
 	const userId = Number(userIdStr)
-	if (!userId) {
-		throw createError({
-			statusCode: 404,
-			message: 'User ID is required',
-		})
-	}
-
-	const filmIdStr = getRouterParam(event, 'movie')
-	const filmId = Number(filmIdStr)
-	if (!filmId) {
+	if (!userIdStr || isNaN(userId) || userId <= 0) {
 		throw createError({
 			statusCode: 400,
-			message: 'Film ID is required',
+			message: 'Valid user ID is required',
 		})
 	}
 
-	const filmsModule = await import('~/shared/model/data/filmsData')
+	// Получаем и валидируем filmId
+	const filmIdStr = getRouterParam(event, 'movie')
+	const filmId = Number(filmIdStr)
+	if (!filmIdStr || isNaN(filmId) || filmId <= 0) {
+		throw createError({
+			statusCode: 400,
+			message: 'Valid film ID is required',
+		})
+	}
 
-	const film = filmsModule.filmsList.find(f => f.id === filmId)
+	// Загружаем данные о фильмах
+	const { filmsList } = await import('~/shared/model/data/filmsData')
+
+	// Ищем фильм с типизацией
+	const film = filmsList.find((f: IFilmItem) => f.id === filmId)
 	if (!film) {
 		throw createError({
 			statusCode: 404,
-			message: 'Not found the film with such ID',
+			message: 'Film not found',
 		})
 	}
 
-	const ratingsList = [
-		film.rating1,
-		film.rating2,
-		film.rating3,
-		film.rating4,
-		film.rating5,
+	// Проверяем наличие пользователя в рейтингах
+	const ratings = [
+		film.rating1 ?? [],
+		film.rating2 ?? [],
+		film.rating3 ?? [],
+		film.rating4 ?? [],
+		film.rating5 ?? [],
 	]
 
-	let isRatedByUser: boolean = false
-	for (let i = 0; i < ratingsList.length; i++) {
-		for (let j = 0; j < ratingsList[i].length; j++) {
-			const userRatedId = ratingsList[i][j]
-
-			if (userRatedId === Number(userId)) {
-				isRatedByUser = true
-			}
-		}
-	}
+	// Используем some для более эффективной проверки
+	const isRatedByUser = ratings.some(rating => rating.includes(userId))
 
 	return isRatedByUser
 })

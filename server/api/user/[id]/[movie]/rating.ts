@@ -1,45 +1,67 @@
-import { defineEventHandler, getRouterParam } from 'h3'
+import { defineEventHandler, getRouterParam, createError } from 'h3'
 
-export default defineEventHandler(async event => {
-	const userId = getRouterParam(event, 'id')
-	if (!userId) {
-		return { error: 'User Id is required' }
+// Типизация структур данных (предполагаемые интерфейсы)
+import type { IUser } from '~/shared/model/interfaces/userInterface'
+
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+
+// Тип возвращаемого значения
+type RatingResponse = number | null
+
+export default defineEventHandler(async (event): Promise<RatingResponse> => {
+	// Извлечение и валидация userId
+	const userIdStr = getRouterParam(event, 'id')
+	const userId = Number(userIdStr)
+	if (!userIdStr || isNaN(userId) || userId < 1) {
+		throw createError({
+			statusCode: 400,
+			message: 'Invalid or missing user ID',
+		})
 	}
 
-	const filmId = Number(getRouterParam(event, 'movie'))
-	if (!filmId) {
-		return { error: 'Film Id is required' }
+	// Извлечение и валидация filmId
+	const filmIdStr = getRouterParam(event, 'movie')
+	const filmId = Number(filmIdStr)
+	if (!filmIdStr || isNaN(filmId) || filmId < 1) {
+		throw createError({
+			statusCode: 400,
+			message: 'Invalid or missing film ID',
+		})
 	}
 
-	const usersModule = await import('~/shared/model/data/usersData')
-	const filmsModule = await import('~/shared/model/data/filmsData')
-
-	const user = usersModule.usersList.find(user => user.id === Number(userId))
-
-	if (!user) {
-		return { error: 'Not found the user' }
+	// Загрузка данных с обработкой ошибок
+	let filmsList: IFilmItem[]
+	try {
+		const filmsModule = await import('~/shared/model/data/filmsData')
+		filmsList = filmsModule.filmsList
+	} catch (error) {
+		throw createError({
+			statusCode: 500,
+			message: 'Failed to load data',
+		})
 	}
 
-	const film = filmsModule.filmsList.find(film => film.id === Number(filmId))
-
+	// Поиск фильма
+	const film = filmsList.find(f => f.id === filmId)
 	if (!film) {
-		return { error: 'Not found the film' }
+		throw createError({
+			statusCode: 404,
+			message: 'Film not found',
+		})
 	}
 
-	const ratingsList = [
-		film.rating1,
-		film.rating2,
-		film.rating3,
-		film.rating4,
-		film.rating5,
+	// Проверка рейтинга с использованием some
+	const ratingsMap: [number[], number][] = [
+		[film.rating1, 1],
+		[film.rating2, 2],
+		[film.rating3, 3],
+		[film.rating4, 4],
+		[film.rating5, 5],
 	]
-	for (let i = 0; i < ratingsList.length; i++) {
-		for (let j = 0; j < ratingsList[i].length; j++) {
-			const userRatedId = ratingsList[i][j]
 
-			if (userRatedId === user.id) {
-				return i + 1
-			}
+	for (const [ratingList, rating] of ratingsMap) {
+		if (ratingList.some(id => id === userId)) {
+			return rating
 		}
 	}
 

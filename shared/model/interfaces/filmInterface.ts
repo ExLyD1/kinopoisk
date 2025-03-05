@@ -16,10 +16,10 @@ export interface IFilmItem {
 	lists: number[] | []
 
 	reviews_quontity: number
-	reviews?: Array<number>
+	reviews: number[] | []
 
 	likes: number
-	liked_by_users: number[]
+	liked_by_users: number[] | []
 
 	rating1: number[] | []
 	rating2: number[] | []
@@ -27,41 +27,41 @@ export interface IFilmItem {
 	rating4: number[] | []
 	rating5: number[] | []
 
-	cast: Array<string>
+	cast: string[]
 
 	crew: {
-		director: Array<string>
-		producers: Array<string>
-		writer: Array<string>
-		original_writers: Array<string>
-		casting: Array<string>
-		editor: Array<string>
-		cinematography: Array<string>
-		asst_directors: Array<string>
-		exec_producer: Array<string>
-		camera_operator: Array<string>
-		production_design: Array<string>
-		art_direction: Array<string>
-		set_decoration: Array<string>
-		special_effects: Array<string>
-		visual_effects: Array<string>
-		title_design: Array<string>
-		stunts: Array<string>
-		composer: Array<string>
-		sound: Array<string>
-		costume_design: Array<string>
-		makeup: Array<string>
-		hairstyling: Array<string>
+		director: string[]
+		producers: string[]
+		writer: string[]
+		original_writers: string[]
+		casting: string[]
+		editor: string[]
+		cinematography: string[]
+		asst_directors: string[]
+		exec_producer: string[]
+		camera_operator: string[]
+		production_design: string[]
+		art_direction: string[]
+		set_decoration: string[]
+		special_effects: string[]
+		visual_effects: string[]
+		title_design: string[]
+		stunts: string[]
+		composer: string[]
+		sound: string[]
+		costume_design: string[]
+		makeup: string[]
+		hairstyling: string[]
 	}
 
-	details?: {
-		studios: Array<string>
-		country: Array<string>
+	details: {
+		studios: string[]
+		country: string[]
 		primary_language: string[]
-		spoken_languages: Array<string>
-		alternative_titles: Array<string>
+		spoken_languages: string[]
+		alternative_titles: string[]
 	}
 
-	genres?: Array<string>
-	themes?: Array<string>
+	genres: string[]
+	themes: string[]
 }

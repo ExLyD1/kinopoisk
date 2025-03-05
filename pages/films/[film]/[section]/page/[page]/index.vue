@@ -29,11 +29,7 @@ import { useFilmFiltersStore } from '~/features/Film/model/filmFiltersStore'
 const filmFiltersStore = useFilmFiltersStore()
 
 const route = useRoute()
-const {
-	film: film_name,
-	section,
-	page,
-} = route.params as {
+const { film: film_name, section } = route.params as {
 	film: string
 	section: string
 	page: string

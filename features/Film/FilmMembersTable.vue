@@ -20,14 +20,20 @@
 				>
 					<!-- User Name -->
 					<td class="px-4 py-2 flex items-center gap-2">
-						<Avatar class="w-10 h-10">
-							<AvatarImage
-								:src="item.user.user_avatar"
-								:alt="item.user.user_name"
-							/>
-							<AvatarFallback>{{ item.user.user_name[0] }}</AvatarFallback>
-						</Avatar>
-						<span class="text-white font-light">{{ item.user.user_name }}</span>
+						<NuxtLink :to="`/members/${generateSlug(item.user.user_name)}`">
+							<Avatar class="w-10 h-10">
+								<AvatarImage
+									:src="item.user.user_avatar"
+									:alt="item.user.user_name"
+								/>
+								<AvatarFallback>{{ item.user.user_name[0] }}</AvatarFallback>
+							</Avatar>
+						</NuxtLink>
+						<NuxtLink :to="`/members/${generateSlug(item.user.user_name)}`">
+							<span class="text-white font-light">{{
+								item.user.user_name
+							}}</span></NuxtLink
+						>
 					</td>
 
 					<!-- Rating -->
@@ -155,27 +161,100 @@ onMounted(async () => {
 		console.log(filmFiltersStore.isAnyRating, filmFiltersStore.isNoRating)
 
 		if (filmFiltersStore.isAnyRating === true) {
-			const response = await $fetch<{
-				data: IUser[]
-				totalItems: number
-				totalPages: number
-			}>(
-				`/api/movie/${film.id}/usersWatched-by-page/${filmFiltersStore.currentPage}?rating=any`
-			)
-			filmFiltersStore.totalPages = response.totalPages
-			users.value = response.data
+			// any rate + sort by name
+			if (filmFiltersStore.isSortByMemberName === true) {
+				const response = await $fetch<{
+					data: IUser[]
+					totalItems: number
+					totalPages: number
+				}>(
+					`/api/movie/${film.id}/usersWatched-by-page/${filmFiltersStore.currentPage}?rating=any&sort=name`
+				)
+				filmFiltersStore.totalPages = response.totalPages
+				users.value = response.data
+				if (!Array.isArray(response.data)) {
+					return (finalList.value = [])
+				}
+			}
+
+			// any rate + earliest
+			else if (filmFiltersStore.isSortByEarliest === true) {
+				const response = await $fetch<{
+					data: IUser[]
+					totalItems: number
+					totalPages: number
+				}>(
+					`/api/movie/${film.id}/usersWatched-by-page/${filmFiltersStore.currentPage}?rating=any&sort=earliest`
+				)
+				filmFiltersStore.totalPages = response.totalPages
+				users.value = response.data
+				if (!Array.isArray(response.data)) {
+					return (finalList.value = [])
+				}
+			}
+
+			// any rate + newest
+			else {
+				const response = await $fetch<{
+					data: IUser[]
+					totalItems: number
+					totalPages: number
+				}>(
+					`/api/movie/${film.id}/usersWatched-by-page/${filmFiltersStore.currentPage}?rating=any&sort=newest`
+				)
+				filmFiltersStore.totalPages = response.totalPages
+				users.value = response.data
+				if (!Array.isArray(response.data)) {
+					return (finalList.value = [])
+				}
+			}
 		} else if (filmFiltersStore.isNoRating === true) {
-			const response = await $fetch<{
-				data: IUser[]
-				totalItems: number
-				totalPages: number
-			}>(
-				`/api/movie/${film.id}/usersWatched-by-page/${filmFiltersStore.currentPage}?rating=none`
-			)
-			filmFiltersStore.totalPages = response.totalPages
-			users.value = response.data
-			if (!Array.isArray(response.data)) {
-				return (finalList.value = [])
+			// none rated + sort by name
+			if (filmFiltersStore.isSortByMemberName === true) {
+				const response = await $fetch<{
+					data: IUser[]
+					totalItems: number
+					totalPages: number
+				}>(
+					`/api/movie/${film.id}/usersWatched-by-page/${filmFiltersStore.currentPage}?rating=none&sort=name`
+				)
+				filmFiltersStore.totalPages = response.totalPages
+				users.value = response.data
+				if (!Array.isArray(response.data)) {
+					return (finalList.value = [])
+				}
+			}
+
+			// none rated + sort by earliest
+			else if (filmFiltersStore.isSortByEarliest === true) {
+				const response = await $fetch<{
+					data: IUser[]
+					totalItems: number
+					totalPages: number
+				}>(
+					`/api/movie/${film.id}/usersWatched-by-page/${filmFiltersStore.currentPage}?rating=none&sort=earliest`
+				)
+				filmFiltersStore.totalPages = response.totalPages
+				users.value = response.data
+				if (!Array.isArray(response.data)) {
+					return (finalList.value = [])
+				}
+			}
+
+			// none rated + newest
+			else {
+				const response = await $fetch<{
+					data: IUser[]
+					totalItems: number
+					totalPages: number
+				}>(
+					`/api/movie/${film.id}/usersWatched-by-page/${filmFiltersStore.currentPage}?rating=none`
+				)
+				filmFiltersStore.totalPages = response.totalPages
+				users.value = response.data
+				if (!Array.isArray(response.data)) {
+					return (finalList.value = [])
+				}
 			}
 		}
 

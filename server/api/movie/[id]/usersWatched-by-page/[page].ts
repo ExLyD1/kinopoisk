@@ -96,7 +96,8 @@ export default defineEventHandler(async event => {
 
 		// Any Rating + Sort by newest
 		else {
-			const userIdsOnPage = paginate(film.users_viewed.reverse(), page, perPage)
+			const reversedUsersViewed = [...film.users_viewed].reverse()
+			const userIdsOnPage = paginate(reversedUsersViewed, page, perPage)
 			usersOnPage = userIdsOnPage
 				.map(userId => userMap.get(userId))
 				.filter((user): user is IUser => !!user)

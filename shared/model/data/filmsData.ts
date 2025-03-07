@@ -78,7 +78,7 @@ export const filmsList: Array<IFilmItem> = [
 		reviews_quontity: 12,
 		reviews: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23],
 		likes: 450,
-		liked_by_users: [2, 5],
+		liked_by_users: [2, 5, 6, 7, 8, 9, 10, 11],
 		rating1: [14, 15],
 		rating2: [16, 17],
 		rating3: [18, 19, 20],

@@ -168,7 +168,6 @@ const finalList = ref<IFinalListItem[] | undefined>()
 onMounted(async () => {
 	try {
 		let users = ref<IUser[]>([])
-		console.log(filmFiltersStore.isAnyRating, filmFiltersStore.isNoRating)
 
 		if (filmFiltersStore.isAnyRating === true) {
 			// any rate + sort by name

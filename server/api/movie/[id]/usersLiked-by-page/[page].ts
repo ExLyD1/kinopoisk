@@ -89,10 +89,6 @@ export default defineEventHandler(async event => {
 
 		// liked + sort by newest
 		else if (sort === 'newest') {
-			// const usersLikedList = usersList
-			// 	.filter((_, index) => isUsersLikedList[index])
-			// 	.reverse()
-
 			const reversedList = usersLikedList.reverse()
 			usersOnPage = paginate(reversedList, page, perPage)
 		}

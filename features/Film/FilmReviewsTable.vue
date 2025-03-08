@@ -255,13 +255,4 @@ onMounted(async () => {
 })
 </script>
 
-<style scoped>
-table {
-	min-width: 100%;
-}
-
-th,
-td {
-	vertical-align: middle;
-}
-</style>
+<style scoped></style>

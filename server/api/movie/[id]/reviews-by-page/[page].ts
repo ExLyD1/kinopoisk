@@ -90,7 +90,7 @@ export default defineEventHandler(async event => {
 			reviewsOnPage = paginate(filmReviews, page, perPage)
 		}
 
-		// Any Rating + Sort by earliest
+		// Any Rating + Sort by rating highest
 		else if (sort === 'rating-highest') {
 			const reviewsHighest = filmReviews
 				.filter(r => r.review_rate !== undefined && r.review_rate !== 0)
@@ -101,7 +101,7 @@ export default defineEventHandler(async event => {
 			reviewsOnPage = paginate(reviewsHighest, page, perPage)
 		}
 
-		// Any Rating + Sort by earliest
+		// Any Rating + Sort by rating lowest
 		else if (sort === 'rating-lowest') {
 			const reviewsLowest = filmReviews
 				.filter(r => r.review_rate !== undefined && r.review_rate !== 0)

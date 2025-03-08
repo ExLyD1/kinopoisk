@@ -201,6 +201,13 @@ const isOpenedFilters = ref<boolean>(false)
 const toggleFilters = () => {
 	return (isOpenedFilters.value = !isOpenedFilters.value)
 }
+
+watch(
+	() => route.path,
+	() => {
+		isOpenedFilters.value = false
+	}
+)
 </script>
 
 <style scoped>
@@ -221,7 +228,8 @@ const toggleFilters = () => {
 @media screen and (max-width: 700px) {
 	.main_content_holder {
 		/* min-width: 310px; */
-		width: auto;
+		width: 100%;
+		max-width: 700px;
 	}
 }
 @media screen and (max-width: 555px) {

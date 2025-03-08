@@ -155,7 +155,7 @@ import {
 	filmInfoCategoriesList,
 	optionsMembersList,
 	optionsLikesList,
-	optionsReviewsList,
+	getOptionsReviewsList,
 	optionsListsList,
 } from '~/widgets/Film/model/filmInfo'
 
@@ -178,6 +178,7 @@ const optionsList = computed(() => {
 	} else if (filmFiltersStore.section === 'likes') {
 		return optionsLikesList
 	} else if (filmFiltersStore.section === 'reviews') {
+		const optionsReviewsList = getOptionsReviewsList()
 		return optionsReviewsList
 	} else if (filmFiltersStore.section === 'lists') {
 		return optionsListsList

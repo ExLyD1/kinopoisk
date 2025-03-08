@@ -45,7 +45,7 @@
 					</NuxtLink>
 				</div>
 
-				<div class="flex items-center">
+				<div v-if="ratingIcons !== undefined" class="flex items-center">
 					<svg
 						v-for="(icon, index) in ratingIcons"
 						:key="index"

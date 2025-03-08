@@ -4,8 +4,11 @@ import star3 from '~/shared/ui/icons/rating/threeStarsRating.png'
 import star4 from '~/shared/ui/icons/rating/fourStarsRating.png'
 import star5 from '~/shared/ui/icons/rating/fiveStarsRating.png'
 
-export function getRatingIcons(rate: number) {
-	let icons = []
+export function getRatingIcons(rate: number | undefined) {
+	if (rate === undefined) {
+		return undefined
+	}
+	let icons: boolean[] = []
 
 	if (rate >= 4 && rate <= 5) {
 		icons = [true, true, true, true, true]
@@ -16,7 +19,7 @@ export function getRatingIcons(rate: number) {
 	} else if (rate >= 1 && rate < 2) {
 		icons = [true, true, false, false, false]
 	} else {
-		icons = [true, false, false, false, false]
+		return undefined
 	}
 
 	return icons

@@ -1,6 +1,7 @@
 import { defineEventHandler, getRouterParam, getQuery, createError } from 'h3'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import type { IUser } from '~/shared/model/interfaces/userInterface'
+import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 
 const paginate = <T>(items: T[], page: number, perPage: number): T[] => {
 	const start = (page - 1) * perPage
@@ -9,9 +10,10 @@ const paginate = <T>(items: T[], page: number, perPage: number): T[] => {
 }
 
 export default defineEventHandler(async event => {
-	const perPage = 25
+	const perPage = 12
 
-	const movieId = getRouterParam(event, 'id')
+	const movieIdStr = getRouterParam(event, 'id')
+	const movieId = Number(movieIdStr)
 	if (!movieId) {
 		throw createError({ statusCode: 400, message: 'Movie ID is required' })
 	}
@@ -28,10 +30,18 @@ export default defineEventHandler(async event => {
 		throw createError({ statusCode: 400, message: 'Pagination starts from 1' })
 	}
 
-	const [usersModule, reviewsModule] = await Promise.all([
-		import('~/shared/model/data/usersData'),
+	const [reviewsModule, filmsModule] = await Promise.all([
 		import('~/shared/model/data/reviewsData'),
+		import('~/shared/model/data/filmsData'),
 	])
+
+	const film = filmsModule.filmsList.find(f => f.id === movieId)
+	if (!film) {
+		throw createError({
+			statusCode: 404,
+			message: 'Film not found',
+		})
+	}
 
 	const query = getQuery(event)
 	const rating = query.rating as string | undefined
@@ -43,7 +53,13 @@ export default defineEventHandler(async event => {
 	}
 
 	const sort = query.sort as string | undefined
-	const avaliableTypesOfSort: string[] = ['name', 'newest', 'earliest']
+	const avaliableTypesOfSort: string[] = [
+		'name',
+		'newest',
+		'earliest',
+		'rating-highest',
+		'rating-lowest',
+	]
 	if (sort && !avaliableTypesOfSort.includes(sort)) {
 		throw createError({
 			statusCode: 400,
@@ -51,129 +67,90 @@ export default defineEventHandler(async event => {
 		})
 	}
 
-	let reviewsOnPage: IUser[] = []
+	let reviewsOnPage: IReview[] = []
 	let totalItems: number = 0
 
+	// rating any
 	if (rating === 'any') {
-		const reviewsList = reviewsModule.reviewsList
+		const filmReviewsPromised = film.reviews.map(async r_id => {
+			return await $fetch<IReview>(`/api/review/${r_id}`)
+		})
 
-		// !!! Доделать логику Reviews
+		const filmReviews = await Promise.all(filmReviewsPromised)
 
-		// Any Rating + Sort by name
-		if (sort === 'name') {
-			totalItems = reviewsList.length
+		// Any Rating + Sort by newest
+		if (sort === 'newest') {
+			const reviewsReversed = filmReviews.reverse()
+			totalItems = filmReviews.length
+			reviewsOnPage = paginate(reviewsReversed, page, perPage)
 		}
 		// Any Rating + Sort by earliest
 		else if (sort === 'earliest') {
-			const userIdsOnPage = paginate(film.users_viewed, page, perPage)
-			usersOnPage = userIdsOnPage
-				.map(userId => userMap.get(userId))
-				.filter((user): user is IUser => !!user)
+			totalItems = filmReviews.length
+			reviewsOnPage = paginate(filmReviews, page, perPage)
 		}
 
-		// Any Rating + Sort by newest
+		// Any Rating + Sort by earliest
+		else if (sort === 'rating-highest') {
+			const reviewsHighest = filmReviews
+				.filter(r => r.review_rate !== undefined && r.review_rate !== 0)
+				.sort((a, b) => a.review_rate! - b.review_rate!)
+				.reverse()
+			totalItems = reviewsHighest.length
+
+			reviewsOnPage = paginate(reviewsHighest, page, perPage)
+		}
+
+		// Any Rating + Sort by earliest
+		else if (sort === 'rating-lowest') {
+			const reviewsLowest = filmReviews
+				.filter(r => r.review_rate !== undefined && r.review_rate !== 0)
+				.sort((a, b) => a.review_rate! - b.review_rate!)
+			totalItems = reviewsLowest.length
+
+			reviewsOnPage = paginate(reviewsLowest, page, perPage)
+		}
+
+		// error
 		else {
-			const reversedUsersViewed = [...film.users_viewed].reverse()
-			const userIdsOnPage = paginate(reversedUsersViewed, page, perPage)
-			usersOnPage = userIdsOnPage
-				.map(userId => userMap.get(userId))
-				.filter((user): user is IUser => !!user)
+			throw createError({
+				statusCode: 400,
+				message: 'Invalid type of sort',
+			})
 		}
-	} else if (rating === 'none') {
-		// None Rating + Sort by name
-		if (sort === 'name') {
-			const totalUsersFiltered = [...usersModule.usersList].sort((a, b) =>
-				a.user_name.localeCompare(b.user_name)
-			)
+	}
 
-			const isRatedPromises = totalUsersFiltered.map(user =>
-				$fetch<boolean>(`/api/user/${user.id}/${film.id}/isRated`).catch(
-					() => true
-				)
-			)
+	// rating none
+	else if (rating === 'none') {
+		const filmReviewsPromised = film.reviews.map(async r_id => {
+			return await $fetch<IReview>(`/api/review/${r_id}`)
+		})
 
-			const isRatedResults = await Promise.all(isRatedPromises)
-			const filteredUnratedUsers = totalUsersFiltered.filter(
-				(_, index) => !isRatedResults[index]
-			)
+		const filmReviews = await Promise.all(filmReviewsPromised)
+		totalItems = filmReviews.length
 
-			const usersMap = new Map<number, IUser>(
-				filteredUnratedUsers.map(user => [user.id, user])
-			)
+		const noneRatedReviews = filmReviews.filter(r => !r.review_rate)
 
-			const userIdsOnPage = paginate(Array.from(usersMap.keys()), page, perPage)
-
-			totalItems = filteredUnratedUsers.length
-			if (totalItems === 0) {
-				throw createError({
-					statusCode: 404,
-					message: 'No users found who haven’t rated this film',
-				})
-			}
-
-			usersOnPage = userIdsOnPage
-				.map(userId => usersMap.get(userId))
-				.filter((user): user is IUser => !!user)
+		// None Rating + Sort by newest
+		if (sort === 'newest') {
+			const reviewsReversed = noneRatedReviews.reverse()
+			totalItems = noneRatedReviews.length
+			reviewsOnPage = paginate(reviewsReversed, page, perPage)
 		}
 		// None Rating + Sort by earliest
 		else if (sort === 'earliest') {
-			const allViewedUsers = film.users_viewed
-				.map(userId => userMap.get(userId))
-				.filter((user): user is IUser => !!user)
-
-			const isRatedPromises = allViewedUsers.map(user =>
-				$fetch<boolean>(`/api/user/${user.id}/${film.id}/isRated`).catch(
-					() => true
-				)
-			)
-			const isRatedResults = await Promise.all(isRatedPromises)
-
-			const unratedUsers = allViewedUsers.filter(
-				(_, idx) => !isRatedResults[idx]
-			)
-
-			totalItems = unratedUsers.length
-			if (totalItems === 0) {
-				throw createError({
-					statusCode: 404,
-					message: 'No users found who haven’t rated this film',
-				})
-			}
-
-			usersOnPage = paginate(unratedUsers, page, perPage)
+			totalItems = noneRatedReviews.length
+			reviewsOnPage = paginate(noneRatedReviews, page, perPage)
 		}
 
-		// None Rating + Sort by newest
+		// error
 		else {
-			const allViewedUsers = film.users_viewed
-				.map(userId => userMap.get(userId))
-				.filter((user): user is IUser => !!user)
-
-			const isRatedPromises = allViewedUsers.map(user =>
-				$fetch<boolean>(`/api/user/${user.id}/${film.id}/isRated`).catch(
-					() => true
-				)
-			)
-			const isRatedResults = await Promise.all(isRatedPromises)
-
-			const unratedUsers = allViewedUsers
-				.filter((_, idx) => !isRatedResults[idx])
-				.reverse()
-
-			totalItems = unratedUsers.length
-			if (totalItems === 0) {
-				throw createError({
-					statusCode: 404,
-					message: 'No users found who haven’t rated this film',
-				})
-			}
-
-			usersOnPage = paginate(unratedUsers, page, perPage)
+			throw createError({
+				statusCode: 400,
+				message: 'Invalid type of sort',
+			})
 		}
-	} else {
-		throw createError({ statusCode: 400, message: 'Invalid rating value' })
 	}
-
 	const totalPages = Math.ceil(totalItems / perPage)
 	if (page > totalPages && page !== 1) {
 		throw createError({

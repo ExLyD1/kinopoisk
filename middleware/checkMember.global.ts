@@ -6,9 +6,7 @@ export default defineNuxtRouteMiddleware(async to => {
 	if (!memberName) return
 
 	try {
-		const exists = await $fetch<any>(
-			`/api/user/by/name/${generateSlug(memberName)}`
-		)
+		const exists = await $fetch<any>(`/api/user/by/name/${memberName}`)
 
 		if (exists.isUserExists == false) {
 			throw createError({

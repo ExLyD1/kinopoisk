@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-row gap-3">
+	<div v-if="review" class="flex flex-row gap-3">
 		<NuxtLink
 			:to="`/members/${generateSlug(review.author_name)}`"
 			class="rounded-full border-gray-400 w-11 h-11"
@@ -22,7 +22,7 @@
 				</div>
 
 				<!-- Stars Rating -->
-				<div class="flex items-center">
+				<div v-if="ratingIcons !== undefined" class="flex items-center">
 					<svg
 						v-for="(icon, index) in ratingIcons"
 						:key="index"
@@ -45,7 +45,7 @@
 				</div>
 
 				<!-- comments -->
-				<NuxtLink to="soon" class="flex flex-row items-center gap-1">
+				<NuxtLink to="/soon" class="flex flex-row items-center gap-1">
 					<img class="h-4 w-4" src="@/shared/ui/icons/comment.png" alt="" />
 					{{ getKNumber(review.review_comments) }}
 				</NuxtLink>
@@ -59,7 +59,7 @@
 			<!-- likes -->
 			<div class="flex gap-4">
 				<NuxtLink
-					to="soon"
+					to="/soon"
 					class="text-gray-500 flex items-center flex-row gap-1"
 				>
 					<img class="w-5 h-5" src="@/shared/ui/icons/favorite.png" alt="" />
@@ -83,7 +83,12 @@ const props = defineProps<{
 }>()
 const review = props.data
 
-const ratingIcons = getRatingIcons(review.review_rate)
+const ratingIcons = ref<boolean[] | undefined>()
+if (review.review_rate) {
+	ratingIcons.value = getRatingIcons(review.review_rate)
+} else {
+	ratingIcons.value = undefined
+}
 </script>
 
 <style scoped>

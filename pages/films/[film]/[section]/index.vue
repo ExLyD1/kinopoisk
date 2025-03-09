@@ -1,30 +1,39 @@
 <template>
-	<div v-if="film">
-		<film-members-table
-			:data="film"
-			v-if="section === 'members'"
-		></film-members-table>
+	<div v-if="film" class="full_holder flex w-full justify-between gap-5">
+		<div class="table max-w-[670px] w-full">
+			<film-members-table
+				:data="film"
+				v-if="section === 'members'"
+			></film-members-table>
 
-		<film-likes-table
-			:data="film"
-			v-if="section === 'likes'"
-		></film-likes-table>
+			<film-likes-table
+				:data="film"
+				v-if="section === 'likes'"
+			></film-likes-table>
 
-		<film-reviews-table
-			:data="film"
-			v-if="section === 'reviews'"
-		></film-reviews-table>
+			<film-reviews-table
+				:data="film"
+				v-if="section === 'reviews'"
+			></film-reviews-table>
 
-		<film-lists-table
-			:data="film"
-			v-if="section === 'lists'"
-		></film-lists-table>
+			<film-lists-table
+				:data="film"
+				v-if="section === 'lists'"
+			></film-lists-table>
+		</div>
+
+		<div class="w-[230px]" :class="{ 'mt-8': isModalTable }">
+			<film-poster :data="film"></film-poster>
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import { useFilmFiltersStore } from '~/features/Film/model/filmFiltersStore'
+import { useMediaQuery } from '@vueuse/core'
+
+const isModalTable = useMediaQuery('(max-width:555px)')
 
 const filmFiltersStore = useFilmFiltersStore()
 
@@ -50,4 +59,27 @@ definePageMeta({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+@media screen and (max-width: 1030px) {
+	.full_holder {
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+	}
+}
+@media screen and (max-width: 700px) {
+	.table {
+		width: 100%;
+		max-width: 670px;
+	}
+	.full_holder {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 400px) {
+	.table {
+		width: 100%;
+		max-width: 400px; /* Новый предел для маленьких экранов */
+	}
+}
+</style>

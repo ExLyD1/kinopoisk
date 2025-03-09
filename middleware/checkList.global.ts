@@ -6,9 +6,7 @@ export default defineNuxtRouteMiddleware(async to => {
 	if (!listName) return
 
 	try {
-		const exists = await $fetch<any>(
-			`/api/list/by/name/${generateSlug(listName)}`
-		)
+		const exists = await $fetch<any>(`/api/list/by/name/${listName}`)
 
 		if (exists.isListExists == false) {
 			throw createError({

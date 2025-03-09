@@ -53,7 +53,8 @@
 				<!-- buttons -->
 				<div class="description_buttons flex flex-col gap-[1px]">
 					<div
-						class="text-gray-300 bg-gray-700 px-4 py-2 text-center rounded-t text-[15px]"
+						@click="headerStore.isModalSignInOpened = true"
+						class="text-gray-300 bg-gray-700 px-4 py-2 text-center rounded-t text-[15px] cursor-pointer"
 					>
 						Sign in to log, rate or review
 					</div>
@@ -69,7 +70,11 @@
 				<div class="rating mt-5">
 					<widget-title>
 						<template #text_1>
-							<div class="text-gray-400">RATINGS</div>
+							<NuxtLink
+								:to="`/films/${generateSlug(film.film_name)}/members`"
+								class="text-gray-400"
+								>RATINGS</NuxtLink
+							>
 						</template>
 					</widget-title>
 
@@ -83,7 +88,8 @@
 						</div>
 
 						<div class="flex flex-row gap-[1px] mb-2 h-full items-end relative">
-							<div
+							<NuxtLink
+								:to="`/films/${generateSlug(film.film_name)}/members`"
 								v-for="(height, index) in heightsList"
 								:key="index"
 								:style="{ height: height + '%' }"
@@ -106,7 +112,7 @@
 										></div>
 									</div>
 								</div>
-							</div>
+							</NuxtLink>
 						</div>
 
 						<div class="flex flex-col items-center justify-end">
@@ -189,11 +195,14 @@
 <script setup lang="ts">
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import { useMediaQuery } from '@vueuse/core'
+import { useHeaderStore } from '../Header/headerStore'
 
 import DescriptionCast from '~/widgets/Film/ui/DescriptionCast.vue'
 import DescriptionCrew from '~/widgets/Film/ui/DescriptionCrew.vue'
 import DescriptionDetails from '~/widgets/Film/ui/DescriptionDetails.vue'
 import DescriptionGenres from '~/widgets/Film/ui/DescriptionGenres.vue'
+
+const headerStore = useHeaderStore()
 
 const props = defineProps<{ data: IFilmItem }>()
 const film = props.data

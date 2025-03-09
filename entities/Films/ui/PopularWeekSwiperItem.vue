@@ -15,7 +15,7 @@
 		<div class="flex gap-3 items-center pt-2 text-sm justify-center">
 			<NuxtLink
 				:to="`/films/
-					${generateSlug(film.film_name)}/viewers`"
+					${generateSlug(film.film_name)}/members`"
 				class="flex gap-1 items-center"
 			>
 				<img class="w-4 h-4" src="@/shared/ui/icons/eye.png" alt="" />
@@ -33,7 +33,7 @@
 
 			<NuxtLink
 				:to="`/films/
-					${generateSlug(film.film_name)}/liked`"
+					${generateSlug(film.film_name)}/likes`"
 				class="flex gap-1 items-center"
 			>
 				<img

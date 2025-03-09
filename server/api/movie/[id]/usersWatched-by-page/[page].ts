@@ -68,23 +68,12 @@ export default defineEventHandler(async event => {
 
 		// Any Rating + Sort by name
 		if (sort === 'name') {
-			const totalUsersFiltered = [...usersModule.usersList].sort((a, b) =>
-				a.user_name.localeCompare(b.user_name)
-			)
+			const usersWatched = film.users_viewed
+				.map(u_id => userMap.get(u_id))
+				.filter((user): user is IUser => user !== undefined)
+				.sort((a, b) => a.user_name.localeCompare(b.user_name))
 
-			const usersFilteredMap = new Map<number, IUser>(
-				totalUsersFiltered.map(user => [user.id, user])
-			)
-
-			const userIdsOnPage = paginate(
-				Array.from(usersFilteredMap.keys()),
-				page,
-				perPage
-			)
-
-			usersOnPage = userIdsOnPage
-				.map(userId => usersFilteredMap.get(userId))
-				.filter((user): user is IUser => !!user)
+			usersOnPage = paginate(usersWatched, page, perPage)
 		}
 		// Any Rating + Sort by earliest
 		else if (sort === 'earliest') {
@@ -105,38 +94,33 @@ export default defineEventHandler(async event => {
 	} else if (rating === 'none') {
 		// None Rating + Sort by name
 		if (sort === 'name') {
-			const totalUsersFiltered = [...usersModule.usersList].sort((a, b) =>
-				a.user_name.localeCompare(b.user_name)
-			)
+			const usersViewedIds = film.users_viewed
 
-			const isRatedPromises = totalUsersFiltered.map(user =>
-				$fetch<boolean>(`/api/user/${user.id}/${film.id}/isRated`).catch(
+			const isRatedPromises = usersViewedIds.map(u_id =>
+				$fetch<boolean>(`/api/user/${u_id}/${film.id}/isRated`).catch(
 					() => true
 				)
 			)
 
 			const isRatedResults = await Promise.all(isRatedPromises)
-			const filteredUnratedUsers = totalUsersFiltered.filter(
+			const filteredUnratedUsers = usersViewedIds.filter(
 				(_, index) => !isRatedResults[index]
 			)
 
-			const usersMap = new Map<number, IUser>(
-				filteredUnratedUsers.map(user => [user.id, user])
-			)
+			const usersWatched = filteredUnratedUsers
+				.map(u_id => userMap.get(u_id))
+				.filter((user): user is IUser => user !== undefined)
+				.sort((a, b) => a.user_name.localeCompare(b.user_name))
 
-			const userIdsOnPage = paginate(Array.from(usersMap.keys()), page, perPage)
+			usersOnPage = paginate(usersWatched, page, perPage)
 
-			totalItems = filteredUnratedUsers.length
+			totalItems = usersWatched.length
 			if (totalItems === 0) {
 				throw createError({
 					statusCode: 404,
 					message: 'No users found who haven’t rated this film',
 				})
 			}
-
-			usersOnPage = userIdsOnPage
-				.map(userId => usersMap.get(userId))
-				.filter((user): user is IUser => !!user)
 		}
 		// None Rating + Sort by earliest
 		else if (sort === 'earliest') {

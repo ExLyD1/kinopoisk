@@ -11,7 +11,7 @@ export default defineEventHandler(async event => {
 	const module = await import('~/shared/model/data/filmsData')
 
 	const movie = module.filmsList.find(
-		film => generateSlug(film.film_name) === name
+		film => generateSlug(film.film_name) === generateSlug(name)
 	)
 
 	if (!movie) {

@@ -57,7 +57,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 2,
-		author_name: 'Emma Stone',
+		author_name: 'AlexTheExplorer',
 		author_avatar: '/avatars/avatar10.jpg',
 		publishedDate: 1636696990,
 		list_name: 'Feel-Good Movies',
@@ -300,7 +300,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 5,
-		author_name: 'Emma Stone',
+		author_name: 'AlexTheExplorer',
 		author_avatar: '/avatars/avatar3.jpg',
 		publishedDate: 1625623363,
 		list_name: 'Best Sci-Fi Films',
@@ -1096,7 +1096,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 21,
-		author_name: 'Emma Stone',
+		author_name: 'AlexTheExplorer',
 		author_avatar: '/avatars/avatar8.jpg',
 		publishedDate: 1646251720,
 		list_name: 'Must-See Classics',
@@ -1783,7 +1783,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 35,
-		author_name: 'Emma Stone',
+		author_name: 'AlexTheExplorer',
 		author_avatar: '/avatars/avatar6.jpg',
 		publishedDate: 1729346560,
 		list_name: 'Top Thrillers',

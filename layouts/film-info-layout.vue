@@ -11,7 +11,7 @@
 			<div v-if="film">
 				<div class="pt-8 m-auto pb-24 main_holder text-gray-400">
 					<div
-						class="holder_content_all flex justify-between w-[1050px] m-auto p-5"
+						class="holder_content_all flex flex-col justify-between max-w-[1000px] w-full m-auto p-5"
 					>
 						<div class="main_content_holder w-[670px]">
 							<div>Everyone who has watched</div>
@@ -117,16 +117,16 @@
 									</info-filter-by>
 								</div>
 							</div>
+						</div>
 
-							<div class="mt-5">
-								<slot />
-							</div>
+						<div class="main_content_holder mt-5">
+							<slot />
 						</div>
 
 						<!-- aside poster -->
-						<div class="w-[230px]" :class="{ 'mt-8': isModalTable }">
+						<!-- <div class="w-[230px]" :class="{ 'mt-8': isModalTable }">
 							<film-poster :data="film"></film-poster>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -171,6 +171,12 @@ const { film: film_name, section } = route.params as {
 	film: string
 	section: string
 }
+watch(
+	() => useRoute().path,
+	() => {
+		console.log(film_name)
+	}
+)
 
 const optionsList = computed(() => {
 	if (filmFiltersStore.section === 'members') {
@@ -188,6 +194,8 @@ const optionsList = computed(() => {
 const film: Ref<IFilmItem | null> = ref(null)
 
 onMounted(async () => {
+	console.log(route.params)
+
 	film.value = await $fetch<IFilmItem>(`/api/movie/by-name/${film_name}`)
 })
 
@@ -218,11 +226,9 @@ watch(
 	@apply border-8 border-t-8 border-gray-300 border-t-green-500 rounded-full w-16 h-16 animate-spin;
 }
 
-@media screen and (max-width: 1070px) {
+@media screen and (max-width: 1030px) {
 	.holder_content_all {
-		flex-direction: column;
 		align-items: center;
-		width: 100%;
 	}
 }
 @media screen and (max-width: 700px) {

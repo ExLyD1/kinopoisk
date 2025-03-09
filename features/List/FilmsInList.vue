@@ -6,15 +6,11 @@
 				class="films_holder flex gap-1 justify-between flex-wrap"
 			>
 				<!-- films items -->
-				<div
-					v-for="(film, index) in filmsList"
-					:key="index"
-					:to="`films/${generateSlug(film.film_name)}`"
-				>
+				<div v-for="(film, index) in filmsList" :key="index">
 					<!-- IMG -->
 					<NuxtLink
 						class="w-[121px] h-[193px] flex"
-						:to="`films/${generateSlug(film.film_name)}`"
+						:to="`/films/${generateSlug(film.film_name)}`"
 					>
 						<img
 							:src="film.film_image"

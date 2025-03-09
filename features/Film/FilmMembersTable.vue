@@ -295,11 +295,19 @@ onMounted(async () => {
 
 <style scoped>
 table {
-	min-width: 100%;
+	width: 100%;
+	min-width: 670px; /* Минимальная ширина таблицы */
 }
 
 th,
 td {
 	vertical-align: middle;
+}
+
+@media screen and (max-width: 700px) {
+	table {
+		width: 100%;
+		min-width: 100%; /* Минимальная ширина таблицы */
+	}
 }
 </style>

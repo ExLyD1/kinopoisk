@@ -7,7 +7,7 @@
 			<img
 				@click="useHeaderStore().closeAllModals"
 				class="w-6 h-6 cursor-pointer"
-				src="../icons/close.png"
+				src="/public/images/close.png"
 				alt=""
 			/>
 		</div>

@@ -45,7 +45,7 @@
 											v-for="(item, index) in filmInfoCategoriesList"
 											:key="index"
 											:to="`/films/${generateSlug(
-												film.film_name
+												filmFiltersStore.film_name
 											)}/${item.toLowerCase()}`"
 											class="text-green-600 pb-1 box-border relative"
 										>
@@ -171,12 +171,13 @@ const { film: film_name, section } = route.params as {
 	film: string
 	section: string
 }
-watch(
-	() => useRoute().path,
-	() => {
-		console.log(film_name)
-	}
-)
+// watch(
+// 	() => useRoute().path,
+// 	() => {
+// 		console.log(film_name)
+// 	}
+// )
+console.log(filmFiltersStore.film_name)
 
 const optionsList = computed(() => {
 	if (filmFiltersStore.section === 'members') {

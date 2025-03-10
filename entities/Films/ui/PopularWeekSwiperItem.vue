@@ -18,7 +18,7 @@
 					${generateSlug(film.film_name)}/members`"
 				class="flex gap-1 items-center"
 			>
-				<img class="w-4 h-4" src="@/shared/ui/icons/eye.png" alt="" />
+				<img class="w-4 h-4" src="/public/images/eye.png" alt="" />
 				<div>{{ getKNumber(film.views) }}</div>
 			</NuxtLink>
 
@@ -27,7 +27,7 @@
 					${generateSlug(film.film_name)}/lists`"
 				class="flex gap-1 items-center"
 			>
-				<img class="w-4 h-4" src="@/shared/ui/icons/list.png" alt="" />
+				<img class="w-4 h-4" src="/public/images/list.png" alt="" />
 				<div>{{ getKNumber(film.list_contains) }}</div>
 			</NuxtLink>
 
@@ -36,11 +36,7 @@
 					${generateSlug(film.film_name)}/likes`"
 				class="flex gap-1 items-center"
 			>
-				<img
-					class="w-4 h-4"
-					src="@/shared/ui/icons/favorite_orange.png"
-					alt=""
-				/>
+				<img class="w-4 h-4" src="/public/images/favorite_orange.png" alt="" />
 				<div>{{ getKNumber(film.likes) }}</div>
 			</NuxtLink>
 		</div>

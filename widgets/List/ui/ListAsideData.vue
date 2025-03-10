@@ -33,7 +33,7 @@
 				)}/likes`"
 				class="bg-gray-700 py-2 px-4 flex items-center h-[42px] text-sm whitespace-nowrap justify-center gap-1"
 			>
-				<img src="@/shared/ui/icons/favorite.png" class="w-5 h-5" alt="" />
+				<img src="/public/images/favorite.png" class="w-5 h-5" alt="" />
 				<div>{{ list.likes }}</div>
 				<div>likes</div>
 			</NuxtLink>

@@ -79,7 +79,7 @@
 					)}/reviews/${generateSlug(film.film_name)}/likes`"
 					class="text-gray-500 flex items-center flex-row gap-1"
 				>
-					<img class="w-5 h-5" src="@/shared/ui/icons/favorite.png" alt="" />
+					<img class="w-5 h-5" src="/public/images/favorite.png" alt="" />
 					<div>{{ getKNumber(review.review_likes) }}</div>
 					<p>likes</p>
 				</NuxtLink>
@@ -88,7 +88,7 @@
 					:to="`/films/${generateSlug(film.film_name)}`"
 					class="flex flex-row items-center gap-1"
 				>
-					<img class="h-4 w-4" src="@/shared/ui/icons/comment.png" alt="" />
+					<img class="h-4 w-4" src="/public/images/comment.png" alt="" />
 					{{ getKNumber(review.review_comments) }}
 				</NuxtLink>
 			</div>

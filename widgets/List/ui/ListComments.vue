@@ -6,13 +6,17 @@
 			</template>
 		</widget-title>
 
-		<div class="mt-6 flex flex-col gap-5 content_holder">
+		<div
+			v-if="listReviews.length > 0"
+			class="mt-6 flex flex-col gap-5 content_holder"
+		>
 			<div v-for="(review, index) in listReviews">
 				<list-comment-item :data="review"></list-comment-item>
 
 				<div class="w-full border-b border-gray-800 mt-5 line"></div>
 			</div>
 		</div>
+		<div v-else>No comments for that list</div>
 	</div>
 </template>
 

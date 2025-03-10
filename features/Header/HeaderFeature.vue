@@ -1,12 +1,13 @@
 <template>
 	<!-- Хеадер -->
 	<div
+		ref="outerContainer"
 		class="main_holder m-auto flex flex-row items-center justify-between py-5 gap-5 px-5"
 	>
 		<!-- LOGO img -->
 		<div>
 			<router-link to="/">
-				<img class="logo w-64 h-6" src="@/shared/ui/icons/logo.png" alt="" />
+				<img class="logo w-64 h-6" src="/public/images/logo.png" alt="" />
 			</router-link>
 		</div>
 
@@ -27,19 +28,44 @@
 
 			<!-- Блок Инпута -->
 			<div
-				class="input_holder bg-gray-600 rounded-full w-36 h-10 flex justify-center"
+				class="input_holder bg-gray-600 rounded-full w-36 h-10 flex flex-col justify-center relative"
 			>
 				<div class="flex flex-row justify-between items-center">
 					<input
-						v-model="searchRequest"
+						v-model="searchQuery"
 						class="w-full bg-gray-600 text-white p-2 pl-4 rounded-full h-8 text-sm outline-none"
 						type="text"
 					/>
 					<img
+						v-if="!isLoading"
 						class="w-7 h-7 m-2 cursor-pointer"
-						src="@/shared/ui/icons/search.svg"
+						src="/public/images/search.svg"
 						alt=""
 					/>
+					<div v-else class="spinner absolute ml-[110px] mt-1">
+						<div
+							class="animate-spin inline-block size-7 border-[3px] border-current border-t-transparent text-green-600 rounded-full"
+							role="status"
+							aria-label="loading"
+						>
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+
+					<div
+						ref="contentArea"
+						v-if="searchResultsList.length != 0"
+						class="border-gray-600 bg-gray-600 text-white flex flex-col absolute left-[-10px] top-full mt-2 w-[170px] max-h-[500px] overflow-y-auto rounded p-3 px-4 z-10 custom-scrollbar"
+					>
+						<NuxtLink
+							class="pb-3 last:pb-0"
+							v-for="(item, index) in searchResultsList"
+							:key="index"
+							:to="`/films/${generateSlug(item.film_name)}`"
+						>
+							{{ item.film_name }}
+						</NuxtLink>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -58,7 +84,7 @@
 					<img
 						@click="openSearch"
 						class="search w-7 h-7"
-						src="@/shared/ui/icons/search.svg"
+						src="/public/images/search.svg"
 						alt=""
 					/>
 				</div>
@@ -67,26 +93,51 @@
 				<div
 					v-else
 					:class="{ activeSearch: isSearchVisible }"
-					class="bg-gray-600 rounded-full w-36 h-10 flex justify-center"
+					class="bg-gray-600 rounded-full w-36 h-10 flex justify-center relative"
 				>
-					<div class="flex flex-row justify-between items-center">
+					<div class="flex flex-row justify-between items-center w-full">
+						<!-- Убрали relative, добавили w-full -->
 						<img
 							class="w-7 h-7 m-2 cursor-pointer"
-							src="@/shared/ui/icons/search.svg"
+							src="/public/images/search.svg"
 							alt=""
 						/>
 						<input
-							v-model="searchRequest"
+							v-model="searchQuery"
 							class="w-full bg-gray-600 text-white p-2 pl-4 rounded-full h-8 text-sm outline-none"
 							type="text"
 						/>
 						<p
 							class="mr-2 text-white"
 							@click="closeSearch"
-							v-if="isSearchVisible"
+							v-if="isSearchVisible && !isLoading"
 						>
 							✕
 						</p>
+						<div v-else class="spinner absolute ml-[220px] mt-1">
+							<div
+								class="animate-spin inline-block size-7 border-[3px] border-current border-t-transparent text-green-600 rounded-full"
+								role="status"
+								aria-label="loading"
+							>
+								<span class="sr-only">Loading...</span>
+							</div>
+						</div>
+
+						<div
+							ref="contentArea"
+							v-if="searchResultsList.length != 0"
+							class="border-gray-200 bg-gray-600 text-white flex flex-col absolute left-0 top-[calc(100%+8px)] w-[250px] max-h-[500px] overflow-y-auto rounded p-3 px-4 z-20 custom-scrollbar"
+						>
+							<NuxtLink
+								class="pb-3 last:pb-0"
+								v-for="(item, index) in searchResultsList"
+								:key="index"
+								:to="`/films/${generateSlug(item.film_name)}`"
+							>
+								{{ item.film_name }}
+							</NuxtLink>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -101,10 +152,9 @@
 					@click="toggleDropdown()"
 					v-if="!useHeaderStore().isDropDownVisible"
 				/>
-
 				<img
 					class="menu w-10 h-10 cursor-pointer"
-					src="@/shared/ui/icons/close.png"
+					src="/public/images/close.png"
 					alt=""
 					@click="toggleDropdown()"
 					v-else
@@ -156,13 +206,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import { navUnauthItems } from './headerConfig'
 import { useHeaderStore } from './headerStore'
 import { useMediaQuery } from '@vueuse/core'
 import { createPopper } from '@popperjs/core'
 import type { NavItem } from './headerConfig'
-import type { Ref } from 'vue'
+import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+import logo from '~/shared/ui/icons/logo.png'
 
 // =========================================================
 // список ссылок в хеадере
@@ -217,7 +267,48 @@ onMounted(() => {
 // =========================================================
 // Поиск
 // =========================================================
-const searchRequest = ref('')
+const searchQuery: Ref<string> = ref('')
+
+const isLoading: Ref<boolean> = ref(false)
+const searchResultsList: Ref<Array<IFilmItem>> = ref([])
+
+watch(searchQuery, async newVal => {
+	if (newVal === '') {
+		searchResultsList.value = []
+		return
+	}
+	searchResultsList.value = []
+	isLoading.value = true
+	try {
+		const response = await $fetch(`/api/movie/search?name=${newVal}`)
+		if (Array.isArray(response)) {
+			searchResultsList.value = response
+		}
+	} catch (err) {
+		console.error('Ошибка запроса:', err)
+		searchResultsList.value = []
+	} finally {
+		isLoading.value = false
+	}
+})
+
+const outerContainer = ref<HTMLDivElement | null>(null)
+const contentArea = ref<HTMLDivElement | null>(null)
+
+const handleClick = (event: MouseEvent) => {
+	if (contentArea.value && !contentArea.value.contains(event.target as Node)) {
+		searchQuery.value = ''
+		searchResultsList.value = []
+	}
+}
+
+onMounted(() => {
+	document.addEventListener('click', handleClick)
+})
+
+onUnmounted(() => {
+	document.removeEventListener('click', handleClick)
+})
 
 // =========================================================
 // DropDown Menu
@@ -240,40 +331,28 @@ const toggleDropdown = () => {
 		})
 	}
 }
-
-// // =========================================================
-// // Закрытие при клике вне меню
-
-// const handleClickOutside = (event: Event) => {
-// 	if (
-// 		dropdownButton.value &&
-// 		dropdownMenu.value &&
-// //		!dropdownButton.value.contains(event.target as Node) &&
-// //		!dropdownMenu.value.contains(event.target as Node)
-// 	) {
-// 		isDropDownMenuVisible = false
-// 	}
-// }
-
-// // Навешиваем обработчики
-// onMounted(() => {
-// 	document.addEventListener('click', handleClickOutside)
-// })
-
-// onUnmounted(() => {
-// 	document.removeEventListener('click', handleClickOutside)
-// })
 </script>
 
 <style scoped>
 /* Анимации и стили для поиска */
 .activeSearch {
-	position: fixed;
+	position: absolute;
 	margin-top: -22px;
 	right: 100px;
 	animation: expandWidth 0.5s ease-in-out forwards;
-	overflow: hidden;
+	overflow: visible;
 }
+
+.custom-scrollbar {
+	overflow-y: auto;
+	background: #4b5563; /* Убедитесь, что фон виден */
+}
+
+/* Увеличим z-index для видимости */
+.custom-scrollbar {
+	z-index: 20; /* Увеличен с 10 до 20, чтобы быть выше dropdown */
+}
+
 @keyframes expandWidth {
 	0% {
 		width: 0;
@@ -295,6 +374,38 @@ const toggleDropdown = () => {
 		transform: translateY(0);
 		opacity: 1;
 	}
+}
+
+/* кастомный скорлбар при поиске */
+
+/* Custom Scrollbar Styling */
+.custom-scrollbar {
+	overflow-y: auto; /* Ensure vertical scrolling */
+}
+
+/* Webkit (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+	width: 8px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+	background: #4b5563; /* Gray-600 matching the background */
+	border-radius: 4px; /* Rounded edges */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background: #9ca3af; /* Gray-400 for a subtle contrast */
+	border-radius: 4px; /* Rounded thumb */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: #d1d5db; /* Gray-300 for hover effect */
+}
+
+/* Firefox */
+.custom-scrollbar {
+	scrollbar-width: thin; /* Makes scrollbar thinner */
+	scrollbar-color: #9ca3af #4b5563; /* Thumb color and track color */
 }
 
 /* Уменьшение всех размеров */
@@ -332,6 +443,9 @@ const toggleDropdown = () => {
 	}
 	.activeSearch {
 		right: 80px;
+	}
+	.custom-scrollbar {
+		width: 200px;
 	}
 }
 

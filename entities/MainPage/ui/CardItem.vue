@@ -11,7 +11,7 @@
 		<div
 			class="hover_statistic absolute inset-0 flex flex-col justify-center items-center bg-black/70 opacity-0 transition-opacity duration-500"
 		>
-			<div><img src="../icons/eye.png" alt="" /></div>
+			<div><img src="/public/images/eye.png" alt="" /></div>
 			<div class="text-white text-xl">{{ getKNumber(film.views) }}</div>
 			<div><img src="../icons/favorite.png" alt="" /></div>
 			<div class="text-white text-xl">{{ getKNumber(film.likes) }}</div>

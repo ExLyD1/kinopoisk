@@ -78,7 +78,6 @@ import {
 } from './optionValues'
 
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-const filmsList = useState<Array<IFilmItem>>('filmsList')
 
 const searchQuery: Ref<string> = ref('')
 

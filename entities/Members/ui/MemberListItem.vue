@@ -29,7 +29,7 @@
 				:to="`members/${generateSlug(member.user_name)}/films`"
 				class="flex items-center gap-1 w-[90px]"
 			>
-				<img class="w-7 h-7" src="@/shared/ui/icons/eye.png" alt="" />
+				<img class="w-7 h-7" src="/public/images/eye.png" alt="" />
 				<div>{{ member.user_films_quantity }}</div>
 			</NuxtLink>
 
@@ -37,7 +37,7 @@
 				:to="`members/${generateSlug(member.user_name)}/lists`"
 				class="flex items-center w-[60px]"
 			>
-				<img class="w-7 h-7" src="@/shared/ui/icons/list.png" alt="" />
+				<img class="w-7 h-7" src="/public/images/list.png" alt="" />
 				<div>{{ member.user_lists_quantity }}</div>
 			</NuxtLink>
 
@@ -45,11 +45,7 @@
 				:to="`members/${generateSlug(member.user_name)}/favorite-films`"
 				class="flex items-center gap-1 w-[80px]"
 			>
-				<img
-					class="w-7 h-7"
-					src="@/shared/ui/icons/favorite_orange.png"
-					alt=""
-				/>
+				<img class="w-7 h-7" src="/public/images/favorite_orange.png" alt="" />
 				<div>{{ member.user_favorite_films_quantity }}</div>
 			</NuxtLink>
 		</div>

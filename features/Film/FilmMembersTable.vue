@@ -73,7 +73,7 @@
 						<img
 							v-if="item.isLiked"
 							class="w-4 h-4"
-							src="@/shared/ui/icons/favorite_orange.png"
+							src="/public/images/favorite_orange.png"
 							alt="Liked"
 						/>
 					</td>
@@ -83,7 +83,7 @@
 						<img
 							v-if="item.isReviewed"
 							class="w-4 h-4"
-							src="@/shared/ui/icons/list.png"
+							src="/public/images/list.png"
 							alt="Reviewed"
 						/>
 					</td>
@@ -166,6 +166,11 @@ const film = props.data
 const finalList = ref<IFinalListItem[] | undefined>()
 
 onMounted(async () => {
+	console.log(
+		filmFiltersStore.isSortByEarliest,
+		filmFiltersStore.isSortByNewest
+	)
+
 	try {
 		let users = ref<IUser[]>([])
 
@@ -203,7 +208,7 @@ onMounted(async () => {
 			}
 
 			// any rate + newest
-			else {
+			else if (filmFiltersStore.isSortByNewest === true) {
 				const response = await $fetch<{
 					data: IUser[]
 					totalItems: number
@@ -216,6 +221,14 @@ onMounted(async () => {
 				if (!Array.isArray(response.data)) {
 					return (finalList.value = [])
 				}
+			}
+
+			// error
+			else {
+				throw createError({
+					statusCode: 400,
+					message: 'Bad request',
+				})
 			}
 		} else if (filmFiltersStore.isNoRating === true) {
 			// none rated + sort by name

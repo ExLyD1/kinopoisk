@@ -46,7 +46,7 @@
 					/likes`"
 					class="flex flex-row items-center gap-1"
 				>
-					<img class="h-4 w-4" src="@/shared/ui/icons/favorite.png" alt="" />
+					<img class="h-4 w-4" src="/public/images/favorite.png" alt="" />
 					<div class="pr-2">{{ getKNumber(list.likes) }}</div>
 				</NuxtLink>
 
@@ -57,7 +57,7 @@
 					${generateSlug(list.list_name)}`"
 					class="flex flex-row items-center gap-1"
 				>
-					<img class="h-4 w-4" src="@/shared/ui/icons/comment.png" alt="" />
+					<img class="h-4 w-4" src="/public/images/comment.png" alt="" />
 					<div class="pr-2">{{ getKNumber(list.comments_quantity) }}</div>
 				</NuxtLink>
 			</div>

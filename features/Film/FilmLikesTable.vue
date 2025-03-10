@@ -73,7 +73,7 @@
 						<img
 							v-if="item.isLiked"
 							class="w-4 h-4"
-							src="@/shared/ui/icons/favorite_orange.png"
+							src="/public/images/favorite_orange.png"
 							alt="Liked"
 						/>
 					</td>
@@ -83,7 +83,7 @@
 						<img
 							v-if="item.isReviewed"
 							class="w-4 h-4"
-							src="@/shared/ui/icons/list.png"
+							src="/public/images/list.png"
 							alt="Reviewed"
 						/>
 					</td>

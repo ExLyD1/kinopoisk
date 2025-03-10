@@ -58,7 +58,7 @@
 						/likes`"
 					class="flex gap-1"
 				>
-					<img class="w-4 h-4" src="@/shared/ui/icons/favorite.png" alt="" />
+					<img class="w-4 h-4" src="/public/images/favorite.png" alt="" />
 					{{ getKNumber(list.likes) }}
 				</NuxtLink>
 
@@ -69,7 +69,7 @@
 						${generateSlug(list.list_name)}`"
 					class="flex gap-1"
 				>
-					<img class="w-4 h-4" src="@/shared/ui/icons/comment.png" alt="" />
+					<img class="w-4 h-4" src="/public/images/comment.png" alt="" />
 					{{ getKNumber(list.comments_quantity) }}
 				</NuxtLink>
 			</div>

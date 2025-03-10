@@ -32,7 +32,7 @@
 					:key="index"
 					:to="
 						props.data.isSort
-							? `/films/${generateSlug(film.film_name)}${
+							? `/films/${filmFiltersStore.film_name}${
 									filmFiltersStore.section ? '/' + filmFiltersStore.section : ''
 							  }${
 									filmFiltersStore.currentPage
@@ -41,7 +41,7 @@
 							  }${
 									filmFiltersStore.no_rated === false ? '' : '/rated/none'
 							  }/by/${option.route_query}`
-							: `/films/${generateSlug(film.film_name)}/${
+							: `/films/${filmFiltersStore.film_name}/${
 									filmFiltersStore.section
 							  }${
 									filmFiltersStore.currentPage
@@ -68,7 +68,7 @@
 						<NuxtLink
 							v-for="(option, index) in deep_option.options"
 							:key="index"
-							:to="`/films/${generateSlug(film.film_name)}${
+							:to="`/films/${filmFiltersStore.film_name}${
 								filmFiltersStore.section ? '/' + filmFiltersStore.section : ''
 							}${
 								filmFiltersStore.currentPage

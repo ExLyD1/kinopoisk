@@ -4,6 +4,9 @@ export const useFilmFiltersStore = defineStore('filmFiltersStore', () => {
 	const section = ref(route.params.section)
 	const sort = ref(route.params.sort)
 	const no_rated = ref(route.fullPath.includes('rated'))
+	const film_name = ref<string>(
+		Array.isArray(route.params.film) ? route.params.film[0] : route.params.film
+	)
 
 	const currentPage = ref<number>(1)
 	const totalPages = ref<number>(0)
@@ -22,8 +25,18 @@ export const useFilmFiltersStore = defineStore('filmFiltersStore', () => {
 
 	// Функция обновления фильтров при изменении роута
 	const updateFilters = () => {
-		section.value = route.params.section
+		if (route.params.section) {
+			section.value = route.params.section
+		}
+
 		sort.value = route.params.sort
+
+		if (route.params.film) {
+			film_name.value = Array.isArray(route.params.film)
+				? route.params.film[0]
+				: route.params.film
+		}
+
 		no_rated.value = route.fullPath.includes('rated')
 		currentPage.value = Number(route.params.page) || 1
 
@@ -61,6 +74,7 @@ export const useFilmFiltersStore = defineStore('filmFiltersStore', () => {
 		sort,
 		no_rated,
 		currentPage,
+		film_name,
 		totalPages,
 		isAnyRating,
 		isNoRating,

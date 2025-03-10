@@ -2,7 +2,7 @@
 	<div class="backImg h-[100vh] bg-no-repeat object-fill w-full p-10">
 		<div>
 			<NuxtLink to="/">
-				<img class="logo w-64 h-6" src="@/shared/ui/icons/logo.png" alt="" />
+				<img class="logo w-64 h-6" src="/public/images/logo.png" alt="" />
 			</NuxtLink>
 		</div>
 		<div class="text_1 mt-8 text-white text-xl w-[600px]">
@@ -25,7 +25,7 @@ const props = defineProps({
 
 <style scoped>
 .backImg {
-	background-image: url('./public/images/erorrPage.jpg');
+	background-image: url('/public/images/erorrPage.jpg');
 	background-size: cover;
 }
 @media screen and (max-width: 650px) {

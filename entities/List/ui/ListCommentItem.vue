@@ -1,10 +1,10 @@
 <template>
-	<div>
+	<div v-if="review">
 		<div class="total flex">
 			<!-- aside author info -->
 			<div class="author_data flex items-center gap-3 w-[190px]">
 				<!-- avatar -->
-				<NuxtLink :to="`members/${generateSlug(review.author_name)}`">
+				<NuxtLink :to="`/members/${generateSlug(review.author_name)}`">
 					<Avatar class="w-7 h-7">
 						<AvatarImage :src="review.author_avatar" alt="@unovue" />
 						<AvatarFallback>CN</AvatarFallback>
@@ -14,14 +14,14 @@
 				<!-- author info -->
 				<div class="info">
 					<NuxtLink
-						:to="`members/${generateSlug(review.author_name)}`"
+						:to="`/members/${generateSlug(review.author_name)}`"
 						class="hover:text-gray-300 transition-all text-gray-400"
 					>
 						{{ review.author_name }}
 					</NuxtLink>
 
 					<div class="date flex gap-1 items-center text-sm text-gray-600">
-						<NuxtLink to="soon" class="hover:text-blue-400 transition-all">
+						<NuxtLink to="/soon" class="hover:text-blue-400 transition-all">
 							{{ getTimeAgo(review.published_date) }}
 						</NuxtLink>
 						<div class="text-xs" v-if="review.isEdited">Edited</div>

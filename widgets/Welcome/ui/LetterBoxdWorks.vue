@@ -10,7 +10,7 @@
 					<span>
 						<img
 							class="w-6 h-6 inline-block"
-							src="@/shared/ui/icons/eye.png"
+							src="/public/images/eye.png"
 							alt=""
 						/>
 					</span>
@@ -18,7 +18,7 @@
 					<span>
 						<img
 							class="w-6 h-6 inline-block"
-							src="@/shared/ui/icons/favorite_orange.png"
+							src="/public/images/favorite_orange.png"
 							alt=""
 						/>
 					</span>

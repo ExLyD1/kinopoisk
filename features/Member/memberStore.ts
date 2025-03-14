@@ -1,10 +1,27 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 
-export const useMemberStore = defineStore('memberStore', () =>{
+export const useMemberStore = defineStore('memberStore', () => {
+	const route = useRoute()
 
-    const memberName = ref<string>('')
+	const memberName = ref<string>('')
+	const memberSection = ref<string>('')
 
-    return {
-        memberName
-    }
+	const updateFilters = () => {
+		if (route.params.member) {
+			memberName.value = Array.isArray(route.params.member)
+				? route.params.member[0]
+				: route.params.member
+		}
+
+		memberSection.value = Array.isArray(route.params.section)
+			? route.params.section[0]
+			: route.params.section
+	}
+
+	watch(() => route.fullPath, updateFilters, { immediate: true })
+
+	return {
+		memberName,
+		memberSection,
+	}
 })

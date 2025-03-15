@@ -94,9 +94,7 @@
 
 			<!-- other links -->
 			<NuxtLink
-				:to="`/members/${generateSlug(memberStore.memberName)}/${
-					item.route_query
-				}`"
+				:to="memberSectionsLink(user.user_name, item.route_query)"
 				v-for="item in memberLinksList"
 				class="relative box-border"
 			>
@@ -104,46 +102,6 @@
 					{{ item.label }}
 				</span>
 			</NuxtLink>
-
-			<!-- films
-			<NuxtLink
-				to="/soon"
-				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
-			>
-				Films
-			</NuxtLink>
-
-			reviews 
-			<NuxtLink
-				to="/soon"
-				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
-			>
-				Reviews
-			</NuxtLink>
-
-			 lists 
-			<NuxtLink
-				to="/soon"
-				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
-			>
-				Lists
-			</NuxtLink>
-
-			 likes 
-			<NuxtLink
-				to="/soon"
-				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
-			>
-				Likes
-			</NuxtLink>
-
-			 network
-			<NuxtLink
-				to="/soon"
-				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
-			>
-				Network
-			</NuxtLink> -->
 		</div>
 	</div>
 

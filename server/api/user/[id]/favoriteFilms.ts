@@ -1,8 +1,10 @@
-import { defineEventHandler, getRouterParam } from 'h3'
+import { defineEventHandler, getRouterParam, getQuery } from 'h3'
 
 export default defineEventHandler(async event => {
 	const usersModule = await import('~/shared/model/data/usersData')
 	const filmsModule = await import('~/shared/model/data/filmsData')
+
+	const query = getQuery(event)
 
 	const id = getRouterParam(event, 'id')
 
@@ -16,7 +18,11 @@ export default defineEventHandler(async event => {
 		return 'No user with such ID'
 	}
 
-	const user_favorite_films = user.user_favorite_films
+	const quantityStr = query.quantity
+	const quantity = Number(quantityStr)
+	const favFilmsQuantity = user.user_favorite_films.slice(0, quantity)
+
+	const user_favorite_films = favFilmsQuantity
 		?.map(id => {
 			const film = filmsModule.filmsList.find(film => film.id === Number(id))
 

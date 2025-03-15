@@ -39,6 +39,7 @@ export default defineNuxtConfig({
 			'~/entities/Welcome/ui',
 			'~/entities/Film/ui',
 			'~/entities/List/ui',
+			'~/entities/Member/ui',
 
 			'~/widgets/MainPage/ui',
 			'~/widgets/Members/ui',

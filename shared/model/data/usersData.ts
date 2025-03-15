@@ -19,7 +19,7 @@ export const usersList: Array<IUser> = [
 			55,
 		],
 		user_lists_quantity: 2,
-		user_lists: [1, 5],
+		user_lists: [1, 5, 7],
 		user_favorite_films_quantity: 5,
 		user_favorite_films: [1, 10, 19, 30, 55],
 		user_favorite_lists_quantity: 3,
@@ -27,7 +27,10 @@ export const usersList: Array<IUser> = [
 		user_bio:
 			'Adventure seeker and movie enthusiast. Love exploring new genres and hidden cinematic gems.',
 		user_tags: ['adventure', 'mystery', 'drama'],
-		user_following: [2, 3, 5, 7, 9],
+		user_following: [
+			2, 3, 5, 7, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+			26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+		],
 		user_followers: [2, 4, 6, 8, 10, 12, 15, 20],
 		user_pinned_lists: [1],
 	},

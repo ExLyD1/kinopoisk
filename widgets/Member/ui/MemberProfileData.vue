@@ -1,7 +1,7 @@
 <template>
 	<div v-if="user" class="flex flex-col gap-5">
 		<!-- user top data -->
-		<div class="w-full flex justify-between items-center">
+		<div class="top_data w-full flex justify-between items-center">
 			<!-- avatar / name -->
 			<div class="flex items-center gap-3">
 				<Avatar class="w-11 h-11">
@@ -78,7 +78,7 @@
 
 		<!-- links -->
 		<div
-			class="flex items-center justify-center w-full rounded border border-gray-800 py-2 gap-4"
+			class="links flex items-center justify-center w-full rounded border border-gray-800 py-2 gap-4"
 		>
 			<!-- profile -->
 			<NuxtLink
@@ -154,4 +154,22 @@ const props = defineProps<{ data: IUser }>()
 const user = props.data
 </script>
 
-<style scoped></style>
+<style scoped>
+@media screen and (max-width: 630px) {
+	.top_data {
+		flex-direction: column;
+		gap: 30px;
+	}
+}
+@media screen and (max-width: 460px) {
+	.links a {
+		font-size: 16px !important;
+	}
+}
+@media screen and (max-width: 410px) {
+	.links {
+		flex-wrap: wrap;
+		padding: 8px 10px;
+	}
+}
+</style>

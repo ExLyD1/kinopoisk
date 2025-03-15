@@ -1,9 +1,0 @@
-<template>
-	<div class="text-white text-4xl text-center pt-24 pb-[600px]">
-		TOTAL MEMBERS LIST
-	</div>
-</template>
-
-<script setup lang="ts"></script>
-
-<style scoped></style>

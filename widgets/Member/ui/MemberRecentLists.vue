@@ -38,7 +38,6 @@ onMounted(async () => {
 	))
 
 	listsList.value = response
-	console.log(response)
 })
 </script>
 

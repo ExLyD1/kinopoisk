@@ -20,7 +20,7 @@
 			<div class="flex items-center justify-center">
 				<!-- films -->
 				<div class="border-r border-gray-800 px-2 text-center group">
-					<NuxtLink :to="`/soon`">
+					<NuxtLink :to="`/members/${generateSlug(user.user_name)}/films`">
 						<div class="text-gray-200 text-2xl">
 							{{ user.user_films_quantity }}
 						</div>
@@ -34,7 +34,7 @@
 
 				<!-- lists -->
 				<div class="border-r border-gray-800 px-2 text-center group">
-					<NuxtLink :to="`/soon`">
+					<NuxtLink :to="`/members/${generateSlug(user.user_name)}/lists`">
 						<div class="text-gray-200 text-2xl">
 							{{ user.user_lists_quantity }}
 						</div>
@@ -46,23 +46,23 @@
 					</NuxtLink>
 				</div>
 
-				<!-- followings -->
+				<!-- following -->
 				<div class="border-r border-gray-800 px-2 text-center group">
-					<NuxtLink :to="`/soon`">
+					<NuxtLink :to="`/members/${generateSlug(user.user_name)}/following`">
 						<div class="text-gray-200 text-2xl">
 							{{ user.user_following_quantity }}
 						</div>
 						<div
 							class="text-gray-500 text-sm group-hover:text-blue-400 transition-all"
 						>
-							FOLLOWINGS
+							FOLLOWING
 						</div>
 					</NuxtLink>
 				</div>
 
 				<!-- followers -->
 				<div class="border-r border-gray-800 px-2 text-center group">
-					<NuxtLink :to="`/soon`">
+					<NuxtLink :to="`/members/${generateSlug(user.user_name)}/followers`">
 						<div class="text-gray-200 text-2xl">
 							{{ user.user_followers_quantity }}
 						</div>
@@ -86,17 +86,26 @@
 				class="relative box-border"
 			>
 				<span
-					class="text-gray-400 text-lg hover:text-blue-400 transition-all after:absolute after:left-0 after:w-full after:bottom-[-9px] after:h-[1px] after:bg-green-600 after:scale-x-0"
-					:class="{
-						' text-white after:bg-green-400 after:scale-x-100 hover:text-white ':
-							!memberStore.memberSection,
-					}"
+					class="text-lg transition-all after:absolute after:left-0 after:w-full after:bottom-[-9px] after:h-[1px] text-white after:bg-green-400 after:scale-x-100 hover:text-white"
 				>
 					Profile
 				</span>
 			</NuxtLink>
 
-			<!-- films -->
+			<!-- other links -->
+			<NuxtLink
+				:to="`/members/${generateSlug(memberStore.memberName)}/${
+					item.route_query
+				}`"
+				v-for="item in memberLinksList"
+				class="relative box-border"
+			>
+				<span class="text-gray-400 text-lg hover:text-blue-400 transition-all">
+					{{ item.label }}
+				</span>
+			</NuxtLink>
+
+			<!-- films
 			<NuxtLink
 				to="/soon"
 				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
@@ -104,7 +113,7 @@
 				Films
 			</NuxtLink>
 
-			<!-- reviews -->
+			reviews 
 			<NuxtLink
 				to="/soon"
 				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
@@ -112,7 +121,7 @@
 				Reviews
 			</NuxtLink>
 
-			<!-- lists -->
+			 lists 
 			<NuxtLink
 				to="/soon"
 				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
@@ -120,7 +129,7 @@
 				Lists
 			</NuxtLink>
 
-			<!-- likes -->
+			 likes 
 			<NuxtLink
 				to="/soon"
 				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
@@ -128,13 +137,13 @@
 				Likes
 			</NuxtLink>
 
-			<!-- network -->
+			 network
 			<NuxtLink
 				to="/soon"
 				class="text-gray-400 text-lg hover:text-blue-400 transition-all"
 			>
 				Network
-			</NuxtLink>
+			</NuxtLink> -->
 		</div>
 	</div>
 
@@ -145,6 +154,7 @@
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useMemberStore } from '~/features/Member/memberStore'
+import { memberLinksList } from '~/features/Member/memberLinksData'
 
 const memberStore = useMemberStore()
 

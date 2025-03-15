@@ -4,7 +4,10 @@ export const useMemberStore = defineStore('memberStore', () => {
 	const route = useRoute()
 
 	const memberName = ref<string>('')
-	const memberSection = ref<string>('')
+	const memberSection = ref<string>('films')
+
+	const currentPage = ref<number>(1)
+	const totalPages = ref<number>(1)
 
 	const updateFilters = () => {
 		if (route.params.member) {
@@ -13,9 +16,11 @@ export const useMemberStore = defineStore('memberStore', () => {
 				: route.params.member
 		}
 
-		memberSection.value = Array.isArray(route.params.section)
-			? route.params.section[0]
-			: route.params.section
+		if (route.params.mSection) {
+			memberSection.value = Array.isArray(route.params.mSection)
+				? route.params.mSection[0]
+				: route.params.mSection
+		}
 	}
 
 	watch(() => route.fullPath, updateFilters, { immediate: true })
@@ -23,5 +28,7 @@ export const useMemberStore = defineStore('memberStore', () => {
 	return {
 		memberName,
 		memberSection,
+		currentPage,
+		totalPages,
 	}
 })

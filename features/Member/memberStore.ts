@@ -9,7 +9,11 @@ export const useMemberStore = defineStore('memberStore', () => {
 	const currentPage = ref<number>(1)
 	const totalPages = ref<number>(1)
 
+	const genre = ref<string>('')
+
 	const updateFilters = () => {
+		currentPage.value = Number(route.params.page) || 1
+
 		if (route.params.member) {
 			memberName.value = Array.isArray(route.params.member)
 				? route.params.member[0]
@@ -21,6 +25,12 @@ export const useMemberStore = defineStore('memberStore', () => {
 				? route.params.mSection[0]
 				: route.params.mSection
 		}
+
+		if (route.params.genre) {
+			genre.value = Array.isArray(route.params.genre)
+				? route.params.genre[0]
+				: route.params.genre
+		}
 	}
 
 	watch(() => route.fullPath, updateFilters, { immediate: true })
@@ -30,5 +40,6 @@ export const useMemberStore = defineStore('memberStore', () => {
 		memberSection,
 		currentPage,
 		totalPages,
+		genre,
 	}
 })

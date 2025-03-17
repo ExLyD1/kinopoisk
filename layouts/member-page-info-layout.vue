@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="bg-dark">
-			<div class="w-[1050px] m-auto">
+			<div class="w-[1050px] m-auto mt-16">
 				<!-- top bar -->
 				<div
 					v-if="user"
@@ -35,10 +35,16 @@
 						</NuxtLink>
 					</div>
 
-					<!-- sections list -->
+					<!-- sections links -->
 					<div class="flex gap-4 relative items-center">
 						<NuxtLink
-							:to="memberSectionsLink(user.user_name, item.route_query)"
+							:to="
+								memberSectionsLink(
+									user.user_name,
+									item.route_query,
+									memberStore.currentPage
+								)
+							"
 							v-for="(item, index) in memberLinksList"
 							class="text-gray-400 hover:text-blue-400 transition-all relative after:absolute after:left-0 after:bottom-[-12px] after:w-full after:h-[1px] after:bg-green-600 after:scale-x-0 after:transition-transform"
 							:class="{

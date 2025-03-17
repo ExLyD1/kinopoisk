@@ -1,9 +1,3 @@
-import star1 from '~/shared/ui/icons/rating/oneStarRating.png'
-import star2 from '~/shared/ui/icons/rating/twoStartRating.png'
-import star3 from '~/shared/ui/icons/rating/threeStarsRating.png'
-import star4 from '~/shared/ui/icons/rating/fourStarsRating.png'
-import star5 from '~/shared/ui/icons/rating/fiveStarsRating.png'
-
 export function getRatingIcons(rate: number | undefined | null) {
 	if (rate === undefined || rate === null) {
 		return undefined

@@ -94,7 +94,13 @@
 
 			<!-- other links -->
 			<NuxtLink
-				:to="memberSectionsLink(user.user_name, item.route_query)"
+				:to="
+					memberSectionsLink(
+						user.user_name,
+						item.route_query,
+						memberStore.currentPage
+					)
+				"
 				v-for="item in memberLinksList"
 				class="relative box-border"
 			>

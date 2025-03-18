@@ -7,8 +7,8 @@
 			<HeaderFeature />
 		</div>
 
-		<div class="bg-dark">
-			<div class="w-[1050px] m-auto mt-16">
+		<div class="full_holder bg-dark">
+			<div class="content_holder w-[1050px] m-auto mt-16">
 				<!-- top bar -->
 				<div
 					v-if="user"
@@ -36,7 +36,7 @@
 					</div>
 
 					<!-- sections links -->
-					<div class="flex gap-4 relative items-center">
+					<div class="sections_links flex gap-4 relative items-center">
 						<NuxtLink
 							:to="
 								memberSectionsLink(
@@ -60,7 +60,7 @@
 					<div class="w-[20px]"></div>
 				</div>
 
-				<div class="mt-24">
+				<div class="slot_content mt-24">
 					<slot />
 				</div>
 			</div>
@@ -119,5 +119,22 @@ setTimeout(() => {
 
 .loading-spinner {
 	@apply border-8 border-t-8 border-gray-300 border-t-green-500 rounded-full w-16 h-16 animate-spin;
+}
+
+@media screen and (max-width: 1070px) {
+	.content_holder {
+		width: 100%;
+	}
+	.full_holder {
+		padding: 0px 20px;
+	}
+}
+@media screen and (max-width: 550px) {
+	.slot_content {
+		margin-top: 30px;
+	}
+	.sections_links {
+		display: none;
+	}
 }
 </style>

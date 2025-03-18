@@ -20,9 +20,14 @@ import { useMediaQuery } from '@vueuse/core'
 const memberStore = useMemberStore()
 
 const route = useRoute()
-const { member: member_name, mSection } = route.params as {
+const {
+	member: member_name,
+	mSection,
+	mGenre,
+} = route.params as {
 	member: string
 	mSection: string
+	mGenre: string
 }
 
 const user = ref<IUser>()

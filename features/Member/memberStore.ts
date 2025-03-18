@@ -9,7 +9,7 @@ export const useMemberStore = defineStore('memberStore', () => {
 	const currentPage = ref<number>(1)
 	const totalPages = ref<number>(1)
 
-	const genre = ref<string>('')
+	const genre = ref<string[]>([])
 
 	const updateFilters = () => {
 		currentPage.value = Number(route.params.page) || 1
@@ -26,10 +26,12 @@ export const useMemberStore = defineStore('memberStore', () => {
 				: route.params.mSection
 		}
 
-		if (route.params.genre) {
-			genre.value = Array.isArray(route.params.genre)
-				? route.params.genre[0]
-				: route.params.genre
+		if (route.params.mGenre) {
+			genre.value = Array.isArray(route.params.mGenre)
+				? route.params.mGenre
+				: route.params.mGenre.split('+')
+		} else {
+			genre.value = []
 		}
 	}
 

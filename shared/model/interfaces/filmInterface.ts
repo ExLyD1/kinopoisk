@@ -1,5 +1,29 @@
 import type { IReview } from './reviewInterface'
 
+type IFilmGenres =
+	| 'Any'
+	| 'Action'
+	| 'Adventure'
+	| 'Animation'
+	| 'Comedy'
+	| 'Crime'
+	| 'Documentary'
+	| 'Drama'
+	| 'Family'
+	| 'Fantasy'
+	| 'History'
+	| 'Horror'
+	| 'Music'
+	| 'Mystery'
+	| 'Romance'
+	| 'Science'
+	| 'Fiction'
+	| 'Thriller'
+	| 'Tv'
+	| 'Movie'
+	| 'War'
+	| 'Western'
+
 export interface IFilmItem {
 	id: number
 	film_name: string
@@ -62,6 +86,6 @@ export interface IFilmItem {
 		alternative_titles: string[]
 	}
 
-	genres: string[]
+	genres: IFilmGenres[]
 	themes: string[]
 }

@@ -26,12 +26,11 @@
 
 				<!-- any label -->
 				<div
-					v-if="memberStore.genre === ''"
+					v-if="memberStore.genre.length === 0"
 					class="px-3 py-1 border-y border-gray-500 text-white whitespace-nowrap text-sm"
 				>
 					{{ anyLabel }}
 				</div>
-
 				<!-- link any label -->
 				<NuxtLink
 					v-else
@@ -56,11 +55,26 @@
 							memberStore.memberName,
 							memberStore.memberSection,
 							memberStore.currentPage
-						) + `/${option.route_query}`
+						) +
+						`/${
+							option.isOptedMore && option.route_query
+								? `genre/${memberStore.genre.join('+')}`
+								: option.route_query
+						}`
 					"
-					class="px-3 pl-7 py-1 hover:bg-gray-600 cursor-pointer hover:text-white whitespace-nowrap text-xs"
+					@click="option.isOptedMore ? genreFunc(option.route_query) : ''"
+					class="px-3 pl-7 py-1 hover:bg-gray-600 cursor-pointer hover:text-white whitespace-nowrap text-xs flex items-center gap-1"
+					:class="{
+						'!pl-2 text-white': memberStore.genre.includes(option.route_query),
+					}"
 				>
-					{{ option.option }}
+					<img
+						v-if="memberStore.genre.includes(option.route_query)"
+						src="/public/images/favorite_green.png"
+						class="w-4 h-4"
+						alt=""
+					/>
+					<div>{{ option.option }}</div>
 				</NuxtLink>
 			</div>
 		</div>
@@ -81,6 +95,31 @@ const widthList = computed(() => props.data.width)
 
 const isDropdownVisible = ref(false)
 const selectedOption: Ref<string | number> = ref(label)
+
+// set genres in store
+const genreFunc = (genre: string) => {
+	if (memberStore.genre.includes(genre)) {
+		memberStore.genre = memberStore.genre.filter(g => g !== genre)
+		if (memberStore.genre.length === 0) {
+			return useRouter().push(
+				memberSectionsLink(
+					memberStore.memberName,
+					memberStore.memberSection,
+					memberStore.currentPage
+				)
+			)
+		}
+	} else {
+		memberStore.genre.push(genre)
+	}
+	useRouter().push(
+		memberSectionsLink(
+			memberStore.memberName,
+			memberStore.memberSection,
+			memberStore.currentPage
+		) + `/genre/${memberStore.genre.join('+')}`
+	)
+}
 
 const openDropDown = () => {
 	return (isDropdownVisible.value = true)

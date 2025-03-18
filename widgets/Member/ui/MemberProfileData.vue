@@ -134,6 +134,9 @@ const user = props.data
 		flex-direction: column;
 		gap: 30px;
 	}
+	.links a span {
+		font-size: 16px;
+	}
 }
 @media screen and (max-width: 460px) {
 	.links a {

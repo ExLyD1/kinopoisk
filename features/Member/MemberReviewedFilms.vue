@@ -57,18 +57,9 @@
 			</div>
 		</div>
 
-		<!-- watched quantity films -->
-		<div
-			v-if="isFilms === true && !isLoading && memberStore.genre.length !== 0"
-			class="flex justify-center items-center bg-gray-800 rounded shadow-md px-3 py-5 w-full text-center text-gray-300 mt-5 text-sm"
-		>
-			{{ user.user_name }} has watched {{ filmsList?.length }} films with such
-			genre: {{ memberStore.genre.join(', ') }}.
-		</div>
-
 		<!-- films -->
 		<div
-			v-if="isFilms === true && !isLoading"
+			v-if="filmsList"
 			class="films_holder justify-between flex flex-wrap gap-3 w-full mt-4"
 		>
 			<member-watched-film-item
@@ -79,21 +70,10 @@
 			></member-watched-film-item>
 		</div>
 
-		<!-- hasn`t watched with genres` -->
-		<div
-			v-else
-			class="flex justify-center items-center bg-gray-800 rounded shadow-md px-3 py-5 w-full text-center text-gray-300 mt-5 text-sm"
-		>
-			{{ user.user_name }} hasn’t watched any films in such genres :
-			{{ memberStore.genre.join(', ') }}.
-		</div>
-
-		<!-- loading spinner -->
-		<LoadingSpinner v-if="isLoading" />
+		<LoadingSpinner v-else />
 
 		<!-- pagination -->
 		<div
-			v-if="isFilms && !isLoading"
 			class="flex items-center justify-between w-full border-t border-gray-700 mt-3 pt-5"
 		>
 			<!-- Prev -->
@@ -171,8 +151,6 @@ const props = defineProps<{ data: IUser }>()
 const user = props.data
 
 const filmsList = ref<IFilmItem[]>()
-const isFilms = ref<boolean>(false)
-const isLoading = ref<boolean>(true)
 
 interface IResponse {
 	data: IFilmItem[]
@@ -188,7 +166,7 @@ const getPageLink = (page: number) => {
 		memberStore.memberName,
 		memberStore.memberSection,
 		page
-	)}/genre/${memberStore.genre.length ? memberStore.genre.join('+') : ''}`
+	)}/`
 }
 
 // Логика пагинации
@@ -226,33 +204,13 @@ const endPage = computed(
 
 // Загрузка данных
 onMounted(async () => {
-	let response
-
-	if (memberStore.genre.length === 0) {
-		response = await $fetch<IResponse>(
-			`/api/user/${user.id}/watched-by-page/${memberStore.currentPage}?genre=any`
-		)
-	} else {
-		response = await $fetch<IResponse>(
-			`/api/user/${user.id}/watched-by-page/${
-				memberStore.currentPage
-			}?genre=${memberStore.genre.join('+')}`
-		)
-	}
-
-	if (response.data.length === 0) {
-		filmsList.value = []
-		isFilms.value = false
-		isLoading.value = false
-		return
-	}
+	const response = await $fetch<IResponse>(
+		`/api/user/${user.id}/watched-by-page/${memberStore.currentPage}?genre=any`
+	)
 
 	filmsList.value = response.data
 	memberStore.totalPages = response.totalPages
-	memberStore.currentPage = response.currentPage
-
-	isLoading.value = false
-	isFilms.value = true
+	memberStore.currentPage = response.currentPage // Синхронизация с сервером
 })
 </script>
 

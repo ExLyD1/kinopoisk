@@ -9,7 +9,7 @@ const paginate = (list: IFilmItem[], currentPage: number, perPage: number) => {
 
 export default defineEventHandler(async event => {
 	const query = getQuery(event)
-	const perPage = 4
+	const perPage = 36
 
 	const userIdStr = getRouterParam(event, 'id')
 	const userId = Number(userIdStr)
@@ -46,7 +46,8 @@ export default defineEventHandler(async event => {
 		filmsModule.filmsList.map(film => [film.id, film])
 	)
 
-	const genre = query.genre as string
+	const genreStr = query.genre as string
+	const genre = genreStr.split(' ')
 	const validGenres = [
 		'any',
 		'action',
@@ -72,17 +73,29 @@ export default defineEventHandler(async event => {
 		'western',
 	]
 
-	if (genre && !validGenres.includes(genre)) {
-		throw createError({
-			statusCode: 400,
-			message: 'Invalid genre',
+	if (Array.isArray(genre)) {
+		genre.forEach(g => {
+			if (!validGenres.includes(g)) {
+				throw createError({
+					statusCode: 400,
+					message: 'Invalid genre',
+				})
+			}
 		})
+	} else {
+		if (genre !== 'any') {
+			throw createError({
+				statusCode: 400,
+				message: 'Invalid genre',
+			})
+		}
 	}
 
 	let filmsOnPage: IFilmItem[] = []
 	let totalItems
 
-	if (genre === 'any') {
+	// genre any
+	if (genreStr === 'any') {
 		const watchedFilmsIds = user.user_films
 
 		const watchedFilms = watchedFilmsIds
@@ -92,11 +105,28 @@ export default defineEventHandler(async event => {
 		filmsOnPage = paginate(watchedFilms, page, perPage)
 
 		totalItems = watchedFilms.length
-	} else {
-		throw createError({
-			statusCode: 400,
-			message: 'Any genre is required',
+	}
+
+	// other valid genre
+	else {
+		const watchedFilmsIds = user.user_films
+
+		let watchedFilms = watchedFilmsIds
+			.map(f_id => mapFilmsList.get(f_id))
+			.filter((film): film is IFilmItem => film !== undefined)
+
+		genre.forEach((g: string) => {
+			const gUp = g[0].toUpperCase()
+			const genreToCompare: any = gUp + g.slice(1)
+
+			watchedFilms = watchedFilms.filter(film =>
+				film.genres.includes(genreToCompare)
+			)
 		})
+
+		filmsOnPage = paginate(watchedFilms, page, perPage)
+
+		totalItems = watchedFilms.length
 	}
 
 	const totalPages = Math.ceil(totalItems / perPage)

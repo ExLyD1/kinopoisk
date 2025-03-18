@@ -29,9 +29,11 @@ export interface IMemberOptionsList {
 	label: string
 	width: string
 	anyLabel: string
+
 	options: {
 		option: string | number
 		route_query: string
+		isOptedMore: boolean
 	}[]
 }
 
@@ -41,27 +43,27 @@ export const memberFilmsOptions: IMemberOptionsList[] = [
 		width: 'w-[130px]',
 		anyLabel: 'Any genre',
 		options: [
-			{ option: 'Action', route_query: 'action' },
-			{ option: 'Adventure', route_query: 'adventure' },
-			{ option: 'Animation', route_query: 'animation' },
-			{ option: 'Comedy', route_query: 'comedy' },
-			{ option: 'Crime', route_query: 'crime' },
-			{ option: 'Documentary', route_query: 'documentary' },
-			{ option: 'Drama', route_query: 'drama' },
-			{ option: 'Family', route_query: 'family' },
-			{ option: 'Fantasy', route_query: 'fantasy' },
-			{ option: 'History', route_query: 'history' },
-			{ option: 'Horror', route_query: 'horror' },
-			{ option: 'Music', route_query: 'music' },
-			{ option: 'Mystery', route_query: 'mystery' },
-			{ option: 'Romance', route_query: 'romance' },
-			{ option: 'Science', route_query: 'science' },
-			{ option: 'Fiction', route_query: 'fiction' },
-			{ option: 'Thriller', route_query: 'thriller' },
-			{ option: 'TV', route_query: 'tV' },
-			{ option: 'Movie', route_query: 'movie' },
-			{ option: 'War', route_query: 'war' },
-			{ option: 'Western', route_query: 'western' },
+			{ option: 'Action', route_query: 'action', isOptedMore: true },
+			{ option: 'Adventure', route_query: 'adventure', isOptedMore: true },
+			{ option: 'Animation', route_query: 'animation', isOptedMore: true },
+			{ option: 'Comedy', route_query: 'comedy', isOptedMore: true },
+			{ option: 'Crime', route_query: 'crime', isOptedMore: true },
+			{ option: 'Documentary', route_query: 'documentary', isOptedMore: true },
+			{ option: 'Drama', route_query: 'drama', isOptedMore: true },
+			{ option: 'Family', route_query: 'family', isOptedMore: true },
+			{ option: 'Fantasy', route_query: 'fantasy', isOptedMore: true },
+			{ option: 'History', route_query: 'history', isOptedMore: true },
+			{ option: 'Horror', route_query: 'horror', isOptedMore: true },
+			{ option: 'Music', route_query: 'music', isOptedMore: true },
+			{ option: 'Mystery', route_query: 'mystery', isOptedMore: true },
+			{ option: 'Romance', route_query: 'romance', isOptedMore: true },
+			{ option: 'Science', route_query: 'science', isOptedMore: true },
+			{ option: 'Fiction', route_query: 'fiction', isOptedMore: true },
+			{ option: 'Thriller', route_query: 'thriller', isOptedMore: true },
+			{ option: 'TV', route_query: 'tV', isOptedMore: true },
+			{ option: 'Movie', route_query: 'movie', isOptedMore: true },
+			{ option: 'War', route_query: 'war', isOptedMore: true },
+			{ option: 'Western', route_query: 'western', isOptedMore: true },
 		],
 	},
 ]

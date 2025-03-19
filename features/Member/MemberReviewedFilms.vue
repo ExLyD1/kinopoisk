@@ -1,9 +1,7 @@
 <template>
 	<div class="pb-36">
 		<!-- links and filters bar -->
-		<div
-			class="flex justify-between w-full items-center border-b border-gray-600 pb-2"
-		>
+		<div class="flex w-full items-center border-b border-gray-600 pb-2">
 			<!-- links -->
 			<div class="flex items-center gap-3 relative">
 				<!-- Watched -->
@@ -46,34 +44,32 @@
 					</span>
 				</NuxtLink>
 			</div>
+		</div>
 
-			<!-- filters -->
-			<div>
-				<member-filter-by
-					v-for="(optionBlocks, index) in memberFilmsOptions"
-					:data="optionBlocks"
-				>
-				</member-filter-by>
+		<!-- reviews -->
+		<div
+			v-if="isReviews === true && !isLoading"
+			class="films_holder flex flex-col gap-3 w-full mt-4 text-gray-400"
+		>
+			<div v-for="(item, index) in finalData" class="w-full" :key="index">
+				<member-recent-review-item
+					:data="item"
+					:userId="user.id"
+				></member-recent-review-item>
+
+				<div
+					v-if="index + 1 !== finalData?.length"
+					class="my-5 border-b border-gray-600 w-full"
+				></div>
 			</div>
 		</div>
 
-		<!-- films -->
-		<div
-			v-if="filmsList"
-			class="films_holder justify-between flex flex-wrap gap-3 w-full mt-4"
-		>
-			<member-watched-film-item
-				v-for="(film, index) in filmsList"
-				:key="index"
-				:data="film"
-				:userId="user.id"
-			></member-watched-film-item>
-		</div>
-
-		<LoadingSpinner v-else />
+		<!-- loading spinner -->
+		<LoadingSpinner v-if="isLoading" />
 
 		<!-- pagination -->
 		<div
+			v-if="isReviews && !isLoading"
 			class="flex items-center justify-between w-full border-t border-gray-700 mt-3 pt-5"
 		>
 			<!-- Prev -->
@@ -88,42 +84,7 @@
 			</div>
 
 			<!-- Pagination Numbers -->
-			<div class="flex items-center gap-3 text-gray-600">
-				<!-- Первая страница -->
-				<NuxtLink
-					:to="getPageLink(1)"
-					:class="{ 'text-white': memberStore.currentPage === 1 }"
-				>
-					1
-				</NuxtLink>
-
-				<!-- Многоточие перед серединой -->
-				<span v-if="startPage > 2">...</span>
-
-				<!-- Средние страницы -->
-				<NuxtLink
-					v-for="page in visiblePages"
-					:key="page"
-					:to="getPageLink(page)"
-					:class="{ 'text-white': memberStore.currentPage === page }"
-				>
-					{{ page }}
-				</NuxtLink>
-
-				<!-- Многоточие после середины -->
-				<span v-if="endPage < memberStore.totalPages - 1">...</span>
-
-				<!-- Последняя страница -->
-				<NuxtLink
-					v-if="memberStore.totalPages > 1"
-					:to="getPageLink(memberStore.totalPages)"
-					:class="{
-						'text-white': memberStore.currentPage === memberStore.totalPages,
-					}"
-				>
-					{{ memberStore.totalPages }}
-				</NuxtLink>
-			</div>
+			<div class="flex items-center gap-3 text-gray-600"></div>
 
 			<!-- Next -->
 			<div class="w-[55px]">
@@ -144,21 +105,25 @@ import type { IUser } from '~/shared/model/interfaces/userInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import { memberFilmsOptions } from './memberLinksData'
 import { useMemberStore } from './memberStore'
+import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 
 const memberStore = useMemberStore()
 
 const props = defineProps<{ data: IUser }>()
 const user = props.data
 
-const filmsList = ref<IFilmItem[]>()
+const finalData = ref<{ review: IReview; film: IFilmItem }[]>()
+const isReviews = ref<boolean>(false)
+const isLoading = ref<boolean>(true)
 
 interface IResponse {
 	data: IFilmItem[]
-	totalItems: number
 	totalPages: number
-	currentPage: number
-	perPage: number
 }
+
+// !!!!!!!!!!
+// * Сделать пагинацию reviews
+// !!!!!!!!!!
 
 // Функция для генерации ссылки на страницу
 const getPageLink = (page: number) => {
@@ -171,46 +136,39 @@ const getPageLink = (page: number) => {
 
 // Логика пагинации
 const maxVisiblePages = 5 // Максимум видимых страниц (кроме первой и последней)
-const visiblePages = computed(() => {
-	const current = memberStore.currentPage
-	const total = memberStore.totalPages
-
-	// Если страниц мало, показываем все
-	if (total <= maxVisiblePages + 2) {
-		return Array.from({ length: total - 2 }, (_, i) => i + 2)
-	}
-
-	// Определяем границы видимых страниц
-	const half = Math.floor(maxVisiblePages / 2)
-	let start = Math.max(2, current - half)
-	let end = Math.min(total - 1, current + half)
-
-	// Корректируем границы, чтобы всегда показывать maxVisiblePages страниц
-	if (end - start + 1 < maxVisiblePages) {
-		if (current <= half + 1) {
-			end = maxVisiblePages + 1
-		} else {
-			start = total - maxVisiblePages
-		}
-	}
-
-	return Array.from({ length: end - start + 1 }, (_, i) => start + i)
-})
-
-const startPage = computed(() => visiblePages.value[0])
-const endPage = computed(
-	() => visiblePages.value[visiblePages.value.length - 1]
-)
 
 // Загрузка данных
 onMounted(async () => {
-	const response = await $fetch<IResponse>(
-		`/api/user/${user.id}/watched-by-page/${memberStore.currentPage}?genre=any`
-	)
+	let response = await $fetch<{
+		data: IReview[]
+		totalPages: number
+	}>(`/api/user/${user.id}/reviewed-by-page/${memberStore.currentPage}`)
 
-	filmsList.value = response.data
 	memberStore.totalPages = response.totalPages
-	memberStore.currentPage = response.currentPage // Синхронизация с сервером
+
+	if (response.data.length === 0) {
+		finalData.value = []
+		isReviews.value = false
+		isLoading.value = false
+		return
+	}
+
+	const packDataPromised = response.data.map(async (review, index) => {
+		const film = await $fetch(`/api/movie/by-id/${review.item_id}`)
+
+		return {
+			review: review,
+			film: film,
+		}
+	})
+
+	const packData: any = await Promise.all(packDataPromised)
+
+	finalData.value = packData
+	memberStore.totalPages = response.totalPages
+
+	isLoading.value = false
+	isReviews.value = true
 })
 </script>
 

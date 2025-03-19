@@ -12,7 +12,7 @@ export const usersList: Array<IUser> = [
 		user_following_quantity: 5,
 		user_followers_quantity: 8,
 		user_reviews_quantity: 6,
-		user_reviews: [2, 10, 19, 26, 30, 55],
+		user_reviews: [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 26, 30, 55],
 		user_films_quantity: 19,
 		user_films: [
 			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,

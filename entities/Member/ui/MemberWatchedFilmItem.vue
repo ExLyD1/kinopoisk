@@ -59,7 +59,9 @@ const userId = props.userId
 const isLiked = ref<boolean>(false)
 const userRated = ref<number>()
 onMounted(async () => {
-	isLiked.value = await $fetch(`/api/user/${userId}/${film.id}/isLiked`)
+	isLiked.value = await $fetch<boolean>(
+		`/api/user/${userId}/${film.id}/isLiked`
+	)
 
 	userRated.value = await $fetch(`/api/user/${userId}/${film.id}/rating`)
 })

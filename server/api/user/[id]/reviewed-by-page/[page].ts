@@ -12,7 +12,7 @@ const paginate = (
 	return items.slice(start, end)
 }
 export default defineEventHandler(async event => {
-	const perPage = 12
+	const perPage = 3
 
 	const userIdStr = getRouterParam(event, 'id')
 	const userId = Number(userIdStr)

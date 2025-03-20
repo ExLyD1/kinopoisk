@@ -84,7 +84,37 @@
 			</div>
 
 			<!-- Pagination Numbers -->
-			<div class="flex items-center gap-3 text-gray-600"></div>
+			<div class="flex items-center gap-3 text-gray-600">
+				<!-- first page -->
+				<NuxtLink
+					:to="getPageLink(1)"
+					:class="{ 'text-white': memberStore.currentPage === 1 }"
+				>
+					1
+				</NuxtLink>
+
+				<div v-if="startPage > 2">...</div>
+
+				<NuxtLink
+					v-for="(item, index) in pagination"
+					:key="index"
+					:to="getPageLink(item)"
+					:class="{ 'text-white': memberStore.currentPage === item }"
+					>{{ item }}</NuxtLink
+				>
+
+				<div v-if="endPage < memberStore.totalPages - 1">...</div>
+
+				<!-- last page -->
+				<NuxtLink
+					v-if="memberStore.totalPages > 1"
+					:to="getPageLink(memberStore.totalPages)"
+					:class="{
+						'text-white': memberStore.currentPage === memberStore.totalPages,
+					}"
+					>{{ memberStore.totalPages }}</NuxtLink
+				>
+			</div>
 
 			<!-- Next -->
 			<div class="w-[55px]">
@@ -117,7 +147,7 @@ const isReviews = ref<boolean>(false)
 const isLoading = ref<boolean>(true)
 
 interface IResponse {
-	data: IFilmItem[]
+	data: IReview[]
 	totalPages: number
 }
 
@@ -136,13 +166,36 @@ const getPageLink = (page: number) => {
 
 // Логика пагинации
 const maxVisiblePages = 5 // Максимум видимых страниц (кроме первой и последней)
+const pagination = computed(() => {
+	const total = memberStore.totalPages
+	const current = memberStore.currentPage
+
+	if (total <= maxVisiblePages + 2) {
+		return Array.from({ length: total - 2 }, (_, i) => i + 2)
+	}
+
+	const half = Math.floor(maxVisiblePages / 2)
+	let start = Math.max(2, current - half)
+	let end = Math.min(total - 1, current + 2)
+
+	if (end - start + 1 < maxVisiblePages) {
+		if (current <= half + 1) {
+			end = maxVisiblePages + 1
+		} else {
+			start = total - maxVisiblePages
+		}
+	}
+
+	return Array.from({ length: end - start + 1 }, (_, i) => start + i)
+})
+const startPage = computed(() => pagination.value[0])
+const endPage = computed(() => pagination.value[pagination.value.length - 1])
 
 // Загрузка данных
 onMounted(async () => {
-	let response = await $fetch<{
-		data: IReview[]
-		totalPages: number
-	}>(`/api/user/${user.id}/reviewed-by-page/${memberStore.currentPage}`)
+	let response = await $fetch<IResponse>(
+		`/api/user/${user.id}/reviewed-by-page/${memberStore.currentPage}`
+	)
 
 	memberStore.totalPages = response.totalPages
 
@@ -154,7 +207,7 @@ onMounted(async () => {
 	}
 
 	const packDataPromised = response.data.map(async (review, index) => {
-		const film = await $fetch(`/api/movie/by-id/${review.item_id}`)
+		const film = await $fetch<IFilmItem>(`/api/movie/by-id/${review.item_id}`)
 
 		return {
 			review: review,

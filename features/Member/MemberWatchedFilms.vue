@@ -188,7 +188,7 @@ const getPageLink = (page: number) => {
 		memberStore.memberName,
 		memberStore.memberSection,
 		page
-	)}/genre/${memberStore.genre.length ? memberStore.genre.join('+') : ''}`
+	)}/${memberStore.genre.length ? 'genre/' + memberStore.genre.join('+') : ''}`
 }
 
 // Логика пагинации

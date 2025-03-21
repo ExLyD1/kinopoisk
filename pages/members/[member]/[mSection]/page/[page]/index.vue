@@ -9,6 +9,8 @@
 			v-if="mSection === 'reviews'"
 			:data="user"
 		></member-reviewed-films>
+
+		<member-lists v-if="mSection === 'lists'" :data="user"></member-lists>
 	</div>
 </template>
 

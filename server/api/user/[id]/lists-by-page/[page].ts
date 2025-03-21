@@ -1,18 +1,18 @@
 import { defineEventHandler, getRouterParam } from 'h3'
-import type { IReview } from '~/shared/model/interfaces/reviewInterface'
+import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 
 const paginate = (
-	items: IReview[],
+	items: IFilmsList[],
 	page: number,
 	perPage: number
-): IReview[] => {
+): IFilmsList[] => {
 	const start = (page - 1) * perPage
 	const end = start + perPage
 
 	return items.slice(start, end)
 }
 export default defineEventHandler(async event => {
-	const perPage = 12
+	const perPage = 1
 
 	const userIdStr = getRouterParam(event, 'id')
 	const userId = Number(userIdStr)
@@ -24,7 +24,7 @@ export default defineEventHandler(async event => {
 	}
 
 	const usersModule = await import('~/shared/model/data/usersData')
-	const reviewsModule = await import('~/shared/model/data/reviewsData')
+	const listsModule = await import('~/shared/model/data/filmsListsData')
 
 	const user = usersModule.usersList.find(user => user.id === userId)
 
@@ -45,21 +45,21 @@ export default defineEventHandler(async event => {
 		})
 	}
 
-	let data: IReview[] = []
+	let data: IFilmsList[] = []
 
-	const userReviewsIds = user.user_reviews
-	const mapReviews = new Map(
-		reviewsModule.reviewsList.map(review => [review.id, review])
+	const userListsIds = user.user_lists
+	const mapLists = new Map(
+		listsModule.filmsListsData.map(list => [list.id, list])
 	)
 
-	const userReviews: IReview[] = userReviewsIds
-		.map(u_id => {
-			return mapReviews.get(u_id)
+	const userLists: IFilmsList[] = userListsIds
+		.map(l_id => {
+			return mapLists.get(l_id)
 		})
 		.filter(item => item !== undefined)
 
-	const totalPages = Math.ceil(userReviews.length / perPage)
-	data = paginate(userReviews, page, perPage)
+	const totalPages = Math.ceil(userLists.length / perPage)
+	data = paginate(userLists, page, perPage)
 
 	return {
 		data,

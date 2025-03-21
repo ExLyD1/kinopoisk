@@ -151,10 +151,6 @@ interface IResponse {
 	totalPages: number
 }
 
-// !!!!!!!!!!
-// * Сделать пагинацию reviews
-// !!!!!!!!!!
-
 // Функция для генерации ссылки на страницу
 const getPageLink = (page: number) => {
 	return `${memberSectionsLink(

@@ -1,6 +1,9 @@
 <template>
 	<div v-if="user">
-		<member-watched-films :data="user"></member-watched-films>
+		<member-likes-films
+			v-if="mSection === 'likes-films'"
+			:data="user"
+		></member-likes-films>
 	</div>
 </template>
 
@@ -8,7 +11,7 @@
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 import { useMemberStore } from '~/features/Member/model/memberStore'
 import { useMediaQuery } from '@vueuse/core'
-import checkMGenre from '~/middleware/member/checkMGenre'
+import checkMDecade from '~/middleware/member/checkMDecade'
 
 const memberStore = useMemberStore()
 
@@ -33,7 +36,7 @@ onMounted(async () => {
 
 definePageMeta({
 	layout: 'member-page-info-layout',
-	middleware: checkMGenre,
+	middleware: checkMDecade,
 })
 </script>
 

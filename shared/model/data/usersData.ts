@@ -28,7 +28,9 @@ export const usersList: Array<IUser> = [
 		user_lists_quantity: 2,
 		user_lists: [1, 5, 7],
 		user_favorite_films_quantity: 5,
-		user_favorite_films: [1, 10, 19, 30, 55],
+		user_favorite_films: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 30, 55,
+		],
 		user_favorite_lists_quantity: 3,
 		user_favorite_lists: [12, 20, 25],
 		user_bio:

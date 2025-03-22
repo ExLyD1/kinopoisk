@@ -26,7 +26,7 @@
 
 				<!-- any label -->
 				<div
-					v-if="memberStore.genre.length === 0"
+					v-if="memberStore.genre.length === 0 && !memberStore.decade"
 					class="px-3 py-1 border-y border-gray-500 text-white whitespace-nowrap text-sm"
 				>
 					{{ anyLabel }}
@@ -58,14 +58,15 @@
 						) +
 						`/${
 							option.isOptedMore && option.route_query
-								? `genre/${memberStore.genre.join('+')}`
-								: option.route_query
+								? ''
+								: `decade/${option.route_query}`
 						}`
 					"
 					@click="option.isOptedMore ? genreFunc(option.route_query) : ''"
 					class="px-3 pl-7 py-1 hover:bg-gray-600 cursor-pointer hover:text-white whitespace-nowrap text-xs flex items-center gap-1"
 					:class="{
 						'!pl-2 text-white': memberStore.genre.includes(option.route_query),
+						'text-white': memberStore.decade === option.route_query,
 					}"
 				>
 					<img
@@ -82,8 +83,8 @@
 </template>
 
 <script setup lang="ts">
-import type { IMemberOptionsList } from '~/features/Member/memberLinksData'
-import { useMemberStore } from '~/features/Member/memberStore'
+import type { IMemberOptionsList } from '~/features/Member/model/memberLinksData'
+import { useMemberStore } from '~/features/Member/model/memberStore'
 
 const memberStore = useMemberStore()
 

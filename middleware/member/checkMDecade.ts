@@ -9,14 +9,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 		return
 	}
 
-	const validMSections = [
-		'films',
-		'reviews',
-		'lists',
-		'likes',
-		'following',
-		'followers',
-	]
+	const validMSections = ['likes-films']
 	if (!validMSections.includes(mSection)) {
 		return abortNavigation()
 	}

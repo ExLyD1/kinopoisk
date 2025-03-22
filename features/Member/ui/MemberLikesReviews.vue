@@ -4,30 +4,12 @@
 		<div class="flex w-full items-center border-b border-gray-600 pb-2">
 			<!-- links -->
 			<div class="flex items-center gap-3 relative">
-				<!-- Watched -->
-				<NuxtLink
-					:to="
-						memberSectionsLink(user.user_name, 'films', memberStore.currentPage)
-					"
-					class="adapt_links_text text-green-600 text-lg cursor-pointer"
-				>
-					<span
-						class="adapt_hover relative after:absolute after:left-0 after:bottom-[-11px] after:w-full after:h-[1px] after:bg-green-600 after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100"
-						:class="{
-							'text-white after:bg-white after:scale-x-100 hover:text-white':
-								memberStore.memberSection === 'films',
-						}"
-					>
-						Watched
-					</span>
-				</NuxtLink>
-
-				<!-- Reviews -->
+				<!-- Films -->
 				<NuxtLink
 					:to="
 						memberSectionsLink(
 							user.user_name,
-							'reviews',
+							'likes-films',
 							memberStore.currentPage
 						)
 					"
@@ -37,10 +19,54 @@
 						class="adapt_hover relative after:absolute after:left-0 after:bottom-[-11px] after:w-full after:h-[1px] after:bg-green-600 after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100"
 						:class="{
 							'text-white after:bg-white after:scale-x-100 hover:text-white':
-								memberStore.memberSection === 'reviews',
+								memberStore.memberSection === 'likes-films',
+						}"
+					>
+						Films
+					</span>
+				</NuxtLink>
+
+				<!-- Reviews -->
+				<NuxtLink
+					:to="
+						memberSectionsLink(
+							user.user_name,
+							'likes-reviews',
+							memberStore.currentPage
+						)
+					"
+					class="adapt_links_text text-green-600 text-lg cursor-pointer"
+				>
+					<span
+						class="adapt_hover relative after:absolute after:left-0 after:bottom-[-11px] after:w-full after:h-[1px] after:bg-green-600 after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100"
+						:class="{
+							'text-white after:bg-white after:scale-x-100 hover:text-white':
+								memberStore.memberSection === 'likes-reviews',
 						}"
 					>
 						Reviews
+					</span>
+				</NuxtLink>
+
+				<!-- Lists -->
+				<NuxtLink
+					:to="
+						memberSectionsLink(
+							user.user_name,
+							'likes-lists',
+							memberStore.currentPage
+						)
+					"
+					class="adapt_links_text text-green-600 text-lg cursor-pointer"
+				>
+					<span
+						class="adapt_hover relative after:absolute after:left-0 after:bottom-[-11px] after:w-full after:h-[1px] after:bg-green-600 after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100"
+						:class="{
+							'text-white after:bg-white after:scale-x-100 hover:text-white':
+								memberStore.memberSection === 'likes-lists',
+						}"
+					>
+						Lists
 					</span>
 				</NuxtLink>
 			</div>
@@ -133,8 +159,8 @@
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-import { memberFilmsOptions } from './memberLinksData'
-import { useMemberStore } from './memberStore'
+import { memberFilmsOptions } from '../model/memberLinksData'
+import { useMemberStore } from '../model/memberStore'
 import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 
 const memberStore = useMemberStore()

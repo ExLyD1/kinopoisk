@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
-import { useMemberStore } from '~/features/Member/memberStore'
+import { useMemberStore } from '~/features/Member/model/memberStore'
 import { useMediaQuery } from '@vueuse/core'
 
 const memberStore = useMemberStore()

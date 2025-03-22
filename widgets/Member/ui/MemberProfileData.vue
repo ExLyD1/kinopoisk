@@ -117,8 +117,8 @@
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { useMemberStore } from '~/features/Member/memberStore'
-import { memberLinksList } from '~/features/Member/memberLinksData'
+import { useMemberStore } from '~/features/Member/model/memberStore'
+import { memberLinksList } from '~/features/Member/model/memberLinksData'
 
 const memberStore = useMemberStore()
 

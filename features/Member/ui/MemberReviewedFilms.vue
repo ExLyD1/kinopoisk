@@ -1,9 +1,7 @@
 <template>
 	<div class="pb-36">
 		<!-- links and filters bar -->
-		<div
-			class="flex justify-between w-full items-center border-b border-gray-600 pb-2"
-		>
+		<div class="flex w-full items-center border-b border-gray-600 pb-2">
 			<!-- links -->
 			<div class="flex items-center gap-3 relative">
 				<!-- Watched -->
@@ -46,46 +44,24 @@
 					</span>
 				</NuxtLink>
 			</div>
+		</div>
 
-			<!-- filters -->
-			<div>
-				<member-filter-by
-					v-for="(optionBlocks, index) in memberFilmsOptions"
-					:data="optionBlocks"
-				>
-				</member-filter-by>
+		<!-- reviews -->
+		<div
+			v-if="isReviews === true && !isLoading"
+			class="films_holder flex flex-col gap-3 w-full mt-4 text-gray-400"
+		>
+			<div v-for="(item, index) in finalData" class="w-full" :key="index">
+				<member-recent-review-item
+					:data="item"
+					:userId="user.id"
+				></member-recent-review-item>
+
+				<div
+					v-if="index + 1 !== finalData?.length"
+					class="my-5 border-b border-gray-600 w-full"
+				></div>
 			</div>
-		</div>
-
-		<!-- watched quantity films -->
-		<div
-			v-if="isFilms === true && !isLoading && memberStore.genre.length !== 0"
-			class="flex justify-center items-center bg-gray-800 rounded shadow-md px-3 py-5 w-full text-center text-gray-300 mt-5 text-sm"
-		>
-			{{ user.user_name }} has watched {{ filmsList?.length }} films with such
-			genre: {{ memberStore.genre.join(', ') }}.
-		</div>
-
-		<!-- films -->
-		<div
-			v-if="isFilms === true && !isLoading"
-			class="films_holder justify-between flex flex-wrap gap-3 w-full mt-4"
-		>
-			<member-watched-film-item
-				v-for="(film, index) in filmsList"
-				:key="index"
-				:data="film"
-				:userId="user.id"
-			></member-watched-film-item>
-		</div>
-
-		<!-- hasn`t watched with genres` -->
-		<div
-			v-else
-			class="flex justify-center items-center bg-gray-800 rounded shadow-md px-3 py-5 w-full text-center text-gray-300 mt-5 text-sm"
-		>
-			{{ user.user_name }} hasn’t watched any films in such genres :
-			{{ memberStore.genre.join(', ') }}.
 		</div>
 
 		<!-- loading spinner -->
@@ -93,7 +69,7 @@
 
 		<!-- pagination -->
 		<div
-			v-if="isFilms && !isLoading"
+			v-if="isReviews && !isLoading"
 			class="flex items-center justify-between w-full border-t border-gray-700 mt-3 pt-5"
 		>
 			<!-- Prev -->
@@ -109,7 +85,7 @@
 
 			<!-- Pagination Numbers -->
 			<div class="flex items-center gap-3 text-gray-600">
-				<!-- Первая страница -->
+				<!-- first page -->
 				<NuxtLink
 					:to="getPageLink(1)"
 					:class="{ 'text-white': memberStore.currentPage === 1 }"
@@ -117,32 +93,27 @@
 					1
 				</NuxtLink>
 
-				<!-- Многоточие перед серединой -->
-				<span v-if="startPage > 2">...</span>
+				<div v-if="startPage > 2">...</div>
 
-				<!-- Средние страницы -->
 				<NuxtLink
-					v-for="page in visiblePages"
-					:key="page"
-					:to="getPageLink(page)"
-					:class="{ 'text-white': memberStore.currentPage === page }"
+					v-for="(item, index) in pagination"
+					:key="index"
+					:to="getPageLink(item)"
+					:class="{ 'text-white': memberStore.currentPage === item }"
+					>{{ item }}</NuxtLink
 				>
-					{{ page }}
-				</NuxtLink>
 
-				<!-- Многоточие после середины -->
-				<span v-if="endPage < memberStore.totalPages - 1">...</span>
+				<div v-if="endPage < memberStore.totalPages - 1">...</div>
 
-				<!-- Последняя страница -->
+				<!-- last page -->
 				<NuxtLink
 					v-if="memberStore.totalPages > 1"
 					:to="getPageLink(memberStore.totalPages)"
 					:class="{
 						'text-white': memberStore.currentPage === memberStore.totalPages,
 					}"
+					>{{ memberStore.totalPages }}</NuxtLink
 				>
-					{{ memberStore.totalPages }}
-				</NuxtLink>
 			</div>
 
 			<!-- Next -->
@@ -162,24 +133,22 @@
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-import { memberFilmsOptions } from './memberLinksData'
-import { useMemberStore } from './memberStore'
+import { memberFilmsOptions } from '../model/memberLinksData'
+import { useMemberStore } from '../model/memberStore'
+import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 
 const memberStore = useMemberStore()
 
 const props = defineProps<{ data: IUser }>()
 const user = props.data
 
-const filmsList = ref<IFilmItem[]>()
-const isFilms = ref<boolean>(false)
+const finalData = ref<{ review: IReview; film: IFilmItem }[]>()
+const isReviews = ref<boolean>(false)
 const isLoading = ref<boolean>(true)
 
 interface IResponse {
-	data: IFilmItem[]
-	totalItems: number
+	data: IReview[]
 	totalPages: number
-	currentPage: number
-	perPage: number
 }
 
 // Функция для генерации ссылки на страницу
@@ -188,26 +157,23 @@ const getPageLink = (page: number) => {
 		memberStore.memberName,
 		memberStore.memberSection,
 		page
-	)}/${memberStore.genre.length ? 'genre/' + memberStore.genre.join('+') : ''}`
+	)}/`
 }
 
 // Логика пагинации
 const maxVisiblePages = 5 // Максимум видимых страниц (кроме первой и последней)
-const visiblePages = computed(() => {
-	const current = memberStore.currentPage
+const pagination = computed(() => {
 	const total = memberStore.totalPages
+	const current = memberStore.currentPage
 
-	// Если страниц мало, показываем все
 	if (total <= maxVisiblePages + 2) {
 		return Array.from({ length: total - 2 }, (_, i) => i + 2)
 	}
 
-	// Определяем границы видимых страниц
 	const half = Math.floor(maxVisiblePages / 2)
 	let start = Math.max(2, current - half)
-	let end = Math.min(total - 1, current + half)
+	let end = Math.min(total - 1, current + 2)
 
-	// Корректируем границы, чтобы всегда показывать maxVisiblePages страниц
 	if (end - start + 1 < maxVisiblePages) {
 		if (current <= half + 1) {
 			end = maxVisiblePages + 1
@@ -218,41 +184,40 @@ const visiblePages = computed(() => {
 
 	return Array.from({ length: end - start + 1 }, (_, i) => start + i)
 })
-
-const startPage = computed(() => visiblePages.value[0])
-const endPage = computed(
-	() => visiblePages.value[visiblePages.value.length - 1]
-)
+const startPage = computed(() => pagination.value[0])
+const endPage = computed(() => pagination.value[pagination.value.length - 1])
 
 // Загрузка данных
 onMounted(async () => {
-	let response
+	let response = await $fetch<IResponse>(
+		`/api/user/${user.id}/reviewed-by-page/${memberStore.currentPage}`
+	)
 
-	if (memberStore.genre.length === 0) {
-		response = await $fetch<IResponse>(
-			`/api/user/${user.id}/watched-by-page/${memberStore.currentPage}?genre=any`
-		)
-	} else {
-		response = await $fetch<IResponse>(
-			`/api/user/${user.id}/watched-by-page/${
-				memberStore.currentPage
-			}?genre=${memberStore.genre.join('+')}`
-		)
-	}
+	memberStore.totalPages = response.totalPages
 
 	if (response.data.length === 0) {
-		filmsList.value = []
-		isFilms.value = false
+		finalData.value = []
+		isReviews.value = false
 		isLoading.value = false
 		return
 	}
 
-	filmsList.value = response.data
+	const packDataPromised = response.data.map(async (review, index) => {
+		const film = await $fetch<IFilmItem>(`/api/movie/by-id/${review.item_id}`)
+
+		return {
+			review: review,
+			film: film,
+		}
+	})
+
+	const packData: any = await Promise.all(packDataPromised)
+
+	finalData.value = packData
 	memberStore.totalPages = response.totalPages
-	memberStore.currentPage = response.currentPage
 
 	isLoading.value = false
-	isFilms.value = true
+	isReviews.value = true
 })
 </script>
 

@@ -14,7 +14,7 @@
 			</div>
 		</div>
 
-		<LoadingSpinner v-else />
+		<LoadingSpinner v-if="isLoading" />
 
 		<!-- pagination -->
 		<div
@@ -42,11 +42,16 @@
 					1
 				</NuxtLink>
 
-				<div>...</div>
+				<div v-if="startPage > 2">...</div>
 
-				<NuxtLink></NuxtLink>
+				<NuxtLink
+					v-for="item in paginate"
+					:class="{ 'text-white': memberStore.currentPage === item }"
+					:to="getPageLink(item)"
+					>{{ item }}</NuxtLink
+				>
 
-				<div>...</div>
+				<div v-if="endPage <= memberStore.totalPages - 2">...</div>
 
 				<!-- Last page -->
 				<NuxtLink
@@ -76,7 +81,7 @@
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IUser } from '~/shared/model/interfaces/userInterface'
-import { useMemberStore } from './memberStore'
+import { useMemberStore } from '../model/memberStore'
 
 const memberStore = useMemberStore()
 const props = defineProps<{ data: IUser }>()
@@ -86,6 +91,7 @@ const userLists = ref<IFilmsList[]>()
 const isLoading = ref<boolean>(true)
 const isLists = ref<boolean>(false)
 
+// get page
 const getPageLink = (page: number): string => {
 	return memberSectionsLink(
 		memberStore.memberName,
@@ -94,8 +100,32 @@ const getPageLink = (page: number): string => {
 	)
 }
 
+// pagination function
 const maxVisiblePages = 5
-const paginate = computed(() => {})
+const paginate = computed(() => {
+	const total = memberStore.totalPages
+	const current = memberStore.currentPage
+
+	if (total <= maxVisiblePages + 2) {
+		return Array.from({ length: total - 2 }, (_, i) => i + 2)
+	}
+
+	const half = Math.floor(maxVisiblePages / 2)
+	let start = Math.max(2, current - half)
+	let end = Math.min(total - 1, current + half)
+
+	if (end - start + 1 < maxVisiblePages) {
+		if (current + half >= total) {
+			start = total - maxVisiblePages
+		} else {
+			end = maxVisiblePages + 1
+		}
+	}
+
+	return Array.from({ length: end - start + 1 }, (_, i) => start + i)
+})
+const startPage = computed(() => paginate.value[0])
+const endPage = computed(() => paginate.value[paginate.value.length - 1])
 
 interface IResponse {
 	data: IFilmsList[]

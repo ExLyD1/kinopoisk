@@ -49,7 +49,11 @@
 							class="text-gray-400 hover:text-blue-400 transition-all relative after:absolute after:left-0 after:bottom-[-12px] after:w-full after:h-[1px] after:bg-green-600 after:scale-x-0 after:transition-transform"
 							:class="{
 								'text-white after:bg-green-600 after:scale-x-100 hover:text-white ':
-									item.route_query === memberStore.memberSection,
+									item.route_query === memberStore.memberSection ||
+									(item.route_query === 'likes-films' &&
+										memberStore.memberSection === 'likes-reviews') ||
+									(item.route_query === 'likes-films' &&
+										memberStore.memberSection === 'likes-lists'),
 							}"
 						>
 							{{ item.label }}
@@ -84,9 +88,9 @@
 
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
-import { useMemberStore } from '~/features/Member/memberStore'
+import { useMemberStore } from '~/features/Member/model/memberStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { memberLinksList } from '~/features/Member/memberLinksData'
+import { memberLinksList } from '~/features/Member/model/memberLinksData'
 
 const memberStore = useMemberStore()
 

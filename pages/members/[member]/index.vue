@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { useMemberStore } from '~/features/Member/memberStore'
+import { useMemberStore } from '~/features/Member/model/memberStore'
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 
 const memberStore = useMemberStore()

@@ -23,7 +23,7 @@
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 
-import { useMemberStore } from '~/features/Member/memberStore'
+import { useMemberStore } from '~/features/Member/model/memberStore'
 import { useMediaQuery } from '@vueuse/core'
 
 const memberStore = useMemberStore()

@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { useMemberStore } from '~/features/Member/memberStore'
+import { useMemberStore } from '~/features/Member/model/memberStore'
 
 const props = defineProps<{ data: IUser }>()
 const user = props.data

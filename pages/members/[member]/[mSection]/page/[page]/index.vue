@@ -11,12 +11,27 @@
 		></member-reviewed-films>
 
 		<member-lists v-if="mSection === 'lists'" :data="user"></member-lists>
+
+		<member-likes-films
+			v-if="mSection === 'likes-films'"
+			:data="user"
+		></member-likes-films>
+
+		<member-likes-reviews
+			v-if="mSection === 'likes-reviews'"
+			:data="user"
+		></member-likes-reviews>
+
+		<member-likes-lists
+			v-if="mSection === 'likes-lists'"
+			:data="user"
+		></member-likes-lists>
 	</div>
 </template>
 
 <script setup lang="ts">
 import type { IUser } from '~/shared/model/interfaces/userInterface'
-import { useMemberStore } from '~/features/Member/memberStore'
+import { useMemberStore } from '~/features/Member/model/memberStore'
 import { useMediaQuery } from '@vueuse/core'
 
 const memberStore = useMemberStore()

@@ -1,4 +1,4 @@
-import { useMemberStore } from '~/features/Member/memberStore'
+import { useMemberStore } from '~/features/Member/model/memberStore'
 
 export const memberSectionsLink = (
 	u_name: string,

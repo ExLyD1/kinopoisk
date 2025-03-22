@@ -81,14 +81,24 @@
 				/>
 			</div>
 
-			<div class="flex items-center rounded border h-[27px] border-gray-600">
+			<!-- years -->
+			<div
+				class="years_holder flex items-center rounded h-[27px]"
+				:class="{
+					'justify-center': isMediumScreen,
+				}"
+			>
 				<NuxtLink
 					:to="getPageLink(memberStore.currentPage)"
-					class="border-r border-gray-600 text-center flex px-5 h-full items-center justify-center"
-					:class="{ 'bg-gray-600': memberStore.decade === decadeFromUrl }"
+					class="border border-gray-600 rounded-l text-center flex px-5 h-full items-center justify-center"
+					:class="{
+						'bg-gray-600': memberStore.decade === decadeFromUrl,
+						'w-[140px] h-[30px] rounded py-2 text-[17px]': isMediumScreen,
+					}"
 					>{{ memberStore.decade }}</NuxtLink
 				>
 				<NuxtLink
+					v-if="!isMediumScreen"
 					:to="
 						memberSectionsLink(
 							memberStore.memberName,
@@ -98,11 +108,11 @@
 					"
 					v-for="(item, index) in decadeYears"
 					:key="index"
-					class="border-gray-600 text-center flex px-5 h-full items-center justify-center"
+					class="border-gray-600 border text-center flex px-5 h-full items-center justify-center"
 					:class="{
-						'border-r': index < 9,
 						'bg-gray-600':
 							memberStore.year === item && memberStore.decade !== decadeFromUrl,
+						'rounded-r': index === 9,
 					}"
 				>
 					{{ item }}
@@ -119,6 +129,32 @@
 					alt=""
 				/>
 			</div>
+		</div>
+
+		<!-- adaptive years -->
+		<div
+			v-if="isMediumScreen"
+			class="grid grid-cols-5 grid-rows-2 text-gray-400 max-w-[500px] m-auto mt-8"
+		>
+			<NuxtLink
+				:to="
+					memberSectionsLink(
+						memberStore.memberName,
+						memberStore.memberSection,
+						memberStore.currentPage
+					) + `/year/${item}`
+				"
+				v-for="(item, index) in decadeYears"
+				:key="index"
+				class="border-gray-600 border text-center flex px-5 h-full items-center justify-center font-light text-[15px]"
+				:class="{
+					'bg-gray-600':
+						memberStore.year === item && memberStore.decade !== decadeFromUrl,
+					'rounded-r': index === 9,
+				}"
+			>
+				{{ item }}
+			</NuxtLink>
 		</div>
 
 		<!-- watched in decade -->
@@ -227,7 +263,9 @@ import type { IUser } from '~/shared/model/interfaces/userInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import { memberLikedFilmsOptions } from '../model/memberLinksData'
 import { useMemberStore } from '../model/memberStore'
+import { useMediaQuery } from '@vueuse/core'
 
+const isMediumScreen = useMediaQuery('(max-width:960px)')
 const memberStore = useMemberStore()
 const props = defineProps<{ data: IUser }>()
 const user = props.data
@@ -326,24 +364,53 @@ const endPage = computed(
 
 // Загрузка данных
 onMounted(async () => {
-	const response = await $fetch<IResponse>(
-		`/api/user/${user.id}/likes-films-by-page/${memberStore.currentPage}`
-	)
+	try {
+		let response: IResponse
 
-	if (response.data.length === 0) {
+		// by year
+		if (memberStore.year) {
+			response = await $fetch<IResponse>(
+				`/api/user/${user.id}/likes-films-by-page/${memberStore.currentPage}?year=${memberStore.year}`
+			)
+		}
+
+		// by decade
+		else if (memberStore.decade) {
+			response = await $fetch<IResponse>(
+				`/api/user/${user.id}/likes-films-by-page/${memberStore.currentPage}?decade=${memberStore.decade}`
+			)
+		}
+
+		// by nothing
+		else {
+			response = await $fetch<IResponse>(
+				`/api/user/${user.id}/likes-films-by-page/${memberStore.currentPage}`
+			)
+		}
+
+		if (response.data.length === 0) {
+			isLoading.value = false
+			return
+		}
+
+		filmsList.value = response.data
+		memberStore.totalPages = response.totalPages
+		isFilms.value = true
+	} catch (error) {
+		console.error('Some error happened : ', error)
+	} finally {
 		isLoading.value = false
-		return
 	}
-
-	filmsList.value = response.data
-	memberStore.totalPages = response.totalPages
-
-	isLoading.value = false
-	isFilms.value = true
 })
 </script>
 
 <style scoped>
+@media screen and (max-width: 960px) {
+	.years_holder {
+		height: auto;
+	}
+}
+
 @media screen and (max-width: 550px) {
 	.adapt_links_text {
 		font-size: 16px;

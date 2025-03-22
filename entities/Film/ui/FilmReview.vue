@@ -1,5 +1,5 @@
 <template>
-	<div v-if="review" class="flex flex-row gap-3">
+	<div v-if="review && film" class="flex flex-row gap-3">
 		<NuxtLink
 			:to="`/members/${generateSlug(review.author_name)}`"
 			class="rounded-full border-gray-400 w-11 h-11"
@@ -11,7 +11,9 @@
 			<div class="author_holder flex gap-2">
 				<div class="flex items-center gap-2">
 					<NuxtLink
-						:to="`/members/${generateSlug(review.author_name)}`"
+						:to="`/members/${generateSlug(
+							review.author_name
+						)}/reviews/${generateSlug(film.film_name)}`"
 						class="flex gap-1"
 					>
 						<div class="text-gray-600 text-sm">Review by</div>
@@ -45,7 +47,12 @@
 				</div>
 
 				<!-- comments -->
-				<NuxtLink to="/soon" class="flex flex-row items-center gap-1">
+				<NuxtLink
+					:to="`/members/${generateSlug(
+						review.author_name
+					)}/reviews/${generateSlug(film.film_name)}`"
+					class="flex flex-row items-center gap-1"
+				>
 					<img class="h-4 w-4" src="/public/images/comment.png" alt="" />
 					{{ getKNumber(review.review_comments) }}
 				</NuxtLink>
@@ -59,7 +66,9 @@
 			<!-- likes -->
 			<div class="flex gap-4">
 				<NuxtLink
-					to="/soon"
+					:to="`/members/${generateSlug(
+						review.author_name
+					)}/reviews/${generateSlug(film.film_name)}/likes`"
 					class="text-gray-500 flex items-center flex-row gap-1"
 				>
 					<img class="w-5 h-5" src="/public/images/favorite.png" alt="" />
@@ -89,6 +98,12 @@ if (review.review_rate) {
 } else {
 	ratingIcons.value = undefined
 }
+
+const film = ref<IFilmItem>()
+
+onMounted(async () => {
+	film.value = await $fetch<IFilmItem>(`/api/movie/by-id/${review.item_id}`)
+})
 </script>
 
 <style scoped>

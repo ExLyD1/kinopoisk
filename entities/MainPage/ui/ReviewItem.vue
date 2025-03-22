@@ -1,21 +1,24 @@
 <template>
 	<div class="flex flex-row gap-3">
-		<cover-item>
-			<template #card_image>
-				<NuxtLink :to="`/films/${generateSlug(film.film_name)}`">
-					<img
-						:src="film.film_image"
-						alt="review_image"
-						class="w-full h-full object-cover rounded"
-					/>
-				</NuxtLink>
-			</template>
-		</cover-item>
+		<div>
+			<NuxtLink
+				class="w-[75px] h-[110px] block"
+				:to="`/films/${generateSlug(film.film_name)}`"
+			>
+				<img
+					:src="film.film_image"
+					alt="review_image"
+					class="w-full h-full object-cover rounded hover:border-4 hover:border-green-600 transition-all"
+				/>
+			</NuxtLink>
+		</div>
 
 		<div class="flex flex-col gap-3">
 			<div class="flex flex-row items-center gap-2">
 				<NuxtLink
-					:to="`/films/${generateSlug(film.film_name)}`"
+					:to="`/members/${generateSlug(
+						review.author_name
+					)}/reviews/${generateSlug(film.film_name)}`"
 					class="text-white text-xl hover:text-blue-300 transition-all cursor-pointer"
 				>
 					{{ film.film_name }}

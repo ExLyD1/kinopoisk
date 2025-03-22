@@ -34,7 +34,7 @@
 			</NuxtLink>
 
 			<NuxtLink
-				:to="`members/${generateSlug(member.user_name)}/lists`"
+				:to="memberSectionsLink(member.user_name, 'lists', 1)"
 				class="flex items-center w-[60px]"
 			>
 				<img class="w-7 h-7" src="/public/images/list.png" alt="" />

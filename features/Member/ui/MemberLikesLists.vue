@@ -6,13 +6,7 @@
 			<div class="flex items-center gap-3 relative">
 				<!-- Films -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'likes-films',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'likes-films', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -28,13 +22,7 @@
 
 				<!-- Reviews -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'likes-reviews',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'likes-reviews', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -50,13 +38,7 @@
 
 				<!-- Lists -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'likes-lists',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'likes-lists', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -72,16 +54,24 @@
 			</div>
 		</div>
 
-		<!-- films data -->
+		<!-- lists data -->
 		<div v-if="!isLoading && isLists" class="flex flex-col mt-4 w-full">
 			<div v-for="(list, index) in userLists" :key="index">
-				<member-recent-list-item :data="list"></member-recent-list-item>
+				<member-liked-list-item :data="list"></member-liked-list-item>
 
 				<div
 					v-if="index + 1 !== userLists?.length"
 					class="border-b border-gray-700 w-full my-4"
 				></div>
 			</div>
+		</div>
+
+		<!-- no lists yet -->
+		<div
+			v-if="userLists && userLists.length === 0 && !isLoading"
+			class="flex justify-center items-center bg-gray-800 rounded shadow-lg px-3 py-5 w-full text-center text-gray-300 mt-5 text-sm"
+		>
+			No lists yet
 		</div>
 
 		<LoadingSpinner v-if="isLoading" />
@@ -203,7 +193,7 @@ interface IResponse {
 }
 onMounted(async () => {
 	const response = await $fetch<IResponse>(
-		`/api/user/${user.id}/lists-by-page/${memberStore.currentPage}`
+		`/api/user/${user.id}/likes-lists-by-page/${memberStore.currentPage}`
 	)
 
 	if (response.data.length === 0) {

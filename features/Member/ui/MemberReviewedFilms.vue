@@ -193,8 +193,6 @@ onMounted(async () => {
 		`/api/user/${user.id}/reviewed-by-page/${memberStore.currentPage}`
 	)
 
-	memberStore.totalPages = response.totalPages
-
 	if (response.data.length === 0) {
 		finalData.value = []
 		isReviews.value = false

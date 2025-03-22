@@ -1,18 +1,14 @@
 <template>
 	<div class="pb-36">
 		<!-- links and filters bar -->
-		<div class="flex w-full items-center border-b border-gray-600 pb-2">
+		<div
+			class="flex justify-between w-full items-center border-b border-gray-600 pb-2"
+		>
 			<!-- links -->
 			<div class="flex items-center gap-3 relative">
 				<!-- Films -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'likes-films',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'likes-films', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -28,13 +24,7 @@
 
 				<!-- Reviews -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'likes-reviews',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'likes-reviews', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -50,13 +40,7 @@
 
 				<!-- Lists -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'likes-lists',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'likes-lists', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -78,16 +62,21 @@
 			class="films_holder flex flex-col gap-3 w-full mt-4 text-gray-400"
 		>
 			<div v-for="(item, index) in finalData" class="w-full" :key="index">
-				<member-recent-review-item
-					:data="item"
-					:userId="user.id"
-				></member-recent-review-item>
+				<review-item :data="item"></review-item>
 
 				<div
 					v-if="index + 1 !== finalData?.length"
 					class="my-5 border-b border-gray-600 w-full"
 				></div>
 			</div>
+		</div>
+
+		<!-- no reviews yet -->
+		<div
+			v-if="finalData && finalData.length === 0 && !isLoading"
+			class="flex justify-center items-center bg-gray-800 rounded shadow-lg px-3 py-5 w-full text-center text-gray-300 mt-5 text-sm"
+		>
+			No reviews yet
 		</div>
 
 		<!-- loading spinner -->
@@ -216,14 +205,11 @@ const endPage = computed(() => pagination.value[pagination.value.length - 1])
 // Загрузка данных
 onMounted(async () => {
 	let response = await $fetch<IResponse>(
-		`/api/user/${user.id}/reviewed-by-page/${memberStore.currentPage}`
+		`/api/user/${user.id}/likes-reviews-by-page/${memberStore.currentPage}`
 	)
-
-	memberStore.totalPages = response.totalPages
 
 	if (response.data.length === 0) {
 		finalData.value = []
-		isReviews.value = false
 		isLoading.value = false
 		return
 	}

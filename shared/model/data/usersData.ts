@@ -13,6 +13,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 8,
 		user_reviews_quantity: 6,
 		user_reviews: [2, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 26, 30, 55],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 19,
 		user_films: [
 			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
@@ -25,14 +31,19 @@ export const usersList: Array<IUser> = [
 			26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43,
 			44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55,
 		],
+
 		user_lists_quantity: 2,
 		user_lists: [1, 5, 7],
+
 		user_favorite_films_quantity: 5,
 		user_favorite_films: [
 			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 30, 55,
 		],
+
 		user_favorite_lists_quantity: 3,
-		user_favorite_lists: [12, 20, 25],
+		user_favorite_lists: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
 		user_bio:
 			'Adventure seeker and movie enthusiast. Love exploring new genres and hidden cinematic gems.',
 		user_tags: ['adventure', 'mystery', 'drama'],
@@ -51,6 +62,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 7,
 		user_reviews_quantity: 5,
 		user_reviews: [1, 11, 20, 27, 50],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 15,
 		user_films: [2, 9, 11, 15, 20, 23, 25, 27, 29, 32, 40, 48, 50, 52, 54],
 		user_lists_quantity: 3,
@@ -74,6 +91,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [3, 12, 16, 25, 33],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 1, 3, 12, 16, 18, 25, 28, 30, 33, 42, 45, 52],
 		user_lists_quantity: 2,
@@ -97,6 +120,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [1, 4, 7, 14, 19],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 17,
 		user_films: [2, 1, 4, 7, 9, 12, 14, 18, 19, 24, 26, 30, 31, 35, 41, 47, 49],
 		user_lists_quantity: 2,
@@ -120,6 +149,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [2, 5, 13, 21, 48],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 16,
 		user_films: [2, 1, 5, 7, 13, 15, 17, 21, 24, 27, 32, 36, 38, 44, 48, 54],
 		user_lists_quantity: 3,
@@ -143,6 +178,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [6, 8, 16, 23, 45],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 3, 6, 8, 11, 16, 23, 28, 33, 45, 49],
 		user_lists_quantity: 2,
@@ -165,6 +206,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [7, 13, 19, 30, 47],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 4, 7, 13, 17, 19, 21, 30, 34, 36, 38, 47],
 		user_lists_quantity: 2,
@@ -187,6 +234,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [8, 12, 14, 22, 41],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 4, 8, 9, 12, 14, 18, 22, 24, 35, 41, 49],
 		user_lists_quantity: 2,
@@ -210,6 +263,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [9, 15, 23, 25, 40],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 1, 6, 9, 13, 15, 23, 25, 27, 32, 40, 44, 50],
 		user_lists_quantity: 3,
@@ -232,6 +291,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [10, 19, 26, 36, 43],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 9,
 		user_films: [2, 5, 10, 19, 20, 26, 29, 36, 43, 53],
 		user_lists_quantity: 2,
@@ -255,6 +320,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [11, 23, 32, 40, 50],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 3, 11, 13, 19, 23, 27, 32, 38, 40, 44, 50],
 		user_lists_quantity: 2,
@@ -277,6 +348,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [12, 16, 25, 33, 42],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 8,
 		user_films: [2, 1, 4, 6, 12, 16, 25, 33, 42],
 		user_lists_quantity: 2,
@@ -299,6 +376,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [13, 21, 27, 32, 38],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 14,
 		user_films: [2, 5, 9, 11, 13, 15, 19, 21, 27, 32, 36, 38, 40, 44],
 		user_lists_quantity: 2,
@@ -321,6 +404,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [14, 22, 31, 39, 49],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 9,
 		user_films: [2, 1, 7, 14, 18, 22, 31, 39, 41, 49],
 		user_lists_quantity: 2,
@@ -343,6 +432,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [15, 23, 27, 32, 40],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 3, 5, 9, 15, 23, 27, 32, 40, 42, 44, 50],
 		user_lists_quantity: 3,
@@ -365,6 +460,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [16, 25, 33, 42, 45],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 10,
 		user_films: [2, 3, 4, 6, 8, 16, 25, 28, 33, 42, 45],
 		user_lists_quantity: 2,
@@ -387,6 +488,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [17, 26, 34, 36, 43],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 4, 10, 13, 17, 19, 21, 26, 34, 36, 38, 43, 44],
 		user_lists_quantity: 2,
@@ -409,6 +516,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [18, 25, 28, 35, 45],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 10,
 		user_films: [2, 3, 6, 9, 14, 18, 25, 28, 35, 42, 45],
 		user_lists_quantity: 2,
@@ -431,6 +544,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [19, 26, 38, 43, 47],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 14,
 		user_films: [2, 1, 3, 8, 10, 13, 19, 21, 26, 28, 30, 36, 38, 43, 47],
 		user_lists_quantity: 2,
@@ -453,6 +572,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [20, 29, 32, 40, 47],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 5, 9, 10, 15, 20, 23, 29, 32, 34, 40, 47],
 		user_lists_quantity: 2,
@@ -475,6 +600,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [21, 38, 48, 13, 26],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 7, 10, 13, 15, 21, 26, 30, 32, 38, 40, 48],
 		user_lists_quantity: 2,
@@ -497,6 +628,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [22, 31, 39, 41, 49],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 9,
 		user_films: [2, 11, 12, 14, 18, 22, 31, 39, 41, 49],
 		user_lists_quantity: 2,
@@ -519,6 +656,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [23, 32, 40, 44, 50],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 9,
 		user_films: [2, 11, 15, 23, 27, 32, 40, 44, 50],
 		user_lists_quantity: 2,
@@ -541,6 +684,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [24, 26, 29, 34, 46],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 4, 8, 12, 16, 24, 26, 29, 34, 41, 43, 46],
 		user_lists_quantity: 2,
@@ -563,6 +712,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [25, 32, 40, 42, 52],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 1, 5, 9, 15, 17, 25, 27, 32, 35, 40, 42, 52],
 		user_lists_quantity: 2,
@@ -585,6 +740,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [26, 38, 43, 48, 53],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 10,
 		user_films: [2, 10, 13, 19, 21, 26, 29, 36, 38, 43, 53],
 		user_lists_quantity: 2,
@@ -607,6 +768,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [27, 34, 40, 44, 54],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 9, 13, 15, 17, 23, 27, 32, 34, 40, 44, 54],
 		user_lists_quantity: 2,
@@ -629,6 +796,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [28, 33, 42, 45, 47],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 14,
 		user_films: [2, 1, 4, 6, 14, 16, 18, 24, 28, 30, 33, 35, 42, 45, 47],
 		user_lists_quantity: 2,
@@ -651,6 +824,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [29, 34, 38, 43, 46],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 13,
 		user_films: [2, 9, 12, 13, 19, 21, 24, 26, 29, 34, 38, 43, 46, 48],
 		user_lists_quantity: 2,
@@ -673,6 +852,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [30, 36, 47, 13, 21],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 14,
 		user_films: [2, 5, 6, 10, 13, 15, 20, 21, 26, 29, 30, 32, 36, 47],
 		user_lists_quantity: 2,
@@ -695,6 +880,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [31, 37, 41, 47, 51],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 13,
 		user_films: [2, 7, 11, 15, 20, 22, 25, 31, 37, 39, 42, 47, 51, 55],
 		user_lists_quantity: 2,
@@ -717,6 +908,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [32, 40, 44, 47, 50],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 14,
 		user_films: [2, 6, 8, 9, 12, 16, 18, 23, 27, 30, 32, 40, 44, 47, 50],
 		user_lists_quantity: 2,
@@ -739,6 +936,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [33, 42, 52, 16, 25],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 11, 12, 14, 16, 22, 25, 28, 33, 39, 42, 52],
 		user_lists_quantity: 2,
@@ -761,6 +964,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [34, 43, 46, 17, 29],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 4, 7, 10, 17, 20, 24, 26, 29, 34, 37, 43, 46],
 		user_lists_quantity: 2,
@@ -783,6 +992,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [35, 40, 50, 15, 23],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 5, 9, 15, 18, 23, 27, 32, 35, 40, 50],
 		user_lists_quantity: 2,
@@ -805,6 +1020,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [36, 43, 47, 48, 53],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 14,
 		user_films: [2, 1, 6, 8, 12, 15, 18, 24, 27, 30, 35, 36, 43, 47, 48],
 		user_lists_quantity: 2,
@@ -827,6 +1048,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [37, 41, 47, 51, 52],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 7, 11, 14, 20, 23, 25, 31, 34, 37, 41, 43, 52],
 		user_lists_quantity: 2,
@@ -849,6 +1076,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [38, 44, 48, 53, 54],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 13,
 		user_films: [2, 9, 10, 13, 19, 21, 26, 27, 29, 36, 38, 44, 48, 53],
 		user_lists_quantity: 2,
@@ -871,6 +1104,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [39, 49, 22, 31, 41],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 10,
 		user_films: [2, 8, 12, 14, 18, 22, 25, 31, 33, 39, 49],
 		user_lists_quantity: 2,
@@ -893,6 +1132,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [40, 44, 50, 23, 32],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 13,
 		user_films: [2, 6, 11, 15, 17, 23, 27, 29, 32, 34, 40, 44, 46, 50],
 		user_lists_quantity: 2,
@@ -915,6 +1160,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [41, 47, 51, 31, 37],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 7, 14, 15, 18, 22, 25, 31, 35, 41, 47, 51],
 		user_lists_quantity: 2,
@@ -937,6 +1188,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [42, 48, 52, 28, 33],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 14,
 		user_films: [2, 1, 4, 6, 7, 13, 16, 21, 25, 28, 33, 36, 42, 48, 52],
 		user_lists_quantity: 2,
@@ -959,6 +1216,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [43, 46, 53, 36, 47],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 10, 17, 19, 24, 26, 31, 34, 36, 43, 46, 53],
 		user_lists_quantity: 2,
@@ -981,6 +1244,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [44, 48, 50, 54, 38],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 14,
 		user_films: [2, 11, 13, 15, 21, 23, 27, 32, 38, 40, 44, 48, 50, 54],
 		user_lists_quantity: 2,
@@ -1003,6 +1272,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [45, 47, 52, 25, 33],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 3, 6, 9, 15, 18, 25, 28, 33, 35, 42, 45, 47],
 		user_lists_quantity: 2,
@@ -1025,6 +1300,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [46, 50, 23, 34, 40],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 6, 12, 15, 23, 24, 27, 29, 34, 40, 42, 46, 50],
 		user_lists_quantity: 2,
@@ -1047,6 +1328,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [47, 51, 31, 37, 43],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 7, 14, 19, 20, 25, 30, 35, 41, 47, 53, 55],
 		user_lists_quantity: 2,
@@ -1069,6 +1356,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [48, 54, 21, 38, 44],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 13,
 		user_films: [2, 8, 12, 16, 21, 24, 28, 33, 36, 42, 48, 50, 54],
 		user_lists_quantity: 2,
@@ -1091,6 +1384,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [49, 22, 31, 39, 41],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 10,
 		user_films: [2, 8, 12, 14, 18, 22, 25, 31, 33, 39, 49],
 		user_lists_quantity: 2,
@@ -1113,6 +1412,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [50, 23, 32, 40, 44],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 13,
 		user_films: [2, 6, 11, 15, 17, 23, 25, 27, 29, 32, 40, 44, 46, 50],
 		user_lists_quantity: 2,
@@ -1135,6 +1440,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [51, 31, 37, 41, 47],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 12,
 		user_films: [2, 7, 10, 15, 20, 24, 26, 31, 34, 37, 43, 47, 51],
 		user_lists_quantity: 2,
@@ -1157,6 +1468,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [52, 25, 33, 42, 48],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 13,
 		user_films: [2, 9, 13, 15, 17, 23, 26, 27, 29, 32, 40, 44, 46, 52],
 		user_lists_quantity: 2,
@@ -1179,6 +1496,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 4,
 		user_reviews_quantity: 5,
 		user_reviews: [53, 26, 36, 43, 47],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 11,
 		user_films: [2, 10, 19, 21, 24, 26, 29, 34, 38, 43, 47, 53],
 		user_lists_quantity: 2,
@@ -1201,6 +1524,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 6,
 		user_reviews_quantity: 5,
 		user_reviews: [54, 27, 38, 44, 48],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 13,
 		user_films: [2, 8, 12, 16, 21, 24, 27, 33, 36, 42, 48, 50, 54],
 		user_lists_quantity: 2,
@@ -1223,6 +1552,12 @@ export const usersList: Array<IUser> = [
 		user_followers_quantity: 5,
 		user_reviews_quantity: 5,
 		user_reviews: [55, 1, 11, 21, 31],
+
+		user_favorite_reviews_quantity: 17,
+		user_favorite_reviews: [
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		],
+
 		user_films_quantity: 7,
 		user_films: [2, 1, 11, 21, 31, 41, 51, 55],
 		user_lists_quantity: 2,

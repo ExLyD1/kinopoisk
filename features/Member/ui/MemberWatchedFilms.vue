@@ -8,9 +8,7 @@
 			<div class="flex items-center gap-3 relative">
 				<!-- Watched -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(user.user_name, 'films', memberStore.currentPage)
-					"
+					:to="memberSectionsLink(user.user_name, 'films', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -26,13 +24,7 @@
 
 				<!-- Reviews -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'reviews',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'reviews', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span

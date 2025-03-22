@@ -8,13 +8,7 @@
 			<div class="flex items-center gap-3 relative">
 				<!-- Films -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'likes-films',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'likes-films', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -30,13 +24,7 @@
 
 				<!-- Reviews -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'likes-reviews',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'likes-reviews', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -52,13 +40,7 @@
 
 				<!-- Lists -->
 				<NuxtLink
-					:to="
-						memberSectionsLink(
-							user.user_name,
-							'likes-lists',
-							memberStore.currentPage
-						)
-					"
+					:to="memberSectionsLink(user.user_name, 'likes-lists', 1)"
 					class="adapt_links_text text-green-600 text-lg cursor-pointer"
 				>
 					<span
@@ -161,10 +143,10 @@
 			></member-watched-film-item>
 		</div>
 
-		<!-- hasn`t liked with genres` -->
+		<!-- hasn`t liked` -->
 		<div
 			v-if="isFilms === false && !isLoading && !filmsList"
-			class="flex justify-center items-center bg-gray-800 rounded shadow-md px-3 py-5 w-full text-center text-gray-300 mt-5 text-sm"
+			class="flex justify-center items-center bg-gray-800 rounded shadow-lg px-3 py-5 w-full text-center text-gray-300 mt-5 text-sm"
 		>
 			{{ user.user_name }} hasn’t liked any films
 		</div>

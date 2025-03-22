@@ -25,8 +25,8 @@
 					class="shrink-0 size-2"
 					:class="
 						icon
-							? 'text-green-600 dark:text-green-600'
-							: 'text-green-600 dark:text-green-600'
+							? 'text-green-600 dark:text-yellow-600'
+							: 'text-gray-300 dark:text-neutral-600'
 					"
 					xmlns="http://www.w3.org/2000/svg"
 					width="10"

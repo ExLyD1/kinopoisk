@@ -26,6 +26,16 @@
 			v-if="mSection === 'likes-lists'"
 			:data="user"
 		></member-likes-lists>
+
+		<member-following-users-list
+			v-if="mSection === 'following'"
+			:data="user"
+		></member-following-users-list>
+
+		<member-followers-list
+			v-if="mSection === 'followers'"
+			:data="user"
+		></member-followers-list>
 	</div>
 </template>
 

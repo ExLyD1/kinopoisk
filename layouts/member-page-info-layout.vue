@@ -47,7 +47,9 @@
 									(item.route_query === 'likes-films' &&
 										memberStore.memberSection === 'likes-reviews') ||
 									(item.route_query === 'likes-films' &&
-										memberStore.memberSection === 'likes-lists'),
+										memberStore.memberSection === 'likes-lists') ||
+									(item.route_query === 'following' &&
+										memberStore.memberSection === 'followers'),
 							}"
 						>
 							{{ item.label }}
@@ -92,15 +94,15 @@ const route = useRoute()
 
 const user = ref<IUser>()
 
-onMounted(async () => {
-	const user_name = route.params.member as string
-	if (user_name) {
-		memberStore.memberName = user_name
-	}
+watchEffect(async () => {
+	const userName = route.params.member as string
+	memberStore.memberName = userName
 
-	user.value = await $fetch<IUser>(
-		`/api/user/by/name/${memberStore.memberName}`
-	)
+	try {
+		user.value = await $fetch<IUser>(`/api/user/by/name/${userName}`)
+	} catch (error) {
+		console.error('Ошибка при загрузке пользователя:', error)
+	}
 })
 
 const { isLoading, finishLoading } = useLoading()

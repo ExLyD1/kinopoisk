@@ -14,6 +14,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 2,
@@ -24,10 +26,13 @@ export const reviewsList: IReview[] = [
 		author_name: 'AlexTheExplorer',
 		review_comments: 19,
 		review_likes: 27,
-		review_text: 'Random review text 85',
+		review_text:
+			'The movie is absolutely stunning! Every scene is filled with atmosphere and depth, and the acting is top-notch. The plot unfolds at a steady but intense pace, keeping you hooked until the very last minute. The ending was especially impressive—unexpected yet completely logical, leaving a lasting emotional impact. The soundtrack perfectly complements the film, and the cinematography deserves special praise. This is the kind of movie that stays with you long after the credits roll.',
 		review_rate: 1,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 2, 3, 5, 12, 17, 18],
 	},
 	{
 		id: 3,
@@ -42,6 +47,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 0,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 4,
@@ -56,6 +63,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 1,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 5,
@@ -70,6 +79,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 0,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 6,
@@ -84,6 +95,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 1.2,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 7,
@@ -98,6 +111,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 8,
@@ -112,6 +127,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4.6,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 9,
@@ -126,6 +143,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.3,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 10,
@@ -140,6 +159,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 5.0,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 11,
@@ -154,6 +175,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.1,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 12,
@@ -168,6 +191,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.2,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 13,
@@ -182,6 +207,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 5.0,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 14,
@@ -196,6 +223,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.4,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 15,
@@ -210,6 +239,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 1.5,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 16,
@@ -224,6 +255,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 1.8,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 17,
@@ -238,6 +271,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 18,
@@ -252,6 +287,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.2,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 19,
@@ -266,6 +303,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.1,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 20,
@@ -280,6 +319,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.3,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 21,
@@ -294,6 +335,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4.8,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 22,
@@ -308,6 +351,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 1.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 23,
@@ -322,6 +367,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4.1,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 24,
@@ -336,6 +383,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 25,
@@ -350,6 +399,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 26,
@@ -364,6 +415,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4.2,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 27,
@@ -378,6 +431,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.5,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 28,
@@ -392,6 +447,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.2,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 29,
@@ -406,6 +463,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.6,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 30,
@@ -420,6 +479,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 31,
@@ -434,6 +495,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.4,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 32,
@@ -448,6 +511,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4.4,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 33,
@@ -462,6 +527,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 34,
@@ -476,6 +543,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 1.2,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 35,
@@ -490,6 +559,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 0.5,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 36,
@@ -504,6 +575,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 0.0,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 37,
@@ -518,6 +591,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.2,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 38,
@@ -532,6 +607,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.2,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 39,
@@ -546,6 +623,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 4.4,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 40,
@@ -560,6 +639,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.7,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 41,
@@ -574,6 +655,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.7,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 42,
@@ -588,6 +671,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.1,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 43,
@@ -602,6 +687,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 1.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 44,
@@ -616,6 +703,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 45,
@@ -630,6 +719,8 @@ export const reviewsList: IReview[] = [
 		// review_rate: 3.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 46,
@@ -644,6 +735,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 47,
@@ -658,6 +751,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 48,
@@ -671,6 +766,8 @@ export const reviewsList: IReview[] = [
 		review_text: 'Random review text 50',
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 49,
@@ -684,6 +781,8 @@ export const reviewsList: IReview[] = [
 		review_text: 'Random review text 50',
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 50,
@@ -697,6 +796,8 @@ export const reviewsList: IReview[] = [
 		review_text: 'Random review text 50',
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 51,
@@ -710,6 +811,8 @@ export const reviewsList: IReview[] = [
 		review_text: 'Random review text 50',
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 52,
@@ -723,6 +826,8 @@ export const reviewsList: IReview[] = [
 		review_text: 'Random review text 50',
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 53,
@@ -736,6 +841,8 @@ export const reviewsList: IReview[] = [
 		review_text: 'Random review text 50',
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 54,
@@ -750,6 +857,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.7,
 		isEdited: false,
 		published_date: 1677110400000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 55,
@@ -765,6 +874,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.7,
 		isEdited: true,
 		published_date: 1698777600000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 56,
@@ -780,6 +891,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.1,
 		isEdited: false,
 		published_date: 1708705200000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 57,
@@ -795,6 +908,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 1.9,
 		isEdited: false,
 		published_date: 1698777600000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 58,
@@ -810,6 +925,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 3.9,
 		isEdited: false,
 		published_date: 1698777600000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 59,
@@ -825,6 +942,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: true,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 60,
@@ -839,6 +958,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: false,
 		published_date: 1698777600000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 61,
@@ -853,6 +974,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 62,
@@ -867,6 +990,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 63,
@@ -881,6 +1006,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 64,
@@ -895,6 +1022,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 65,
@@ -909,6 +1038,8 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 	{
 		id: 66,
@@ -923,5 +1054,7 @@ export const reviewsList: IReview[] = [
 		review_rate: 2.9,
 		isEdited: false,
 		published_date: 1707936000000,
+		review_likes_users: [1, 7, 8, 22, 31, 32, 43],
+		review_comments_users: [1, 5, 12, 14, 15, 16, 17, 18],
 	},
 ]

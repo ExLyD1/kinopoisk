@@ -80,11 +80,11 @@ export const filmsList: Array<IFilmItem> = [
 			1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 48, 49, 50, 51, 52, 53,
 		],
 		likes: 450,
-		liked_by_users: [2, 5, 6, 7, 8, 9, 10, 11],
+		liked_by_users: [1, 2, 5, 6, 7, 8, 9, 10, 11],
 		rating1: [14, 15],
 		rating2: [16, 17],
 		rating3: [18, 19, 20],
-		rating4: [21, 22, 23],
+		rating4: [1, 21, 22, 23],
 		rating5: [2, 4, 6],
 		cast: ['Alina Kravtsova', 'Dmitry Orlov', 'Svetlana Ivanova'],
 		crew: {

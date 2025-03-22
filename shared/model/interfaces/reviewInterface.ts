@@ -5,8 +5,13 @@ export interface IReview {
 	user_id: number
 	author_avatar: string
 	author_name: string
+
 	review_comments: number
+	review_comments_users: number[]
+
 	review_likes: number
+	review_likes_users: number[]
+
 	review_text: string
 	review_rate?: number
 	isEdited: boolean

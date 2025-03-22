@@ -40,6 +40,7 @@ export default defineNuxtConfig({
 			'~/entities/Film/ui',
 			'~/entities/List/ui',
 			'~/entities/Member/ui',
+			'~/entities/Review/ui',
 
 			'~/widgets/MainPage/ui',
 			'~/widgets/Members/ui',
@@ -49,6 +50,7 @@ export default defineNuxtConfig({
 			'~/widgets/Film/ui',
 			'~/widgets/List/ui',
 			'~/widgets/Member/ui',
+			'~/widgets/Review/ui',
 
 			'~/features/Footer',
 			'~/features/Header',

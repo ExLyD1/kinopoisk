@@ -63,7 +63,9 @@ onMounted(async () => {
 		`/api/user/${userId}/${film.id}/isLiked`
 	)
 
-	userRated.value = await $fetch(`/api/user/${userId}/${film.id}/rating`)
+	userRated.value = await $fetch<number>(
+		`/api/user/${userId}/${film.id}/rating`
+	)
 })
 </script>
 

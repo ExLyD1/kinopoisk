@@ -15,13 +15,13 @@
 			</NuxtLink>
 
 			<div class="flex gap-2">
-				<NuxtLink :to="`/members/${generateSlug(user.user_name)}/films`">
+				<NuxtLink :to="memberSectionsLink(user.user_name, 'films', 1)">
 					<div class="text-sm text-gray-600 hover:text-gray-500">
 						{{ getKNumber(user.user_films_quantity) }} films,
 					</div>
 				</NuxtLink>
 
-				<NuxtLink :to="`/members/${generateSlug(user.user_name)}/reviews`">
+				<NuxtLink :to="memberSectionsLink(user.user_name, 'reviews', 1)">
 					<div class="text-sm text-gray-600 hover:text-gray-500">
 						{{ getKNumber(user.user_reviews_quantity) }} reviews
 					</div>

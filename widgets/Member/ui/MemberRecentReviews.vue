@@ -2,7 +2,9 @@
 	<div>
 		<widget-title>
 			<template #text_1>
-				<NuxtLink to="/soon">Reviews</NuxtLink>
+				<NuxtLink :to="memberSectionsLink(user.user_name, 'reviews', 1)"
+					>Reviews</NuxtLink
+				>
 			</template>
 		</widget-title>
 

@@ -2,12 +2,13 @@
 	<div class="total_holder">
 		<widget-title>
 			<template #text_1>
-				<div class="hover:text-gray-400 text-gray-400 cursor-text">
+				<NuxtLink :to="memberSectionsLink(user.user_name, 'likes-films', 1)">
 					Favorite films
-				</div>
+				</NuxtLink>
 			</template>
 		</widget-title>
 
+		<!-- fav films -->
 		<div
 			v-if="favFilms.length > 0"
 			class="images_holder mt-3 flex items-center gap-3"

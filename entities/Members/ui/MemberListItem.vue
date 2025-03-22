@@ -16,7 +16,7 @@
 				</NuxtLink>
 
 				<NuxtLink
-					:to="`members/${generateSlug(member.user_name)}/reviews`"
+					:to="memberSectionsLink(member.user_name, 'reviews', 1)"
 					class="text-gray-500 text-sm"
 				>
 					{{ member.user_reviews_quantity }} reviews
@@ -26,7 +26,7 @@
 
 		<div class="data flex items-center gap-5">
 			<NuxtLink
-				:to="`members/${generateSlug(member.user_name)}/films`"
+				:to="memberSectionsLink(member.user_name, 'films', 1)"
 				class="flex items-center gap-1 w-[90px]"
 			>
 				<img class="w-7 h-7" src="/public/images/eye.png" alt="" />
@@ -42,7 +42,7 @@
 			</NuxtLink>
 
 			<NuxtLink
-				:to="`members/${generateSlug(member.user_name)}/favorite-films`"
+				:to="memberSectionsLink(member.user_name, 'likes-films', 1)"
 				class="flex items-center gap-1 w-[80px]"
 			>
 				<img class="w-7 h-7" src="/public/images/favorite_orange.png" alt="" />

@@ -15,10 +15,10 @@
 		</NuxtLink>
 
 		<div class="text-sm text-gray-400">
-			<NuxtLink :to="`members/${generateSlug(user.user_name)}/films`">
+			<NuxtLink :to="memberSectionsLink(user.user_name, 'films', 1)">
 				{{ getKNumber(user.user_films_quantity) }} films
 			</NuxtLink>
-			<NuxtLink :to="`members/${generateSlug(user.user_name)}/reviews`">
+			<NuxtLink :to="memberSectionsLink(user.user_name, 'reviews', 1)">
 				{{ getKNumber(user.user_reviews_quantity) }} reviews
 			</NuxtLink>
 		</div>

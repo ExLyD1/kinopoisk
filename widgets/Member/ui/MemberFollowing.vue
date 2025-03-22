@@ -2,15 +2,22 @@
 	<div class="main_holder_qwe w-[283px]">
 		<widget-title>
 			<template #text_1>
-				<NuxtLink to="/soon">Following</NuxtLink>
+				<NuxtLink :to="memberSectionsLink(user.user_name, 'following', 1)"
+					>Following</NuxtLink
+				>
 			</template>
 			<template #text_2>
-				<NuxtLink to="/soon">{{ followingsList.length }}</NuxtLink>
+				<NuxtLink :to="memberSectionsLink(user.user_name, 'following', 1)">{{
+					followingsList.length
+				}}</NuxtLink>
 			</template>
 		</widget-title>
 
 		<div v-if="followingsList.length > 0" class="flex gap-2 mt-2 flex-wrap">
-			<NuxtLink v-for="(item, index) in followingsList">
+			<NuxtLink
+				v-for="(item, index) in followingsList"
+				:to="`/members/${generateSlug(item.user_name)}`"
+			>
 				<Avatar
 					class="border-gray-500 border hover:border-gray-300 transition-all cursor-pointer"
 				>

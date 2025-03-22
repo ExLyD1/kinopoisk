@@ -20,7 +20,7 @@
 			<div class="flex items-center justify-center">
 				<!-- films -->
 				<div class="border-r border-gray-800 px-2 text-center group">
-					<NuxtLink :to="`/members/${generateSlug(user.user_name)}/films`">
+					<NuxtLink :to="memberSectionsLink(user.user_name, 'films', 1)">
 						<div class="text-gray-200 text-2xl">
 							{{ user.user_films_quantity }}
 						</div>
@@ -34,7 +34,7 @@
 
 				<!-- lists -->
 				<div class="border-r border-gray-800 px-2 text-center group">
-					<NuxtLink :to="`/members/${generateSlug(user.user_name)}/lists`">
+					<NuxtLink :to="memberSectionsLink(user.user_name, 'lists', 1)">
 						<div class="text-gray-200 text-2xl">
 							{{ user.user_lists_quantity }}
 						</div>
@@ -48,7 +48,7 @@
 
 				<!-- following -->
 				<div class="border-r border-gray-800 px-2 text-center group">
-					<NuxtLink :to="`/members/${generateSlug(user.user_name)}/following`">
+					<NuxtLink :to="memberSectionsLink(user.user_name, 'following', 1)">
 						<div class="text-gray-200 text-2xl">
 							{{ user.user_following_quantity }}
 						</div>
@@ -62,7 +62,7 @@
 
 				<!-- followers -->
 				<div class="border-r border-gray-800 px-2 text-center group">
-					<NuxtLink :to="`/members/${generateSlug(user.user_name)}/followers`">
+					<NuxtLink :to="memberSectionsLink(user.user_name, 'followers', 1)">
 						<div class="text-gray-200 text-2xl">
 							{{ user.user_followers_quantity }}
 						</div>

@@ -59,6 +59,7 @@ export default defineNuxtConfig({
 			'~/features/Film',
 			'~/features/List',
 			'~/features/Member/ui',
+			'~/features/Review',
 		],
 	},
 

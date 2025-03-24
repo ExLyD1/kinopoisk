@@ -6,4 +6,6 @@ export interface IComment {
 	author_avatar: string
 	comment_text: string
 	published_time: number
+
+	liked_by_users: number[]
 }

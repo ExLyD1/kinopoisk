@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { decadesAndYears } from '~/shared/model/validRoutes/validDecade'
 
 export const useFilmsStore = defineStore('filmsStore', () => {
 	const route = useRoute()
@@ -10,6 +11,8 @@ export const useFilmsStore = defineStore('filmsStore', () => {
 	const year = ref<number>()
 	const genres = ref<string[]>([])
 	const sort = ref<string>()
+
+	const sortIndex = ref<number>()
 
 	const updateData = () => {
 		if (route.params.fDecade) {
@@ -42,6 +45,14 @@ export const useFilmsStore = defineStore('filmsStore', () => {
 				: Number(route.params.fYear)
 		} else {
 			year.value = undefined
+		}
+
+		if (year.value) {
+			decadesAndYears.forEach((obj, index) => {
+				if (obj.years.includes(String(year.value))) {
+					decade.value = obj.decade
+				}
+			})
 		}
 	}
 

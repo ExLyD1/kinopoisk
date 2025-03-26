@@ -6,8 +6,14 @@
 			@mouseenter="openDropDown"
 			@mouseleave="handleMouseLeave"
 		>
-			<!-- Заголовок селекта -->
+			<!-- deep options label -->
+			<div v-if="props.data.deep_options" class="px-3 py-2 whitespace-nowrap">
+				{{ props.data.deep_options[indexSort].label }}
+			</div>
+
+			<!-- odinary label -->
 			<div
+				v-else
 				class="w-auto px-3 py-2 text-gray-400 cursor-pointer whitespace-nowrap"
 			>
 				{{ label }}
@@ -68,7 +74,7 @@
 					:to="
 						props.data.type === 'genre'
 							? ''
-							: getPageLink(
+							: getFilmsSearchPageLink(
 									props.data.type,
 									filmsStore.currentPage,
 									option.route_query
@@ -117,8 +123,9 @@
 						<NuxtLink
 							v-for="(option, index) in deep_option.options"
 							:key="index"
+							@click="indexSort = index"
 							:to="
-								getPageLink(
+								getFilmsSearchPageLink(
 									props.data.type,
 									filmsStore.currentPage,
 									option.route_query
@@ -151,12 +158,9 @@
 <script setup lang="ts">
 import type { IFilmOptionsList } from '~/features/Film/model/filmsSearchData'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-import { useFilmFiltersStore } from '~/features/Film/model/filmFiltersStore'
 import { useFilmsStore } from '~/features/Film/model/filmsStore'
 
 const filmsStore = useFilmsStore()
-
-const filmFiltersStore = useFilmFiltersStore()
 
 // Получаение данных из родителя
 const props = defineProps<{ data: IFilmOptionsList }>()
@@ -178,64 +182,6 @@ const handleMouseLeave = (event: MouseEvent) => {
 	isDropdownVisible.value = false
 }
 
-// filter get link
-const getPageLink = (type: string, page: number, route_query: string) => {
-	let url = '/films'
-
-	// decade or year
-	if (type === 'decade' || type === 'year') {
-		if (type === 'decade') {
-			url += `/decade/${route_query}`
-		} else if (type === 'year') {
-			url += `/year/${route_query}`
-		}
-
-		if (filmsStore.genres.length > 0) {
-			url += `/genre/${filmsStore.genres.join('+')}`
-		}
-
-		if (filmsStore.sort) {
-			url += `/by/${filmsStore.sort}`
-		}
-	}
-
-	// genre
-	else if (type === 'genre') {
-		// filmsStore.genres.push(route_query)
-
-		if (filmsStore.decade) {
-			url += `/decade/${filmsStore.decade}`
-		} else if (filmsStore.year) {
-			url += `/year/${filmsStore.year}`
-		}
-
-		url += `/genre/${filmsStore.genres.join('+')}`
-
-		if (filmsStore.sort) {
-			url += `/by/${filmsStore.sort}`
-		}
-	}
-
-	// sorting
-	else if (type === 'sorting') {
-		if (filmsStore.decade) {
-			url += `/decade/${filmsStore.decade}`
-		} else if (filmsStore.year) {
-			url += `/year/${filmsStore.year}`
-		}
-
-		if (filmsStore.genres.length > 0) {
-			url += `/genre/${filmsStore.genres.join('+')}`
-		}
-
-		url += `/by/${route_query}`
-	}
-
-	url += `/page/${page | 1}`
-
-	return url
-}
-
 // any label link
 const clearFilterLink = (type: string, page: number) => {
 	let url = '/films'
@@ -253,8 +199,10 @@ const clearFilterLink = (type: string, page: number) => {
 
 	// genre
 	else if (type === 'genre') {
-		if (filmsStore.decade) {
+		if (filmsStore.decade && !filmsStore.year) {
 			url += `/decade/${filmsStore.decade}`
+		} else if (filmsStore.year) {
+			url += `/year/${filmsStore.year}`
 		}
 
 		if (filmsStore.sort) {
@@ -275,13 +223,57 @@ const genreFunction = (type: string, page: number, genre: string) => {
 	}
 
 	if (filmsStore.genres.length > 0) {
-		return router.push(getPageLink(type, page, genre))
+		return router.push(getFilmsSearchPageLink(type, page, genre))
 	} else {
 		return router.push(clearFilterLink(type, page))
 	}
 }
 
-const route = useRoute()
+const indexSort = ref<number>(2)
+
+// Функция для поиска индекса активной сортировки
+const updateIndexSort = () => {
+	if (props.data.deep_options) {
+		const foundIndex = props.data.deep_options.findIndex(deep_option => {
+			const routeQueries = deep_option.options.map(
+				(opt: { route_query: string }) => opt.route_query
+			)
+			switch (filmsStore.sort) {
+				case 'name':
+					return routeQueries.includes('name')
+				case 'newest':
+				case 'earliest':
+					return (
+						routeQueries.includes('newest') || routeQueries.includes('earliest')
+					)
+				case 'rating-highest':
+				case 'rating-lowest':
+					return (
+						routeQueries.includes('rating-highest') ||
+						routeQueries.includes('rating-lowest')
+					)
+				case 'shortest':
+				case 'longest':
+					return (
+						routeQueries.includes('shortest') ||
+						routeQueries.includes('longest')
+					)
+				default:
+					return false
+			}
+		})
+		indexSort.value = foundIndex !== -1 ? foundIndex : 2
+	}
+}
+
+updateIndexSort()
+
+watch(
+	() => filmsStore.sort,
+	() => {
+		updateIndexSort()
+	}
+)
 </script>
 
 <style scoped></style>

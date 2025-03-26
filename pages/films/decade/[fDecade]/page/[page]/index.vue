@@ -1,7 +1,13 @@
 <template>
 	<div>
-		decade {{ useRoute().params.fDecade }} on pagaaa
-		{{ useRoute().params.page }}
+		<div class="mt-3">
+			<years-and-decades-bar></years-and-decades-bar>
+		</div>
+
+		<div>
+			decade {{ useRoute().params.fDecade }} on pagaaa
+			{{ useRoute().params.page }}
+		</div>
 	</div>
 </template>
 

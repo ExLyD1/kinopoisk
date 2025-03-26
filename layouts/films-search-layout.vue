@@ -8,15 +8,54 @@
 		</div>
 
 		<div class="bg-dark">
-			<div class="main_holder m-auto mt-12 text-gray-400">
+			<div class="content_holder w-[1050px] m-auto mt-12 text-gray-400 p-5">
 				<!-- filters -->
 				<div
-					class="flex justify-between items-center w-full pb-2 border-b border-gray-700"
+					class="content flex justify-between items-center border-b border-gray-700"
 				>
-					<div>Films</div>
+					<!-- films title and adaptive filter images -->
+					<div class="flex w-full justify-between">
+						<div>Films</div>
+
+						<!-- adaptive filters image -->
+						<div v-if="isSmallScreen">
+							<!-- not opened filters image -->
+							<img
+								v-if="!isOpenedFilters"
+								@click="toggleFilters"
+								src="/public/images/filterUnactive.png"
+								class="w-4 h-4"
+								alt=""
+							/>
+							<!-- opened filters image -->
+							<img
+								v-else
+								@click="toggleFilters"
+								src="/public/images/filter.png"
+								class="w-4 h-4"
+								alt=""
+							/>
+						</div>
+					</div>
 
 					<!-- filters blocks -->
-					<div class="flex items-center gap-2">
+					<div v-if="!isSmallScreen" class="flex items-center gap-2">
+						<total-films-filters-item
+							v-for="(item, index) in filtersList"
+							:key="index"
+							:data="item"
+						>
+							<template #sortByText v-if="item.isSort"
+								><div class="text-xs mr-[-10px]">Sort by</div></template
+							>
+						</total-films-filters-item>
+					</div>
+
+					<!-- Adaptive filters -->
+					<div
+						v-if="isOpenedFilters && isSmallScreen"
+						class="flex gap-2 text-sm"
+					>
 						<total-films-filters-item
 							v-for="(item, index) in filtersList"
 							:key="index"
@@ -61,11 +100,24 @@ import {
 	sortingOptionsList,
 } from '~/features/Film/model/filmsSearchData'
 
+import { useMediaQuery } from '@vueuse/core'
+
+const isSmallScreen = useMediaQuery('(max-width:555px)')
+const isOpenedFilters = ref<boolean>(false)
+
+const toggleFilters = () => {
+	isOpenedFilters.value = !isOpenedFilters.value
+}
+
 const filtersList: IFilmOptionsList[] = [
 	decadesOptionsList,
 	genresOptionsList,
 	sortingOptionsList,
 ]
+
+// !!!! Сделать адаптив фильтры в лейауте
+// !!!! Сделать адаптив фильтры в лейауте
+// !!!! Сделать адаптив фильтры в лейауте
 
 const { isLoading, finishLoading } = useLoading()
 setTimeout(() => {
@@ -80,5 +132,15 @@ setTimeout(() => {
 
 .loading-spinner {
 	@apply border-8 border-t-8 border-gray-300 border-t-green-500 rounded-full w-16 h-16 animate-spin;
+}
+@media screen and (max-width: 1060px) {
+	.content_holder {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 555px) {
+	.content {
+		flex-direction: column;
+	}
 }
 </style>

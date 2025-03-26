@@ -3,9 +3,7 @@
 		<years-and-decades-bar></years-and-decades-bar>
 	</div>
 	<div>
-		decade {{ useRoute().params.fDecade }} and {{ useRoute().params.fGenre }} on
-		pagaaa
-		{{ useRoute().params.page }}
+		sort by {{ useRoute().params.fSort }} on pagaaa {{ useRoute().params.page }}
 	</div>
 </template>
 

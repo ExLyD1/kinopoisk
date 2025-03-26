@@ -1,4 +1,7 @@
 <template>
+	<div class="mt-3">
+		<years-and-decades-bar></years-and-decades-bar>
+	</div>
 	<div>
 		decade {{ useRoute().params.fDecade }} and
 		{{ useRoute().params.fGenre }} and sort by {{ useRoute().params.fSort }} on

@@ -10,8 +10,8 @@ export const optionsYearsList: Ref<IOptionsList> = ref({
 	label: 'Year',
 	width: 'w-[120px]',
 	options: [
-		{ option: 'All', route_query: '/films/all' },
-		{ option: 'Upcoming', route_query: '/films/Upcoming' },
+		{ option: 'All', route_query: '/films/popular' },
+		{ option: 'Upcoming', route_query: '/films/popular' },
 		{ option: '2020s', route_query: '/films/decade/2020s' },
 		{ option: '2010s', route_query: '/films/decade/2010s' },
 		{ option: '2000s', route_query: '/films/decade/2000s' },
@@ -30,7 +30,7 @@ export const optionsRatingList: Ref<IOptionsList> = ref({
 	options: [
 		{
 			option: 'The most liked',
-			route_query: '/films/by/rating',
+			route_query: '/films/by/rating-highest',
 		},
 		{
 			option: 'The lowest liked',
@@ -66,7 +66,7 @@ export const optionsOtherList: Ref<IOptionsList> = ref({
 	label: 'Other',
 	width: '300px',
 	options: [
-		{ option: 'Opening Soon (US)', route_query: '/films/by/soon' },
+		{ option: 'Opening Soon (US)', route_query: '/films/popular' },
 		{ option: 'Film Name (A–Z)', route_query: '/films/by/name' },
 	],
 })

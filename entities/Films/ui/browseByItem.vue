@@ -28,7 +28,7 @@
 			<NuxtLink
 				v-for="(option, index) in optionsList"
 				:key="index"
-				:to="option.route_query"
+				:to="option.route_query + '/page/1'"
 				class="px-3 py-2 hover:bg-gray-600 cursor-pointer hover:text-white whitespace-nowrap"
 			>
 				{{ option.option }}

@@ -2,11 +2,7 @@
 	<div class="mt-3">
 		<years-and-decades-bar></years-and-decades-bar>
 	</div>
-	<div>
-		decade {{ useRoute().params.fDecade }} and {{ useRoute().params.fGenre }} on
-		pagaaa
-		{{ useRoute().params.page }}
-	</div>
+	<div>decade by pagaaa</div>
 </template>
 
 <script setup lang="ts">

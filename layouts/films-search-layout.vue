@@ -8,14 +8,30 @@
 		</div>
 
 		<div class="bg-dark">
-			<div class="mt-12">
+			<div class="main_holder m-auto mt-12 text-gray-400">
 				<!-- filters -->
 				<div
-					class="flex justify-between items-center w-full pb-3 border-b border-gray-700"
+					class="flex justify-between items-center w-full pb-2 border-b border-gray-700"
 				>
 					<div>Films</div>
 
-					<div></div>
+					<!-- filters blocks -->
+					<div class="flex items-center gap-2">
+						<total-films-filters-item
+							v-for="(item, index) in filtersList"
+							:key="index"
+							:data="item"
+						>
+							<template #sortByText v-if="item.isSort"
+								><div class="text-xs mr-[-10px]">Sort by</div></template
+							>
+						</total-films-filters-item>
+					</div>
+				</div>
+
+				<!-- main -->
+				<div>
+					<slot />
 				</div>
 			</div>
 		</div>
@@ -37,9 +53,21 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-const { isLoading, finishLoading } = useLoading()
+import type { IFilmOptionsList } from '~/features/Film/model/filmsSearchData'
 
+import {
+	decadesOptionsList,
+	genresOptionsList,
+	sortingOptionsList,
+} from '~/features/Film/model/filmsSearchData'
+
+const filtersList: IFilmOptionsList[] = [
+	decadesOptionsList,
+	genresOptionsList,
+	sortingOptionsList,
+]
+
+const { isLoading, finishLoading } = useLoading()
 setTimeout(() => {
 	finishLoading()
 }, 100)

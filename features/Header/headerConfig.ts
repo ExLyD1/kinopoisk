@@ -7,8 +7,6 @@ export interface NavItem {
 }
 import { useHeaderStore } from '~/features/Header/headerStore'
 
-const headerStore = useHeaderStore()
-
 // Объявление массива с явным типом
 export const navUnauthItems: Array<NavItem> = [
 	{

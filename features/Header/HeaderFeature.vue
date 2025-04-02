@@ -276,8 +276,8 @@ onMounted(() => {
 // =========================================================
 const getHeaderItemFunction = (type: string) => {
 	return (
-		type === 'signIn' ? headerStore.openModalSignIn : '',
-		type === 'signUp' ? headerStore.openModalSignUp : '',
+		type === 'signIn' ? (headerStore.isModalSignInOpened = true) : '',
+		type === 'signUp' ? (headerStore.isModalSignUpOpened = true) : '',
 		type === 'dropDownFalse' ? (headerStore.isDropDownVisible = false) : ''
 	)
 }

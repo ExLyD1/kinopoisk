@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-3">
+	<div>
 		<years-and-decades-bar></years-and-decades-bar>
 	</div>
 	<div>

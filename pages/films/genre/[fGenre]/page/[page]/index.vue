@@ -1,5 +1,5 @@
 <template>
-	<div>decade by pagaaa</div>
+	<div class="">decade by pagaaa</div>
 </template>
 
 <script setup lang="ts">

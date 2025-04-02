@@ -13,7 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import logo from '~/shared/ui/icons/logo.png'
 definePageMeta({
 	layout: false,
 })

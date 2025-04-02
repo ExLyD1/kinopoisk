@@ -2,7 +2,7 @@
 export interface NavItem {
 	label: string
 	path?: string
-	function?: () => void
+	type: string
 	image: string
 }
 import { useHeaderStore } from '~/features/Header/headerStore'
@@ -14,35 +14,29 @@ export const navUnauthItems: Array<NavItem> = [
 	{
 		label: 'Sign in',
 		image: new URL('~/features/Header/icons/signIn.png', import.meta.url).href,
-		function: headerStore.openModalSignIn,
+		type: 'signIn',
 	},
 	{
 		label: 'Create Account',
 		image: new URL('~/features/Header/icons/signUp.png', import.meta.url).href,
-		function: headerStore.openModalSignUp,
+		type: 'signUp',
 	},
 	{
 		label: 'Films',
 		path: '/Films',
 		image: new URL('~/features/Header/icons/films.png', import.meta.url).href,
-		function: () => {
-			return (headerStore.isDropDownVisible = false)
-		},
+		type: 'dropDownFalse',
 	},
 	{
 		label: 'Lists',
 		path: '/Lists',
 		image: new URL('~/features/Header/icons/lists.png', import.meta.url).href,
-		function: () => {
-			return (headerStore.isDropDownVisible = false)
-		},
+		type: 'dropDownFalse',
 	},
 	{
 		label: 'Members',
 		path: '/Members',
 		image: new URL('~/features/Header/icons/members.png', import.meta.url).href,
-		function: () => {
-			return (headerStore.isDropDownVisible = false)
-		},
+		type: 'dropDownFalse',
 	},
 ]

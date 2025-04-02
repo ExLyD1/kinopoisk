@@ -12,14 +12,17 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss',
 	],
 
+	nitro: {
+		devErrorHandler: (error, event) => {
+			console.error('Server Error:', error)
+		},
+	},
+
 	plugins: ['~/plugins/preline.client.ts'],
 
 	swiper: {
-		// Включить кастомные composables
-		enableComposables: true, // По умолчанию включено
-
-		// Использовать встроенные стили и модули Swiper
-		bundled: true, // По умолчанию включено
+		enableComposables: true,
+		bundled: true,
 	},
 	alias: {
 		'~': __dirname,

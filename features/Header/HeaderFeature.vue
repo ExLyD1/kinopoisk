@@ -20,9 +20,12 @@
 					:key="index"
 					class="text-white text-lg cursor-pointer hover:text-gray-400"
 				>
-					<NuxtLink :to="item.path" @click="item.function" class="nav_text">{{
-						item.label
-					}}</NuxtLink>
+					<NuxtLink
+						:to="item.path"
+						@click="getHeaderItemFunction(item.type)"
+						class="nav_text"
+						>{{ item.label }}</NuxtLink
+					>
 				</div>
 			</div>
 
@@ -170,7 +173,10 @@
 		class="flex flex-col gap-4 px-3 py-5 absolute top-[60px] w-full bg-[#1e2631] slide-down z-20"
 	>
 		<div v-for="(item, index) in navUnauthItems" :key="index">
-			<div @click="item.function" class="flex items-center gap-2 text-gray-300">
+			<div
+				@click="getHeaderItemFunction(item.type)"
+				class="flex items-center gap-2 text-gray-300"
+			>
 				<img class="h-5 w-5" :src="item.image" alt="qwe" />
 				<NuxtLink :to="item.path">{{ item.label }}</NuxtLink>
 			</div>
@@ -212,8 +218,8 @@ import { useMediaQuery } from '@vueuse/core'
 import { createPopper } from '@popperjs/core'
 import type { NavItem } from './headerConfig'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-import logo from '~/shared/ui/icons/logo.png'
 
+const headerStore = useHeaderStore()
 // =========================================================
 // список ссылок в хеадере
 // =========================================================
@@ -264,6 +270,18 @@ onMounted(() => {
 		window.addEventListener('resize', handleResize) // Обработчик изменения размера
 	}
 })
+
+// =========================================================
+// Функции хеадер ссылок
+// =========================================================
+const getHeaderItemFunction = (type: string) => {
+	return (
+		type === 'signIn' ? headerStore.openModalSignIn : '',
+		type === 'signUp' ? headerStore.openModalSignUp : '',
+		type === 'dropDownFalse' ? (headerStore.isDropDownVisible = false) : ''
+	)
+}
+
 // =========================================================
 // Поиск
 // =========================================================

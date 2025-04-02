@@ -14,7 +14,7 @@
 					class="content flex justify-between items-center border-b border-gray-700"
 				>
 					<!-- films title and adaptive filter images -->
-					<div class="flex w-full justify-between">
+					<div class="films flex w-full justify-between">
 						<div>Films</div>
 
 						<!-- adaptive filters image -->
@@ -46,7 +46,9 @@
 							:data="item"
 						>
 							<template #sortByText v-if="item.isSort"
-								><div class="text-xs mr-[-10px]">Sort by</div></template
+								><div class="text-xs mr-[-10px] whitespace-nowrap">
+									Sort by
+								</div></template
 							>
 						</total-films-filters-item>
 					</div>
@@ -54,15 +56,18 @@
 					<!-- Adaptive filters -->
 					<div
 						v-if="isOpenedFilters && isSmallScreen"
-						class="flex gap-2 text-sm"
+						class="flex flex-col items-start w-full gap-1 text-sm my-[10px] border-b border-gray-700"
 					>
 						<total-films-filters-item
 							v-for="(item, index) in filtersList"
 							:key="index"
 							:data="item"
+							class="ml-[-10px]"
 						>
 							<template #sortByText v-if="item.isSort"
-								><div class="text-xs mr-[-10px]">Sort by</div></template
+								><div class="text-xs ml-[12px] mr-[-10px] whitespace-nowrap">
+									Sort by
+								</div></template
 							>
 						</total-films-filters-item>
 					</div>
@@ -115,10 +120,6 @@ const filtersList: IFilmOptionsList[] = [
 	sortingOptionsList,
 ]
 
-// !!!! Сделать адаптив фильтры в лейауте
-// !!!! Сделать адаптив фильтры в лейауте
-// !!!! Сделать адаптив фильтры в лейауте
-
 const { isLoading, finishLoading } = useLoading()
 setTimeout(() => {
 	finishLoading()
@@ -141,6 +142,10 @@ setTimeout(() => {
 @media screen and (max-width: 555px) {
 	.content {
 		flex-direction: column;
+		border: none;
+	}
+	.films {
+		border-bottom: 1px solid #374151;
 	}
 }
 </style>

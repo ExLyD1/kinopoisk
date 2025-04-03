@@ -1,4 +1,4 @@
-export const validYears = [
+export const validYears: string[] = [
 	'1870',
 	'1871',
 	'1872',

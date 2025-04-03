@@ -12,9 +12,12 @@ export const useFilmsStore = defineStore('filmsStore', () => {
 	const genres = ref<string[]>([])
 	const sort = ref<string>()
 
+	const totalItems = ref<number>()
 	const sortIndex = ref<number>()
 
 	const updateData = () => {
+		currentPage.value = Number(route.params.page) || 1
+
 		if (route.params.fDecade) {
 			decade.value = Array.isArray(route.params.fDecade)
 				? route.params.fDecade[0]
@@ -65,5 +68,6 @@ export const useFilmsStore = defineStore('filmsStore', () => {
 		genres,
 		sort,
 		year,
+		totalItems,
 	}
 })

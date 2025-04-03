@@ -195,22 +195,30 @@ const clearFilterLink = (type: string, page: number) => {
 		if (filmsStore.sort) {
 			url += `/by/${filmsStore.sort}`
 		}
+
+		if (filmsStore.genres.length === 0 && !filmsStore.sort) {
+			url += `/popular`
+		}
 	}
 
 	// genre
 	else if (type === 'genre') {
-		if (filmsStore.decade && !filmsStore.year) {
-			url += `/decade/${filmsStore.decade}`
-		} else if (filmsStore.year) {
+		if (filmsStore.year) {
 			url += `/year/${filmsStore.year}`
+		} else if (filmsStore.decade) {
+			url += `/decade/${filmsStore.decade}`
 		}
 
 		if (filmsStore.sort) {
 			url += `/by/${filmsStore.sort}`
 		}
+
+		if (!filmsStore.year && !filmsStore.decade && !filmsStore.sort) {
+			url += `/popular`
+		}
 	}
 
-	url += `/page/${page | 1}`
+	url += `/page/${page || 1}`
 
 	return url
 }

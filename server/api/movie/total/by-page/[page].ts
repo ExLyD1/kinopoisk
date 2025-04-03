@@ -13,7 +13,7 @@ const paginate = (
 
 export default defineEventHandler(async event => {
 	const query = getQuery(event)
-	const perPage = 72
+	const perPage = 5
 
 	const pageStr = getRouterParam(event, 'page')
 	const page = Number(pageStr)
@@ -26,11 +26,63 @@ export default defineEventHandler(async event => {
 
 	const filmsModule = await import('~/shared/model/data/filmsData')
 
-	const films = paginate(filmsModule.filmsList, page, perPage)
-	const totalPages = Math.round(filmsModule.filmsList.length / perPage)
+	const yearStr = query.year
+	const { validYears } = await import('~/shared/model/validRoutes/validYears')
+	if (yearStr && !validYears.includes(String(yearStr))) {
+		throw createError({
+			statusCode: 400,
+			message: 'Invalud year param',
+		})
+	}
+
+	const decadeStr = query.decade
+	const { validDecades, decadesAndYears } = await import(
+		'~/shared/model/validRoutes/validDecade'
+	)
+	if (decadeStr && !validDecades.includes(String(decadeStr))) {
+		throw createError({
+			statusCode: 400,
+			message: 'Invalud decade param',
+		})
+	}
+
+	let filmsOnPage: IFilmItem[]
+	let totalItems
+
+	const films = filmsModule.filmsList
+
+	// year
+	if (yearStr) {
+		const filmsByYear = films.filter(f => {
+			return f.realise_year === Number(yearStr)
+		})
+		filmsOnPage = paginate(filmsByYear, page, perPage)
+		totalItems = filmsByYear.length
+	}
+
+	// decade
+	else if (decadeStr) {
+		const decadeItem = decadesAndYears.find(item => item.decade === decadeStr)
+		const yearsRange = decadeItem ? decadeItem.years : []
+
+		const filmsByDecade = films.filter(f => {
+			return yearsRange.includes(String(f.realise_year))
+		})
+		filmsOnPage = paginate(filmsByDecade, page, perPage)
+		totalItems = filmsByDecade.length
+	}
+
+	// all
+	else {
+		filmsOnPage = paginate(films, page, perPage)
+		totalItems = filmsModule.filmsList.length
+	}
+
+	const totalPages = Math.round(totalItems / perPage)
 
 	return {
-		data: films,
+		data: filmsOnPage,
 		totalPages,
+		totalItems,
 	}
 })

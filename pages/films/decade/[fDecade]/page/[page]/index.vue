@@ -5,8 +5,7 @@
 		</div>
 
 		<div>
-			decade {{ useRoute().params.fDecade }} on pagaaa
-			{{ useRoute().params.page }}
+			<total-films-search-table></total-films-search-table>
 		</div>
 	</div>
 </template>

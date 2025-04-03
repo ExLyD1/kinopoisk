@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- main -->
-		<div v-if="!isLoading">
+		<div v-if="!isLoading && filmsList">
 			<!-- films quantity found -->
 			<div v-if="isFilms">
 				<!-- years -->
@@ -25,7 +25,9 @@
 					</div>
 
 					<!-- no genres -->
-					<div v-else>There are 230,729 films released in the</div>
+					<div v-else>
+						There are {{ filmsStore.totalItems }} films released in the
+					</div>
 
 					<NuxtLink :to="`/films/year/${filmsStore.year}`">{{
 						filmsStore.year
@@ -40,7 +42,7 @@
 				>
 					<!-- only 1 genre selected -->
 					<div v-if="filmsStore.genres.length === 1">
-						There are 230,729
+						There are {{ filmsStore.totalItems }}
 						<NuxtLink :to="`/films/genre/${filmsStore.genres[0]}`">
 							{{ filmsStore.genres[0] }}
 							films
@@ -50,11 +52,14 @@
 
 					<!--  multiple genres selected -->
 					<div v-else-if="filmsStore.genres.length > 1">
-						There are 230,729 films in multiple genres released in the
+						There are {{ filmsStore.totalItems }} films in multiple genres
+						released in the
 					</div>
 
 					<!-- no genres -->
-					<div v-else>There are 230,729 films released in the</div>
+					<div v-else>
+						There are {{ filmsStore.totalItems }} films released in the
+					</div>
 
 					<NuxtLink :to="`/films/year/${filmsStore.decade}`">
 						{{ filmsStore.decade }}.
@@ -65,7 +70,7 @@
 				<div v-else-if="filmsStore.genres.length">
 					<!-- only 1 genre selected -->
 					<div v-if="filmsStore.genres.length === 1">
-						There are 230,729
+						There are {{ filmsStore.totalItems }}
 						<NuxtLink :to="`/films/genre/${filmsStore.genres[0]}`">
 							{{ filmsStore.genres[0] }}
 							films
@@ -74,11 +79,11 @@
 
 					<!--  multiple genres selected -->
 					<div v-else-if="filmsStore.genres.length > 1">
-						There are 230,729 films in multiple genres
+						There are {{ filmsStore.totalItems }} films in multiple genres
 					</div>
 
 					<!-- no genres -->
-					<div v-else>There are 230,729 films</div>
+					<div v-else>There are {{ filmsStore.totalItems }} films</div>
 				</div>
 			</div>
 
@@ -99,11 +104,70 @@
 			</div>
 
 			<!-- pagination -->
-			<div class="mt-2 border-t border-gray-700"></div>
+			<div
+				class="mt-3 pb-2 pt-3 border-t border-gray-700 flex items-center w-full justify-between"
+			>
+				<!-- prev butt -->
+				<div class="w-[50px]">
+					<NuxtLink
+						:to="getFilmsSearchPageLink('none', filmsStore.currentPage - 1, '')"
+						v-show="filmsStore.currentPage > 1"
+						class="py-1 px-3 text-sm bg-gray-700 rounded text-gray-400 hover:bg-gray-600 transition-all"
+					>
+						Prev
+					</NuxtLink>
+				</div>
+
+				<!-- pages pagination buttons -->
+				<div class="flex gap-1 items-center">
+					<!-- first page -->
+					<NuxtLink
+						:to="getFilmsSearchPageLink('none', 1, '')"
+						:class="{ 'text-gray-600': filmsStore.currentPage === 1 }"
+					>
+						1
+					</NuxtLink>
+
+					<div v-if="startPage > 2">...</div>
+
+					<!-- pages -->
+					<NuxtLink
+						:to="getFilmsSearchPageLink('none', item, '')"
+						v-for="(item, index) in paginate"
+						:class="{
+							'text-gray-600': filmsStore.currentPage === item,
+						}"
+						>{{ item }}</NuxtLink
+					>
+
+					<div v-if="endPage < filmsStore.totalPages - 1">...</div>
+
+					<!-- last page -->
+					<NuxtLink
+						:to="getFilmsSearchPageLink('none', filmsStore.totalPages, '')"
+						:class="{
+							'text-gray-600': filmsStore.currentPage === filmsStore.totalPages,
+						}"
+					>
+						{{ filmsStore.totalPages }}
+					</NuxtLink>
+				</div>
+
+				<!-- next butt -->
+				<div class="w-[50px]">
+					<NuxtLink
+						:to="getFilmsSearchPageLink('none', filmsStore.currentPage + 1, '')"
+						v-show="filmsStore.currentPage < filmsStore.totalPages"
+						class="py-1 px-3 text-sm bg-gray-700 rounded text-gray-400 hover:bg-gray-600 transition-all"
+					>
+						Next
+					</NuxtLink>
+				</div>
+			</div>
 		</div>
 
 		<!-- loading spinner -->
-		<LoadingSpinner v-if="isLoading" />
+		<LoadingSpinner v-if="isLoading" class="mt-5" />
 	</div>
 </template>
 
@@ -114,27 +178,78 @@ import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
 const filmsStore = useFilmsStore()
 
+// constants
 const filmsList = ref<IFilmItem[]>()
 const isLoading = ref<boolean>(true)
 const isFilms = ref<boolean>(false)
 
+// pagination logic
+const maxVisiblePages = 5
+const paginate = computed(() => {
+	const current = filmsStore.currentPage
+	const total = filmsStore.totalPages
+
+	if (total <= maxVisiblePages + 2) {
+		return Array.from({ length: total - 2 }, (_, i) => i + 2)
+	}
+
+	const half = Math.floor(maxVisiblePages / 2)
+	let start = Math.max(2, current - half)
+	let end = Math.min(total - 1, current + half)
+
+	if (end - start + 1 < maxVisiblePages) {
+		if (current <= half + 1) {
+			end = maxVisiblePages + 1
+		} else {
+			start = total - maxVisiblePages
+		}
+	}
+
+	return Array.from({ length: end - start + 1 }, (_, i) => start + i)
+})
+const startPage = computed(() => paginate.value[0])
+const endPage = computed(() => paginate.value[paginate.value.length - 1])
+
+// request data from server
 interface IResponse {
 	data: IFilmItem[]
 	totalPages: number
+	totalItems: number
 }
 onMounted(async () => {
 	try {
-		const response = await $fetch<IResponse>(
-			`/api/movie/total/by-page/${filmsStore.currentPage}`
-		)
+		let response: IResponse
+
+		// year
+		if (filmsStore.year) {
+			response = await $fetch<IResponse>(
+				`/api/movie/total/by-page/${filmsStore.currentPage}?year=${filmsStore.year}`
+			)
+		}
+
+		// decade
+		else if (filmsStore.decade) {
+			response = await $fetch<IResponse>(
+				`/api/movie/total/by-page/${filmsStore.currentPage}?decade=${filmsStore.decade}`
+			)
+		}
+
+		// each condition request
+		else {
+			response = await $fetch<IResponse>(
+				`/api/movie/total/by-page/${filmsStore.currentPage}`
+			)
+		}
 
 		if (!response.data.length) {
+			isFilms.value = false
 			return
 		}
 
 		filmsStore.totalPages = response.totalPages
 		filmsList.value = response.data
 		isFilms.value = true
+		filmsStore.totalItems = response.totalItems
 	} catch (err) {
 		console.error('While requesting film, some error heppened : ', err)
 	} finally {

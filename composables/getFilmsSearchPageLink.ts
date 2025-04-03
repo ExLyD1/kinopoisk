@@ -55,7 +55,33 @@ export const getFilmsSearchPageLink = (
 		url += `/by/${route_query}`
 	}
 
-	url += `/page/${page | 1}`
+	// none ( page changing )
+	else if (type === 'none') {
+		if (filmsStore.year) {
+			url += `/year/${filmsStore.year}`
+		} else if (filmsStore.decade) {
+			url += `/decade/${filmsStore.decade}`
+		}
+
+		if (filmsStore.genres.length > 0) {
+			url += `/genre/${filmsStore.genres.join('+')}`
+		}
+
+		if (filmsStore.sort) {
+			url += `/by/${filmsStore.sort}`
+		}
+
+		if (
+			!filmsStore.year &&
+			!filmsStore.decade &&
+			filmsStore.genres.length === 0 &&
+			!filmsStore.sort
+		) {
+			url += '/popular'
+		}
+	}
+
+	url += `/page/${page}`
 
 	return url
 }

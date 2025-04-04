@@ -1,0 +1,26 @@
+import type { IFilmGenres } from '../interfaces/filmInterface'
+
+export const validGenres: IFilmGenres[] = [
+	'Any',
+	'Action',
+	'Adventure',
+	'Animation',
+	'Comedy',
+	'Crime',
+	'Documentary',
+	'Drama',
+	'Family',
+	'Fantasy',
+	'History',
+	'Horror',
+	'Music',
+	'Mystery',
+	'Romance',
+	'Science',
+	'Fiction',
+	'Thriller',
+	'Tv',
+	'Movie',
+	'War',
+	'Western',
+]

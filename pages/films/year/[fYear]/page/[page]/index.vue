@@ -3,6 +3,7 @@
 		<div>
 			<years-and-decades-bar></years-and-decades-bar>
 		</div>
+
 		<div>
 			<total-films-search-table></total-films-search-table>
 		</div>

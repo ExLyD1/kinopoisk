@@ -1,11 +1,12 @@
 <template>
 	<div>
-		<years-and-decades-bar></years-and-decades-bar>
-	</div>
-	<div>
-		decade {{ useRoute().params.fDecade }} and sort by
-		{{ useRoute().params.fSort }} on pagaaa
-		{{ useRoute().params.page }}
+		<div>
+			<years-and-decades-bar></years-and-decades-bar>
+		</div>
+
+		<div>
+			<total-films-search-table></total-films-search-table>
+		</div>
 	</div>
 </template>
 

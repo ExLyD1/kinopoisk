@@ -1,4 +1,5 @@
 import { defineEventHandler, getQuery, getRouterParam } from 'h3'
+import { getFilmRate } from '~/composables/getFilmRate'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
 const paginate = (
@@ -13,7 +14,7 @@ const paginate = (
 
 export default defineEventHandler(async event => {
 	const query = getQuery(event)
-	const perPage = 5
+	const perPage = 72
 
 	const pageStr = getRouterParam(event, 'page')
 	const page = Number(pageStr)
@@ -31,7 +32,7 @@ export default defineEventHandler(async event => {
 	if (yearStr && !validYears.includes(String(yearStr))) {
 		throw createError({
 			statusCode: 400,
-			message: 'Invalud year param',
+			message: 'Invalid year param',
 		})
 	}
 
@@ -42,22 +43,40 @@ export default defineEventHandler(async event => {
 	if (decadeStr && !validDecades.includes(String(decadeStr))) {
 		throw createError({
 			statusCode: 400,
-			message: 'Invalud decade param',
+			message: 'Invalid decade param',
 		})
 	}
 
-	let filmsOnPage: IFilmItem[]
-	let totalItems
+	const genresStr = query.genres
+	const { validGenres } = await import('~/shared/model/validRoutes/validGenres')
+	if (genresStr && Array.isArray(genresStr)) {
+		genresStr.forEach(g => {
+			if (!validGenres.includes(g)) {
+				throw createError({
+					statusCode: 400,
+					message: 'Invalid genres params',
+				})
+			}
+		})
+	}
 
-	const films = filmsModule.filmsList
+	const sort = query.sort
+	const { validSorts } = await import('~/shared/model/validRoutes/validSorts')
+	if (sort && !validSorts.includes(String(sort))) {
+		throw createError({
+			statusCode: 400,
+			message: 'Invalid sort params',
+		})
+	}
+
+	let films: IFilmItem[] = filmsModule.filmsList
 
 	// year
 	if (yearStr) {
 		const filmsByYear = films.filter(f => {
 			return f.realise_year === Number(yearStr)
 		})
-		filmsOnPage = paginate(filmsByYear, page, perPage)
-		totalItems = filmsByYear.length
+		films = filmsByYear
 	}
 
 	// decade
@@ -68,17 +87,88 @@ export default defineEventHandler(async event => {
 		const filmsByDecade = films.filter(f => {
 			return yearsRange.includes(String(f.realise_year))
 		})
-		filmsOnPage = paginate(filmsByDecade, page, perPage)
-		totalItems = filmsByDecade.length
+		films = filmsByDecade
 	}
 
-	// all
-	else {
-		filmsOnPage = paginate(films, page, perPage)
-		totalItems = filmsModule.filmsList.length
+	// genres
+	if (genresStr) {
+		const genresArr: any = String(genresStr).toLowerCase().split('+')
+
+		let filmsByGenre
+
+		genresArr.forEach((g: string) => {
+			const gUp = g[0].toUpperCase()
+			const genreToCompare: any = gUp + g.slice(1)
+
+			filmsByGenre = films
+				.map(f => {
+					if (f.genres.includes(genreToCompare)) {
+						return f
+					}
+				})
+				.filter(i => i !== undefined)
+		})
+
+		films = filmsByGenre!
 	}
 
+	// sorting
+	if (sort) {
+		// name
+		if (sort === 'name') {
+			films.sort((a, b) => a.film_name.localeCompare(b.film_name))
+		} else if (sort === 'rating-highest') {
+			films.sort((a, b) => {
+				const a_rating = getFilmRate([
+					a.rating1,
+					a.rating2,
+					a.rating3,
+					a.rating4,
+					a.rating5,
+				])
+				const b_rating = getFilmRate([
+					b.rating1,
+					b.rating2,
+					b.rating3,
+					b.rating4,
+					b.rating5,
+				])
+
+				return a_rating - b_rating
+			})
+		} else if (sort === 'rating-lowest') {
+			films.sort((a, b) => {
+				const a_rating = getFilmRate([
+					a.rating1,
+					a.rating2,
+					a.rating3,
+					a.rating4,
+					a.rating5,
+				])
+				const b_rating = getFilmRate([
+					b.rating1,
+					b.rating2,
+					b.rating3,
+					b.rating4,
+					b.rating5,
+				])
+
+				return b_rating - a_rating
+			})
+		} else if (sort === 'newest') {
+			films.sort((a, b) => a.realise_year - b.realise_year)
+		} else if (sort === 'earliest') {
+			films.sort((a, b) => b.realise_year - a.realise_year)
+		} else if (sort === 'shortest') {
+			films.sort((a, b) => a.duration - b.duration)
+		} else if (sort === 'longest') {
+			films.sort((a, b) => b.duration - a.duration)
+		}
+	}
+
+	const totalItems = films.length
 	const totalPages = Math.round(totalItems / perPage)
+	const filmsOnPage = paginate(films, page, perPage)
 
 	return {
 		data: filmsOnPage,

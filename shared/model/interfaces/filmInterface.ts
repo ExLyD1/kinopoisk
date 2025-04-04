@@ -1,6 +1,6 @@
 import type { IReview } from './reviewInterface'
 
-type IFilmGenres =
+export type IFilmGenres =
 	| 'Any'
 	| 'Action'
 	| 'Adventure'

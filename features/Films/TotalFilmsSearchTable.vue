@@ -131,6 +131,7 @@
 					<div v-if="startPage > 2">...</div>
 
 					<!-- pages -->
+
 					<NuxtLink
 						:to="getFilmsSearchPageLink('none', item, '')"
 						v-for="(item, index) in paginate"
@@ -144,6 +145,7 @@
 
 					<!-- last page -->
 					<NuxtLink
+						v-if="filmsStore.totalPages > 1"
 						:to="getFilmsSearchPageLink('none', filmsStore.totalPages, '')"
 						:class="{
 							'text-gray-600': filmsStore.currentPage === filmsStore.totalPages,
@@ -172,7 +174,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFilmsStore } from '../Film/model/filmsStore'
+import { useFilmsStore } from './filmsStore'
 
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 
@@ -216,30 +218,30 @@ interface IResponse {
 	totalPages: number
 	totalItems: number
 }
-onMounted(async () => {
+
+const requestFilms = async (
+	options: {
+		year?: string
+		decade?: string
+		genres?: string[]
+		sort?: string
+	} = {}
+) => {
 	try {
-		let response: IResponse
+		const { year, decade, genres, sort } = options
+		let requestUrl = `/api/movie/total/by-page/${filmsStore.currentPage}`
 
-		// year
-		if (filmsStore.year) {
-			response = await $fetch<IResponse>(
-				`/api/movie/total/by-page/${filmsStore.currentPage}?year=${filmsStore.year}`
-			)
+		const queryParams: string[] = []
+		if (year) queryParams.push(`year=${year}`)
+		else if (decade) queryParams.push(`decade=${decade}`)
+		if (genres?.length) queryParams.push(`genres=${genres.join('+')}`)
+		if (sort) queryParams.push(`sort=${sort}`)
+
+		if (queryParams.length) {
+			requestUrl += `?${queryParams.join('&')}`
 		}
 
-		// decade
-		else if (filmsStore.decade) {
-			response = await $fetch<IResponse>(
-				`/api/movie/total/by-page/${filmsStore.currentPage}?decade=${filmsStore.decade}`
-			)
-		}
-
-		// each condition request
-		else {
-			response = await $fetch<IResponse>(
-				`/api/movie/total/by-page/${filmsStore.currentPage}`
-			)
-		}
+		const response = await $fetch<IResponse>(requestUrl)
 
 		if (!response.data.length) {
 			isFilms.value = false
@@ -251,10 +253,35 @@ onMounted(async () => {
 		isFilms.value = true
 		filmsStore.totalItems = response.totalItems
 	} catch (err) {
-		console.error('While requesting film, some error heppened : ', err)
+		console.error('While requesting film, some error happened: ', err)
 	} finally {
 		isLoading.value = false
 	}
+}
+
+onMounted(async () => {
+	let queryParams: {
+		year?: string
+		decade?: string
+		genres?: string[]
+		sort?: string
+	} = {}
+
+	if (filmsStore.year) {
+		queryParams.year = String(filmsStore.year)
+	} else if (filmsStore.decade) {
+		queryParams.decade = filmsStore.decade
+	}
+
+	if (filmsStore.genres.length > 0) {
+		queryParams.genres = filmsStore.genres
+	}
+
+	if (filmsStore.sort) {
+		queryParams.sort = filmsStore.sort
+	}
+
+	await requestFilms(queryParams)
 })
 </script>
 

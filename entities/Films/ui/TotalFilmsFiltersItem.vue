@@ -158,7 +158,7 @@
 <script setup lang="ts">
 import type { IFilmOptionsList } from '~/features/Film/model/filmsSearchData'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-import { useFilmsStore } from '~/features/Film/model/filmsStore'
+import { useFilmsStore } from '~/features/Films/filmsStore'
 
 const filmsStore = useFilmsStore()
 

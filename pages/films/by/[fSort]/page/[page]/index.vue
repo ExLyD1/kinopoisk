@@ -1,6 +1,6 @@
 <template>
 	<div>
-		sort by {{ useRoute().params.fSort }} on pagaaa {{ useRoute().params.page }}
+		<total-films-search-table></total-films-search-table>
 	</div>
 </template>
 

@@ -92,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFilmsStore } from '~/features/Film/model/filmsStore'
+import { useFilmsStore } from '~/features/Films/filmsStore'
 import { validDecades } from '~/shared/model/validRoutes/validDecade'
 import { useMediaQuery } from '@vueuse/core'
 

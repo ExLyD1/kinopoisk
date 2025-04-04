@@ -1,5 +1,7 @@
 <template>
-	<div class="">decade by pagaaa</div>
+	<div>
+		<total-films-search-table></total-films-search-table>
+	</div>
 </template>
 
 <script setup lang="ts">

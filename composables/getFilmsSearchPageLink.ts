@@ -1,4 +1,4 @@
-import { useFilmsStore } from '~/features/Film/model/filmsStore'
+import { useFilmsStore } from '~/features/Films/filmsStore'
 
 export const getFilmsSearchPageLink = (
 	type: string,

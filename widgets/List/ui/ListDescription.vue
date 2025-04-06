@@ -1,12 +1,12 @@
 <template>
-	<div>
+	<div v-if="user">
 		<!-- info about author -->
 		<div
 			class="flex items-center gap-2 text-sm border-b w-full border-gray-700 pb-2"
 		>
-			<NuxtLink :to="`/members/${generateSlug(list.author_name)}`">
+			<NuxtLink :to="`/members/${generateSlug(user.user_name)}`">
 				<Avatar class="w-7 h-7">
-					<AvatarImage :src="list.author_avatar" alt="@unovue" />
+					<AvatarImage :src="user.user_avatar" alt="@unovue" />
 					<AvatarFallback>CN</AvatarFallback>
 				</Avatar>
 			</NuxtLink>
@@ -14,9 +14,9 @@
 			<div class="text-gray-500">List by</div>
 
 			<NuxtLink
-				:to="`members/${generateSlug(list.author_name)}`"
+				:to="`members/${generateSlug(user.user_name)}`"
 				class="font-medium"
-				>{{ list.author_name }}</NuxtLink
+				>{{ user.user_name }}</NuxtLink
 			>
 		</div>
 
@@ -31,10 +31,16 @@
 
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+import type { IUser } from '~/shared/model/interfaces/userInterface'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const props = defineProps<{ data: IFilmsList }>()
 const list = props.data
+const user = ref<IUser>()
+
+onMounted(async () => {
+	user.value = await $fetch<IUser>(`/api/user/${list.user_id}`)
+})
 </script>
 
 <style scoped></style>

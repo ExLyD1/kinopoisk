@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="user">
 		<div>
 			<div
 				v-if="filmsList.length > 0"
@@ -38,11 +38,9 @@
 				<div class="w-[50px]">
 					<NuxtLink
 						v-show="listPageStore.curentPage !== 1"
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/${
-							listPageStore.curentPage - 1
-						}`"
+						:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
+							list.list_name
+						)}/page/${listPageStore.curentPage - 1}`"
 						class="rounded bg-gray-700 py-1 px-2 text-center cursor-pointer transition-all hover:bg-gray-600"
 					>
 						Prev
@@ -55,36 +53,34 @@
 					class="flex gap-2 pb-2 items-center justify-center"
 				>
 					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/1`"
+						:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
+							list.list_name
+						)}/page/1`"
 					>
 						1
 					</NuxtLink>
 
 					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/2`"
+						:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
+							list.list_name
+						)}/page/2`"
 					>
 						2
 					</NuxtLink>
 
 					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/3`"
+						:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
+							list.list_name
+						)}/page/3`"
 					>
 						3
 					</NuxtLink>
 
 					<div>...</div>
 					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/${Math.ceil(
-							list.films.length / 100
-						)}`"
+						:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
+							list.list_name
+						)}/page/${Math.ceil(list.films.length / 100)}`"
 						>{{ Math.ceil(list.films.length / 100) }}</NuxtLink
 					>
 				</div>
@@ -93,9 +89,9 @@
 				<div v-else class="flex gap-2 pb-2 items-center justify-center">
 					<NuxtLink
 						v-for="page in Math.ceil(list.films.length / 100)"
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/${page}`"
+						:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
+							list.list_name
+						)}/page/${page}`"
 					>
 						{{ page }}
 					</NuxtLink>
@@ -105,11 +101,9 @@
 				<div class="w-[50px]">
 					<NuxtLink
 						v-show="listPageStore.totalPages > 1"
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}/page/${
-							listPageStore.curentPage + 1
-						}`"
+						:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
+							list.list_name
+						)}/page/${listPageStore.curentPage + 1}`"
 						class="rounded bg-gray-700 py-1 px-2 text-center cursor-pointer transition-all hover:bg-gray-600"
 					>
 						Next
@@ -123,11 +117,14 @@
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+import type { IUser } from '~/shared/model/interfaces/userInterface'
+
 import { useListPagesStore } from './listPagesStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const props = defineProps<{ data: IFilmsList }>()
 const list = props.data
+const user = ref<IUser>()
 
 const listPageStore = useListPagesStore()
 
@@ -139,6 +136,7 @@ onMounted(async () => {
 	)
 
 	filmsList.value = films
+	user.value = await $fetch<IUser>(`/api/user/${list.user_id}`)
 })
 </script>
 

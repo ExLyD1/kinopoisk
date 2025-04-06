@@ -1,6 +1,3 @@
-import type { IFilmsList } from './filmsListInterface'
-import type { IFilmItem } from './filmInterface'
-
 export interface IUser {
 	id: number
 	user_avatar: string

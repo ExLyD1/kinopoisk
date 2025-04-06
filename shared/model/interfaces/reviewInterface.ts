@@ -3,8 +3,8 @@ export interface IReview {
 	type: 'list' | 'film'
 	item_id: number // ^ айди фильми или списка к которому был оставлен отзыв
 	user_id: number
-	author_avatar: string // ! поля удалены в бд
-	author_name: string // ! поля удалены в бд
+	// author_avatar: string // ! поля удалены в бд
+	// author_name: string // ! поля удалены в бд
 
 	review_comments: number
 	review_comments_users: number[]

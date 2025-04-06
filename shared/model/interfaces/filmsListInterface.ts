@@ -1,9 +1,8 @@
-import type { IFilmItem } from './filmInterface'
-import type { IComment } from './commentInterface'
 export interface IFilmsList {
 	id: number
-	author_name: string
-	author_avatar: string
+	user_id: number
+	// author_name: string
+	// author_avatar: string
 	publishedDate: number
 	list_name: string
 	list_description: string

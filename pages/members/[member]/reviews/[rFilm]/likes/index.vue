@@ -10,7 +10,7 @@
 				<div class="border-b border-gray-700 pb-10">
 					<div>Likes for {{ member_name }}`s reviews of</div>
 
-					<div class="mt-2 flex items-center gap-1">
+					<div class="mt-2 flex items-center gap-2">
 						<NuxtLink
 							:to="`/films/${generateSlug(film.film_name)}`"
 							class="text-white text-2xl hover:text-blue-400 transition-all"
@@ -19,8 +19,8 @@
 						</NuxtLink>
 
 						<NuxtLink
-							to="/soon"
-							class="font-light text-[17px] text-2xl hover:text-blue-400 transition-all"
+							:to="getFilmsSearchPageLink('year', 1, String(film.realise_year))"
+							class="font-light text-[17px] text-2xl hover:text-blue-400 transition-all mb-[-3px]"
 						>
 							{{ film.realise_year }}
 						</NuxtLink>

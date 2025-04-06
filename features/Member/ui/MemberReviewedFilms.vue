@@ -52,10 +52,7 @@
 			class="films_holder flex flex-col gap-3 w-full mt-4 text-gray-400"
 		>
 			<div v-for="(item, index) in finalData" class="w-full" :key="index">
-				<member-recent-review-item
-					:data="item"
-					:userId="user.id"
-				></member-recent-review-item>
+				<member-recent-review-item :data="item"></member-recent-review-item>
 
 				<div
 					v-if="index + 1 !== finalData?.length"
@@ -142,7 +139,7 @@ const memberStore = useMemberStore()
 const props = defineProps<{ data: IUser }>()
 const user = props.data
 
-const finalData = ref<{ review: IReview; film: IFilmItem }[]>()
+const finalData = ref<{ review: IReview; film: IFilmItem; user: IUser }[]>()
 const isReviews = ref<boolean>(false)
 const isLoading = ref<boolean>(true)
 
@@ -206,6 +203,7 @@ onMounted(async () => {
 		return {
 			review: review,
 			film: film,
+			user: user,
 		}
 	})
 

@@ -1,8 +1,8 @@
 <template>
-	<div class="holder flex flex-row gap-3 w-full">
+	<div v-if="user" class="holder flex flex-row gap-3 w-full">
 		<NuxtLink
 			:to="`/members/
-				${generateSlug(list.author_name)}
+				${generateSlug(user.user_name)}
 				/lists/
 				${generateSlug(list.list_name)}`"
 			class="images_holder flex items-center -space-x-10 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded h-[128px]"
@@ -23,7 +23,7 @@
 		<div class="data_holder flex flex-col gap-3">
 			<NuxtLink
 				:to="`/members/
-					${generateSlug(list.author_name)}
+					${generateSlug(user.user_name)}
 					/lists/
 					${generateSlug(list.list_name)}`"
 				class="font-medium text-white text-xl"
@@ -34,15 +34,15 @@
 			<div class="flex gap-3 text-sm">
 				<NuxtLink
 					:to="`/members/
-						${generateSlug(list.author_name)}`"
+						${generateSlug(user.user_name)}`"
 					class="flex gap-1"
 				>
 					<Avatar class="w-4 h-4">
-						<AvatarImage :src="list.author_avatar" alt="@radix-vue" />
+						<AvatarImage :src="user.user_avatar" alt="@radix-vue" />
 						<AvatarFallback>CN</AvatarFallback>
 					</Avatar>
 
-					<div class="whitespace-nowrap">{{ list.author_name }}</div>
+					<div class="whitespace-nowrap">{{ user.user_name }}</div>
 				</NuxtLink>
 
 				<div class="flex gap-1">
@@ -52,7 +52,7 @@
 
 				<NuxtLink
 					:to="`/members/
-						${generateSlug(list.author_name)}
+						${generateSlug(user.user_name)}
 						/lists/
 						${generateSlug(list.list_name)}
 						/likes`"
@@ -64,7 +64,7 @@
 
 				<NuxtLink
 					:to="`/members/
-						${generateSlug(list.author_name)}
+						${generateSlug(user.user_name)}
 						/lists/
 						${generateSlug(list.list_name)}`"
 					class="flex gap-1"
@@ -87,18 +87,21 @@ import { getKNumber } from '~/shared/model/funtions/getKNumber'
 
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+import type { IUser } from '~/shared/model/interfaces/userInterface'
 
 const props = defineProps<{ data: IFilmsList }>()
 
-const list = ref(props.data)
+const list = props.data
 const filmsList: Ref<IFilmItem[]> = ref([])
+const user = ref<IUser>()
 
 onMounted(async () => {
-	const requests = list.value.films
+	const requests = list.films
 		.slice(0, 5)
 		.map(id => $fetch<IFilmItem>(`/api/movie/by-id/${id}`))
 
 	filmsList.value = await Promise.all(requests)
+	user.value = await $fetch<IUser>(`/api/user/${list.user_id}`)
 })
 </script>
 

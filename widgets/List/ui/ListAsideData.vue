@@ -1,11 +1,11 @@
 <template>
-	<div class="main">
+	<div v-if="user" class="main">
 		<!-- sign up block -->
 		<div class="singUp text-gray-300 bg-gray-700 rounded p-4">
 			<NuxtLink
-				:to="`/members/${generateSlug(list.author_name)}`"
+				:to="`/members/${generateSlug(user.user_name)}`"
 				class="text-blue-200 cursor-pointer transition-all hover:text-blue-400"
-				>{{ list.author_name }}</NuxtLink
+				>{{ user.user_name }}</NuxtLink
 			>
 			is using Letterboxd to share film reviews and lists with friends.
 			<span
@@ -28,7 +28,7 @@
 
 			<!-- likes -->
 			<NuxtLink
-				:to="`/members/${generateSlug(list.author_name)}/lists/${generateSlug(
+				:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
 					list.list_name
 				)}/likes`"
 				class="bg-gray-700 py-2 px-4 flex items-center h-[42px] text-sm whitespace-nowrap justify-center gap-1"
@@ -67,10 +67,16 @@
 
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+import type { IUser } from '~/shared/model/interfaces/userInterface'
 import { useHeaderStore } from '~/features/Header/headerStore'
 
 const props = defineProps<{ data: IFilmsList }>()
 const list = props.data
+const user = ref<IUser>()
+
+onMounted(async () => {
+	user.value = await $fetch<IUser>(`/api/user/${list.user_id}`)
+})
 </script>
 
 <style scoped>

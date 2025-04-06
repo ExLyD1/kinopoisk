@@ -1,8 +1,8 @@
 <template>
-	<div class="item_holder flex flex-col gap-1 w-[250px]">
+	<div v-if="user" class="item_holder flex flex-col gap-1 w-[250px]">
 		<!-- list films images -->
 		<NuxtLink
-			:to="`/members/${generateSlug(list.author_name)}/lists/${generateSlug(
+			:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
 				list.list_name
 			)}`"
 		>
@@ -25,7 +25,7 @@
 
 		<!-- list name -->
 		<NuxtLink
-			:to="`/members/${generateSlug(list.author_name)}/lists/${generateSlug(
+			:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
 				list.list_name
 			)}`"
 		>
@@ -41,7 +41,7 @@
 		<div class="flex items-center flex-row gap-4">
 			<!-- likes -->
 			<NuxtLink
-				:to="`/members/${generateSlug(list.author_name)}/lists/${generateSlug(
+				:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
 					list.list_name
 				)}/likes`"
 			>
@@ -53,7 +53,7 @@
 
 			<!-- comments -->
 			<NuxtLink
-				:to="`/members/${generateSlug(list.author_name)}/lists/${generateSlug(
+				:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
 					list.list_name
 				)}`"
 			>
@@ -72,9 +72,11 @@ import { getKNumber } from '~/shared/model/funtions/getKNumber'
 
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+import type { IUser } from '~/shared/model/interfaces/userInterface'
 
 const props = defineProps<{ data: IFilmsList }>()
 const list = props.data
+const user = ref<IUser>()
 
 const filmsList: Ref<IFilmItem[]> = ref([])
 
@@ -84,6 +86,7 @@ onMounted(async () => {
 
 		filmsList.value.push(film)
 	}
+	user.value = await $fetch<IUser>(`/api/user/${list.user_id}`)
 })
 </script>
 

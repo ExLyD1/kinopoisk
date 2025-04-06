@@ -4,8 +4,7 @@ import { filmsList } from './filmsData'
 export const filmsListsData: Array<IFilmsList> = [
 	{
 		id: 1,
-		author_name: 'SciFiFanatic',
-		author_avatar: '/avatars/avatar2.jpg',
+		user_id: 1,
 		publishedDate: 1667517635,
 		list_name: 'Top Dramas',
 		list_description: 'Drama films that will stir your emotions.',
@@ -57,8 +56,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 2,
-		author_name: 'MysteryLover',
-		author_avatar: '/avatars/avatar10.jpg',
+		user_id: 2,
 		publishedDate: 1636696990,
 		list_name: 'Feel-Good Movies',
 		list_description:
@@ -194,8 +192,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 3,
-		author_name: 'DramaQueen',
-		author_avatar: '/avatars/avatar2.jpg',
+		user_id: 3,
 		publishedDate: 1730949919,
 		list_name: 'Best Animation Movies',
 		list_description: 'Mind-bending science fiction films you can’t miss.',
@@ -247,8 +244,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 4,
-		author_name: 'DramaQueen',
-		author_avatar: '/avatars/avatar12.jpg',
+		user_id: 4,
 		publishedDate: 1687285453,
 		list_name: 'Must-See Classics',
 		list_description: 'Timeless classics that everyone should watch.',
@@ -300,8 +296,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 5,
-		author_name: 'ActionJunkie',
-		author_avatar: '/avatars/avatar3.jpg',
+		user_id: 5,
 		publishedDate: 1625623363,
 		list_name: 'Best Sci-Fi Films',
 		list_description: 'Thrillers that will keep you at the edge of your seat.',
@@ -353,8 +348,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 6,
-		author_name: 'HistoryNerd',
-		author_avatar: '/avatars/avatar5.jpg',
+		user_id: 6,
 		publishedDate: 1665990198,
 		list_name: 'Top Dramas',
 		list_description: 'Drama films that will stir your emotions.',
@@ -406,8 +400,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 7,
-		author_name: 'RomanticSoul',
-		author_avatar: '/avatars/avatar7.jpg',
+		user_id: 7,
 		publishedDate: 1603842593,
 		list_name: 'Best Romantic Comedies',
 		list_description: 'Thrillers that will keep you at the edge of your seat.',
@@ -459,8 +452,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 8,
-		author_name: 'ThrillerSeeker',
-		author_avatar: '/avatars/avatar9.jpg',
+		user_id: 8,
 		publishedDate: 1617802291,
 		list_name: 'Best Romantic Comedies',
 		list_description: 'Mind-bending science fiction films you can’t miss.',
@@ -508,8 +500,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 9,
-		author_name: 'FantasyDreamer',
-		author_avatar: '/avatars/avatar2.jpg',
+		user_id: 9,
 		publishedDate: 1625634912,
 		list_name: 'Feel-Good Movies',
 		list_description: 'Timeless classics that everyone should watch.',
@@ -557,8 +548,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 10,
-		author_name: 'EpicVoyager',
-		author_avatar: '/avatars/avatar1.jpg',
+		user_id: 10,
 		publishedDate: 1677948568,
 		list_name: 'Best Romantic Comedies',
 		list_description: 'Thrillers that will keep you at the edge of your seat.',
@@ -606,8 +596,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 11,
-		author_name: 'EpicVoyager',
-		author_avatar: '/avatars/avatar15.jpg',
+		user_id: 11,
 		publishedDate: 1654958477,
 		list_name: 'Underrated Gems',
 		list_description: 'Feel-good movies to brighten your day.',
@@ -655,8 +644,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 12,
-		author_name: 'ArtFilmFan',
-		author_avatar: '/avatars/avatar3.jpg',
+		user_id: 12,
 		publishedDate: 1610108316,
 		list_name: 'Underrated Gems',
 		list_description: 'Movies from the 90s that still resonate.',
@@ -704,8 +692,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 13,
-		author_name: 'SpaceTraveler',
-		author_avatar: '/avatars/avatar1.jpg',
+		user_id: 13,
 		publishedDate: 1608628839,
 		list_name: 'Best Romantic Comedies',
 		list_description: 'Feel-good movies to brighten your day.',
@@ -753,8 +740,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 14,
-		author_name: 'DarkTales',
-		author_avatar: '/avatars/avatar13.jpg',
+		user_id: 14,
 		publishedDate: 1628842796,
 		list_name: 'Top Dramas',
 		list_description: 'Drama films that will stir your emotions.',
@@ -802,8 +788,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 15,
-		author_name: 'QuestMaster',
-		author_avatar: '/avatars/avatar15.jpg',
+		user_id: 15,
 		publishedDate: 1720073336,
 		list_name: 'Top Thrillers',
 		list_description: 'Mind-bending science fiction films you can’t miss.',
@@ -851,8 +836,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 16,
-		author_name: 'SilentViewer',
-		author_avatar: '/avatars/avatar14.jpg',
+		user_id: 16,
 		publishedDate: 1695629576,
 		list_name: 'Must-See Classics',
 		list_description: 'Best animated films to watch at any age.',
@@ -900,8 +884,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 17,
-		author_name: 'LegendSeeker',
-		author_avatar: '/avatars/avatar1.jpg',
+		user_id: 17,
 		publishedDate: 1622800380,
 		list_name: 'Best Animation Movies',
 		list_description: 'Thrillers that will keep you at the edge of your seat.',
@@ -949,8 +932,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 18,
-		author_name: 'TimeWanderer',
-		author_avatar: '/avatars/avatar7.jpg',
+		user_id: 18,
 		publishedDate: 1612470394,
 		list_name: 'Best Animation Movies',
 		list_description: 'Movies from the 90s that still resonate.',
@@ -998,8 +980,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 19,
-		author_name: 'TimeWanderer',
-		author_avatar: '/avatars/avatar9.jpg',
+		user_id: 19,
 		publishedDate: 1641981524,
 		list_name: 'Best of the 90s',
 		list_description: 'Thrillers that will keep you at the edge of your seat.',
@@ -1047,8 +1028,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 20,
-		author_name: 'PirateHeart',
-		author_avatar: '/avatars/avatar10.jpg',
+		user_id: 20,
 		publishedDate: 1666436325,
 		list_name: 'Best Sci-Fi Films',
 		list_description: 'Timeless classics that everyone should watch.',
@@ -1096,8 +1076,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 21,
-		author_name: 'PirateHeart',
-		author_avatar: '/avatars/avatar8.jpg',
+		user_id: 21,
 		publishedDate: 1646251720,
 		list_name: 'Must-See Classics',
 		list_description: 'Timeless classics that everyone should watch.',
@@ -1145,8 +1124,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 22,
-		author_name: 'PirateHeart',
-		author_avatar: '/avatars/avatar14.jpg',
+		user_id: 22,
 		publishedDate: 1736429915,
 		list_name: 'Best of the 90s',
 		list_description: 'Movies from the 90s that still resonate.',
@@ -1194,8 +1172,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 23,
-		author_name: 'PirateHeart',
-		author_avatar: '/avatars/avatar2.jpg',
+		user_id: 23,
 		publishedDate: 1682960348,
 		list_name: 'Best Sci-Fi Films',
 		list_description: 'Drama films that will stir your emotions.',
@@ -1243,8 +1220,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 24,
-		author_name: 'LoveChaser',
-		author_avatar: '/avatars/avatar4.jpg',
+		user_id: 24,
 		publishedDate: 1636706191,
 		list_name: 'Top Dramas',
 		list_description: 'Timeless classics that everyone should watch.',
@@ -1292,8 +1268,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 25,
-		author_name: 'TechWizard',
-		author_avatar: '/avatars/avatar10.jpg',
+		user_id: 25,
 		publishedDate: 1649821900,
 		list_name: 'Top Dramas',
 		list_description: 'Timeless classics that everyone should watch.',
@@ -1341,8 +1316,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 26,
-		author_name: 'NatureLover',
-		author_avatar: '/avatars/avatar11.jpg',
+		user_id: 26,
 		publishedDate: 1648313996,
 		list_name: 'Top Dramas',
 		list_description: 'Thrillers that will keep you at the edge of your seat.',
@@ -1390,8 +1364,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 27,
-		author_name: 'SuspenseFan',
-		author_avatar: '/avatars/avatar1.jpg',
+		user_id: 27,
 		publishedDate: 1711339055,
 		list_name: 'Top Thrillers',
 		list_description: 'Romantic comedies to lift your mood.',
@@ -1439,8 +1412,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 28,
-		author_name: 'MythicMind',
-		author_avatar: '/avatars/avatar6.jpg',
+		user_id: 28,
 		publishedDate: 1694086321,
 		list_name: 'Best of the 90s',
 		list_description:
@@ -1489,8 +1461,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 29,
-		author_name: 'MythicMind',
-		author_avatar: '/avatars/avatar1.jpg',
+		user_id: 29,
 		publishedDate: 1726561907,
 		list_name: 'Best Romantic Comedies',
 		list_description: 'Thrillers that will keep you at the edge of your seat.',
@@ -1538,8 +1509,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 30,
-		author_name: 'RebelSpirit',
-		author_avatar: '/avatars/avatar12.jpg',
+		user_id: 30,
 		publishedDate: 1672687307,
 		list_name: 'Best Animation Movies',
 		list_description: 'Romantic comedies to lift your mood.',
@@ -1587,8 +1557,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 31,
-		author_name: 'ShadowWalker',
-		author_avatar: '/avatars/avatar8.jpg',
+		user_id: 31,
 		publishedDate: 1735056986,
 		list_name: 'Best of the 90s',
 		list_description: 'Drama films that will stir your emotions.',
@@ -1636,8 +1605,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 32,
-		author_name: 'SeaDreamer',
-		author_avatar: '/avatars/avatar14.jpg',
+		user_id: 32,
 		publishedDate: 1618877528,
 		list_name: 'Best Animation Movies',
 		list_description: 'Mind-bending science fiction films you can’t miss.',
@@ -1685,8 +1653,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 33,
-		author_name: 'EpicSage',
-		author_avatar: '/avatars/avatar14.jpg',
+		user_id: 33,
 		publishedDate: 1667913619,
 		list_name: 'Action Hits',
 		list_description: 'Thrillers that will keep you at the edge of your seat.',
@@ -1734,8 +1701,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 34,
-		author_name: 'EchoFinder',
-		author_avatar: '/avatars/avatar12.jpg',
+		user_id: 34,
 		publishedDate: 1641968961,
 		list_name: 'Must-See Classics',
 		list_description: 'Movies from the 90s that still resonate.',
@@ -1783,8 +1749,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 35,
-		author_name: 'EchoFinder',
-		author_avatar: '/avatars/avatar6.jpg',
+		user_id: 35,
 		publishedDate: 1729346560,
 		list_name: 'Top Thrillers',
 		list_description: 'Best animated films to watch at any age.',
@@ -1832,8 +1797,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 36,
-		author_name: 'InfiniteViewer',
-		author_avatar: '/avatars/avatar11.jpg',
+		user_id: 36,
 		publishedDate: 1646668648,
 		list_name: 'Top Thrillers',
 		list_description: 'Hidden gems that deserve more attention.',
@@ -1881,8 +1845,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 37,
-		author_name: 'VelvetEye',
-		author_avatar: '/avatars/avatar15.jpg',
+		user_id: 37,
 		publishedDate: 1684744027,
 		list_name: 'Underrated Gems',
 		list_description: 'Drama films that will stir your emotions.',
@@ -1930,8 +1893,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 38,
-		author_name: 'JungleRover',
-		author_avatar: '/avatars/avatar15.jpg',
+		user_id: 38,
 		publishedDate: 1607598700,
 		list_name: 'Top Thrillers',
 		list_description: 'Timeless classics that everyone should watch.',
@@ -1979,8 +1941,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 39,
-		author_name: 'StarGazer',
-		author_avatar: '/avatars/avatar13.jpg',
+		user_id: 39,
 		publishedDate: 1640895273,
 		list_name: 'Feel-Good Movies',
 		list_description: 'Thrillers that will keep you at the edge of your seat.',
@@ -2028,8 +1989,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 40,
-		author_name: 'IronWill',
-		author_avatar: '/avatars/avatar2.jpg',
+		user_id: 40,
 		publishedDate: 1717449305,
 		list_name: 'Best Sci-Fi Films',
 		list_description: 'Feel-good movies to brighten your day.',
@@ -2077,8 +2037,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 41,
-		author_name: 'DawnChaser',
-		author_avatar: '/avatars/avatar12.jpg',
+		user_id: 41,
 		publishedDate: 1648792297,
 		list_name: 'Best of the 90s',
 		list_description: 'Drama films that will stir your emotions.',
@@ -2126,8 +2085,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 42,
-		author_name: 'BladeRunner',
-		author_avatar: '/avatars/avatar7.jpg',
+		user_id: 42,
 		publishedDate: 1727301517,
 		list_name: 'Best of the 90s',
 		list_description:
@@ -2176,8 +2134,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 43,
-		author_name: 'MirrorWatcher',
-		author_avatar: '/avatars/avatar5.jpg',
+		user_id: 43,
 		publishedDate: 1662837893,
 		list_name: 'Top Thrillers',
 		list_description: 'Best animated films to watch at any age.',
@@ -2225,8 +2182,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 44,
-		author_name: 'GoldenHealer',
-		author_avatar: '/avatars/avatar15.jpg',
+		user_id: 44,
 		publishedDate: 1670359178,
 		list_name: 'Underrated Gems',
 		list_description: 'Hidden gems that deserve more attention.',
@@ -2274,8 +2230,7 @@ export const filmsListsData: Array<IFilmsList> = [
 	},
 	{
 		id: 45,
-		author_name: 'NightRider',
-		author_avatar: '/avatars/avatar14.jpg',
+		user_id: 45,
 		publishedDate: 1715333451,
 		list_name: 'Best of the 90s',
 		list_description: 'Feel-good movies to brighten your day.',

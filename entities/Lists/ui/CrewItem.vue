@@ -1,8 +1,8 @@
 <template>
-	<div class="item_holder flex flex-col w-[280px]">
+	<div v-if="user" class="item_holder flex flex-col w-[280px]">
 		<NuxtLink
 			:to="`/members/
-				${generateSlug(list.author_name)}
+				${generateSlug(user.user_name)}
 				/lists/
 				${generateSlug(list.list_name)}`"
 			class="images_holder flex items-center -space-x-8 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded w-full h-[128px]"
@@ -22,7 +22,7 @@
 
 		<NuxtLink
 			:to="`/members/
-				${generateSlug(list.author_name)}
+				${generateSlug(user.user_name)}
 				/lists/
 				${generateSlug(list.list_name)}`"
 			class="text-white font-medium p-1"
@@ -35,18 +35,21 @@
 <script setup lang="ts">
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+import type { IUser } from '~/shared/model/interfaces/userInterface'
 
 const props = defineProps<{ data: IFilmsList }>()
 
-const list = ref(props.data)
+const list = props.data
 const filmsList: Ref<IFilmItem[]> = ref([])
+const user = ref<IUser>()
 
 onMounted(async () => {
-	const requests = list.value.films
+	const requests = list.films
 		.slice(0, 5)
 		.map(id => $fetch<IFilmItem>(`/api/movie/by-id/${id}`))
 
 	filmsList.value = await Promise.all(requests)
+	user.value = await $fetch<IUser>(`/api/user/${list.user_id}`)
 })
 </script>
 

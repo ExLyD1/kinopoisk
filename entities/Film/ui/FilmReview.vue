@@ -1,10 +1,10 @@
 <template>
-	<div v-if="review && film" class="flex flex-row gap-3">
+	<div v-if="review && film && user" class="flex flex-row gap-3">
 		<NuxtLink
-			:to="`/members/${generateSlug(review.author_name)}`"
+			:to="`/members/${generateSlug(user.user_name)}`"
 			class="rounded-full border-gray-400 w-11 h-11"
 		>
-			<img class="rounded-full" :src="review.author_avatar" alt="" />
+			<img class="rounded-full" :src="user.user_avatar" alt="" />
 		</NuxtLink>
 
 		<div class="flex flex-col gap-3">
@@ -12,13 +12,13 @@
 				<div class="flex items-center gap-2">
 					<NuxtLink
 						:to="`/members/${generateSlug(
-							review.author_name
+							user.user_name
 						)}/reviews/${generateSlug(film.film_name)}`"
 						class="flex gap-1"
 					>
 						<div class="text-gray-600 text-sm">Review by</div>
 						<div class="text-gray-500 font-medium text-sm">
-							{{ review.author_name }}
+							{{ user.user_name }}
 						</div>
 					</NuxtLink>
 				</div>
@@ -48,9 +48,9 @@
 
 				<!-- comments -->
 				<NuxtLink
-					:to="`/members/${generateSlug(
-						review.author_name
-					)}/reviews/${generateSlug(film.film_name)}`"
+					:to="`/members/${generateSlug(user.user_name)}/reviews/${generateSlug(
+						film.film_name
+					)}`"
 					class="flex flex-row items-center gap-1"
 				>
 					<img class="h-4 w-4" src="/public/images/comment.png" alt="" />
@@ -66,9 +66,9 @@
 			<!-- likes -->
 			<div class="flex gap-4">
 				<NuxtLink
-					:to="`/members/${generateSlug(
-						review.author_name
-					)}/reviews/${generateSlug(film.film_name)}/likes`"
+					:to="`/members/${generateSlug(user.user_name)}/reviews/${generateSlug(
+						film.film_name
+					)}/likes`"
 					class="text-gray-500 flex items-center flex-row gap-1"
 				>
 					<img class="w-5 h-5" src="/public/images/favorite.png" alt="" />
@@ -86,6 +86,7 @@ import { getRatingIcons } from '~/shared/model/funtions/getRatingIcon'
 
 import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+import type { IUser } from '~/shared/model/interfaces/userInterface'
 
 const props = defineProps<{
 	data: IReview
@@ -100,9 +101,11 @@ if (review.review_rate) {
 }
 
 const film = ref<IFilmItem>()
+const user = ref<IUser>()
 
 onMounted(async () => {
 	film.value = await $fetch<IFilmItem>(`/api/movie/by-id/${review.item_id}`)
+	user.value = await $fetch<IUser>(`/api/user/${review.user_id}`)
 })
 </script>
 

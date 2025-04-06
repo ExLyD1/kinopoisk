@@ -35,7 +35,7 @@ const memberStore = useMemberStore()
 const props = defineProps<{ data: IUser }>()
 const user = props.data
 
-const finalData = ref<{ review: IReview; film: IFilmItem }[]>([])
+const finalData = ref<{ review: IReview; film: IFilmItem; user: IUser }[]>([])
 
 onMounted(async () => {
 	const reviewsList = await $fetch<IReview[]>(
@@ -48,6 +48,7 @@ onMounted(async () => {
 		return {
 			review: review,
 			film: film,
+			user: user,
 		}
 	})
 

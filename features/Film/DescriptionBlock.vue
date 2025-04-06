@@ -7,16 +7,13 @@
 			<div class="title flex gap-2 items-center whitespace-nowrap">
 				<div class="film_title text-3xl text-white">{{ film.film_name }}</div>
 				<NuxtLink
-					to="/soon"
+					:to="getFilmsSearchPageLink('year', 1, String(film.realise_year))"
 					class="film_year text-gray-200 border-b text-lg border-gray-300 hover:text-blue-400 transition-all"
 				>
 					{{ film.realise_year }}
 				</NuxtLink>
 				<div class="film_directed text-gray-400 text-lg">Directed by</div>
-				<NuxtLink
-					to="/soon"
-					class="film_director text-gray-200 border-b text-lg border-gray-300 hover:text-blue-400 transition-all"
-				>
+				<NuxtLink class="film_director text-gray-200 text-lg">
 					{{ film.crew.director[0] }}
 				</NuxtLink>
 

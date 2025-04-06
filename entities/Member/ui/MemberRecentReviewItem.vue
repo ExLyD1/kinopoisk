@@ -19,15 +19,15 @@
 			<!-- film desc -->
 			<div class="flex flex-row items-center gap-2">
 				<NuxtLink
-					:to="`/members/${generateSlug(
-						review.author_name
-					)}/reviews/${generateSlug(film.film_name)}`"
+					:to="`/members/${generateSlug(user.user_name)}/reviews/${generateSlug(
+						film.film_name
+					)}`"
 					class="text-white text-xl hover:text-blue-300 transition-all cursor-pointer"
 				>
 					{{ film.film_name }}
 				</NuxtLink>
 				<NuxtLink
-					:to="`/films/year/${generateSlug(String(film.realise_year))}`"
+					:to="`/films/year/${generateSlug(String(film.realise_year))}/page/1`"
 					class="text-gray-600 hover:text-blue-300 transition-all cursor-pointer"
 				>
 					{{ film.realise_year }}
@@ -75,9 +75,9 @@
 			<!-- likes comments data -->
 			<div class="flex gap-4">
 				<NuxtLink
-					:to="`/members/${generateSlug(
-						review.author_name
-					)}/reviews/${generateSlug(film.film_name)}/likes`"
+					:to="`/members/${generateSlug(user.user_name)}/reviews/${generateSlug(
+						film.film_name
+					)}/likes`"
 					class="text-gray-500 flex items-center flex-row gap-1"
 				>
 					<img class="w-5 h-5" src="/public/images/favorite.png" alt="" />
@@ -103,15 +103,18 @@ import { getRatingIcons } from '~/shared/model/funtions/getRatingIcon'
 
 import type { IReview } from '~/shared/model/interfaces/reviewInterface'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
+import type { IUser } from '~/shared/model/interfaces/userInterface'
 
 const props = defineProps<{
 	data: {
 		review: IReview
 		film: IFilmItem
+		user: IUser
 	}
 }>()
 const film = props.data.film
 const review = props.data.review
+const user = props.data.user
 
 const ratingIcons = getRatingIcons(review.review_rate)
 

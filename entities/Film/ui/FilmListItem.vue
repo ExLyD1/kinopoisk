@@ -1,9 +1,9 @@
 <template>
-	<div class="full_holder flex flex-row gap-3">
+	<div v-if="user" class="full_holder flex flex-row gap-3">
 		<!-- list cover -->
 		<NuxtLink
 			:to="`/members/
-				${generateSlug(list.author_name)}
+				${generateSlug(user.user_name)}
 				/lists/
 				${generateSlug(list.list_name)}`"
 			class="images_holder flex items-center -space-x-8 border-4 border-transparent hover:border-green-600 cursor-pointer transition-all rounded h-[128px] w-[280px]"
@@ -26,7 +26,7 @@
 			<div>
 				<NuxtLink
 					:to="`/members/
-				${generateSlug(list.author_name)}
+				${generateSlug(user.user_name)}
 				/lists/
 				${generateSlug(list.list_name)}`"
 					class="text-white text-xl"
@@ -40,15 +40,15 @@
 				<div class="flex gap-2">
 					<!-- author avatar -->
 					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}`"
+						:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
+							list.list_name
+						)}`"
 						class="flex items-center justify-center"
 					>
 						<Avatar class="w-5 h-5">
 							<AvatarImage
 								class="w-5 h-5"
-								:src="list.author_avatar"
+								:src="user.user_avatar"
 								alt="@unovue"
 							/>
 							<AvatarFallback>CN</AvatarFallback>
@@ -57,12 +57,12 @@
 
 					<!-- author name -->
 					<NuxtLink
-						:to="`/members/${generateSlug(
-							list.author_name
-						)}/lists/${generateSlug(list.list_name)}`"
+						:to="`/members/${generateSlug(user.user_name)}/lists/${generateSlug(
+							list.list_name
+						)}`"
 						class="font-medium text-gray-300 text-sm flex items-center justify-center"
 					>
-						{{ list.author_name }}
+						{{ user.user_name }}
 					</NuxtLink>
 				</div>
 
@@ -77,7 +77,7 @@
 					<!-- likes -->
 					<NuxtLink
 						:to="`/members/
-						${generateSlug(list.author_name)}
+						${generateSlug(user.user_name)}
 						/lists/
 						${generateSlug(list.list_name)}
 						/likes`"
@@ -90,7 +90,7 @@
 					<!-- comments -->
 					<NuxtLink
 						:to="`/members/
-						${generateSlug(list.author_name)}
+						${generateSlug(user.user_name)}
 						/lists/
 						${generateSlug(list.list_name)}`"
 						class="flex gap-1 items-center"
@@ -107,12 +107,14 @@
 <script setup lang="ts">
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+import type { IUser } from '~/shared/model/interfaces/userInterface'
 
 import { getKNumber } from '~/shared/model/funtions/getKNumber'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const props = defineProps<{ data: IFilmsList }>()
 const list = props.data
+const user = ref<IUser>()
 
 const filmsList = ref<IFilmItem[]>([])
 
@@ -126,6 +128,7 @@ onMounted(async () => {
 	)
 	const results = await Promise.all(fetchPromises)
 	filmsList.value = results.filter((film): film is IFilmItem => film !== null)
+	user.value = await $fetch<IUser>(`/api/user/${list.user_id}`)
 })
 </script>
 

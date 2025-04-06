@@ -23,7 +23,9 @@
 									>{{ film.film_name }}</NuxtLink
 								>
 								<NuxtLink
-									to="/soon"
+									:to="
+										getFilmsSearchPageLink('year', 1, String(film.realise_year))
+									"
 									class="text-gray-600 transition-all hover:text-blue-400"
 									>{{ film.realise_year }}</NuxtLink
 								>

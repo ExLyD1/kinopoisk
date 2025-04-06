@@ -1,8 +1,6 @@
 export interface IFilmsList {
 	id: number
 	user_id: number
-	// author_name: string
-	// author_avatar: string
 	publishedDate: number
 	list_name: string
 	list_description: string
@@ -15,5 +13,4 @@ export interface IFilmsList {
 	films_quantity: number
 
 	tags: Array<string>
-	// comments?: Array<IComment>
 }

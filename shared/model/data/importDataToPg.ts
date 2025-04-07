@@ -221,13 +221,96 @@ async function importReviewFromJson(jsonFilePath: string): Promise<void> {
 	}
 }
 
+async function importFilmsFromJson(jsonFilePath: string): Promise<void> {
+	const jsonData = fs.readFileSync(jsonFilePath, 'utf-8')
+	const reviews = JSON.parse(jsonData)
+
+	const pool = new Pool({
+		user: 'postgres',
+		host: 'localhost',
+		database: 'filmoteca',
+		password: 'Sasha0953582895',
+		port: 5432,
+	})
+
+	try {
+		for (const review of reviews) {
+			const query = `
+				INSERT INTO reviews (
+					id,film_name,realise_year,film_image,author_name,description,duration,views,users_viewed,reviews_quantity,reviews,likes,liked_by_users,rating1,rating2,rating3,rating4,rating5,cast,crew,details,genres,themes
+				) VALUES (
+					$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23
+				)
+				ON CONFLICT (id) DO UPDATE SET
+					film_name,
+					realise_year,
+					film_image,
+					author_name,
+					description,
+					duration,
+					views,
+					users_viewed,
+					reviews_quantity,
+					reviews,
+					likes,
+					liked_by_users,
+					rating1,
+					rating2,
+					rating3,
+					rating4,
+					rating5,
+					cast,
+					crew,
+					details,
+					genres,
+					themes
+				RETURNING id;
+			`
+
+			const review_rate = Math.floor(review.review_rate)
+
+			const values = [
+				review.id,
+				review.type,
+				review.item_id,
+				review.review_comments,
+				review.review_comments_users,
+				review.review_likes,
+				review.review_likes_users,
+				review.review_text,
+				review_rate ? review_rate : null,
+				review.isEdited,
+				review.published_date,
+				review.user_id,
+			]
+
+			const result = await pool.query(query, values)
+
+			console.log(
+				result.rows.length > 0
+					? `Отзыв  (ID: ${review.id}) добавлен`
+					: `Отзыв  (ID: ${review.id}) обновлен`
+			)
+		}
+	} catch (error) {
+		console.error('Ошибка при импорте Отзыва:', error)
+	} finally {
+		// Закрываем соединение
+		await pool.end()
+		console.log('Соединение с базой данных закрыто')
+	}
+}
+
 const jsonFilePathUsers = './json/users.json'
 // importUsersFromJson(jsonFilePathUsers).catch(console.error) // * уже выполено
 
 const jsonFilePathComments = './json/comments.json'
-// importCommentsFromJson(jsonFilePathComments).catch(console.error) // ! не сделано
+// importCommentsFromJson(jsonFilePathComments).catch(console.error) // * уже выполнено
 
 const jsonFilePathReviews = './json/reviews.json'
-importReviewFromJson(jsonFilePathReviews).catch(console.error) // * уже выполено
+// importReviewFromJson(jsonFilePathReviews).catch(console.error) // * уже выполено
 
-// ! доработать остальные импорты в БД а именно ( фильмы, списки  и коменты )
+const jsonFilePathFilms = './json/films.json'
+// importFilmsFromJson(jsonFilePathFilms).catch(console.error) // ! Функция не доработана
+
+// ! доработать остальные импорты в БД а именно ( фильмы, списки )

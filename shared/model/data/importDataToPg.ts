@@ -311,6 +311,6 @@ const jsonFilePathReviews = './json/reviews.json'
 // importReviewFromJson(jsonFilePathReviews).catch(console.error) // * уже выполено
 
 const jsonFilePathFilms = './json/films.json'
-// importFilmsFromJson(jsonFilePathFilms).catch(console.error) // ! Функция не доработана
+// importFilmsFromJson(jsonFilePathFilms).catch(console.error) // ! Функция не доработана .
 
 // ! доработать остальные импорты в БД а именно ( фильмы, списки )

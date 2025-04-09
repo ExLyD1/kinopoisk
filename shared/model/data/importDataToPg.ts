@@ -223,7 +223,7 @@ async function importReviewFromJson(jsonFilePath: string): Promise<void> {
 
 async function importFilmsFromJson(jsonFilePath: string): Promise<void> {
 	const jsonData = fs.readFileSync(jsonFilePath, 'utf-8')
-	const reviews = JSON.parse(jsonData)
+	const films = JSON.parse(jsonData)
 
 	const pool = new Pool({
 		user: 'postgres',
@@ -234,66 +234,75 @@ async function importFilmsFromJson(jsonFilePath: string): Promise<void> {
 	})
 
 	try {
-		for (const review of reviews) {
+		for (const film of films) {
 			const query = `
-				INSERT INTO reviews (
-					id,film_name,realise_year,film_image,author_name,description,duration,views,users_viewed,reviews_quantity,reviews,likes,liked_by_users,rating1,rating2,rating3,rating4,rating5,cast,crew,details,genres,themes
+				INSERT INTO films (
+					id,film_name,realise_year,film_image,author_name,description,duration,views,users_viewed,reviews_quantity,reviews,likes,liked_by_users,rating1,rating2,rating3,rating4,rating5,"cast",crew,details,genres,themes
 				) VALUES (
 					$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23
 				)
 				ON CONFLICT (id) DO UPDATE SET
-					film_name,
-					realise_year,
-					film_image,
-					author_name,
-					description,
-					duration,
-					views,
-					users_viewed,
-					reviews_quantity,
-					reviews,
-					likes,
-					liked_by_users,
-					rating1,
-					rating2,
-					rating3,
-					rating4,
-					rating5,
-					cast,
-					crew,
-					details,
-					genres,
-					themes
+					film_name = EXCLUDED.film_name,
+					realise_year = EXCLUDED.realise_year,
+					film_image = EXCLUDED.film_image,
+					author_name = EXCLUDED.author_name,
+					description = EXCLUDED.description,
+					duration = EXCLUDED.duration,
+					views = EXCLUDED.views,
+					users_viewed = EXCLUDED.users_viewed,
+					reviews_quantity = EXCLUDED.reviews_quantity,
+					reviews = EXCLUDED.reviews,
+					likes = EXCLUDED.likes,
+					liked_by_users = EXCLUDED.liked_by_users,
+					rating1 = EXCLUDED.rating1,
+					rating2 = EXCLUDED.rating2,
+					rating3 = EXCLUDED.rating3,
+					rating4 = EXCLUDED.rating4,
+					rating5 = EXCLUDED.rating5,
+					"cast" = EXCLUDED."cast",
+					crew = EXCLUDED.crew,
+					details = EXCLUDED.details,
+					genres = EXCLUDED.genres,
+					themes = EXCLUDED.themes
 				RETURNING id;
 			`
 
-			const review_rate = Math.floor(review.review_rate)
-
 			const values = [
-				review.id,
-				review.type,
-				review.item_id,
-				review.review_comments,
-				review.review_comments_users,
-				review.review_likes,
-				review.review_likes_users,
-				review.review_text,
-				review_rate ? review_rate : null,
-				review.isEdited,
-				review.published_date,
-				review.user_id,
+				film.id,
+				film.film_name,
+				film.realise_year,
+				film.film_image,
+				film.author_name,
+				film.description,
+				film.duration,
+				film.views,
+				film.users_viewed,
+				film.reviews_quantity,
+				film.reviews,
+				film.likes,
+				film.liked_by_users,
+				film.rating1,
+				film.rating2,
+				film.rating3,
+				film.rating4,
+				film.rating5,
+				film.cast,
+				film.crew,
+				film.details,
+				film.genres,
+				film.themes,
 			]
 
 			const result = await pool.query(query, values)
 
 			console.log(
 				result.rows.length > 0
-					? `Отзыв  (ID: ${review.id}) добавлен`
-					: `Отзыв  (ID: ${review.id}) обновлен`
+					? `Фильм  (ID: ${film.id}) добавлен`
+					: `Фильм  (ID: ${film.id}) обновлен`
 			)
 		}
 	} catch (error) {
-		console.error('Ошибка при импорте Отзыва:', error)
+		console.error('Ошибка при импорте Фильма:', error)
 	} finally {
 		// Закрываем соединение
 		await pool.end()
@@ -311,6 +320,6 @@ const jsonFilePathReviews = './json/reviews.json'
 // importReviewFromJson(jsonFilePathReviews).catch(console.error) // * уже выполено
 
 const jsonFilePathFilms = './json/films.json'
-// importFilmsFromJson(jsonFilePathFilms).catch(console.error) // ! Функция не доработана .
+// importFilmsFromJson(jsonFilePathFilms).catch(console.error) // * уже выполено
 
-// ! доработать остальные импорты в БД а именно ( фильмы, списки )
+// ! доработать остальные импорты в БД а именно ( списки )

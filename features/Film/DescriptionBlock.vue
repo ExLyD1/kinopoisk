@@ -42,7 +42,7 @@
 		<!-- desription -->
 		<div class="description flex justify-between pt-6">
 			<div class="description_text text-gray-400 text-lg w-[390px]">
-				{{ film.describtion }}
+				{{ film.description }}
 			</div>
 
 			<!-- aside description -->

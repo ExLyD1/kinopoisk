@@ -30,7 +30,7 @@ export interface IFilmItem {
 	realise_year: number
 	film_image: string
 	author_name: string
-	describtion: string
+	description: string
 	duration: number
 
 	views: number
@@ -39,7 +39,7 @@ export interface IFilmItem {
 	list_contains: number
 	lists: number[] | []
 
-	reviews_quontity: number
+	reviews_quantity: number
 	reviews: number[] | []
 
 	likes: number

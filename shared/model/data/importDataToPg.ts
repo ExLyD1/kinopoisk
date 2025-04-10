@@ -310,6 +310,71 @@ async function importFilmsFromJson(jsonFilePath: string): Promise<void> {
 	}
 }
 
+async function importListsFromJson(jsonFilePath: string): Promise<void> {
+	const jsonFile = fs.readFileSync(jsonFilePath, 'utf-8')
+	const lists = JSON.parse(jsonFile)
+
+	const pool = new Pool({
+		user: 'postgres',
+		host: 'localhost',
+		database: 'filmoteca',
+		password: 'Sasha0953582895',
+		port: 5432,
+	})
+
+	try {
+		for (const list of lists) {
+			const query = `
+				INSERT INTO films_lists (
+					id, publishedDate, list_name, list_description, comments_quantity, likes, liked_by_users, films, films_quantity, tags, author_id
+				) VALUES (
+					$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11
+				)
+				ON CONFLICT (id) DO UPDATE SET
+					publishedDate = EXCLUDED.publishedDate,
+					list_name = EXCLUDED.list_name,
+					list_description = EXCLUDED.list_description,
+					comments_quantity = EXCLUDED.comments_quantity,
+					likes = EXCLUDED.likes,
+					liked_by_users = EXCLUDED.liked_by_users,
+					films = EXCLUDED.films,
+					films_quantity = EXCLUDED.films_quantity,
+					tags = EXCLUDED.tags,
+					author_id = EXCLUDED.author_id
+				RETURNING id;
+			`
+
+			const values = [
+				list.id,
+				list.publishedDate, // Передаем publishedDate
+				list.list_name,
+				list.list_description,
+				list.comments_quantity,
+				list.likes,
+				list.liked_by_users,
+				list.films,
+				list.films_quantity,
+				list.tags,
+				list.user_id, // Передаем user_id
+			]
+
+			const result = await pool.query(query, values)
+
+			console.log(
+				result.rows.length > 0
+					? `Список (ID: ${list.id}) добавлен`
+					: `Список (ID: ${list.id}) обновлен`
+			)
+		}
+	} catch (error) {
+		console.error('Ошибка при импорте Списка:', error)
+	} finally {
+		// Закрываем соединение
+		await pool.end()
+		console.log('Соединение с базой данных закрыто')
+	}
+}
+
 const jsonFilePathUsers = './json/users.json'
 // importUsersFromJson(jsonFilePathUsers).catch(console.error) // * уже выполено
 
@@ -322,4 +387,5 @@ const jsonFilePathReviews = './json/reviews.json'
 const jsonFilePathFilms = './json/films.json'
 // importFilmsFromJson(jsonFilePathFilms).catch(console.error) // * уже выполено
 
-// ! доработать остальные импорты в БД а именно ( списки )
+const jsonFilePathLists = './json/lists.json'
+// importListsFromJson(jsonFilePathLists).catch(console.error) // * уже выполено

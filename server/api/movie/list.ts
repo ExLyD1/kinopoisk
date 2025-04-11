@@ -1,7 +1,7 @@
 import { defineEventHandler, getQuery } from 'h3'
+import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async event => {
-	const module = await import('~/shared/model/data/filmsData')
 	const query = getQuery(event)
 
 	const type = query.type
@@ -11,9 +11,9 @@ export default defineEventHandler(async event => {
 		return { error: 'Invalid quantity parameter' }
 	}
 
-	if (type) {
-		return module.filmsList.slice(0, quantity || module.filmsList.length)
-	}
+	const films = await prisma.films.findMany({
+		take: quantity || 10,
+	})
 
-	return module.filmsList.slice(0, quantity || module.filmsList.length)
+	return films
 })

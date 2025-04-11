@@ -1,8 +1,10 @@
 import { defineEventHandler, getQuery } from 'h3'
+import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async event => {
 	const filmsModule = await import('~/shared/model/data/filmsData')
 	const usersModule = await import('~/shared/model/data/usersData')
+
 	const query = getQuery(event)
 
 	const user_id = Number(query.id)
@@ -16,13 +18,21 @@ export default defineEventHandler(async event => {
 		return { error: 'Invalid quantity parameter' }
 	}
 
-	const user = usersModule.usersList.find(user => user.id === user_id)
+	const user = await prisma.users.findUnique({
+		where: { id: user_id },
+	})
 
-	const favorite_films_list = user?.user_favorite_films.map((film_id: number) =>
-		filmsModule.filmsList.find(film => film.id === film_id)
-	)
+	if (!user) {
+		return { error: 'User not found' }
+	}
 
-	return favorite_films_list
-		? favorite_films_list.slice(0, quantity || favorite_films_list.length)
-		: { data: [], message: 'User have no fav films' }
+	const favorite_films = await prisma.films.findMany({
+		where: {
+			id: {
+				in: user.user_favorite_films.map(f_id => f_id),
+			},
+		},
+	})
+
+	return favorite_films.slice(0, quantity || favorite_films.length)
 })

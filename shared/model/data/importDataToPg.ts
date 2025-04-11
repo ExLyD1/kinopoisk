@@ -325,7 +325,7 @@ async function importListsFromJson(jsonFilePath: string): Promise<void> {
 	try {
 		for (const list of lists) {
 			const query = `
-				INSERT INTO films_lists (
+				INSERT INTO lists (
 					id, publishedDate, list_name, list_description, comments_quantity, likes, liked_by_users, films, films_quantity, tags, author_id
 				) VALUES (
 					$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11
@@ -378,11 +378,11 @@ async function importListsFromJson(jsonFilePath: string): Promise<void> {
 const jsonFilePathUsers = './json/users.json'
 // importUsersFromJson(jsonFilePathUsers).catch(console.error) // * уже выполено
 
-const jsonFilePathComments = './json/comments.json'
-// importCommentsFromJson(jsonFilePathComments).catch(console.error) // * уже выполнено
-
 const jsonFilePathReviews = './json/reviews.json'
 // importReviewFromJson(jsonFilePathReviews).catch(console.error) // * уже выполено
+
+const jsonFilePathComments = './json/comments.json'
+// importCommentsFromJson(jsonFilePathComments).catch(console.error) // * уже выполнено
 
 const jsonFilePathFilms = './json/films.json'
 // importFilmsFromJson(jsonFilePathFilms).catch(console.error) // * уже выполено

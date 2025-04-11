@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id                             Int        @id @default(autoincrement())
+  user_avatar                    String     @default("")
+  user_name                      String
+  user_following_quantity        Int?       @default(0)
+  user_followers_quantity        Int?       @default(0)
+  user_reviews_quantity          Int?       @default(0)
+  user_reviews                   Int[]      @default([])
+  user_films_quantity            Int?       @default(0)
+  user_films                     Int[]      @default([])
+  user_lists_quantity            Int?       @default(0)
+  user_lists                     Int[]      @default([])
+  user_favorite_films_quantity   Int?       @default(0)
+  user_favorite_films            Int[]      @default([])
+  user_favorite_lists_quantity   Int?       @default(0)
+  user_favorite_lists            Int[]      @default([])
+  user_favorite_reviews_quantity Int?       @default(0)
+  user_favorite_reviews          Int[]      @default([])
+  user_bio                       String     @default("")
+  user_tags                      String[]   @default([])
+  user_following                 Int[]      @default([])
+  user_followers                 Int[]      @default([])
+  user_pinned_lists              Int[]      @default([])
+  comments                       comments[] @relation("UserComments")
+  lists                          lists[]    @relation("UserLists")
+  reviews                        reviews[]  @relation("UserReviews")
+  users_reviewed_film            films[]    @relation("FilmReviews")
+  users_liked_film               films[]    @relation("UserLikedFilms")
+}
+
+model films {
+  id               Int      @id @default(autoincrement())
+  film_name        String
+  realise_year     Int
+  film_image       String
+  author_name      String
+  description      String
+  duration         Int
+  views            Int      @default(0)
+  users_viewed     Int[]    @default([])
+  reviews_quantity Int      @default(0)
+  reviews          Int[]    @default([])
+  likes            Int      @default(0)
+  liked_by_users   Int[]    @default([])
+  rating1          Int[]    @default([])
+  rating2          Int[]    @default([])
+  rating3          Int[]    @default([])
+  rating4          Int[]    @default([])
+  rating5          Int[]    @default([])
+  cast             String[] @default([])
+  crew             Json
+  details          Json
+  genres           String[] @default([])
+  themes           String[] @default([])
+  reviewsByUser    users[]  @relation("FilmReviews")
+  likedByUsers     users[]  @relation("UserLikedFilms")
+}
+
+model reviews {
+  id                    Int        @id @default(autoincrement())
+  type                  String
+  item_id               Int
+  review_comments       Int        @default(0)
+  review_comments_users Int[]      @default([])
+  review_likes          Int        @default(0)
+  review_likes_users    Int[]      @default([])
+  review_text           String
+  review_rate           Int?
+  isedited              Boolean    @default(false)
+  published_date        BigInt
+  user_id               Int
+  comments              comments[] @relation("ReviewComments")
+  user                  users      @relation("UserReviews", fields: [user_id], references: [id])
+
+  @@index([user_id])
+  @@index([item_id])
+}
+
+model comments {
+  id             Int     @id @default(autoincrement())
+  author_id      Int
+  item_id        Int
+  comment_text   String  @default("")
+  published_time BigInt
+  liked_by_users Int[]   @default([])
+  author         users   @relation("UserComments", fields: [author_id], references: [id])
+  review         reviews @relation("ReviewComments", fields: [item_id], references: [id])
+
+  @@index([author_id])
+  @@index([item_id])
+}
+
+model lists {
+  id                Int      @id @default(autoincrement())
+  publisheddate     BigInt
+  list_name         String
+  list_description  String
+  comments_quantity Int      @default(0)
+  likes             Int      @default(0)
+  liked_by_users    Int[]    @default([])
+  films             Int[]    @default([])
+  films_quantity    Int      @default(0)
+  tags              String[] @default([])
+  author_id         Int
+  author            users    @relation("UserLists", fields: [author_id], references: [id])
+
+  @@index([author_id])
+}

@@ -10,6 +10,7 @@ export default defineNuxtConfig({
 		'nuxt-swiper',
 		'@nuxt/image',
 		'@nuxtjs/tailwindcss',
+		'@prisma/nuxt',
 	],
 
 	nitro: {

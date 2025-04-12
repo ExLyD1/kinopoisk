@@ -2,9 +2,6 @@ import { defineEventHandler, getQuery } from 'h3'
 import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async event => {
-	const filmsModule = await import('~/shared/model/data/filmsData')
-	const usersModule = await import('~/shared/model/data/usersData')
-
 	const query = getQuery(event)
 
 	const user_id = Number(query.id)

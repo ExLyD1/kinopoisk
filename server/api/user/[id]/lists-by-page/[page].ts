@@ -1,16 +1,8 @@
 import { defineEventHandler, getRouterParam } from 'h3'
 import type { IFilmsList } from '~/shared/model/interfaces/filmsListInterface'
+import prisma from '~/lib/prisma'
+import { serializeBigInt } from '~/composables/serialize'
 
-const paginate = (
-	items: IFilmsList[],
-	page: number,
-	perPage: number
-): IFilmsList[] => {
-	const start = (page - 1) * perPage
-	const end = start + perPage
-
-	return items.slice(start, end)
-}
 export default defineEventHandler(async event => {
 	const perPage = 12
 
@@ -23,11 +15,11 @@ export default defineEventHandler(async event => {
 		})
 	}
 
-	const usersModule = await import('~/shared/model/data/usersData')
-	const listsModule = await import('~/shared/model/data/filmsListsData')
-
-	const user = usersModule.usersList.find(user => user.id === userId)
-
+	const user = await prisma.users.findUnique({
+		where: {
+			id: userId,
+		},
+	})
 	if (!user) {
 		throw createError({
 			statusCode: 404,
@@ -45,24 +37,30 @@ export default defineEventHandler(async event => {
 		})
 	}
 
-	let data: IFilmsList[] = []
+	const listsOnPage = await prisma.lists.findMany({
+		where: {
+			id: {
+				in: user.user_lists,
+			},
+		},
+		skip: (page - 1) * perPage,
+	})
 
-	const userListsIds = user.user_lists
-	const mapLists = new Map(
-		listsModule.filmsListsData.map(list => [list.id, list])
-	)
+	const totalItems = await prisma.lists.count({
+		where: {
+			id: {
+				in: user.user_lists,
+			},
+		},
+	})
 
-	const userLists: IFilmsList[] = userListsIds
-		.map(l_id => {
-			return mapLists.get(l_id)
-		})
-		.filter(item => item !== undefined)
+	const totalPages = Math.ceil(totalItems / perPage)
 
-	const totalPages = Math.ceil(userLists.length / perPage)
-	data = paginate(userLists, page, perPage)
-
+	const serializedListsOnPage = listsOnPage.map(l => {
+		return serializeBigInt(l)
+	})
 	return {
-		data,
+		data: serializedListsOnPage,
 		totalPages,
 	}
 })

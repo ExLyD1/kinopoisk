@@ -1,36 +1,44 @@
 import { defineEventHandler, getRouterParam, getQuery } from 'h3'
+import { serializeBigInt } from '~/composables/serialize'
+import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async event => {
-	const usersModule = await import('~/shared/model/data/usersData')
-	const filmsModule = await import('~/shared/model/data/filmsData')
-
 	const query = getQuery(event)
 
-	const id = getRouterParam(event, 'id')
-
-	if (!id) {
-		return 'No ID in query url'
+	const userIdStr = getRouterParam(event, 'id')
+	const userId = Number(userIdStr)
+	if (!userId) {
+		throw createError({
+			statusCode: 400,
+			message: 'User Id is required',
+		})
 	}
 
-	const user = usersModule.usersList.find(user => user.id === Number(id))
-
+	const user = await prisma.users.findUnique({
+		where: {
+			id: userId,
+		},
+	})
 	if (!user) {
-		return 'No user with such ID'
+		throw createError({
+			statusCode: 404,
+			message: 'User not found',
+		})
 	}
 
 	const quantityStr = query.quantity
 	const quantity = Number(quantityStr)
-	const favFilmsQuantity = user.user_favorite_films.slice(0, quantity)
 
-	const user_favorite_films = favFilmsQuantity
-		?.map(id => {
-			const film = filmsModule.filmsList.find(film => film.id === Number(id))
-
-			return film
-		})
-		.filter(film => film !== undefined)
+	const user_favorite_films = await prisma.films.findMany({
+		where: {
+			id: {
+				in: user.user_favorite_films,
+			},
+		},
+		take: quantity,
+	})
 
 	return user_favorite_films.length
-		? user_favorite_films
+		? serializeBigInt(user_favorite_films)
 		: { user_favorite_lists: [], message: 'User did not like any film' }
 })

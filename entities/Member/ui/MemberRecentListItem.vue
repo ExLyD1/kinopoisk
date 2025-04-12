@@ -75,7 +75,7 @@ import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
 import type { IUser } from '~/shared/model/interfaces/userInterface'
 
 const props = defineProps<{ data: IFilmsList }>()
-const list = props.data
+const list: any = props.data
 const user = ref<IUser>()
 
 const filmsList: Ref<IFilmItem[]> = ref([])
@@ -86,7 +86,7 @@ onMounted(async () => {
 
 		filmsList.value.push(film)
 	}
-	user.value = await $fetch<IUser>(`/api/user/${list.user_id}`)
+	user.value = await $fetch<IUser>(`/api/user/${list.author_id}`)
 })
 </script>
 

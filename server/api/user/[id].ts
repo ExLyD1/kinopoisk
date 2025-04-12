@@ -1,17 +1,28 @@
 import { defineEventHandler, getRouterParam } from 'h3'
+import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async event => {
-	const module = await import('~/shared/model/data/usersData')
-	const id = getRouterParam(event, 'id')
+	const user_idStr = getRouterParam(event, 'id')
+	const user_id = Number(user_idStr)
 
-	if (!id) {
-		return 'No ID in query url'
+	if (!user_id) {
+		throw createError({
+			statusCode: 400,
+			message: 'User Id is required',
+		})
 	}
 
-	const user = module.usersList.find(user => user.id === Number(id))
+	const user = await prisma.users.findUnique({
+		where: {
+			id: user_id,
+		},
+	})
 
 	if (!user) {
-		return 'No user with such ID'
+		throw createError({
+			statusCode: 400,
+			message: 'User not found',
+		})
 	}
 
 	return user

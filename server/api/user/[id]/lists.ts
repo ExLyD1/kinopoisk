@@ -1,12 +1,10 @@
 import { defineEventHandler, getRouterParam, getQuery } from 'h3'
+import { serializeBigInt } from '~/composables/serialize'
+import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async event => {
-	const usersModule = await import('~/shared/model/data/usersData')
-	const listsModule = await import('~/shared/model/data/filmsListsData')
-
 	const userIdStr = getRouterParam(event, 'id')
 	const userId = Number(userIdStr)
-
 	if (!userId) {
 		throw createError({
 			statusCode: 400,
@@ -14,7 +12,11 @@ export default defineEventHandler(async event => {
 		})
 	}
 
-	const user = usersModule.usersList.find(user => user.id === userId)
+	const user = await prisma.users.findUnique({
+		where: {
+			id: userId,
+		},
+	})
 	if (!user) {
 		throw createError({
 			statusCode: 404,
@@ -26,11 +28,16 @@ export default defineEventHandler(async event => {
 	const quantityStr = query.quantity
 	const quantity = Number(quantityStr)
 
-	let listsList = user.user_lists.map(l_id => {
-		return listsModule.filmsListsData.find(list => list.id === l_id)
+	let listsList = await prisma.lists.findMany({
+		where: {
+			id: {
+				in: user.user_lists,
+			},
+		},
+		...(quantity ? { take: quantity } : {}),
 	})
 
 	return listsList.length
-		? listsList.slice(0, quantity)
-		: { reviews: [], message: 'No user lists found' }
+		? serializeBigInt(listsList)
+		: { reviews: [], message: 'User lists found' }
 })

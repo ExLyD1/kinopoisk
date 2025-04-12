@@ -1,8 +1,8 @@
 import { defineEventHandler, getRouterParam, getQuery } from 'h3'
+import { serializeBigInt } from '~/composables/serialize'
+import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async event => {
-	const reviewsModule = await import('~/shared/model/data/reviewsData')
-	const usersModule = await import('~/shared/model/data/usersData')
 	const query = getQuery(event)
 
 	const userIdStr = getRouterParam(event, 'id')
@@ -17,7 +17,11 @@ export default defineEventHandler(async event => {
 	const quantityStr = query.quantity
 	const quantity = Number(quantityStr)
 
-	const user = usersModule.usersList.find(user => user.id === userId)
+	const user = await prisma.users.findUnique({
+		where: {
+			id: userId,
+		},
+	})
 	if (!user) {
 		throw createError({
 			statusCode: 404,
@@ -28,18 +32,25 @@ export default defineEventHandler(async event => {
 	let user_reviews = []
 
 	if (quantity) {
-		user_reviews = user.user_reviews
-			.map(r_id => {
-				return reviewsModule.reviewsList.find(review => review.id === r_id)
-			})
-			.slice(0, quantity)
+		user_reviews = await prisma.reviews.findMany({
+			where: {
+				id: {
+					in: user.user_reviews,
+				},
+			},
+			take: quantity,
+		})
 	} else {
-		user_reviews = user.user_reviews.map(r_id => {
-			return reviewsModule.reviewsList.find(review => review.id === r_id)
+		user_reviews = await prisma.reviews.findMany({
+			where: {
+				id: {
+					in: user.user_reviews,
+				},
+			},
 		})
 	}
 
 	return user_reviews.length
-		? user_reviews
+		? serializeBigInt(user_reviews)
 		: { reviews: [], message: 'No reviews found' }
 })

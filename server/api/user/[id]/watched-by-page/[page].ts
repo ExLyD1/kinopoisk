@@ -1,11 +1,6 @@
 import { defineEventHandler, getRouterParam, getQuery } from 'h3'
 import type { IFilmItem } from '~/shared/model/interfaces/filmInterface'
-
-const paginate = (list: IFilmItem[], currentPage: number, perPage: number) => {
-	const start = (currentPage - 1) * perPage
-	const end = start + perPage
-	return list.slice(start, end)
-}
+import prisma from '~/lib/prisma'
 
 export default defineEventHandler(async event => {
 	const query = getQuery(event)
@@ -29,22 +24,17 @@ export default defineEventHandler(async event => {
 		})
 	}
 
-	const [usersModule, filmsModule] = await Promise.all([
-		import('~/shared/model/data/usersData'),
-		import('~/shared/model/data/filmsData'),
-	])
-
-	const user = usersModule.usersList.find(user => user.id === userId)
+	const user = await prisma.users.findUnique({
+		where: {
+			id: userId,
+		},
+	})
 	if (!user) {
 		throw createError({
 			statusCode: 404,
 			message: 'User not found ',
 		})
 	}
-
-	const mapFilmsList = new Map(
-		filmsModule.filmsList.map(film => [film.id, film])
-	)
 
 	const genreStr = query.genre as string
 	const genre = genreStr.split(' ')
@@ -91,43 +81,27 @@ export default defineEventHandler(async event => {
 		}
 	}
 
-	let filmsOnPage: IFilmItem[] = []
-	let totalItems
+	const genreConditions = genre.map(g => ({
+		genres: {
+			has: g[0].toUpperCase() + g.slice(1), // Преобразуем в нужный формат
+		},
+	}))
 
-	// genre any
-	if (genreStr === 'any') {
-		const watchedFilmsIds = user.user_films
+	const filmsOnPage = await prisma.films.findMany({
+		where: {
+			id: { in: user.user_films }, // Фильтруем только по фильмам пользователя
+			...(genreStr !== 'any' && { AND: genreConditions }), // Если жанр не "any", добавляем фильтрацию по жанру
+		},
+		take: perPage, // Лимитируем количество
+		skip: (page - 1) * perPage, // Для пагинации
+	})
 
-		const watchedFilms = watchedFilmsIds
-			.map(f_id => mapFilmsList.get(f_id))
-			.filter((film): film is IFilmItem => film !== undefined)
-
-		filmsOnPage = paginate(watchedFilms, page, perPage)
-
-		totalItems = watchedFilms.length
-	}
-
-	// other valid genre
-	else {
-		const watchedFilmsIds = user.user_films
-
-		let watchedFilms = watchedFilmsIds
-			.map(f_id => mapFilmsList.get(f_id))
-			.filter((film): film is IFilmItem => film !== undefined)
-
-		genre.forEach((g: string) => {
-			const gUp = g[0].toUpperCase()
-			const genreToCompare: any = gUp + g.slice(1)
-
-			watchedFilms = watchedFilms.filter(film =>
-				film.genres.includes(genreToCompare)
-			)
-		})
-
-		filmsOnPage = paginate(watchedFilms, page, perPage)
-
-		totalItems = watchedFilms.length
-	}
+	const totalItems = await prisma.films.count({
+		where: {
+			id: { in: user.user_films },
+			...(genreStr !== 'any' && { AND: genreConditions }),
+		},
+	})
 
 	const totalPages = Math.ceil(totalItems / perPage)
 

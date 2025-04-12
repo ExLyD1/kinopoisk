@@ -1,16 +1,8 @@
 import { defineEventHandler, getRouterParam } from 'h3'
 import type { IReview } from '~/shared/model/interfaces/reviewInterface'
+import prisma from '~/lib/prisma'
+import { serializeBigInt } from '~/composables/serialize'
 
-const paginate = (
-	items: IReview[],
-	page: number,
-	perPage: number
-): IReview[] => {
-	const start = (page - 1) * perPage
-	const end = start + perPage
-
-	return items.slice(start, end)
-}
 export default defineEventHandler(async event => {
 	const perPage = 12
 
@@ -23,11 +15,11 @@ export default defineEventHandler(async event => {
 		})
 	}
 
-	const usersModule = await import('~/shared/model/data/usersData')
-	const reviewsModule = await import('~/shared/model/data/reviewsData')
-
-	const user = usersModule.usersList.find(user => user.id === userId)
-
+	const user = await prisma.users.findUnique({
+		where: {
+			id: userId,
+		},
+	})
 	if (!user) {
 		throw createError({
 			statusCode: 404,
@@ -45,24 +37,37 @@ export default defineEventHandler(async event => {
 		})
 	}
 
-	let data: IReview[] = []
+	let data: any = []
 
-	const userReviewsIds = user.user_reviews
-	const mapReviews = new Map(
-		reviewsModule.reviewsList.map(review => [review.id, review])
-	)
+	// const mapReviews = new Map(
+	// 	reviewsModule.reviewsList.map(review => [review.id, review])
+	// )
 
-	const userReviews: IReview[] = userReviewsIds
-		.map(u_id => {
-			return mapReviews.get(u_id)
-		})
-		.filter(item => item !== undefined)
+	const reviewsOnPage = await prisma.reviews.findMany({
+		where: {
+			id: {
+				in: user.user_reviews,
+			},
+		},
+		skip: (page - 1) * perPage,
+	})
 
-	const totalPages = Math.ceil(userReviews.length / perPage)
-	data = paginate(userReviews, page, perPage)
+	const totalItems = await prisma.reviews.count({
+		where: {
+			id: {
+				in: user.user_reviews,
+			},
+		},
+	})
+
+	const totalPages = Math.ceil(totalItems / perPage)
+
+	const serializedReviews = reviewsOnPage.map(r => {
+		return serializeBigInt(r)
+	})
 
 	return {
-		data,
+		data: serializedReviews,
 		totalPages,
 	}
 })
